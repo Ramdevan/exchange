@@ -65,6 +65,9 @@ class CoinRPC
   end
 
   class BCHABC < BTC
+    def getnewaddress label
+      CashAddr::Converter.to_legacy_address( super(label) )
+    end
   end
 
   class DASH < BTC

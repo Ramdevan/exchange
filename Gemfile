@@ -88,10 +88,10 @@ gem 'httparty'
 gem 'chosen-rails'
 gem 'airbrake'
 gem 'exception_notification'
+gem 'toastr-rails'
 gem 'cash-addr', '~> 0.1.1', require: 'cash_addr'
 gem 'axlsx'
 gem 'axlsx_rails'
-
 
 group :development, :test do
   gem 'factory_girl_rails'
