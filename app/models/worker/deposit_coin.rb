@@ -124,10 +124,11 @@ module Worker
 
     def deposit!(channel, txid, txout, raw, detail)
       return unless (detail[:account] == "payment" || detail[:category] == "receive")
+      address = CoinRPC[channel.currency_obj.code].to_legacy_address(detail[:address])
 
       ActiveRecord::Base.transaction do
-        unless PaymentAddress.where(currency: channel.currency_obj.id, address: detail[:address]).first
-          Rails.logger.info "Deposit address not found, skip. txid: #{txid}, txout: #{txout}, address: #{detail[:address]}, amount: #{detail[:amount]}"
+        unless PaymentAddress.where(currency: channel.currency_obj.id, address: address).first
+          Rails.logger.info "Deposit address not found, skip. txid: #{txid}, txout: #{txout}, address: #{address}, amount: #{detail[:amount]}"
           return
         end
 
@@ -136,7 +137,7 @@ module Worker
         tx = PaymentTransaction::Normal.create! \
         txid: txid,
         txout: txout,
-        address: detail[:address],
+        address: address,
         amount: detail[:amount].to_s.to_d,
         confirmations: raw[:confirmations],
         receive_at: Time.at(raw[:timereceived] || raw[:time]).to_datetime,

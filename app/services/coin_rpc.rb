@@ -58,6 +58,10 @@ class CoinRPC
         'N/A'
       end
     end
+
+    def to_legacy_address address
+      address
+    end
   end
 
 
@@ -66,7 +70,15 @@ class CoinRPC
 
   class BCHABC < BTC
     def getnewaddress label
-      CashAddr::Converter.to_legacy_address( super(label) )
+      to_legacy_address( super(label) )
+    end
+
+    def to_legacy_address address
+      CashAddr::Converter.to_legacy_address address
+    end
+
+    def to_cash_address address
+      CashAddr::Converter.to_cash_address(address)
     end
   end
 

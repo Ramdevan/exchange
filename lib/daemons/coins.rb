@@ -28,13 +28,14 @@ rescue => e
 end
 
 
-def get_attrs_for_coins tx
-  [tx['category'], tx['txid'], tx['address']]
+def get_attrs_for_coins coin_code, tx
+  address = CoinRPC[coin_code].to_legacy_address(tx['address']) rescue tx['address']
+  [tx['category'], tx['txid'], address]
 end
 
 def process_transaction(coin, channel, tx)
 
-  category, txid, address = get_attrs_for_coins(tx)
+  category, txid, address = get_attrs_for_coins(coin.code, tx)
   return if category != 'receive'
 
   # Skip if transaction exists.
