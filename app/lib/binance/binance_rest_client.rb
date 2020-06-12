@@ -38,6 +38,7 @@ class BinanceRestClient
   end
 
   def update_orderbook(market, orders, type)
+    return if orders.blank?
     orders.each do |order_param|
       params = { bid: market.quote_unit,
                  ask: market.base_unit,
@@ -77,6 +78,7 @@ class BinanceRestClient
         message = proc { |e|
           data = JSON.parse(e.data)
           market = Market.find(pairs.key(data['s'].upcase))
+          # puts data
           update_orderbook(market, data['a'], 'OrderAsk') if data['a'].present?
           update_orderbook(market, data['b'], 'OrderBid') if data['b'].present?
         }
@@ -245,12 +247,12 @@ class BinanceRestClient
   end
 
   def create_trade trade
+    market = Market.find(pairs.key(trade['s'].upcase))
     new_trade = Trade.create(price: trade['p'],
                              volume: trade['q'],
                              funds: trade['p'].to_f * trade['q'].to_f,
-                             currency: trade['s'].downcase,
+                             currency: market.id,
                              trend: trade['m'] == true ? 'down' : 'up')
-    market = Market.find(trade['s'].downcase)
     publish_trade(new_trade, market)
   end
 
