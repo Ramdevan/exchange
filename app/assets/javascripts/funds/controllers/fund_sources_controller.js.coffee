@@ -10,7 +10,8 @@ app.controller 'FundSourcesController', ['$scope', '$gon', 'fundSourceService', 
     fundSourceService.defaultFundSource currency:currency
 
   $scope.add = ->
-    uid   = $scope.uid.trim()   if angular.isString($scope.uid)
+    uid = $scope.uid.trim()   if angular.isString($scope.uid)
+    bank_code = $scope.bank_code.trim() if angular.isString($scope.bank_code)
     extra = $scope.extra.trim() if angular.isString($scope.extra)
     bank_code = $scope.bank_code.trim() if $scope.currency == 'inr' && angular.isString($scope.bank_code)
     destination_tag = $scope.destination_tag if $scope.currency == 'xrp' && angular.isNumber($scope.destination_tag)
@@ -22,9 +23,10 @@ app.controller 'FundSourcesController', ['$scope', '$gon', 'fundSourceService', 
     return if $scope.currency == 'xrp' && not destination_tag && destination_tag != 0
     return if $scope.currency == 'xmr' && not destination_tag && destination_tag.length <= 0
 
-    data = uid: uid, extra: extra, currency: currency, destination_tag: destination_tag
+    data = uid: uid, extra: extra, currency: currency, bank_code: bank_code, destination_tag: destination_tag
     fundSourceService.create data, ->
       $scope.uid = ""
+      $scope.bank_code = ""
       $scope.extra = "" if currency isnt $gon.fiat_currency
       $scope.destination_tag = ""
 

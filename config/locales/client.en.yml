@@ -22,9 +22,10 @@ en:
       manage_bank_account_desc: To facilitate the choice of bank withdrawals address
       manage_coin_address: Coin Address Management
       manage_coin_address_desc: To facilitate the choice of coin withdrawals address
-      bank: Bank
-      account: Bank Account
+      bank: Bank Name
+      account: Bank Account No
       label: Label
+      bank_code: IFSC Code
       address: Address
       action: Action
       add: Add

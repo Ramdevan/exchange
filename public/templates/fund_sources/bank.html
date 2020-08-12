@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th ng-bind="'fund_sources.bank' | t"></th>
+      <th ng-bind="'fund_sources.bank_code' | t"></th>
       <th ng-bind="'fund_sources.account' | t"></th>
       <th class="text-center" ng-bind="'fund_sources.default' | t"></th>
       <th></th>
@@ -11,7 +12,8 @@
   </thead>
   <tbody>
     <tr ng-repeat="fs in fund_sources()">
-      <td class="col-xs-8" ng-bind=" 'banks.' + fs.extra | t"></td>
+      <td class="col-xs-8" ng-bind="fs.extra"></td>
+      <td class="col-xs-8" ng-bind="fs.bank_code"></td>
       <td class="col-xs-10" ng-bind="fs.uid"></td>
       <td class="col-xs-2 text-center">
         <input type="radio" value="fs" ng-checked="fs == defaultFundSource()" ng-click="makeDefault(fs)">
@@ -21,18 +23,17 @@
       </td>
     </tr>
     <tr>
-      <td class="col-xs-8">
-        <select class="form-control"
-          ng-options="bank.code as ('banks.' + bank.code | t) for bank in banks"
-          ng-init="extra = banks[0].code"
-          ng-model="extra">
-        </select>
+      <td class="col-xs-6">
+        <input class="string form-control" placeholder="{{'fund_sources.bank' | t}}" ng-model="extra" ng-init="extra = ''" />
       </td>
-      <td class="col-xs-12">
+      <td class="col-xs-6">
+        <input class="string form-control" placeholder="{{'fund_sources.bank_code' | t}}" ng-model="bank_code" ng-init="bank_code = ''" />
+      </td>
+      <td class="col-xs-6">
         <input class="string form-control" placeholder="{{'fund_sources.account' | t}}" ng-model="uid" ng-init="uid = ''" />
       </td>
-      <td class="col-xs-4">
-        <button class="btn btn-primary" type="submit" ng-click="add()" ng-bind="'fund_sources.add' | t"></button>
+      <td class="col-xs-6">
+        <button class="form-control" type="submit" ng-click="add()" ng-bind="'fund_sources.add' | t"></button>
       </td>
     </tr>
   </tbody>

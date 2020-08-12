@@ -28,7 +28,7 @@ module Private
     end
 
     def fund_source_params
-      params.require(:fund_source).permit(:currency, :uid, :extra, :destination_tag)
+      params.require(:fund_source).permit(:currency, :uid, :extra, :destination_tag, :bank_code)
     end
   end
 end
