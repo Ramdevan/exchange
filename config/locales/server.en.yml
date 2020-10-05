@@ -1794,8 +1794,10 @@ en:
           notice: The recharge have been successful.
           deposit: Deposit Request
           accept: Accept
+          reject: Reject
           target_deposit: Wire Transfer
           confirm: Confirm recharge?
+          confirm_reject: Confirm reject?
         update:
           blank_txid: TxID can't be blank
       satoshis:

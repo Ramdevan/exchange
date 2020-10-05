@@ -21,13 +21,31 @@ module Admin
       end
 
       def update
-        if target_params[:txid].blank?
-          flash[:alert] = t('.blank_txid')
+        if params[:commit] == 'Accept'
+          update_amount
+        elsif params[:commit] == 'Reject'
+          @bank.submit!
+          @bank.reject!
+          @bank.touch(:done_at)
+          redirect_to :back
+        else
+          flash[:alert] = t('.error')
+          redirect_to :back
+        end
+      end
+
+      def update_amount
+        if target_params[:txid].blank? || target_params[:amount].blank?
+          flash[:alert] = target_params[:txid].blank? ? t('.blank_txid') : t('.blank_amount')
+          redirect_to :back and return
+        end
+
+        if target_params[:amount].to_f <= 0.0
+          flash[:alert] = t('.blank_amount')
           redirect_to :back and return
         end
 
         @bank.charge!(target_params[:txid])
-
         redirect_to :back
       end
 
