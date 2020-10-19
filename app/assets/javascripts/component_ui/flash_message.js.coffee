@@ -1,25 +1,16 @@
 @FlashMessageUI = flight.component ->
 
-  @showMeg = (data) ->
-    @$node.html("")
-    template = JST['templates/flash_message'](data)
-    $(template).prependTo(@$node)
-
   @info = (event, data) ->
-    data.info = true
-    @showMeg(data)
+    toastr.success(data.msg)
 
   @notice = (event, data) ->
-    data.notice = true
-    @showMeg(data)
+    toastr.info(data.msg)
 
   @alert = (event, data) ->
-    data.alert = true
-    @showMeg(data)
-  
+    toastr.error(data.msg)
+
   @error = (event, data) ->
-    data.error = true
-    @showMeg(data)
+    toastr.error(data.msg)
 
   @after 'initialize', ->
     @on document, 'flash:info', @info

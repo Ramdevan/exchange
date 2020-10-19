@@ -421,7 +421,7 @@ en:
         two_factor:
           attributes:
             otp:
-              invalid: Wrong Password!Please re-enter.
+              invalid: Wrong! Please re-enter.
         application:
           attributes:
             redirect_uri:
