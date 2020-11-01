@@ -2,10 +2,9 @@ module APIv2
   class Activations < Grape::API
     helpers ::APIv2::NamedParams
 
-    before { authenticate! }
-    
     desc "Send verification mail"
     post "/verify/mail" do
+      authenticate!
       current_user.send_activation
 
       status 200
@@ -19,6 +18,7 @@ module APIv2
       requires :phone_number, type: String, desc: 'Provide a valid phone number'
     end
     put "/send/otp" do
+      authenticate!
       sms_auth ||= current_user.sms_two_factor
       if sms_auth.activated?
         raise CustomError, @params[:message] = I18n.t('verify.sms_auths.show.notice.already_activated')
@@ -45,6 +45,7 @@ module APIv2
       requires :otp, type: String, desc: 'Provide the one time password.'
     end
     put "/verify/phone" do
+      authenticate!
       sms_auth ||= current_user.sms_two_factor
       if sms_auth.activated?
         raise CustomError.new(I18n.t('verify.sms_auths.show.notice.already_activated'))
@@ -65,6 +66,7 @@ module APIv2
 
     desc "Send OTP to registered mobile number."
     get "/two_factor/sms" do
+      authenticate!
       two_factor = current_user.sms_two_factor
       if two_factor
         two_factor.refresh!
@@ -81,6 +83,7 @@ module APIv2
       requires :two_factor_otp, type: String, desc: 'Provide the one time password.'
     end
     put "/two_factor/sms" do
+      authenticate!
       if two_factor_auth_verified?
         return :success => { message: I18n.t('verify.sms_auths.show.notice.otp_success') }
       else
@@ -90,6 +93,7 @@ module APIv2
 
     desc "Get google authenticator key."
     get "/two_factor/app" do
+      authenticate!
       google_auth ||= current_user.app_two_factor
 
       if not current_user.sms_two_factor.activated?
@@ -109,6 +113,7 @@ module APIv2
       requires :gauth_otp, type: String, desc: 'Provide the one time password.'
     end
     put "/two_factor/app" do
+      authenticate!
       @google_auth ||= current_user.app_two_factor
       if one_time_password_verified?
         @google_auth.active!
@@ -124,6 +129,7 @@ module APIv2
       requires :gauth_otp, type: String, desc: 'Provide the one time password.'
     end
     delete "/two_factor/app" do
+      authenticate!
       @google_auth ||= current_user.app_two_factor
       if one_time_password_verified?
         @google_auth.deactive!
@@ -135,6 +141,7 @@ module APIv2
     end
 
     get "/document/edit" do
+      authenticate!
       document = current_user.id_document || current_user.create_id_document
 
       status 200
@@ -145,6 +152,7 @@ module APIv2
       use :documents
     end
     put "/document/update" do
+      authenticate!
       document = current_user.id_document if current_user
       # Checking document verification status
       if document.aasm_state == I18n.t('private.id_documents.edit.state_verifying')
@@ -173,6 +181,7 @@ module APIv2
     end
 
     get "/activation/status" do
+      authenticate!
       mail_verification = false
       document_verification = I18n.t('private.id_documents.edit.state_unverified')
       two_factor_verification = false

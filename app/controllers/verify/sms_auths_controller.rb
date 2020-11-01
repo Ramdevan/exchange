@@ -6,6 +6,7 @@ module Verify
     before_action :two_factor_required!
 
     def show
+      @country_code = current_user.country_code_alpha
       @phone_number = Phonelib.parse(current_user.phone_number).national
     end
 

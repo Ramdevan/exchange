@@ -9,10 +9,10 @@
 
       = f.input :name, label: t('.name')
       .doc_dob
-        = f.input :birth_date, as: :date, label: t('.birth_date'), \
-          start_year: Date.today.year - 70, \
-          end_year: Date.today.year - 12, \
-          order: [:day, :month, :year]
+      = f.input :birth_date, as: :date, label: t('.birth_date'), \
+        start_year: Date.today.year - 70, \
+        end_year: Date.today.year - 12, \
+        order: [:day, :month, :year]
       = f.input :address, label: t('.address')
       = f.input :city, label: t('.city')
       = f.input :country, as: :country, label: t('.country')

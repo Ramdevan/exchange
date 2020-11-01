@@ -55,28 +55,38 @@ module APIv2
       if identity
         raise CustomError, @params[:message] = "Email already exists"
       else
-        begin
-          admin_identity = Identity.create(email: params[:email])
-          admin_identity.password = admin_identity.password_confirmation = params[:password]
-          admin_identity.save!
+        # begin
+        identity = Identity.create(email: params[:email], phone_number: params[:phone_number], country: params[:country_code], name: params[:name])
+        identity.password = identity.password_confirmation = params[:password]
+        if identity.valid?
+          identity.save!
 
           member = Member.find_by(email: params[:email])
           unless member
-            admin_member = Member.find_or_create_by(email: params[:email])
-            admin_member.authentications.build(provider: 'identity', uid: admin_identity.id)
-            admin_member.save!
-
-            SignupHistory.create(member_id: admin_member.id, ip: request.ip, accept_language: request.headers["Accept-Language"], ua: request.headers["User-Agent"])
+            member = Member.find_or_create_by(email: params[:email])
+            member.display_name = params[:name]
+            phonelib = Phonelib.parse(params[:phone_number], params[:country_code])
+            member.phone_number = Phonelib.parse([phonelib.country_code, phonelib.sanitized].join).sanitized.to_s
+            member.country_code = phonelib.country_code
+            member.authentications.build(provider: 'identity', uid: identity.id)
           end
 
-          token = login_member(params[:email], params[:password])
-
-          status 200
-          return token.as_json(only: %i[access_key secret_key])
-        rescue => e
-          ExceptionNotifier.notify_exception(e, env: request.env)
-          raise PathNotFoundError
+          if member.valid?
+            member.save!
+            SignupHistory.create(member_id: member.id, ip: request.ip, accept_language: request.headers["Accept-Language"], ua: request.headers["User-Agent"])
+            token = login_member(params[:email], params[:password])
+            status 200
+            return token.as_json(only: %i[access_key secret_key])
+          else
+            raise CustomError, @params[:message] = member.errors.full_messages.first
+          end
+        else
+          raise CustomError, @params[:message] = identity.errors.full_messages.first
         end
+        # rescue => e
+        #   ExceptionNotifier.notify_exception(e, env: request.env)
+        #   raise PathNotFoundError
+        # end
       end
     end
 

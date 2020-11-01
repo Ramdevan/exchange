@@ -3,7 +3,7 @@
 
     = simple_form_for @sms_auth, url: verify_sms_auth_path, remote: true, as: :sms_auth do |f|
       h3.text-center = t('.title')  
-      = f.input :country, as: :country, priority: [ ]
+      = f.input :country, as: :country, priority: [  ], selected: @country_code
       = f.input :phone_number do
         .input-group
           == f.text_field :phone_number, value: @phone_number, label: t('.phone_number'), class: 'string optional form-control', placeholder: t('.phone_number')

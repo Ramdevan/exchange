@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @member = Member.from_auth(auth_hash)
+    @member = Member.from_auth(auth_hash, set_options)
     # ip_whitelist = Whitelisting.find_by(member_id: @member.id, ip_address: request.ip).first
     # if ip_whitelist && ip_whitelist.authorised_ip?
     #   @token = SecureRandom.hex(16)
@@ -145,4 +145,12 @@ class SessionsController < ApplicationController
       expired_at: Time.zone.now + 60
     )
   end
+
+  def set_options
+    phonelib = Phonelib.parse(params[:phone_number], params[:country])
+    options = {name: params[:name], country: phonelib.country_code, phone_number: Phonelib.parse([phonelib.country_code, phonelib.sanitized].join).sanitized.to_s}
+    options[:referral_code] = cookies[:referral_code] if cookies[:referral_code]
+    options
+  end
+
 end

@@ -105,12 +105,13 @@ class Member < ActiveRecord::Base
       member
     end
 
-    def create_from_auth(auth_hash,referral_code = nil)
-      member = create(email: auth_hash['info']['email'], nickname: auth_hash['info']['nickname'],
-                      activated: false)
+    def create_from_auth(auth_hash, options)
+      member = create(email: auth_hash['info']['email'], display_name: (options[:name] || auth_hash['info']['nickname']),
+                      country_code: options[:country], phone_number: options[:phone_number], activated: false)
       member.add_auth(auth_hash)
-      if referral_code && referrer = Member.find_by_referral_code(referral_code)
-        member.update_attributes(referred_by: referrer )
+      if options[:referral_code].present?
+        referrer = Member.find_by_referral_code(referral_code)
+        member.update_attributes(referred_by: referrer) if referrer
       end
       member.send_activation if auth_hash['provider'] == 'identity'
       member
@@ -342,6 +343,11 @@ class Member < ActiveRecord::Base
       end
     end
     balance
+  end
+
+
+  def country_code_alpha
+    Phonelib.parse(phone_number).country
   end
 
   private

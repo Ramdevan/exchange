@@ -1680,6 +1680,8 @@ en:
       session:
         email: E-mail Address
         password: Password
+        name: Name
+        phone_no: Phone Number
       identity:
         email: Example：xiaobai@example.com
         password: Please set your login password

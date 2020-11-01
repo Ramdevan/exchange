@@ -33,6 +33,6 @@ class IdentitiesController < ApplicationController
 
   private
   def identity_params
-    params.required(:identity).permit(:password, :password_confirmation)
+    params.required(:identity).permit(:password, :password_confirmation, :name, :country, :phone_number)
   end
 end
