@@ -39,6 +39,8 @@ en:
         id_document_file: Document Photo
         id_document_type: Document Type
         id_bill_type: Proof of Residence
+        first_name: First Name
+        last_name: Last Name
         name: Name
       document:
         zh_cn_body: Chinese content
@@ -136,6 +138,8 @@ en:
         id: ID
         name: Real Name
         display_name: Display Name
+        first_name: First Name
+        last_name: Last Name
         email: Email
         created_at: Register At
         sn: SN
@@ -1549,7 +1553,7 @@ en:
         weibo:
           title: Connect to Weibo
           description: After you connecting to Weibo, you can login via Weibo account.
-          bound_desc: This has been connected with %{nickname}.
+          bound_desc: This has been connected with %{name}.
           bind: Connect
           unbind: Disconnect
     otps:
@@ -1680,6 +1684,8 @@ en:
       session:
         email: E-mail Address
         password: Password
+        first_name: First Name
+        last_name: Last Name
         name: Name
         phone_no: Phone Number
       identity:

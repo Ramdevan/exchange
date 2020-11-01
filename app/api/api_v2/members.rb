@@ -56,7 +56,8 @@ module APIv2
         raise CustomError, @params[:message] = "Email already exists"
       else
         # begin
-        identity = Identity.create(email: params[:email], phone_number: params[:phone_number], country: params[:country_code], name: params[:name])
+        identity = Identity.create(email: params[:email], phone_number: params[:phone_number], country: params[:country_code],
+                                   first_name: params[:first_name], last_name: params[:last_name])
         identity.password = identity.password_confirmation = params[:password]
         if identity.valid?
           identity.save!
@@ -64,7 +65,6 @@ module APIv2
           member = Member.find_by(email: params[:email])
           unless member
             member = Member.find_or_create_by(email: params[:email])
-            member.display_name = params[:name]
             phonelib = Phonelib.parse(params[:phone_number], params[:country_code])
             member.phone_number = Phonelib.parse([phonelib.country_code, phonelib.sanitized].join).sanitized.to_s
             member.country_code = phonelib.country_code
@@ -74,6 +74,12 @@ module APIv2
           if member.valid?
             member.save!
             SignupHistory.create(member_id: member.id, ip: request.ip, accept_language: request.headers["Accept-Language"], ua: request.headers["User-Agent"])
+            id_document = member.id_document || member.create_id_document
+            if id_document
+              id_document.first_name = params[:first_name]
+              id_document.last_name = params[:last_name]
+              id_document.save(validate: false)
+            end
             token = login_member(params[:email], params[:password])
             status 200
             return token.as_json(only: %i[access_key secret_key])

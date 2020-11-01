@@ -20,14 +20,16 @@
           <!-- <hr> -->
           <%= form_for @identity, :url => '/auth/identity/register', html: { class: 'form-signin' } do |f| %>
             <span id="reauth-email" class="reauth-email"></span>
-            <p class="input_title">Name</p>
-            <%= f.text_field :name, name: 'name', autofocus: 'true', class: 'form-control', id: "inputName", required: true, placeholder: t('simple_form.placeholders.session.name') %>
+            <p class="input_title">First Name</p>
+            <%= f.text_field :first_name, name: 'first_name', autofocus: 'true', class: 'form-control', id: "inputName", required: true, placeholder: t('simple_form.placeholders.session.first_name') %>
+            <p class="input_title">Last Name</p>
+            <%= f.text_field :last_name, name: 'last_name', autofocus: 'true', class: 'form-control', id: "inputName", required: true, placeholder: t('simple_form.placeholders.session.last_name') %>
             <p class="input_title">Country</p>
             <%= hidden_field_tag 'country', @identity.country, id: 'countryVal' %>
             <%= country_select('user', 'country', {include_blank: 'Select Country', selected: @identity.country},
                                                                {class: 'form-control', prompt: 'Select Country', required: true, id: "inputCountry"}) %>
             <p class="input_title">Phone Number</p>
-            <%= text_field_tag 'phone_number', @identity.phone_number, required: true, class: 'form-control', id: "inputPhoneNo", required: true, placeholder: t('simple_form.placeholders.session.ohone_no') %>
+            <%= text_field_tag 'phone_number', @identity.phone_number, required: true, class: 'form-control', id: "inputPhoneNo", required: true, placeholder: t('simple_form.placeholders.session.phone_no') %>
             <p class="input_title">E-Mail Address</p>
             <%= f.email_field :email, name: 'email', autofocus: 'true', class: 'form-control', id: "inputEmail", required: true, placeholder: t('simple_form.placeholders.session.email') %>
             <p class="input_title">Password</p>

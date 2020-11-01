@@ -17,7 +17,7 @@ class IdDocument < ActiveRecord::Base
   has_many :kyc_comments
   
   validates_presence_of :id_document_file, :id_bill_file, :on => :update
-  validates_presence_of :name, :id_document_type, :id_document_number, :id_bill_type, allow_nil: true
+  validates_presence_of :first_name, :last_name, :id_document_type, :id_document_number, :id_bill_type, allow_nil: true
   validates_uniqueness_of :member
 
   enumerize :id_document_type, in: {id_card: 0, passport: 1, drivers: 2, residence_permit: 3}
@@ -70,11 +70,15 @@ class IdDocument < ActiveRecord::Base
   #  "#{ENV['URL_SCHEMA']}://#{ENV['URL_HOST']}#{id_selfie_file.file.url}" if id_selfie_file.present?
   #end
 
+  def name
+    [first_name, last_name].join(' ')
+  end
+
   def self.document_type(document) # For Sumsub
     if id_document_type.values.map(&:upcase).include? document
-    "id_document_file"
+      "id_document_file"
     elsif id_bill_type.values.map(&:upcase).include? document
-    "id_bill_file"
+      "id_bill_file"
     #else
     #"id_selfie_file"
     end

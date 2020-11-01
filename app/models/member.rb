@@ -35,13 +35,13 @@ class Member < ActiveRecord::Base
 
   delegate :activated?, to: :two_factors, prefix: true, allow_nil: true
   delegate :name,       to: :id_document, allow_nil: true
-  delegate :full_name,  to: :id_document, allow_nil: true
+  delegate :first_name, to: :id_document, allow_nil: true
+  delegate :last_name,  to: :id_document, allow_nil: true
   delegate :verified?,  to: :id_document, prefix: true, allow_nil: true
 
   before_validation :sanitize, :generate_sn
 
   validates :sn, presence: true
-  validates :display_name, uniqueness: true, allow_blank: true
   validates :email, email: true, uniqueness: true, allow_nil: true
   validates :referral_code, uniqueness: true, allow_nil: true
 
@@ -106,15 +106,26 @@ class Member < ActiveRecord::Base
     end
 
     def create_from_auth(auth_hash, options)
-      member = create(email: auth_hash['info']['email'], display_name: (options[:name] || auth_hash['info']['nickname']),
-                      country_code: options[:country], phone_number: options[:phone_number], activated: false)
+      member = create(email: auth_hash['info']['email'], country_code: options[:country], phone_number: options[:phone_number], activated: false)
       member.add_auth(auth_hash)
-      if options[:referral_code].present?
-        referrer = Member.find_by_referral_code(referral_code)
-        member.update_attributes(referred_by: referrer) if referrer
-      end
+      update_document(member, auth_hash, options)
+      set_referral(member, options[:referral_code]) if options[:referral_code].present?
       member.send_activation if auth_hash['provider'] == 'identity'
       member
+    end
+
+    def update_document member, auth_hash, options
+      id_document = member.id_document || member.create_id_document
+      if id_document
+        id_document.first_name = (options[:first_name] || auth_hash['info']['first_name'])
+        id_document.last_name = (options[:last_name] || auth_hash['info']['last_name'])
+        id_document.save(validate: false)
+      end
+    end
+
+    def set_referral member, referral_code
+      referrer = Member.find_by_referral_code(referral_code)
+      member.update_attributes(referred_by: referrer) if referrer
     end
   end
 
@@ -173,12 +184,12 @@ class Member < ActiveRecord::Base
     "#{name || email} - #{sn}"
   end
 
-  def dname
-    name || display_name || email
+  def display_name
+    name || email
   end
 
   def short_name
-    dname.split(' ').map(&:first).join('').upcase
+    display_name.split(' ').map(&:first).join('')
   end
 
   def gravatar

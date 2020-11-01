@@ -148,7 +148,7 @@ class SessionsController < ApplicationController
 
   def set_options
     phonelib = Phonelib.parse(params[:phone_number], params[:country])
-    options = {name: params[:name], country: phonelib.country_code, phone_number: Phonelib.parse([phonelib.country_code, phonelib.sanitized].join).sanitized.to_s}
+    options = {first_name: params[:first_name], last_name: params[:last_name], country: phonelib.country_code, phone_number: Phonelib.parse([phonelib.country_code, phonelib.sanitized].join).sanitized.to_s}
     options[:referral_code] = cookies[:referral_code] if cookies[:referral_code]
     options
   end

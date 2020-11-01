@@ -1,14 +1,13 @@
 class Identity < OmniAuth::Identity::Models::ActiveRecord
   auth_key :email
-  attr_accessor :old_password, :country, :phone_number, :name
+  attr_accessor :old_password, :country, :phone_number, :first_name, :last_name
 
   MAX_LOGIN_ATTEMPTS = 5
 
   validates :email, presence: true, uniqueness: true, email: true
   validates :password, presence: true, length: { minimum: 6, maximum: 64 }
   validates :password_confirmation, presence: true, length: { minimum: 6, maximum: 64 }
-  validates_presence_of :name
-  validates_presence_of :phone_number
+  validates_presence_of :first_name, :last_name, :phone_number
   validate :valid_phone_number_for_country
 
   before_validation :sanitize
