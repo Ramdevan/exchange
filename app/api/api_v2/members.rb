@@ -19,6 +19,23 @@ module APIv2
       present member, with: APIv2::Entities::Member
     end
 
+    desc 'Get your profile info.', scopes: %w(profile)
+    params do
+      use :auth
+    end
+    get "/members/profile" do
+      authenticate!
+      present :name, current_user.name
+      present :email, current_user.email
+      present :country_code, current_user.country_code
+      present :phone_number, current_user.phone_number
+      present :dob, current_user.id_document.birth_date
+      present :address, current_user.id_document.address
+      present :city, current_user.id_document.city
+      present :country, current_user.id_document.country
+      present :zipcode, current_user.id_document.zipcode
+    end
+
     desc 'Use your credentials to login.'
     params do
       # Checking presence of Email and Password
