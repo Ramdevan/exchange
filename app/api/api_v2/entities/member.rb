@@ -2,7 +2,8 @@ module APIv2
   module Entities
     class Member < Base
       expose :sn
-      expose :name
+      expose :first_name
+      expose :last_name
       expose :email
       expose :phone_number
       expose :activated
