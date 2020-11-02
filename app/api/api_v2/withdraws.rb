@@ -8,8 +8,6 @@ module APIv2
     params do
       currencies = Currency.codes
       requires :currency, type: String,  values: currencies + currencies.map(&:upcase), desc: "Any supported currency: #{currencies.join(',')}."
-      optional :page,     type: Integer, values: 1..1000, default: 1, desc: 'Page number (defaults to 1).'
-      optional :limit,    type: Integer, default: 100, range: 1..1000, desc: 'Number of withdraws per page (defaults to 100, maximum is 1000).'
       optional :order_by, type: String, values: %w(asc desc), default: 'desc', desc: "If set, returned orders will be sorted in specific order, default to 'asc'."
     end
     get '/history/withdraw/:currency' do
@@ -18,8 +16,6 @@ module APIv2
           .order(order_param)
           .tap { |q| q.where!(currency: params[:currency].downcase) if params[:currency] }
           .tap { |q| present :count, q.count }
-          .page(params[:page])
-          .per(params[:limit])
           .tap { |q| present :history, q, with: APIv2::Entities::Withdraw }
     end
 

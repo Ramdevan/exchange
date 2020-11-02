@@ -31,8 +31,6 @@ module APIv2
     desc 'Get your executed trades. Trades are sorted in reverse creation order.', scopes: %w(history)
     params do
       use :auth
-      optional :limit, type: Integer, default: 100, range: 1..1000, desc: "Limit the number of returned orders, default to 100."
-      optional :page,  type: Integer, values: 1..1000, default: 1, desc: "Specify the page of paginated results."
       optional :order_by, type: String, values: %w(asc desc), default: 'desc', desc: "If set, returned orders will be sorted in specific order, default to 'asc'."
     end
     get "/history/trades/my" do
@@ -41,8 +39,6 @@ module APIv2
       member = current_user
       trades = member.trades
                    .order(order_param)
-                   .page(params[:page])
-                   .per(params[:limit])
 
       trades.each do |trade|
         trade.side = trade.ask_member_id == member.id ? 'ask' : 'bid'
@@ -51,7 +47,6 @@ module APIv2
         trade.quote_currency = trade.market.quote_unit
       end
 
-      present :count, trades.total_count
       present :history, trades, with: APIv2::Entities::Trade, current_user: current_user
     end
 
@@ -59,8 +54,6 @@ module APIv2
     desc 'Get your account history.', scopes: %w(history)
     params do
       use :auth
-      optional :limit, type: Integer, default: 100, range: 1..1000, desc: "Limit the number of returned orders, default to 100."
-      optional :page,  type: Integer, values: 1..1000, default: 1, desc: "Specify the page of paginated results."
     end
     get "/history/account/my" do
       authenticate!
@@ -69,7 +62,6 @@ module APIv2
       withdraws = current_user.withdraws.with_aasm_state(:done)
 
       transactions = (deposits + withdraws).sort_by {|t| -t.created_at.to_i }
-      transactions = Kaminari.paginate_array(transactions).page(params[:page]).per(params[:limit])
       present :count, transactions.total_count
       present :history, transactions
     end

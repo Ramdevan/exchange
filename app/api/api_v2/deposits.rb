@@ -11,8 +11,6 @@ module APIv2
       use :auth
       currencies = Currency.codes
       requires :currency, type: String, values: currencies + currencies.map(&:upcase), desc: "Currency value contains  #{currencies.join(',')}"
-      optional :limit, type: Integer, range: 1..1000, default: 100, desc: "Set result limit."
-      optional :page, type: Integer, values: 1..1000, default: 1, desc: "Page number (defaults to 1)."
       optional :order_by, type: String, values: %w(asc desc), default: 'desc', desc: "If set, returned orders will be sorted in specific order, default to 'asc'."
       optional :state, type: String, values: Deposit::STATES.map(&:to_s)
     end
@@ -21,11 +19,8 @@ module APIv2
                      .deposits
                      .order(order_param)
                      .tap { |q| q.where!(currency: params[:currency].downcase) if params[:currency] }
-                     .page(params[:page])
-                     .per(params[:limit])
       deposits = deposits.with_aasm_state(params[:state]) if params[:state].present?
 
-      present :count, deposits.total_count
       present :history, deposits, with: APIv2::Entities::Deposit
     end
 

@@ -8,17 +8,13 @@ module APIv2
     params do
       use :auth
       optional :state, type: String,  default: 'wait', values: Order.state.values, desc: "Filter order by state, default to 'wait' (active orders)."
-      optional :limit, type: Integer, default: 100, range: 1..1000, desc: "Limit the number of returned orders, default to 100."
-      optional :page,  type: Integer, values: 1..1000, default: 1, desc: "Specify the page of paginated results."
       optional :order_by, type: String, values: %w(asc desc), default: 'desc', desc: "If set, returned orders will be sorted in specific order, default to 'asc'."
     end
     get "/history/orders/my" do
       orders = current_user.orders
                    .order(order_param)
-                   .page(params[:page])
-                   .per(params[:limit])
+                   .with_state(params[:state])
 
-      present :count, orders.total_count
       present :history, orders, with: APIv2::Entities::Order
     end
 
@@ -26,8 +22,6 @@ module APIv2
     params do
       use :auth, :market
       optional :state, type: String,  default: 'wait', values: Order.state.values, desc: "Filter order by state, default to 'wait' (active orders)."
-      optional :limit, type: Integer, default: 100, range: 1..1000, desc: "Limit the number of returned orders, default to 100."
-      optional :page,  type: Integer, values: 1..1000, default: 1, desc: "Specify the page of paginated results."
       optional :order_by, type: String, values: %w(asc desc), default: 'asc', desc: "If set, returned orders will be sorted in specific order, default to 'asc'."
     end
     get "/orders/:market" do
@@ -35,8 +29,6 @@ module APIv2
                    .order(order_param)
                    .with_currency(current_market)
                    .with_state(params[:state])
-                   .page(params[:page])
-                   .per(params[:limit])
 
       present orders, with: APIv2::Entities::Order
     end
@@ -45,18 +37,13 @@ module APIv2
     params do
       use :auth
       optional :state, type: String,  default: 'wait', values: Order.state.values, desc: "Filter order by state, default to 'wait' (active orders)."
-      optional :limit, type: Integer, default: 100, range: 1..1000, desc: "Limit the number of returned orders, default to 100."
-      optional :page,  type: Integer, values: 1..1000, default: 1, desc: "Specify the page of paginated results."
       optional :order_by, type: String, values: %w(asc desc), default: 'asc', desc: "If set, returned orders will be sorted in specific order, default to 'asc'."
     end
     get "/orders" do
       orders = current_user.orders
                    .order(order_param)
                    .with_state(params[:state])
-                   .page(params[:page])
-                   .per(params[:limit])
 
-      present :count, orders.total_count
       present :orders, orders, with: APIv2::Entities::Order
     end
 
