@@ -171,5 +171,28 @@ module APIv2
       end
     end
 
+    desc 'Get your referal link.', scopes: %w(profile)
+    params do
+      use :auth
+    end
+    get "/members/referral" do
+      authenticate!
+      present :url, "#{ENV['URL_SCHEMA']}://#{ENV['URL_HOST']}/?ref=#{current_user.referral_code}"
+    end
+
+    desc 'Get dashboard data.', scopes: %w(profile)
+    params do
+      use :auth
+    end
+    get "/members/dashboard" do
+      authenticate!
+      deposits = Deposit.where(member: current_user).with_aasm_state(:accepted)
+      withdraws = Withdraw.where(member: current_user)
+
+      transactions = (deposits + withdraws).sort_by {|t| -t.created_at.to_i }[0..1]
+      present :bstk_balance, (current_user.accounts.where(currency: ENV['BASE_COIN']).first.amount rescue 0.0)
+      present :transactions, transactions, with: APIv2::Entities::Transaction
+    end
+
   end
 end
