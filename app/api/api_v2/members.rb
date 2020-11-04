@@ -33,6 +33,13 @@ module APIv2
         response = token.as_json(only: %i[access_key secret_key])
         response[:sms_2fa_activated] = member.sms_two_factor.activated?
         response[:app_2fa_activated] = member.app_two_factor.activated?
+        response[:activated] = member.activated
+        response[:sn] = member.sn
+        response[:first_name] = member.first_name
+        response[:last_name] = member.last_name
+        response[:email] = member.email
+        response[:phone_number] = member.phone_number
+        response[:two_factor_needed] = member.two_factor_needed
         status 200
         return response
       rescue => e
@@ -190,7 +197,7 @@ module APIv2
       withdraws = Withdraw.where(member: current_user)
 
       transactions = (deposits + withdraws).sort_by {|t| -t.created_at.to_i }[0..1]
-      present :bstk_balance, (current_user.accounts.where(currency: ENV['BASE_COIN']).first.amount rescue 0.0)
+      present :currencies, Account.currency_details(current_user.id), with: APIv2::Entities::Currency
       present :transactions, transactions, with: APIv2::Entities::Transaction
     end
 
