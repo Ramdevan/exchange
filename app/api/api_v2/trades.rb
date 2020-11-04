@@ -62,7 +62,6 @@ module APIv2
       withdraws = current_user.withdraws.with_aasm_state(:done)
 
       transactions = (deposits + withdraws).sort_by {|t| -t.created_at.to_i }
-      present :count, transactions.total_count
       present :history, transactions
     end
 
