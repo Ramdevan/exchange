@@ -32,7 +32,8 @@ module APIv2
     end
 
     params :documents do
-      requires :name, type: String,  desc: "Document name."
+      requires :first_name, type: String,  desc: "Document name."
+      requires :last_name, type: String,  desc: "Document name."
       requires :id_document_type, type: String, desc: "Select type of document(id_card, passport, driver_license)"
       requires :id_document_number, type: String,  desc: "Document number (ex: Driving license number)"
       requires :id_bill_type,  type: String,  desc: "Select type of document(bank_statement, tax_bill)"
