@@ -60,7 +60,7 @@ module APIv2
 
       identity = Identity.find_by(email: params[:email])
       if identity
-        raise CustomError, @params[:message] = "Email already exists"
+	      raise CustomError.new("Email already exists", nil, 1)
       else
         # begin
         identity = Identity.create(email: params[:email], phone_number: params[:phone_number], country: params[:country_code],
@@ -173,7 +173,7 @@ module APIv2
         status 200
         return :success => { :message => "Password changed successfully." }
       else
-        msg = "Failed to change password."
+	msg = identity.errors.full_messages.first#"Failed to change password."
         raise CustomError.new(msg)
       end
     end
@@ -199,6 +199,39 @@ module APIv2
       transactions = (deposits + withdraws).sort_by {|t| -t.created_at.to_i }[0..1]
       present :currencies, Account.currency_details(current_user.id), with: APIv2::Entities::Currency
       present :transactions, transactions, with: APIv2::Entities::Transaction
+    end
+
+    desc 'Activate user'
+    params do
+      # use :auth
+      requires :email, type: String, desc: "Email associated with your account."
+    end
+    put "/member/act" do
+      member = Member.where(email: params[:email]).first
+      if member && member.valid?
+        member.save
+        status 200
+        return :success => { :message => "Activated successfully." }
+      else
+        raise CustomError.new(member.present? ? member.errors.full_messages.first : 'Invalid email')
+      end
+    end
+
+        #TODO: MORE IMPORTANT: NEED TO ADD A SECURED WAY TO FIND USER BASED ON SOME TOKEN
+    desc 'Set password'
+    params do
+      requires :email, type: String, desc: "Email associated with your account."
+    end
+    put "/member/set_password" do
+      identity = Identity.where(email: params[:email]).first
+
+      if identity.update_attributes(params.as_json(only: %i[old_password password password_confirmation]))
+        clear_all_sessions identity.member.id
+        status 200
+        return :success => { :message => "Password changed successfully." }
+      else
+        raise CustomError.new("Failed to change password.")
+      end
     end
 
   end

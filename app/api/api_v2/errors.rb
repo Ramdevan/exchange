@@ -5,7 +5,7 @@ module APIv2
     def self.included(base)
       base.instance_eval do
         rescue_from Grape::Exceptions::ValidationErrors do |e|
-          ExceptionNotifier.notify_exception(e, env: request.env)
+          ExceptionNotifier.notify_exception(e, env: 'production')
           Rack::Response.new({
             error: {
               code: 1001,
@@ -30,7 +30,8 @@ module APIv2
       @text    = opts[:text]   || ''
 
       @status  = opts[:status] || 400
-      @message = {error: {code: @code, message: @text}}
+      @exist   = opts[:exist] || 0
+      @message = {error: {code: @code, message: @text, exist: @exist}}
     end
   end
 
@@ -119,9 +120,9 @@ module APIv2
   end
 
   class CustomError < Error
-    def initialize(message, status = nil)
+    def initialize(message, status = nil, record_exist=0)
       err_status = status ? status : 400
-      super code: 2015, text: message, status: err_status
+      super code: 2015, text: message, status: err_status, exist: record_exist
     end
   end
 end

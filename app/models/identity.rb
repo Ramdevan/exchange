@@ -7,8 +7,8 @@ class Identity < OmniAuth::Identity::Models::ActiveRecord
   validates :email, presence: true, uniqueness: true, email: true
   validates :password, presence: true, length: { minimum: 6, maximum: 64 }
   validates :password_confirmation, presence: true, length: { minimum: 6, maximum: 64 }
-  validates_presence_of :first_name, :last_name, :phone_number
-  validate :valid_phone_number_for_country
+  validates_presence_of :first_name, :last_name, :phone_number, if: :member_data_blank?
+  validate :valid_phone_number_for_country, if: :member_data_blank?
 
   before_validation :sanitize
 
@@ -18,6 +18,10 @@ class Identity < OmniAuth::Identity::Models::ActiveRecord
 
   def too_many_failed_login_attempts
     retry_count.present? && retry_count >= MAX_LOGIN_ATTEMPTS
+  end
+
+  def member
+    Member.where(email: email).first
   end
 
   private
@@ -31,4 +35,8 @@ class Identity < OmniAuth::Identity::Models::ActiveRecord
     self.email.try(:downcase!)
   end
 
+  def member_data_blank?
+    return true unless member
+    member.first_name.blank? || member.last_name.blank? || member.phone_number.blank? || member.country_code.blank?
+  end
 end
