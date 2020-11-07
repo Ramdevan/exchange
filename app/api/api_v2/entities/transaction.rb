@@ -8,6 +8,8 @@ module APIv2
       expose :aasm_state, as: :state
       expose :type, format_with: :transaction_type
       expose :created_at, :updated_at, :done_at, format_with: :iso8601
+      expose :blockchain_url
+      expose :fee
 
       private
 

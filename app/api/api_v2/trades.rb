@@ -50,7 +50,6 @@ module APIv2
       present :history, trades, with: APIv2::Entities::Trade, current_user: current_user
     end
 
-
     desc 'Get your account history.', scopes: %w(history)
     params do
       use :auth
@@ -62,7 +61,7 @@ module APIv2
       withdraws = current_user.withdraws.with_aasm_state(:done)
 
       transactions = (deposits + withdraws).sort_by {|t| -t.created_at.to_i }
-      present :history, transactions
+      present :history, transactions, with: APIv2::Entities::Transaction
     end
 
   end
