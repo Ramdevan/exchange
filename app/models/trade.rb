@@ -108,6 +108,7 @@ class Trade < ActiveRecord::Base
 
   def send_fee_to_admin(fee, currency)
     CustomLogger.debug("Sending fee of #{fee} of currency #{currency} to admin")
+    return if fee.to_f <= ZERO
     admin = Member.find_by_email(ENV['ADMIN'])
     admin.accounts.find_by_currency(currency).lock!.plus_funds(fee, fee: ZERO,reason: Account::TRADE_FEES, ref: self )
   end
