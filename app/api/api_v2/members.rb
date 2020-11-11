@@ -196,7 +196,7 @@ module APIv2
       deposits = Deposit.where(member: current_user).with_aasm_state(:accepted)
       withdraws = Withdraw.where(member: current_user)
 
-      transactions = (deposits + withdraws).sort_by {|t| -t.created_at.to_i }
+      transactions = (deposits + withdraws).sort_by {|t| -t.created_at.to_i }[0..6]
       present :currencies, Account.currency_details(current_user.id), with: APIv2::Entities::Currency
       present :transactions, transactions, with: APIv2::Entities::Transaction
     end
