@@ -14,26 +14,23 @@ class SessionsController < ApplicationController
 
   def create
     @member = Member.from_auth(auth_hash)
-
-    checkauth=Whitelisting.find_by(member_id: @member.id,ip_address: request.ip,authorised_ip: true).nil?
-    checkid=Whitelisting.find_by(member_id: @member.id,ip_address: request.ip).nil?
-    if (checkauth)
-      @token = SecureRandom.hex(16)
-      hash={'token'=> "#{@token}"}
-      Adminmailer.activation1(hash,request.ip,checkid).deliver_now
-      if checkid
-
-        check_auth_ip @member.id,@token
-        redirect_to signin_path, alert: t('.verify_ip')
-      else
-        save_ip=Whitelisting.find_by(member_id: @member.id,ip_address: request.ip)
-        save_ip.update(token: @token)
-        save_ip.update(expired_at: Time.zone.now+60)
-        respond_to do |format|
-          format.html{redirect_to request.referer,alert: t('.verify_ip')}
-        end
-      end
-    else
+    # ip_whitelist = Whitelisting.find_by(member_id: @member.id, ip_address: request.ip).first
+    # if ip_whitelist && ip_whitelist.authorised_ip?
+    #   @token = SecureRandom.hex(16)
+    #   hash = {'token' => "#{@token}"}
+    #   Adminmailer.activation1(hash, request.ip, ip_whitelist).deliver_now
+    #   if ip_whitelist
+    #     check_auth_ip @member.id, @token
+    #     redirect_to signin_path, alert: t('.verify_ip')
+    #   else
+    #     save_ip = Whitelisting.find_by(member_id: @member.id, ip_address: request.ip)
+    #     save_ip.update(token: @token)
+    #     save_ip.update(expired_at: Time.zone.now + 60)
+    #     respond_to do |format|
+    #       format.html { redirect_to request.referer, alert: t('.verify_ip') }
+    #     end
+    #   end
+    # else
       if @member
         if @member.disabled?
           increase_failed_logins
@@ -48,7 +45,7 @@ class SessionsController < ApplicationController
           country = Geocoder.search("#{request.ip}").first.country
           user_agent_string = request.headers["User-Agent"]
           user_agent = ::UserAgent.parse(user_agent_string)
-          save_login_history @member.id,country,user_agent
+          save_login_history @member.id, country, user_agent
           if @member.activated?
             MemberMailer.notify_signin(@member.id).deliver
             redirect_back_or_settings_page
@@ -60,7 +57,7 @@ class SessionsController < ApplicationController
         increase_failed_logins
         redirect_to signin_path, alert: (error || t('.error'))
       end
-      end
+    # end
   end
 
   def failure
@@ -75,18 +72,20 @@ class SessionsController < ApplicationController
   end
 
   def sendmail
-    mail=params[:contactEmail]
-    fname=params[:name]
-    subject=params[:subject]
-    message=params[:comment]
-    Adminmailer.admin_email(mail,fname,subject,message).deliver_now
+    mail = params[:contactEmail]
+    fname = params[:name]
+    subject = params[:subject]
+    message = params[:comment]
+    Adminmailer.admin_email(mail, fname, subject, message).deliver_now
     respond_to do |format|
       format.html { redirect_to request.referer, alert: t('.Mail_sent') }
     end
 
   end
-  def show 
-  end 
+
+  def show
+  end
+
   private
 
 
@@ -99,7 +98,7 @@ class SessionsController < ApplicationController
   end
 
   def increase_failed_logins
-    Rails.cache.write(failed_login_key, failed_logins+1)
+    Rails.cache.write(failed_login_key, failed_logins + 1)
   end
 
   def clear_failed_logins
@@ -122,7 +121,8 @@ class SessionsController < ApplicationController
       ua: request.headers["User-Agent"]
     )
   end
-  def save_login_history(member_id,country,user_agent)
+
+  def save_login_history(member_id, country, user_agent)
     Loginhistory.create(
       member_id: member_id,
       ip_address: request.ip,
@@ -132,12 +132,13 @@ class SessionsController < ApplicationController
       browser: user_agent.browser
     )
   end
-  def check_auth_ip(member_id,token)
+
+  def check_auth_ip(member_id, token)
     Whitelisting.create(
       member_id: member_id,
       ip_address: request.ip,
       token: token,
-      expired_at: Time.zone.now+60
+      expired_at: Time.zone.now + 60
     )
   end
 end
