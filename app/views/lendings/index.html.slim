@@ -1,0 +1,85 @@
+- content_for :frame do
+  .container
+    .col-md-24
+      h3 Lending
+      ul.nav.nav-tabs
+        li.active
+          a data-toggle='tab' href="#flexible_savings" Flexible Savings
+        li
+          a data-toggle='tab' href="#locked_savings" Locked Savings
+        li
+          a data-toggle='tab' href="#activity_savings" Activities
+      .tab-content
+        #flexible_savings.tab-pane.fade.in.active
+          table.table.table-condensed.table-hover
+            thead
+              th= t('.coin')
+              th= t('.7_day_apy')
+              th= t('.yesterday_apy')
+              th= t('.interest_per_thousand')
+              th= t('.auto_transfer')
+              th
+            tbody
+              - @flexible_lendings.each do |fl|
+                tr
+                  td= fl.currency
+                  td= "#{fl.today_apy} %"
+                  td= "#{fl.yesterday_apy} %"
+                  td= "#{fl.interest_per_thousand} #{fl.currency}" 
+                  td
+                    = check_box_tag 'auto_transfer', fl.auto_tansfer(current_user).present?, fl.auto_tansfer(current_user).present?, checked: false, "data-flx-id" => fl.id, class: "auto_transfer auto_transfer_#{fl.id}"
+                  td
+                    - if fl.locked(current_user) > 0
+                      = link_to t('actions.transfer'), "javascript:;", class: 'btn btn-primary half_opacity', remote: true
+                    - else
+                      = link_to t('actions.transfer'), flexible_transfer_path(fl), class: 'btn btn-primary', remote: true
+          .flexible_currency_details
+
+        #locked_savings.tab-pane.fade
+          table.table.table-condensed.table-hover
+            thead
+              th= t('.coin')
+              th= t('.interest_rate')
+              th= t('.duration_in_days')
+              th= t('.interest_per_lot')
+              th
+            tbody
+              - @locked_lendings.each do |ll|
+                tr
+                  td= ll.currency
+                  td= "#{ll.locked_durations.first.interest_rate} %"
+                  td
+                    - ll.locked_durations.each_with_index do |day, ind|
+                      - if ind == 0
+                        button.btn.btn-sm.border-btn.duration-btn= day.duration_days
+                      - else
+                        button.btn.btn-sm.duration-btn= day.duration_days
+                  td= "#{ll.locked_interest_per_thousand(ll.first_duration)} #{ll.currency}" 
+                  td
+                    - if ll.locked(current_user) > 0
+                      = link_to t('actions.transfer'), 'javascript:;', class: 'btn btn-primary half_opacity', remote: true
+                    - else
+                      = link_to t('actions.transfer'), locked_transfer_path(ll), class: 'btn btn-primary', remote: true
+          .locked_currency_details
+
+        #activity_savings.tab-pane.fade
+          table.table.table-condensed.table-hover
+            thead
+              th= t('.activity_name')
+              th= t('.interest_rate')
+              th= t('.duration_in_days')
+              th= t('.redeem_date')
+              th
+            tbody
+              - @activity_lendings.each do |al|
+                tr
+                  td= al.currency
+                  td= "#{al.interest_rate} %"
+                  td= al.duration_days
+                  td= al.asset_redeem_date
+                  td
+                    - if al.locked(current_user) > 0
+                      = link_to t('actions.transfer'), 'javascript:;', class: 'btn btn-primary half_opacity', remote: true
+                    - else
+                      = link_to t('actions.transfer'), activity_transfer_path(al), class: 'btn btn-primary', remote: true
+          .activities_currency_details

@@ -1,0 +1,33 @@
+.panel-primary
+  .row
+    .col-lg-12
+      .panel-heading.d-flex
+        h4 Referral Commissions
+        button.btn-primary.ml-auto.btn#new-commission New Commission
+      .panel-body
+        = table_for(@commissions, class: 'table table-condensed table-hover') do |t|
+          - t.column "Min", class: 'min col-xs-2' do |x|
+            = x.min
+          - t.column "Max", class: 'max col-xs-2' do |x|
+            = x.max
+          - t.column "Fee", class: 'fee col-xs-2' do |x|
+            = x.fee_percent
+          - t.column :actions, class: 'col-xs-1' do |x|
+            = link_to "Edit",{ }, class: 'edit-commission btn btn-primary', data: {id: x.id}
+            '
+            = link_to "Delete", url_for([:admin, x]), class: 'btn btn-danger' ,method: :delete, data: { confirm: 'Are you sure?' }
+
+        = paginate @commissions
+
+    
+.panel-primary
+  .row
+    .col-lg-6
+      .error_messages
+      = simple_form_for [:admin, @new_commission],remote: true do |f|
+        .form-group
+          = f.input :min
+          = f.input :max
+          = f.input :fee_percent
+          hr.split
+          = f.button :wrapped

@@ -1,0 +1,19 @@
+.panel-primary
+  .row
+    .col-lg-12
+      div.total-balance
+        - @currencies.each do |currency|
+          - balance = @versions.where(currency: currency).empty? ? '0' : @versions.where(currency: currency).map(&:balance).inject(:+)
+          span < #{Currency.find(currency).display_name} - #{balance}>
+    .col-lg-12.commissions_table
+      table
+        thead
+          tr
+            th Currency
+            th Amount
+            th Created At
+        - @versions.each do |version|
+          tr
+            td = version.currency
+            td = version.balance
+            td = version.created_at

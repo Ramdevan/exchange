@@ -1,0 +1,2 @@
+$('.duration_button_div').html("<%= j(render '/stakings/actions/duration_button') %>")
+setTimeout(function(){ $(".select_staking_duration_on_<%= @staking.id %>").trigger("change"); }, 500);

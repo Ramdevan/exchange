@@ -1,0 +1,5 @@
+tr
+  td = member.email
+  td 
+    span class=(member.referral_completed_at.nil? ? "label label-warning" : "label label-success") = member.referral_completed_at.nil? ? "Inactive" : "Active" 
+  td = member.created_at

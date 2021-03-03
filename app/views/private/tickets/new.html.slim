@@ -1,0 +1,11 @@
+.row
+	.col-lg-6.content-center.m-auto.p-5
+		= simple_form_for @ticket do |f|
+		  h4 Support Tickets 
+		  .form-group
+		    .notes
+		     p = t('.intro')
+		  = f.input :title
+		  = f.input :content, input_html: {rows: 10}
+		 
+		  = f.button :wrapped, cancel: tickets_path

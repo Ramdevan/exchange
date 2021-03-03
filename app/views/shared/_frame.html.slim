@@ -1,0 +1,21 @@
+.container
+  - if content_for?(:before)
+    = yield(:before)
+  .settings
+    .panel-body1.mt-5
+      .row.profile_status.d-none
+        #guide.col-lg-8
+          - if content_for?(:guide_title)
+            = yield(:guide_title)
+          - else
+            h4 = guide_title
+          p.text-ignore = guide_intro
+          - if content_for?(:guide)
+            = yield(:guide)
+      #content
+        = render 'shared/flash'
+        = yield
+      - if content_for?(:secondary)
+        = yield(:secondary)
+  - if content_for?(:after)
+    = yield(:after)

@@ -1,0 +1,36 @@
+.col-lg-12
+  .d-flex
+    h4.text-left = t('.member_info')
+    p.ml-auto = link_to 'View', url_for([:admin, member]), class: 'btn btn-primary', target: '_blank'
+  .panel-body
+    = description_for :member do
+      = item_for member, :name
+      = item_for member, :email
+      = item_for member, :phone_number do
+        - if member.phone_number
+          span = member.phone_number
+        - else
+          span = '-'
+      = item_for member, :activated
+      = item_for member, :created_at
+
+  .row
+    .col-lg-4
+      = item_for member, :actions do
+        - if member.activated?
+          = link_to 'Dectivate Email', active_admin_member_path(member), method: :post, confirm: 'Deactivate ?', class: 'btn btn-danger btn-xs'
+        - else
+          = link_to 'Activate Email', active_admin_member_path(member), method: :post, confirm: 'Activate ?', class: 'btn btn-danger btn-xs'
+
+    .col-lg-4
+      = item_for t('.deactive_sms_two_factor') do
+        - if member.sms_two_factor.activated?
+          = link_to t('.deactive'), admin_member_two_factor_path(member, member.sms_two_factor), method: :delete, confirm: t('.are_you_sure'), class: 'btn btn-danger btn-xs'
+        - else
+          span = t('.inactive')
+    .col-lg-4
+      = item_for t('.deactive_app_two_factor') do
+        - if member.app_two_factor.activated?
+          = link_to t('.deactive'), admin_member_two_factor_path(member, member.app_two_factor), method: :delete, confirm: t('.are_you_sure'), class: 'btn btn-danger btn-xs'
+        - else
+          span = t('.inactive')

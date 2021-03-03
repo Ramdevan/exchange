@@ -1,0 +1,6 @@
+<% if current_user.nil?%>
+	window.location.assign('/signin');
+<% else %>
+	$('.locked_currency_details').html("<%= j(render partial: 'shared/modals/locked_lending', locals: {ll: @fl}) %>")
+	$("#transferlockedModal").modal('show');
+<% end %>

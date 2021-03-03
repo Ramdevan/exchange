@@ -1,0 +1,31 @@
+.buy_sell
+  .card_header
+    .buy_sell_close
+      .d-flex
+        P.text-left.w-50 Place Order
+        p.text-right.w-50
+          a href="#"
+            i.far.fa-times-circle
+    ul#pills-tab-buysell.nav.nav-pills role="tablist" 
+      li role="presentation" 
+        a#pills-buy-tab.active aria-controls="pills-buy" aria-selected="true" data-toggle="pill" href="#pills-buy" role="tab"  Buy
+      li role="presentation" 
+        a#pills-sell-tab aria-controls="pills-sell" aria-selected="false" data-toggle="pill" href="#pills-sell" role="tab"  Sell
+  .card_body
+    .buy-form
+      .limit-or-market
+        .form-group
+          label for="sel1"  &nbsp;
+          select#sel1[name="order_limit"]
+            option[value="limit"]
+              | Limit
+            option[value="market"]
+              | Market
+            option[value="stop_limit"]
+              | Stop Limit
+
+      #pills-tabContent-buysell.tab-content
+        #pills-buy.tab-pane.fade.show.active aria-labelledby="pills-buy-tab" role="tabpanel"
+          = render partial: 'bid_entry', locals: {market: @market, order: @order_bid }
+        #pills-sell.tab-pane.fade aria-labelledby="pills-sell-tab" role="tabpanel" 
+          = render partial: 'ask_entry', locals: {market: @market, order: @order_ask }

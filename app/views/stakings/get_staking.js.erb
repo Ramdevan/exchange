@@ -1,0 +1,6 @@
+<% if current_user.nil?%>
+	window.location.assign('/signin');
+<% else %>
+	$('.staking_locked_body_process').html("<%= j(render 'shared/modals/stakings/staking_locked_modal') %>")
+	$("#stakingModal").modal('show');
+<%end%>

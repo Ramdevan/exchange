@@ -1,0 +1,11 @@
+- unless @one_bcashes.empty?
+  .panel.panel-primary
+    .panel-heading: span = t('.one')
+    = render partial: 'table', locals: {bcashes: @one_bcashes}
+- unless @all_bcashes.empty?
+  .panel.panel-success
+    .panel-heading: span = t('.all')
+    = render partial: 'table', locals: {bcashes: @all_bcashes}
+
+- if @all_bcashes.empty? and @one_bcashes.empty?
+  h3.text-info.text-center = t('.empty')

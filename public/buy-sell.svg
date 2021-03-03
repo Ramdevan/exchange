@@ -1,0 +1,9 @@
+<svg id="buy-sell" xmlns="http://www.w3.org/2000/svg" width="30" height="25" viewBox="0 0 30 25">
+  <rect id="Rectangle_429" data-name="Rectangle 429" width="30" height="25" fill="none"/>
+  <g id="icon" transform="translate(5 4)">
+    <path id="Path_3" data-name="Path 3" d="M698.667,147.75h3.667L704,144.333l3.417,3.417h11.5" transform="translate(-698.667 -144.333)" fill="none" stroke="#f03e3e" stroke-linecap="round" stroke-width="1.5"/>
+    <path id="Path_6" data-name="Path 6" d="M698.667,144.333h3.667L704,147.75l3.417-3.417h11.5" transform="translate(-698.667 -130.733)" fill="none" stroke="#37b24d" stroke-linecap="round" stroke-width="1.5"/>
+    <path id="Path_4" data-name="Path 4" d="M707.333,151H719.5" transform="translate(-699.333 -144)" fill="none" stroke="#c7c8c9" stroke-linecap="round" stroke-width="1.5"/>
+    <path id="Path_5" data-name="Path 5" d="M707.333,151H719.5" transform="translate(-699.333 -141)" fill="none" stroke="#c7c8c9" stroke-linecap="round" stroke-width="1.5"/>
+  </g>
+</svg>

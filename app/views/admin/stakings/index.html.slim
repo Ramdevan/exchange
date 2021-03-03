@@ -1,0 +1,64 @@
+.container
+  .col-md-24
+    h3 Stakings
+    .pull-right
+      = link_to t('actions.create'), "#","data-target"=>"#newlockedModal", "data-toggle"=>"modal" , class: "btn btn-primary remove_backdrop"
+    ul.nav.nav-tabs
+      li.active
+        a data-toggle='tab' href="#locked_staking" Locked Staking
+      li
+        a data-toggle='tab' href="#defi_staking" Defi Staking
+    .tab-content
+      #locked_staking.tab-pane.fade.in.active
+        = table_for(@locked_stakings, class: 'table table-condensed table-hover') do |t|
+          - t.column :staking_type
+          - t.column :currency
+          - t.column :durations do |d|
+            - staking_locked = d.locked_durations.first
+            - d.locked_durations.each_with_index do |b,i|
+              button(class="staking_locked_duration_btn staking_locked_duration_summary_btn_#{d.id} duration-btn btn btn-sm #{'border-btn' if staking_locked.try(:id) == b.id}" data-percent="#{b.try(:estimate_apy)}")= b.duration_days
+          - t.column :estimate, class: "duration-interest" do |b|
+            - staking_locked = b.staking_locked_durations.first
+            = staking_locked.try(:staking_duration).try(:estimate_apy)
+          - t.column :minimum_locked_amount
+          - t.column :maximum_locked_amount
+          - t.column :published_on
+          - t.column :status do |s|
+            = s.status_view
+          - t.column :actions, class: 'col-xs-1' do |x|
+            = link_to t("actions.#{x.status_action}"), update_status_admin_staking_path(x),method: :put,remote: true, target: '_blank',data: {confirm: "Are you sure?"}, class: "update_status_#{x.id}"
+
+        .pull-right = paginate @locked_stakings
+
+      #defi_staking.tab-pane.fade
+        = table_for(@defi_stakings, class: 'table table-condensed table-hover') do |t|
+          - t.column :staking_type
+          - t.column :currency
+          - t.column :durations do |d|
+            - staking_locked = d.defi_durations.first
+            - d.defi_durations.each_with_index do |b,i|
+              button(class="staking_locked_duration_btn staking_locked_duration_summary_btn_#{d.id} duration-btn btn btn-sm #{'border-btn' if staking_locked.try(:id) == b.id}" data-percent="#{b.try(:estimate_apy)}")= "Flexible"
+
+          - t.column :estimate, class: "duration-interest" do |b|
+            - staking_locked = b.staking_locked_durations.first
+            = staking_locked.try(:staking_duration).try(:estimate_apy)
+          - t.column :minimum_locked_amount
+          - t.column :maximum_locked_amount
+          - t.column :published_on
+          - t.column :status do |s|
+            = s.status_view
+          - t.column :actions, class: 'col-xs-1' do |x|
+            = link_to t("actions.#{x.status_action}"), update_status_admin_staking_path(x),method: :put,remote: true, target: '_blank',data: {confirm: "Are you sure?"}, class: "update_status_#{x.id}"
+
+        .pull-right = paginate @defi_stakings
+
+
+.staking_model_data
+  #newlockedModal.modal.fade role="dialog" data-backdrop="static" data-keyboard="false"
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close data-dismiss="modal" type="button"  &times;
+          h4.modal-title New Stakings
+        .staking_new_form
+          = render 'admin/stakings/new'

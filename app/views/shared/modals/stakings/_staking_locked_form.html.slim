@@ -1,0 +1,36 @@
+= form_tag flexible_saving_path, method: :post, remote: true
+  .modal-body
+    .row
+      .col-xs-24.col-sm-24.col-md-24
+        .lending-details
+          
+      .col-xs-24.col-sm-24.col-md-24
+        .lending-details
+          .pull-left
+            = t('.7_day_apy')
+          .pull-right
+            = "#{fl.today_apy} %"
+        .lending-details
+          .pull-left
+            = t('.interest_per_thousand')
+          .pull-right
+            = "0.03288 #{fl.currency}"
+        .lending-details
+          .pull-left
+            = t('.lendings.index.max_sub_amount')
+          .pull-right
+            = "#{number_with_delimiter(fl.max_subscription_amount, delimiter: ',')} #{fl.currency}"
+        .lending-details
+          .pull-left
+            = t('value_date')
+          .pull-right
+            = Date.today
+  .modal-footer
+    .lending-details
+      .col-xs-24.col-sm-24.col-md-24
+        .pull-left
+          input type="checkbox" name="terms_conditions" data-size='mini' data-on-color='success' class='mr-10' id='transfer-checkbox'
+          span= t('.agree_terms')
+    .lending-details
+      .col-xs-24.col-sm-24.col-md-24
+        = submit_tag t('actions.transfer_confirmed'), class: 'flexible-submit btn btn-primary btn-success disabled'

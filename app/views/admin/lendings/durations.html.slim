@@ -1,0 +1,45 @@
+.container
+  .col-md-12
+    h3 Lending Durations
+    .pull-right
+      button.btn.btn-primary.remove_backdrop data-target="#newdurationModal" data-toggle="modal" type="button"= t('actions.create')
+    table.table.table-condensed.table-hover
+      thead
+        th= t('.currency')
+        th= t('.interest_rate')
+        th= t('.duration_in_days')
+        th
+      tbody
+        - @durations.each do |ll, durations|
+          tr
+            td= ll
+            td.duration-interest= durations.first.interest_rate
+            td
+              - durations.each_with_index do |d, i|
+                - if i == 0
+                  button.btn.btn-sm.border-btn.duration-btn data-percent="#{d.interest_rate}"= d.duration_days
+                - else
+                  button.btn.btn-sm.duration-btn data-percent="#{d.interest_rate}"= d.duration_days
+
+    #newdurationModal.modal.fade role="dialog" data-backdrop="static" data-keyboard="false"
+      .modal-dialog
+        /! Modal content
+        .modal-content
+          .modal-header
+            button.close data-dismiss="modal" type="button"  &times;
+            h4.modal-title New Lending Duration
+          .error_messages.hide
+          .success_messages.hide
+          = form_for :lending_durations, url: save_durations_admin_lendings_path, remote: true do |f|
+            .modal-body
+              .row
+                = f.label :currency
+                = f.collection_select :currency, Currency.all, :code, :code, {prompt: "Select a currency"}, {class: "form-control"}
+              .row
+                = f.label :duration_days
+                = f.number_field :duration_days, class: "form-control", min: 1
+              .row
+                = f.label :interest_rate
+                = f.number_field :interest_rate, class: "form-control", min: 1
+            .modal-footer
+              = submit_tag t('actions.submit'), class: 'lending-duration-submit btn btn-primary btn-success disabled'

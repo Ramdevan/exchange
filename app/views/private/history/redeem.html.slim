@@ -1,0 +1,20 @@
+- content_for :frame do
+  .container.history-pages
+    = render 'tabs', active: :redeem
+
+    .panel.panel-default#redeems
+      .panel-body
+        .col-xs-24
+
+      .panel.panel-default.mt-4#redeems
+        .panel-body
+          .col-xs-24
+            table.table.table-condensed.table-striped
+              thead: tr
+                th = t('.currency')
+                th = t('.total_amount')
+                th = t('.accruing_interest')
+                th = t('.7_day_apy')
+                th = t('.operation')
+              tbody.list
+                = render partial: 'flexibles', collection: @flexibles

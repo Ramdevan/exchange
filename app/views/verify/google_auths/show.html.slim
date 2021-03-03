@@ -1,0 +1,47 @@
+.row
+  .col-lg-6.content-center.goolge_auth.m-auto.p-5
+    = simple_form_for @google_auth, as: 'google_auth', url: verify_google_auth_path do |f|
+      .step-1
+        .mb-4
+          h4 2-Step Verification
+          h6 Protect your account with 2-Step Verification
+          .notes
+            p Each time you sign in to your Account, you'll need your password and a verification code
+        .mt-5
+          h4 = t('.step-1')
+          p.form-text.text-muted.mb-0 Download and install the Google Authenticator app
+          .store-logo
+            a href="https://apps.apple.com/us/app/google-authenticator/id388497605" target="_blank"
+              img src="/assets/apple-store.png" /
+            a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en_IN" target="_blank" 
+              img src="/assets/google-store.png" /      
+          p
+            span = t('.download-app')
+            span == t('.guide-link')
+
+      h4 = t('.step-2')
+      p: span = t('.scan-qr-code')
+
+      = f.input :uri do
+        = qr_tag(@google_auth.uri)
+
+      = f.input :otp_secret do
+        .input-group
+          = f.input_field :otp_secret, class: 'upcase', readonly: true
+          span.input-group-btn
+            a.btn.btn-default href='#{verify_google_auth_path(:app, refresh: true)}'
+              i.fa.fa-refresh
+
+      h4 = t('.step-3')
+      p: span = t('.enter-passcode')
+      = f.input :otp      
+      = f.button :wrapped, t('.submit'), cancel: settings_path
+
+= content_for :guide do
+  ul.list-unstyled.d-flex.p-0.store-link
+    li: a target='_blank' href='https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8'
+      i.fab.fa-apple
+      span = t('.ios')
+    li: a target='_blank' href='https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2'
+      i.fab.fa-android
+      span = t('.android')

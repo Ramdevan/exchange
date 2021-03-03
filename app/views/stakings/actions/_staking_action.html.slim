@@ -1,0 +1,9 @@
+- current_locked = staking.current_locked_staking(current_user)
+- any_staking = staking.both_present_locked(current_user)
+-if current_locked.present?
+  - if current_locked.is_redeem_now.present?
+    =link_to "Redeem Now","javascript:void(0);", class: "btn btn-primary staking_redeem_now","data-staking"=>staking.try(:id), disabled: !current_locked.try(:valid_redeem)
+  -else
+    =link_to "Early Redeem","javascript:void(0);", class: "btn btn-primary staking_early_redeem","data-staking"=>staking.try(:id), disabled: !current_locked.try(:valid_redeem)
+-else
+  =link_to "Staking now","javascript:void(0);", class: "btn btn-primary staking_now staking_now_#{staking.try(:id)}","data-staking"=>staking.try(:id),"data-staking_duration"=>staking_locked.try(:id), disabled: any_staking.try(:present?)

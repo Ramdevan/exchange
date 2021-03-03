@@ -1,0 +1,22 @@
+- content_for :frame do
+  .container.history-pages
+    = render 'tabs', active: :subscription
+
+    .panel.panel-default#subscriptions
+      .panel-body
+        .col-xs-24
+
+      .panel.panel-default.mt-4#subscriptions
+	      .panel-body
+	        .col-xs-24
+	          table.table.table-condensed.table-striped
+	            thead: tr
+	              th = t('.sub_date')
+	              th = t('.coin')
+	              th = t('.amount')
+	              th = t('.value_date')
+	              th = t('.subscription_type')
+	              th = t('.status')
+	            tbody.list
+	              = render partial: 'subscription', collection: @subscriptions
+	              = render partial: 'staking_subscription', collection: @staking_subscriptions

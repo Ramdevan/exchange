@@ -1,0 +1,11 @@
+- id: ethbtc
+  code: 1
+  name: ETH/BTC
+  base_unit: eth
+  quote_unit: btc
+  # price_group_fixed: 1 # aggregate price levels in orderbook
+  bid: {fee: 0.0001, currency: btc, fixed: 6}
+  ask: {fee: 0.0001, currency: eth, fixed: 6}
+  min_trade: 0.001
+  sort_order: 1
+  visible: true

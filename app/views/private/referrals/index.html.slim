@@ -1,0 +1,44 @@
+- content_for :frame do
+  .container 
+    .panel.panel-default.mtb#orders
+      .panel-body
+        #guide
+          h4 Referrals
+
+        ul#pills-tab.nav.nav-pills.ref_tab.mb-3 role="tablist" 
+          li.nav-item
+            a#pills-coins-tab.nav-link.active aria-controls="pills-coins" aria-selected="true" data-toggle="pill" href="#pills-coins" role="tab"  Coins
+          li.nav-item
+            a#pills-users-tab.nav-link aria-controls="pills-users" aria-selected="false" data-toggle="pill" href="#pills-users" role="tab"  Users
+       
+        #pills-tabContent.tab-content
+          #pills-coins.tab-pane.fade.show.active aria-labelledby="pills-coins-tab" role="tabpanel" 
+            .row
+              .col-lg-12.refCard.reff-table.table-responsive.his-table
+                table.table
+                  thead: tr
+                  - Currency.all.each do |currency|
+                    th = currency.code.upcase
+                  tbody.list
+                    tr
+                    - Currency.all.each do |currency|
+                      td = current_user.accounts.find_by_currency(currency.code).referral_commissions.round(5) 
+
+          #pills-users.tab-pane.fade aria-labelledby="pills-users-tab" role="tabpanel"
+            .row
+              .col-lg-12.refCard.table-responsive.his-table  
+              table.table
+                thead: tr
+                  th Email
+                  th Status
+                  th Joined Date
+                tbody.list
+                  = render partial: 'member', collection: @referred_members
+              .text-right
+                = paginate @referred_members
+        
+          
+
+
+
+       

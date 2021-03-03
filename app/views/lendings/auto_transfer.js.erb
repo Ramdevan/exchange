@@ -1,0 +1,6 @@
+<% if current_user.nil?%>
+	window.location.assign('/signin');
+<% else %>
+	$('.flexible_currency_details').html("<%= j(render partial: 'shared/modals/auto_transfer', locals: {fl: @fl}) %>")
+	$("#autoTransferModal").modal('show');
+<% end %>

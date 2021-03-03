@@ -1,0 +1,3 @@
+- staking_locked = @staking.locked_durations.first
+- @staking.locked_durations.each_with_index do |b,i|
+  button(class="staking_locked_duration_btn staking_locked_duration_summary_btn_#{@staking.id} btn btn-sm #{'border-btn' if staking_locked.try(:id) == b.id}" type="button" data-duration=b.id data-staking=@staking.id data-stype='summary' data-interest=b.estimate_apy)= b.duration_days

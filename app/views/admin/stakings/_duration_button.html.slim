@@ -1,0 +1,2 @@
+- @staking.options_for_staking_durations(@flexible).each_with_index do |b,i|
+  button(class="staking_locked_duration_btn btn btn-sm #{'border-btn' if @staking_locked_duration.try(:id) == b.id}" type="button" data-duration=b.id data-staking=@staking.id)= b.view_duration

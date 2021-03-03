@@ -1,0 +1,16 @@
+<% if current_user.nil?%>
+	window.location.assign('/signin');
+<% else %>
+	<% if @staking_locked.errors.any? %>
+		$('.error_messages').removeClass("hide")
+  	$('.error_messages').html( "<%= @staking_locked.errors.full_messages.first %>");
+	<%else%>
+		$('.success_messages').removeClass("hide")
+		$(".success_messages").html("Success")
+		setTimeout(function(){
+			$('.error_messages').addClass("hide")
+			$('.success_messages').addClass("hide")
+	  	$("#stakingModal").modal('hide');
+		},1000);
+	<%end%>
+<% end %>

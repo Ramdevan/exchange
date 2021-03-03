@@ -1,0 +1,21 @@
+#market_trades_wrapper
+  #market_trades
+    .card_header
+      ul
+        li.active
+          a href="#"  Trade History
+    .card_body
+      .data_thead
+        table.table.table-sm.mb-0
+          thead: tr
+            th #{t('.time')}
+            th #{t('.price')}
+            th #{t('.volume')}
+      .data_tbody.scroll_css
+        table.table.table-sm.mb-0.all-trades
+          tbody#all_trades
+        table.table.table-sm.mb-0.my-trades
+          tbody#my_trades
+
+
+      

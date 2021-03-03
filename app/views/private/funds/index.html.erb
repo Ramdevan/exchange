@@ -1,0 +1,40 @@
+
+<div class="panel panel-default">
+  <div class="panel-body panel-currencies">
+    <h3 class="page-title"><%= t("header.funds") %></h3>
+    <div class='row'>
+      <div class='col-lg-4' id="fnd_optBox">
+
+        <div class="currencies-container">
+          <accounts></accounts>
+        </div>
+      </div>
+
+      <div class='col-lg-8' id="fnd_cntntbx">
+        <div class="details-container">
+          <!-- {{template 'flash'}} -->
+          <ui-view></ui-view>
+        </div>
+      </div>
+
+    </div><!-- .row -->
+
+  </div>
+</div>
+
+<% content_for :scripts do %>
+  <script type="text/javascript" charset="utf-8">
+    $(window).load(function(){
+      $.ajax({
+        type: "post",
+        url: "<%= gen_address_funds_path %>"
+      })
+    });
+    $(document).ready(function () {
+    $("#settings").click(function () {
+        $('li > ul').not($(this).children("ul").toggle()).hide();
+        
+    });
+});
+  </script>
+<% end %>

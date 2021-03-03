@@ -1,0 +1,32 @@
+#order_book
+  #market_trades
+    #order_book_header 
+
+      .d-flex   
+        .card_body.w-50
+          .card_header
+            ul
+              li.active
+                a href="#"  Buy Order
+          .data_thead
+            table.table.table-sm.mb-0
+              thead: tr
+                th.amount = t('.amount')
+                th.volume.text-center = t('.volume')
+                th.price.text-center = t('.bid')
+        .card_body.w-50
+          .card_header
+            ul
+              li.active
+                a href="#"  Sell Order
+          .data_thead
+            table.table.table-sm.mb-0
+              thead: tr
+                th.price = t('.ask')
+                th.volume = t('.volume')
+                th.amount.text-center = t('.amount')
+      
+  .data_tbody.scroll_css
+    #order_book_body.row
+      .col-lg-6: table.table.table-hover.bids
+      .col-lg-6.p-0: table.table.table-hover.asks

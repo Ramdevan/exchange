@@ -1,0 +1,21 @@
+<section id="home">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4 col-md-4 col-md-offset-4 col-sm-12 col-xs-12">
+        <div class="panelpanel-defaultcreate">
+          <div align="center">
+            <%= render 'shared/flash' %>
+          </div>
+          <h2 class='login_title text-center'><%= t("guides.#{i18n_controller_path}.#{action_name}.title") %></h2>
+          <hr>
+          <%= form_for @token, url: reset_password_path(@token), as: :reset_password, html: { class: 'form-signin' } do |f| %>
+            <span id="reauth-email" class="reauth-email"></span>
+            <p class="input_title">New Password</p>
+            <%= f.password_field :password, autofocus: 'true', class: 'form-control', id: "inputPassword", required: true, placeholder: '******' %>
+            <button class="btn btn-lg btn-primary login-btn" type="submit"><%= t("guides.#{i18n_controller_path}.#{action_name}.title") %></button>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

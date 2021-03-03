@@ -1,0 +1,21 @@
+.daystatusBlock
+        ul.dayStatus
+          li
+            h4.currentPair
+              span.baseunit 
+                = @market.base_unit
+              span.quoteunit
+                | &nbsp;/&nbsp;
+                = @market.quote_unit
+          li
+            span.text-theme data-title="#{t('.vol')}"
+              span.vol
+          li
+            span.text-theme data-title="#{t('.high')}"
+              span.high
+          li
+            span.text-theme data-title="#{t('.low')}"
+              span.low
+          li
+            span.text-theme data-title="#{t('.change')}"
+              span.change

@@ -1,0 +1,20 @@
+<% if @lending.errors.any? %>
+	$('.error_messages').removeClass("hide")
+  $('.error_messages').html( "<%= @lending.errors.full_messages.first %>");
+<% else %>
+	$('.success_messages').removeClass("hide")
+	$(".success_messages").html("Success")
+	$(".flexible_lendings").html('<%= j(render partial: "admin/lendings/shared/flexible", locals: {lendings: Lending.flexible.before_today.order("published_on DESC")}) %>')
+	$(".locked_lendings").html('<%= j(render partial: "admin/lendings/shared/locked", locals: {lendings: Lending.locked.before_today.order("published_on DESC")}) %>')
+	$(".activities_lendings").html('<%= j(render partial: "admin/lendings/shared/activity", locals: {lendings: Lending.activities.before_today.order("published_on DESC")}) %>')
+	$('#flexible_savings_form').trigger("reset");
+	$('#locked_savings_form').trigger("reset");
+	$('#activity_savings_form').trigger("reset");
+	setTimeout(function(){
+		$('.error_messages').addClass("hide")
+		$('.success_messages').addClass("hide")
+  	$("#newflexiModal").modal('hide');
+  	$("#newlockedModal").modal('hide');
+  	$("#newactivityModal").modal('hide');
+	},1000);
+<% end %>

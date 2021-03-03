@@ -1,0 +1,12 @@
+= table_for(lendings, class: 'table table-condensed table-hover') do |t|
+  - t.column :currency
+  - t.column :max_lot_size
+  - t.column 'Interest Rate %', class: 'duration-interest' do |x|
+    = x.locked_durations.first.interest_rate
+  - t.column :locked_durations do |x|
+    - x.locked_durations.each_with_index do |d,i|
+      - if i == 0
+        button.btn.btn-sm.border-btn.duration-btn data-percent="#{x.duration_percent(d)}"= d.duration_days
+      - else
+        button.btn.btn-sm.duration-btn data-percent="#{x.duration_percent(d)}"= d.duration_days
+  - t.column :published_on

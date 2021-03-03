@@ -1,0 +1,12 @@
+<% if @staking_duration.errors.any? %>
+	<% @staking_duration.errors.each do |m,v| %>
+		<% if m.to_s == 'staking_locked_durations' %>
+			$('.staking_staking_locked_durations_attributes_0_staking_duration_id').html("<%= m.to_s.titleize %> <%= v %>");
+		<%else%>
+			$('.staking_duration_<%=m%>').html("<%= m.to_s.titleize %> <%= v %>");
+		<%end%>
+	<%end%>
+<%else%>
+	alert("Successfully create!")
+	window.location.reload();
+<%end%>

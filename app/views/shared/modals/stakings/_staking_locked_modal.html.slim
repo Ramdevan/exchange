@@ -1,0 +1,88 @@
+#stakingModal.modal.fade aria-hidden="true" aria-labelledby="stakingModalLabel" role="dialog" tabindex="-1" data-backdrop="static" data-keyboard="false"
+  .modal-dialog role="document" 
+    .modal-content
+      .modal-header.display-flex
+        .col-sm-12
+          h4#transferModalLabel.modal-title= "#{t('staking.locked')} #{@staking.try(:currency)}"
+        .col-sm-12
+          button.close aria-label="Close" data-dismiss="modal" type="button" 
+            span aria-hidden="true"  &times;
+      .error_messages.hide
+      .success_messages.hide
+      = form_for @subscription, url: confirm_staking_locked_path, method: :post, remote: true do |f|
+        = f.hidden_field :staking_id, value: @staking.try(:id)
+        = f.hidden_field :staking_duration_id, value: @staking.first_staking_duration(@flexible).try(:id)
+        .modal-body
+          .row
+            .col-xs-12.col-sm-12.col-md-12
+              .staking-details
+                .pull-left
+                  = t('.type')
+                .pull-right
+                  = select_tag :locked_type, options_for_select(@staking.option_for_locked_type(@flexible),@flexible),{class: "form-control select_locked_type",required: true}
+            .col-xs-12.col-sm-12.col-md-12
+              .staking-details
+                .pull-left
+                  = "Stake Date"
+                .pull-right
+                  = locked_date_format(@subscription.get_stake_date)
+            .col-xs-12.col-sm-12.col-md-12
+              .staking-details
+                .pull-left
+                  = t('.duration')
+                .pull-right.duration_button_div
+                  = render "stakings/actions/duration_button"
+            .col-xs-12.col-sm-12.col-md-12
+              .staking-details
+                .pull-left
+                  = "Value Date"
+                .pull-right
+                  = locked_date_format(@subscription.get_start_date)
+            .col-xs-12.col-sm-12.col-md-12
+              .staking-details
+                .pull-left
+                  = t('.lock_amount')
+                = number_field_tag "staking_locked_subscription[amount]", "", class: "form-control", min: @staking.try(:minimum_locked_amount).to_f, max: @staking.try(:maximum_locked_amount).to_f, required: true
+              label.error.staking_locked_subscription_amount
+            .col-xs-12.col-sm-12.col-md-12
+              .staking-details
+                .pull-left
+                  = "End Date"
+                .pull-right.subscription_end_date
+                  = locked_date_format(@subscription.get_end_date)
+            .col-xs-12.col-sm-12.col-md-12
+              .staking-details
+                .pull-left
+                  = t('.minimum_lock_amount')
+                .pull-right
+                  = "#{@staking.try(:minimum_locked_amount)} #{@staking.try(:currency)}"
+            .col-xs-12.col-sm-12.col-md-12
+              .staking-details
+                .pull-left
+                  = t('.est_apy')
+                div class="pull-right estimate_apy-#{@staking.try(:id)}"
+                  = number_to_percentage(@staking_locked_duration.try(:staking_duration).try(:estimate_apy).to_f,precision: 2)
+            .col-xs-12.col-sm-12.col-md-12
+              .staking-details
+                .pull-left
+                  = t('.maximum_lock_amount')
+                .pull-right
+                  = "#{@staking.try(:maximum_locked_amount)} #{@staking.try(:currency)}"
+            .col-xs-12.col-sm-12.col-md-12
+              .staking-details
+                .pull-left
+                  = t('.redemption_period')
+                .pull-left
+                  = @staking.try(:redemption_period).to_i
+
+                
+
+        .modal-footer
+          .staking-details
+            .col-xs-24.col-sm-24.col-md-24
+              .pull-left
+                input type="checkbox" name="terms_conditions" data-size='mini' data-on-color='success' class='mr-10 staking_agree_terms' id='' required=true
+                span= t('.agree_terms')
+          .staking-details
+            .col-xs-24.col-sm-24.col-md-24
+              = submit_tag t('actions.confirm_purchase'), class: 'staking-submit btn btn-primary btn-success', disabled: true

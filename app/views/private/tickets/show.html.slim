@@ -1,0 +1,32 @@
+.ticket.row
+  .col-lg-12.text-right.mb-3
+    .ticket_action
+      - unless @ticket.closed?
+        = link_to t("private.tickets.close"), close_ticket_path(@ticket), method: :patch, confirm: t("private.tickets.close_confirm"), class: "btn btn-danger"
+      | &nbsp &nbsp &nbsp
+      = link_to t("back"), tickets_path, class: "btn btn-primary"
+
+ul.list-group
+  li.list-group-item.ticket_list
+        .row
+          .col-lg-12.ticket-view
+            h4 = "#{I18n.t('private.tickets.me')} - #{@ticket.title}"
+            p = @ticket.content
+            .ticket-time
+              i.fas.fa-clock
+              span = time_ago_in_words @ticket.created_at
+  - @comments.each do |c|
+    li.list-group-item.ticket_list
+      .row
+          .col-lg-12.ticket-view
+              h4 = "#{member_tittle(c.author)}"
+              p = c.content
+              .ticket-time
+                i.fa.fa-clock
+                span = time_ago_in_words c.created_at
+.row
+  .col-lg-12
+    = simple_form_for @comment, url: ticket_comments_path(@ticket.id) do |f|
+      = f.input :content, label: false,  input_html: { style: '', rows: 4 }
+     
+      = f.button :wrapped

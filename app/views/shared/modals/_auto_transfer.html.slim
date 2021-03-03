@@ -1,0 +1,49 @@
+#autoTransferModal.modal.fade aria-hidden="true" aria-labelledby="transferModalLabel" role="dialog" tabindex="-1" data-backdrop="static" data-keyboard="false"
+  .modal-dialog role="document" 
+    .modal-content
+      .modal-header.display-flex
+        .col-sm-12
+          h4#transferModalLabel.modal-title= "#{t('actions.transfer')} #{fl.currency}"
+        .col-sm-12
+          button.close aria-label="Close" data-dismiss="modal" type="button" 
+            span aria-hidden="true"  &times;
+      .error_messages.hide
+      .success_messages.hide
+      = form_tag flexible_auto_transfer_path, method: :post, remote: true
+        .modal-body
+          .row
+            .col-xs-24.col-sm-24.col-md-24
+              .lending-details
+                = hidden_field_tag 'lending_auto_transfers[lending_id]', fl.id
+                = hidden_field_tag 'lending_auto_transfers[currency]', fl.currency
+              div.flex_amount_error.fs-12
+            .col-xs-24.col-sm-24.col-md-24
+              .lending-details
+                .pull-left
+                  = t('.7_day_apy')
+                .pull-right
+                  = "#{fl.today_apy} %"
+              .lending-details
+                .pull-left
+                  = t('.interest_per_thousand')
+                .pull-right
+                  = "#{fl.interest_per_thousand} #{fl.currency}"
+              .lending-details
+                .pull-left
+                  = t('.lendings.index.max_sub_amount')
+                .pull-right
+                  = "#{number_with_delimiter(fl.max_subscription_amount, delimiter: ',')} #{fl.currency}"
+              .lending-details
+                .pull-left
+                  = t('value_date')
+                .pull-right
+                  = Date.today
+        .modal-footer
+          .lending-details
+            .col-xs-24.col-sm-24.col-md-24
+              .pull-left
+                input type="checkbox" name="terms_conditions" data-size='mini' data-on-color='success' class='mr-10' id='auto-transfer-checkbox'
+                span= t('.agree_terms')
+          .lending-details
+            .col-xs-24.col-sm-24.col-md-24
+              = submit_tag t('actions.transfer_confirmed'), class: 'auto-transfer-submit btn btn-primary btn-success disabled'

@@ -1,0 +1,8 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Accounts") do |sheet|
+  sheet.add_row [t('created_at'), t('currency_xlsx'), t('type'), t('reason'), t('amount'), t('income'), t('expense'), t('fee')]
+  @account_versions.each do |version|
+    sheet.add_row [version.created_at, version.currency_text, (version.modifiable_type ? version.modifiable_type.constantize.model_name.human : 'N/A'), version.reason_text, version.in, version.out, version.fee.to_f]
+  end
+end

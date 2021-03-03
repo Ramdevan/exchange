@@ -1,0 +1,171 @@
+:root {
+--theme-primary:#f0b90b;
+--secondary-color: #4fb24c;
+--tertiary-color:#f04b3d;
+--bg-dark1: #ffffff;
+--bg-dark2: #ffffff;
+--bg-dark3: #fafafa;
+--light-color1:#c7c8c9;
+--light-color2:#444;
+--border-color:#ddd; 
+}
+body {
+  font: 100% "Poppins", sans-serif;
+  overflow-x: hidden;
+  padding: 0;
+  background-color: var(--bg-dark1);
+  color: var(--light-color2);
+  max-width:initial;
+  }
+
+.scroll_css::-webkit-scrollbar {
+    width: 3px;
+    background-color: #f7f7f7 !important;
+}
+.scroll_css::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #ccc;
+}
+.scroll_css::-webkit-scrollbar-track {
+    border-radius: 6px;
+    background-color: #f7f7f7 !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Poppins', sans-serif;
+  color:#222;
+}
+
+p,
+i,
+ul {
+  font-family: 'Poppins', sans-serif;
+  color:#444;
+}
+a {
+    text-decoration: none!important;
+}
+label, table th{    
+    color: #444;
+}
+.input_cus input {color:#495057;}
+.cusdropdown-menu i{color:var(--primary-color);}
+.header.dark_v1 nav {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.trade_mw {
+    max-width: 1540px;
+    width: 100%;
+    margin: 0 auto;
+}
+.coin_dropdown {background-color: #ffffff;}
+.theme-tabs .nav-link { color: #000;}
+
+
+.mask { background-color: rgba(255, 255, 255, 0.36);}
+.card_header ul li, ul#pills-tab-buysell li a, #openmy-order li a{color: #76808f;}
+.card_header li a {
+    color: var(--title-head);
+    font-weight: 600;
+    color: #76808f;
+    font-size: 13px;
+}
+.input_cus, .walletval {border: 1px solid var(--border-color);}
+.card_header ul li.active, ul#pills-tab-buysell li a.active, #openmy-order li a.active {
+    border-color: var(--theme-primary);
+    color: #1e2026;
+}
+
+.coin_pair, .orders, .chart_area, .orderbook_tradehistory,.order_book, .trade_history,.buy_sell {
+    background-color: #ffffff;
+   
+}
+
+a#darkThemeBtn {
+    background-color:transparent;
+    border-radius: 30px;
+    color: #fff !important;
+}
+a#lightThemeBtn {
+    background-color: var(--primary-color);
+    border-radius: 30px;
+    color: #fff !important;
+}
+a#lightThemeBtn i {
+    color: #fff;
+}
+table tr:hover {
+    background-color: var(--light);
+}
+table.table.table-hover tr:hover {
+    background-color: var(--light);
+}
+.cusdropdown-menu {
+    background-color: var(--bg-dark3);
+}
+.cusdropdown-menu li:hover {
+    background-color: var(--bg-dark3);
+}
+
+
+select#sel1 {
+    float: right;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    color: #0e0e0e;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 3px;
+}
+
+
+.title_box {
+    background-color: #ffffff;
+}
+
+.title_box h5 {
+    color: #13151a;
+}
+
+li.marketlist ul.dropdown-menu {
+    background-color: #ffffff;
+}
+
+@media only screen and (max-width: 799px) {
+.buy_sell.open {
+    position: fixed;
+    background-color: var(--bg-dark2);
+    width: 100%;
+    bottom: 0 !important;
+    border: 1px solid var(--border-color);
+    border-radius: 18px 18px 0 0;
+}
+
+
+card_header ul li, ul#pills-tab-buysell li a, #openmy-order li a {
+    color: #76808f;
+}
+.buy_sell.open .card_header ul li:nth-child(1) a.active {
+    background-color: var(--buy-color);
+    border-color: var(--buy-color);
+    color:#fff !important;
+}
+.buy_sell.open .card_header ul li:nth-child(2) a.active {
+    background-color: var(--sell-color);
+    border-color: var(--sell-color);
+    color:#fff !important;
+}
+.buy_sell.open .card_header ul li a {
+    color: #76808f !important;
+    border-radius: 4px !important;
+}
+}

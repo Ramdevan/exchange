@@ -1,0 +1,69 @@
+// FundSource Management Dialog
+#funds-index {
+  .ngdialog.ngdialog-theme-default.custom-width {
+    .ngdialog-content {
+      width: 600px;
+    }
+    &.coin .ngdialog-content {
+      width: 800px;
+    }
+  }
+}
+
+// ngDialog Confim Dialog
+.ngdialog.ngdialog-theme-default .dialog-contents {
+  button.cancel { margin-right: 10px; }
+}
+
+.addres_wrap{
+  word-break: break-all;
+  word-wrap: break-word;
+}
+.display-flex{
+    display: flex;
+}
+.lending-details, .staking-details{
+  box-sizing: border-box;
+  margin: 0px;
+  min-width: 0px;
+  display: flex;
+  padding-bottom: 16px;
+  -webkit-box-pack: justify;
+  justify-content: space-between;  
+}
+.staking-details{
+  height: 50px;
+  min-height:50px;
+}
+.mr-10{
+  margin-right: 10px;
+}
+.error_messages {
+  color:red;
+  padding:10px;
+  text-align:center;
+}
+
+.success_messages {
+  color:#54d8df;
+  padding:10px;
+  text-align:center;
+}
+.border-btn, .border-btn:hover, .border-btn:focus{
+  color: #000;
+  border: 1px solid #54d8df;  
+  outline: none;
+}
+.half_opacity{
+  pointer-events: none;
+  opacity: 0.50;
+}
+.fs-12{
+  font-size:12px;  
+}
+.flex_amount_error, .locked_amount_error, .activity_amount_error{
+  color: red;
+}
+.red_border{
+  border-color: red !important;  
+}

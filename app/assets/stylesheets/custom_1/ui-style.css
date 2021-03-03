@@ -1,0 +1,200 @@
+.trade-grid {
+    display: grid;
+    grid-template-columns: 20% 50% 30%;
+    grid-template-rows: auto;
+    /*grid-column-gap: 5px;   */
+   }
+.trade-grid-item {
+    margin: 0 2px;
+}
+
+.input-group-addon {
+  padding: 10px !important;
+  margin:0; 
+  color: #555;  
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-weight: 600 !important;
+  border:1px solid #505050;
+}
+.input-group {    
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+   }
+   .table > thead > tr > th {
+  vertical-align: bottom;
+  border-bottom: 1px solid #777;
+}
+.table > thead > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > th,
+.table > tbody > tr > td,
+.table > tfoot > tr > th,
+.table > tfoot > tr > td {
+  padding: 8px;
+  line-height: 1.428571429;
+  vertical-align: top;
+  border-top: 1px solid #777; 
+  font-size:13px;
+}
+.name a {
+    color: #ddd;    text-decoration: none;
+}
+#tv_chart_container {
+  height:49vh;
+}
+.trade-markets {
+    border: 1px solid #505050;
+    border-radius: 4px;
+}
+
+div#market_trades {
+    border: 1px solid #505050;
+    border-radius: 4px;
+}
+div#order_book {
+    border: 1px solid #505050;
+   
+}
+div#order_book_header > .row,  #order_book_body .row{
+	margin-left:0;
+	margin-right:0;
+}
+
+html.theme-dark .chart-page {
+    background: #222831 !important;
+}
+.menu-right {
+    float: right;
+}
+.navbar-default .navbar-nav > li > a{color: #ccc;
+        font-family: 'Nunito Sans', sans-serif;
+        text-transform: uppercase;
+        font-weight: 600;}
+        .menu-right li a:hover {
+    text-shadow: none !important	;
+    color: #ddd !important;
+}
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
+  color: #555;
+  background-color: transparent;
+}
+.view_all_accounts {
+    color: #ccc;
+    text-transform: uppercase;
+    font-weight: 600;
+    
+}
+.lang-list i {
+    font-size: 25px;
+    color: #ccc;
+}
+.form-control:focus {
+  border-color: rgba(179, 175, 156, 0.28);
+  outline: 0; 
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-color: #00BCD4 !important;
+  }
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+   }
+
+   #tv_chart_container > iframe >.layout__area--center {
+    background-color: #222831 !important;
+    border: 1px solid #505050 !important;
+    top: 36px !important;
+}
+
+.sel-order th {
+    padding: 0px 30px 0px 0px !important;
+}
+
+div#order_book_header .row div {
+    padding: 5px;
+}
+.navbar-text {
+  color: #ddd !important;
+  font-size: 16px;
+}
+div#order_book_header h5 {
+    color: #ddd;
+    font-weight: 600;
+    margin: 5px 0;
+}
+
+/*Responsive Code*/
+
+/* Extra small devices (portrait phones, less than 576px)*/
+@media (min-width: 320px) and (max-width: 575.98px) {
+.trade-grid {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: auto;
+    /* grid-column-gap: 5px; */
+}
+
+}
+
+/* Small devices (landscape phones, 576px and up)*/
+
+@media (min-width: 425px) and (max-width: 767.98px) {
+  .trade-grid {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: auto;
+    /* grid-column-gap: 5px; */
+}
+
+}
+
+/* Small devices (landscape phones, 576px and up)*/
+
+@media (min-width: 320px) and (max-width: 900px) {
+  #ask_entry, #bid_entry { width: 100% !important;}
+  #market_list_wrapper, #market_trades_wrapper, .limit-or-market {
+    height: auto !important;
+}
+
+}
+
+
+
+
+/* Medium devices (tablets, 768px and up)*/
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .trade-grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto;
+    /* grid-column-gap: 5px; */
+}
+}
+
+/* Large devices (desktops, 992px and up)*/
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .trade-grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto;
+    /* grid-column-gap: 5px; */
+}
+}
+
+@media (min-width: 901px)and (max-width: 1200px) {
+  div#market_list_wrapper, #market_trades_wrapper {
+    height: 41vh !important;
+}
+}
+
+
+/* Extra large devices (large desktops, 1200px and up)*/
+
+@media (min-width: 1200px) {
+}

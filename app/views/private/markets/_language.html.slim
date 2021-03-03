@@ -1,0 +1,14 @@
+li#themeChange
+  a href="#" class="themeBox lightTheme" id="lightThemeBtn" title="Light"
+    i class="far far fa-sun"
+  a href="#" class="themeBox darkTheme" id="darkThemeBtn" title="Dark"
+    i class="far fa-moon"
+
+li#language.dropdown
+  a.dropdown-toggle.lang-list href="#" data-toggle="dropdown"
+    i.fas.fa-1x.fa-language
+    /img class="lang-icon" src='#{language_path}'    
+  ul.dropdown-menu.dropdown-theme
+    - I18n.available_locales.each do |lang|
+      li: a href="?lang=#{lang}": img class="lang-icon" src="/languages/#{lang || I18n.locale}.png"
+        

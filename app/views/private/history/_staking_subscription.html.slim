@@ -1,0 +1,7 @@
+tr
+  td = staking_subscription.start_date
+  td = staking_subscription.try(:staking).try(:currency)
+  td = staking_subscription.amount
+  td = staking_subscription.end_date
+  td = staking_subscription.try(:staking).try(:staking_type).to_s.titleize
+  td = staking_subscription.try(:status)

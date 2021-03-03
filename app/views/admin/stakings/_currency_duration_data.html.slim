@@ -1,0 +1,4 @@
+.col-md-24
+	label Staking duration
+	= select_tag "staking[staking_locked_durations_attributes][0][staking_duration_id]", options_for_select(@staking_durations.map{|m| [m.duration_days,m.id]}),{class: "form-control", required: true, prompt: "Select duration"}
+	span.error.staking_staking_locked_durations_attributes_0_staking_duration_id

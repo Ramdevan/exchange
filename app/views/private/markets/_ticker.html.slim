@@ -1,0 +1,12 @@
+#ticker.panel.panel-default
+  .panel-body
+    / .currpair
+    /   h4.currentPair
+    /   span.price
+    .row
+    	.col-sm-25
+				.currPairVal
+                  = @market.base_unit.upcase
+				.fa.fa-exchange.exIcon
+				.currPairVal
+                  = @market.quote_unit.upcase

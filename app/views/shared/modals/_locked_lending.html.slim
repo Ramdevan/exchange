@@ -1,0 +1,84 @@
+#transferlockedModal.modal.fade aria-hidden="true" aria-labelledby="transferModalLabel" role="dialog" tabindex="-1" data-backdrop="static" data-keyboard="false"
+  .modal-dialog.modal-lg role="document" 
+    .modal-content
+      .modal-header.display-flex
+        .col-sm-12
+          h4#transferModalLabel.modal-title= t('.locked_lendings')
+        .col-sm-12
+          button.close aria-label="Close" data-dismiss="modal" type="button" 
+            span aria-hidden="true"  &times;
+      .error_messages.hide
+      .success_messages.hide
+      = form_tag locked_saving_path, method: :post, remote: true
+        .modal-body
+          .row
+            .col-sm-10
+              .lending-details
+                div= t('.coin')
+              .lending-details
+                b= ll.currency
+              .lending-details
+                div= t('.activity_duration')
+              .lending-details
+                - ll.locked_durations.each_with_index do |ld, ind|
+                  - if ind == 0
+                    div.btn.btn-sm.border-btn.duration-btn data-duration="#{ld.id}" data-duration-date="#{calculate_duration_date(ld.duration_days)}" data-interest-rate="#{ll.locked_interest_per_thousand(ld)}" data-currency="#{ll.currency}" data-percent="#{ll.duration_percent(ld)}"= "#{ld.duration_days} Days"
+                  - else
+                    div.btn.btn-sm.duration-btn data-duration="#{ld.id}" data-duration-date="#{calculate_duration_date(ld.duration_days)}" data-interest-rate="#{ll.locked_interest_per_thousand(ld)}" data-currency="#{ll.currency}" data-percent="#{ll.duration_percent(ld)}"= "#{ld.duration_days} Days"
+              .lending-details
+                = t('.lot_amount')
+                .pull-right.fs-12
+                  = "Available #{ll.available_amount(current_user)}"
+                .pull-left
+                  = link_to "Buy Now>", funds_path
+              .lending-details
+                = hidden_field_tag 'lending_subscriptions[lending_id]', ll.id
+                = hidden_field_tag 'lending_subscriptions[lending_duration_id]', ll.first_duration.id
+                = hidden_field_tag 'lending_subscriptions[start_date]', Date.today
+                = hidden_field_tag 'lending_subscriptions[end_date]', Date.today+7.days
+                = text_field_tag 'lending_subscriptions[amount]', "", class: 'form-control', placeholder: t('lendings.index.placeholders.amount'), "data-amount" => "#{ll.amount(current_user)}"
+              div.locked_amount_error.fs-12
+            .col-sm-14
+              .lending-details
+                .pull-left
+                  = t('.lot_size')
+                .pull-right
+                  = ll.lot_size
+              .lending-details
+                .pull-left
+                  = t('.interest_per_lot')
+                .pull-right.interest_per_lot
+                  = "#{ll.locked_interest_per_thousand(ll.first_duration)} #{ll.currency} (#{ll.first_duration.interest_rate} Annualized)"
+              .lending-details
+                .pull-left
+                  = t('.individural_max')
+                .pull-right
+                  = '500000 Lots'
+              .lending-details
+                .pull-left
+                  = t('.value_date')
+                .pull-right
+                  = Date.today
+              .lending-details
+                .pull-left
+                  = t('.redemption_date')
+                .pull-right.lock_end_date
+                  = Date.today + 7.days
+              .lending-details
+                .pull-left
+                  = t('.excepted_interest')
+                .pull-right
+                  = '0 USDT'
+        .modal-footer
+          .col-sm-24.pull-right
+            .lending-details
+              .pull-left
+                input type="checkbox" name="lending_subscriptions[is_auto_renew]" data-size='mini' data-on-color='success' class='mr-10' id='transfer-checkbox'
+                span= t('.auto_renew')
+            .lending-details
+              .pull-left
+                input type="checkbox" name="terms_conditions" data-size='mini' data-on-color='success' class='mr-10' id='loc-transfer-checkbox'
+                span= t('.agree_terms')
+            .lending-details
+              = submit_tag t('actions.transfer_confirmed'), class: 'locked-submit btn btn-primary btn-success disabled'
+          

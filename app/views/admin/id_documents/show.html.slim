@@ -1,0 +1,109 @@
+.panel-primary
+  .col-lg-12
+    .panel: .panel-body
+      .doc_view
+        .form-row
+          .col-lg-3  
+            label = t('.id')
+          .col-lg-9
+            p = @id_document.id
+        .form-row
+          .col-lg-3
+            label = t('.name')
+          col-lg-9
+            p = link_to @id_document.name, admin_member_path(@id_document.member)
+        .form-row
+          .col-lg-3
+            label = t('.email')
+          col-lg-9
+            p = link_to @id_document.member.email, admin_member_path(@id_document.member)
+        .form-row
+          .col-lg-3
+            label = t('verify.sms_auths.show.phone_number')
+          col-lg-9
+            p = @id_document.member.phone_number
+        .form-row
+          .col-lg-3
+            label = t('.birth_day')
+          col-lg-9
+            p = @id_document.birth_date
+        .form-row
+          .col-lg-3
+            label = t('.address')
+          col-lg-9
+            p = @id_document.address
+        .form-row
+          .col-lg-3
+            label = t('.city')
+          col-lg-9
+            p = @id_document.city
+        .form-row
+          .col-lg-3
+            label = t('.country')
+          col-lg-9
+            p = @id_document.country
+        .form-row
+          .col-lg-3
+            label = t('.zipcode')
+          col-lg-9
+            p = @id_document.zipcode
+        .form-row
+          .col-lg-3
+            label = t('.id_document_type')
+          col-lg-9
+            p = @id_document.id_document_type
+        .form-row
+          .col-lg-3
+            label = t('.id_document_number')
+          col-lg-9
+            p = @id_document.id_document_number
+        .form-row
+          .col-lg-3
+            label = t('.id_document_file')
+          col-lg-9
+            = admin_asset_tag @id_document.id_document_file
+        .form-row
+          .col-lg-3
+            label = t('.id_bill_type')
+          col-lg-9
+            p = @id_document.id_bill_type.present? ? @id_document.id_bill_type : t('.unknow')
+        .form-row
+          .col-lg-3
+            label = t('.id_bill_file')
+          col-lg-9
+            = admin_asset_tag @id_document.id_bill_file
+        .form-row
+          .col-lg-3
+            label = t('.created_at')
+          col-lg-9
+            p = @id_document.created_at
+        .form-row
+          .col-lg-3
+            label = t('.updated_at')
+          col-lg-9
+            p = @id_document.updated_at
+        .form-row
+          .col-lg-3
+            label = t('.state')
+          col-lg-9
+            p = t(".state_#{@id_document.aasm_state}")
+        .form-row
+          .col-lg-3
+            label = t('.verified')
+          col-lg-9
+            = yesno(@id_document.verified?)
+
+      = simple_form_for @id_document, :url => admin_id_document_path do |f|
+        .form-row
+          .col-lg-6.text-right
+          - if @id_document.may_approve?
+            .col-lg-3
+              = submit_tag 'Approve', class: 'button btn btn-primary'
+              / = link_to admin_id_document_path(@id_document, approve: 'true'), method: :patch, style: 'color: white;' do
+              /   button.btn.btn-primary = t('.approve')
+
+          - if @id_document.may_reject?
+            .col-lg-3
+              = submit_tag 'Reject', class: 'button btn btn-danger'
+              / = link_to admin_id_document_path(@id_document, reject: 'true'), method: :patch, style: 'color: white;'
+              / button.btn.btn-danger = t('.reject')

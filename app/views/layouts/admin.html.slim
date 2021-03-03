@@ -1,0 +1,124 @@
+doctype html
+html lang="en"
+  head
+    link rel="shortcut icon" href="/favicon.png"
+    = stylesheet_link_tag :admin, media: "all"
+    script crossorigin="anonymous" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" 
+
+    = javascript_include_tag :admin
+
+    = csrf_meta_tags
+
+  body id='#{body_id}'
+    .d-sm-block.d-lg-flex
+      .sidebar        
+        .container
+          .logo 
+            a.navbar-brand href=ENV['LANDING_HOST']
+              img.logo.logo src="/assets/logo.png"
+          ul.admin_menu
+
+            li class = check_active('dashboard')
+              = link_to "<i class='fa fa-tachometer-alt'></i>#{t('header.dashboard')}".html_safe, main_app.admin_dashboard_path
+
+            /- if can? :manage, Document
+            /  li class = check_active(Document)
+            /    = link_to t(".menus.items.operating.documents"), admin_documents_path
+
+            - if can? :manage, IdDocument
+              li class = check_active('id_documents')
+                = link_to "<i class='fa fa-user-check'></i>#{t('admin_header.id_documents')}".html_safe, main_app.admin_id_documents_path
+
+            /- if can? :read, Proof
+            /  li class = check_active(Proof)
+            /    = link_to t(".menus.items.operating.proofs"), admin_proofs_path
+
+            - if can? :menu, Deposit
+              li.dropdown class = check_active('deposits')
+                = link_to 'javascript:;', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do
+                  span
+                    i.fa.fa-wallet
+                    = t('admin_header.deposits')
+                  span.caret
+                ul.dropdown-menu.admin-dropdown
+                  - DepositChannel.all.sort.each do |c|
+                    - if can? :manage, c.kls
+                      li = link_to c.title_text, [:admin, c.kls]
+
+            - if can? :menu, Withdraw
+              li.dropdown class = check_active('withdraws')
+                = link_to 'javascript:;', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do
+                  span                    
+                    i.fa.fa-wallet 
+                    = t('admin_header.withdraws')
+                  span.caret
+                ul.dropdown-menu.admin-dropdown
+                  - WithdrawChannel.all.each do |c|
+                    - if can? :manage, c.kls
+                      li = link_to c.title_text, [:admin, c.kls]
+
+            - if can? :manage, Member
+              li class = check_active('members')
+                = link_to "<i class='fa fa-address-card'></i>#{t('.menus.sections.members')}".html_safe, main_app.admin_members_path
+
+            - if can? :manage, Ticket
+              li class = check_active(Proof)
+                = link_to "<i class='fa fa-ticket-alt'></i>   #{t('.menus.items.operating.tickets')}".html_safe,main_app.admin_tickets_path 
+
+            li.dropdown class = check_active('statistic')
+              = link_to 'javascript:;', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do
+                span                 
+                  i.fas.fa-chart-area 
+                  = t('admin_header.statistics')
+                span.caret
+              ul.dropdown-menu.admin-dropdown
+                - if can? :stat, Member
+                  li class = check_active(Member)
+                    = link_to Member.model_name.human, admin_statistic_members_path
+            li.dropdown
+              = link_to 'javascript:;', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do
+                span
+                  i.fa.fa-hand-holding-usd
+                  = 'Referrals'
+                span.caret
+              ul.dropdown-menu.admin-dropdown
+                li = link_to 'Referral Stats', admin_referrals_path
+                li = link_to 'Referral Commissions', admin_referral_commissions_path
+            li = link_to "<i class='fa fa-money-bill-alt'></i>#{('Trade Fees')}".html_safe, main_app.admin_fees_path 
+            li = link_to "<i class='fa fa-money-check-alt'></i>#{('Commissions')}".html_safe, main_app.admin_commissions_path
+
+            li.dropdown
+              = link_to 'javascript:;', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do
+                span = 'Stakings'
+                span.caret
+              ul.dropdown-menu
+                li = link_to 'Stakings Duration', durations_admin_stakings_path
+                li = link_to 'Stakings', admin_stakings_path
+            li.dropdown
+              = link_to 'javascript:;', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do
+                span = 'Lendings'
+                span.caret
+              ul.dropdown-menu.admin-dropdown
+                li = link_to 'Lending Types', types_admin_lendings_path
+                li = link_to 'Lending Durations', durations_admin_lendings_path
+                li = link_to 'Lendings', admin_lendings_path
+
+            
+      .content
+        .header.fixedtop
+          .profile_link id="" 
+            ul.tr_menu
+              li = link_to t('actions.back'), main_app.root_path
+              li.nav-item.dropdown
+                a#top_profiles.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button" Admin User
+                .dropdown-menu aria-labelledby="top_profile" 
+                  a.dropdown-item href="/settings" 
+                    i.fas.fa-user
+                    | Profile 
+                  a.dropdown-item href="/signout" 
+                    i.fas.fa-external-link-alt
+                    span.translation_missing title=("translation missing: en.logout")  Logout
+
+        .container
+          = render 'shared/flash'
+          = yield

@@ -1,0 +1,114 @@
+.container
+  .col-md-24
+    h3 Lendings
+    ul.nav.nav-tabs
+      li.active
+        a data-toggle='tab' href="#flexible_savings" Flexible Savings
+      li
+        a data-toggle='tab' href="#locked_savings" Locked Savings
+      li
+        a data-toggle='tab' href="#activity_savings" Activities
+    .tab-content
+      #flexible_savings.tab-pane.fade.in.active
+        .pull-right
+          button.btn.btn-primary.remove_backdrop data-target="#newflexiModal" data-toggle="modal" type="button"= t('actions.create')
+        .flexible_lendings
+          = render partial: 'admin/lendings/shared/flexible', locals: {lendings: @flexible_lendings}
+        #newflexiModal.modal.fade role="dialog" data-backdrop="static" data-keyboard="false"
+          .modal-dialog
+            /! Modal content
+            .modal-content
+              .modal-header
+                button.close data-dismiss="modal" type="button"  &times;
+                h4.modal-title New Flexible Lending
+              .error_messages.hide
+              .success_messages.hide
+              = form_for :lendings, url: save_lending_admin_lendings_path, html: {id: 'flexible_savings_form'}, remote: true do |f|
+                = f.hidden_field :lending_type_id, value:  LendingType.flexible.id
+                .modal-body
+                  .row
+                    = f.label :currency
+                    = f.collection_select :currency, Currency.all, :code, :code, {prompt: "Select a currency"}, {class: "form-control", required: true}
+                  .row
+                    = f.label :today_apy
+                    = f.number_field :today_apy, class: "form-control", min: 1, required: true, step: :any
+                  .row
+                    = f.label :yesterday_apy
+                    = f.number_field :yesterday_apy, class: "form-control", min: 1, required: true, step: :any
+                  .row
+                    = f.label :max_amount
+                    = f.number_field :max_subscription_amount, class: "form-control", min: 1, required: true, step: :any
+                  .row
+                    = f.label :published_on
+                    = f.text_field :published_on, class: 'form-control datepicker', required: true
+                .modal-footer
+                  = submit_tag t('actions.submit'), class: 'flexible-lending-submit btn btn-primary btn-success'
+
+      #locked_savings.tab-pane.fade
+        .pull-right
+          button.btn.btn-primary.remove_backdrop data-target="#newlockedModal" data-toggle="modal" type="button"= t('actions.create')
+        .locked_lendings
+          = render partial: 'admin/lendings/shared/locked', locals: {lendings: @locked_lendings}
+        #newlockedModal.modal.fade role="dialog" data-backdrop="static" data-keyboard="false"
+          .modal-dialog
+            /! Modal content
+            .modal-content
+              .modal-header
+                button.close data-dismiss="modal" type="button"  &times;
+                h4.modal-title New Locked Lending
+              .error_messages.hide
+              .success_messages.hide
+              = form_for :lendings, url: save_lending_admin_lendings_path, html: {id: 'locked_savings_form'}, remote: true do |f|
+                = f.hidden_field :lending_type_id, value: LendingType.locked.id
+                .modal-body
+                  .row
+                    = f.label :currency
+                    = f.collection_select :currency, locked_currencies, :code, :code, {prompt: "Select a currency"}, {class: "form-control", required: true}
+                  .row
+                    = f.label :lot_size
+                    = f.number_field :lot_size, class: "form-control", min: 1, required: true
+                  .row
+                    = f.label :max_lot_size
+                    = f.number_field :max_lot_size, class: "form-control", min: 1, required: true
+                  .row
+                    = f.label :published_on
+                    = f.text_field :published_on, class: 'form-control datepicker', required: true
+                .modal-footer
+                  = submit_tag t('actions.submit'), class: 'locked-lending-submit btn btn-primary btn-success'
+      #activity_savings.tab-pane.fade
+        .pull-right
+          button.btn.btn-primary.remove_backdrop data-target="#newactivityModal" data-toggle="modal" type="button"= t('actions.create')
+        .activities_lendings
+          = render partial: 'admin/lendings/shared/activity', locals: {lendings: @activity_lendings}
+        #newactivityModal.modal.fade role="dialog" data-backdrop="static" data-keyboard="false"
+          .modal-dialog
+            /! Modal content
+            .modal-content
+              .modal-header
+                button.close data-dismiss="modal" type="button"  &times;
+                h4.modal-title New Activity Lending
+              .error_messages.hide
+              .success_messages.hide
+              = form_for :lendings, url: save_lending_admin_lendings_path, html: {id: 'activity_savings_form'}, remote: true do |f|
+                = f.hidden_field :lending_type_id, value: LendingType.activities.id
+                .modal-body
+                  .row
+                    = f.label :currency
+                    = f.collection_select :currency, Currency.all, :code, :code, {prompt: "Select a currency"}, {class: "form-control", required: true}
+                  .row
+                    = f.label :duration_days
+                    = f.number_field :duration_days, class: "form-control", min: 1, required: true
+                  .row
+                    = f.label :interest_rate
+                    = f.number_field :today_apy, class: "form-control", min: 1, required: true, step: :any
+                  .row
+                    = f.label :lot_size
+                    = f.number_field :lot_size, class: "form-control", min: 1, required: true
+                  .row
+                    = f.label :max_lot_size
+                    = f.number_field :max_lot_size, class: "form-control", min: 1, required: true
+                  .row
+                    = f.label :published_on
+                    = f.text_field :published_on, class: 'form-control datepicker', required: true
+                .modal-footer
+                  = submit_tag t('actions.submit'), class: 'activity-lending-submit btn btn-primary btn-success'

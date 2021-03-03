@@ -1,0 +1,13 @@
+tr
+  td = flexibles.currency
+  td = flexibles.amount
+  td = flexibles.interest_amount
+  td = flexibles.today_interest
+  td
+    - if flexibles.lending_redeem.present? && !flexibles.lending_redeem.status
+      = t('.in_progress')
+    - elsif flexibles.lending_redeem.present?
+      = t('.completed')
+    - else
+      = link_to t('.fast'), fast_redeem_path(flexibles), class: 'btn btn-sm', confirm: t('.confirm')
+      = link_to t('.standard'), standard_redeem_path(flexibles), class: 'btn btn-sm', confirm: t('.confirm')

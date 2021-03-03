@@ -1,0 +1,3 @@
+$(".estimate_apy-<%= @staking_locked_duration.try(:staking).try(:id) %>").html("<%= number_to_percentage(@staking_locked_duration.try(:staking_duration).try(:estimate_apy).to_f,precision: 2) %>");
+$(".staking_now_<%= @staking_locked_duration.try(:staking).try(:id) %>").data("staking_duration","<%= @staking_locked_duration.try(:id) %>");
+$('.subscription_end_date').html("<%= locked_date_format(StakingLockedSubscription.new.get_end_date(@staking_locked_duration.try(:duration_days))) %>")

@@ -1,0 +1,30 @@
+header
+  nav.navbar.navbar-expand-md.navbar-dark
+    a.navbar-brand href="/"  
+      img.logo#logo src="/assets/logo.png"
+    button.navbar-toggler aria-controls="market_menu" aria-expanded="false" aria-label=("Toggle navigation") data-target="#market_menu" data-toggle="collapse" type="button" 
+      span.navbaricon
+        i.fas.fa-bars
+    #market_menu.collapse.navbar-collapse
+      ul.navbar-nav.mr-auto
+        li.nav-item.active
+          a.nav-link href="#" 
+            | Exchange
+            span.sr-only (current)
+        li.nav-item
+          = link_to 'Funds', funds_path, class: 'nav-link'
+      .my-2.my-md-0
+        ul.navbar-nav.mr-auto
+          //li.nav-item
+            a.nav-link href="#"  INVITE &amp; EARN 50% FEES
+          - if current_user
+            = render partial: 'settings'
+          - else
+                      
+          
+          li#themeChange
+            a href="#" class="themeBox lightTheme" id="lightThemeBtn" title="Light"
+              i class="far far fa-sun"
+            a href="#" class="themeBox darkTheme" id="darkThemeBtn" title="Dark"
+              i class="far fa-moon"
+

@@ -1,0 +1,27 @@
+<section id="home">
+  <div class="container-fluid">
+    <div class="row login">
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="panelpanel-defaultcreate">
+          <div align="center">
+            <%= render 'shared/flash' %>
+          </div>
+           <h2 class='login_title text-center'><%= t("guides.#{i18n_controller_path}.#{action_name}.title") %></h2>
+        
+          <!-- <a href="/"><%= image_tag "favicon.png", :class => "authLogo" %></a> -->
+          
+
+          <%= form_for @token, url: reset_passwords_path, as: :reset_password, html: { class: 'form-signin' } do |f| %>
+            <span id="reauth-email" class="reauth-email"></span>
+            <p class="input_title">E-Mail Address</p>
+            <%= f.text_field :email, autofocus: 'true', class: 'form-control', id: "inputEmail", required: true, placeholder: t('simple_form.placeholders.session.email') %>
+            <button class="btn  btn-theme-primary w-100 mt-3" type="submit"><%= t("guides.#{i18n_controller_path}.#{action_name}.title") %></button>
+          <% end %>
+          <div class="">
+            <p>Already have an account? <a href="<%= signin_path %>">Login</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

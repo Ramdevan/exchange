@@ -1,0 +1,8 @@
+= table_for(lendings, class: 'table table-condensed table-hover') do |t|
+  - t.column :currency
+  - t.column :name
+  - t.column :max_lot_size
+  - t.column :duration_days
+  - t.column "interest_rate %" do |x|
+    = x.interest_rate
+  - t.column :published_on

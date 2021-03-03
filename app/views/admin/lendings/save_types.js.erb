@@ -1,0 +1,13 @@
+<% if @type.errors.any? %>
+	$('.error_messages').removeClass("hide")
+  $('.error_messages').html( "<%= @type.errors.full_messages.first %>");
+<% else %>
+	$('.success_messages').removeClass("hide")
+	$(".success_messages").html("Success")
+	setTimeout(function(){
+		$('.error_messages').addClass("hide")
+		$('.success_messages').addClass("hide")
+  	$("#newTypeModal").modal('hide');
+  	location.reload();
+	},1000);
+<% end %>

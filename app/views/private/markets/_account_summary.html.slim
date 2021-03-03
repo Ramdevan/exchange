@@ -1,0 +1,24 @@
+li#account_summary.dropdown
+  a.dropdown-toggle href="#" data-toggle="dropdown"
+    span data-title = "#{t('.title')}" = t('.title')
+  .dropdown-menu.text-right
+    
+    .coins
+      - current_user.accounts.each do |account|
+        - next unless account.currency_obj.try(:visible)
+        div.coins-list.d-flex class='#{account.currency} #{@market.scope?(account) ? '' : 'hide'}'
+          .account-symbol.col-4.text-center
+            img src="/icon-#{account.currency}.png" alt="#{account.currency_obj.code_text}"
+            br
+            span = account.currency_obj.code_text
+          .account-balance.col-8
+            span.amount data-title='#{t('.amount')}' = account.amount
+            br
+            span.locked data-title='#{t('.locked')}' = account.locked
+      .div
+        p.text-center colspan=2
+          a.view_all_accounts data-hide-text='#{t('.hide_all_accounts')}' data-show-text='#{t('.view_all_accounts')}' href='#'
+              | #{t('.view_all_accounts')} 
+              i.fa.fa-angle-double-right
+
+

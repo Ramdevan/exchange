@@ -1,0 +1,4 @@
+<% if @subscription.present? %>
+	window.location.reload();
+	// $(".staking_action_<%= @staking.try(:id) %>").html("<%#= j(render partial: '/stakings/actions/staking_action', locals: {staking: @staking,staking_locked: @staking_locked}) %>");
+<%end%>

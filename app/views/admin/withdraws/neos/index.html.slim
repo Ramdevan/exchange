@@ -1,0 +1,11 @@
+- unless @one_neos.empty?
+  .panel.panel-primary
+    .panel-heading: span = t('.one')
+    = render partial: 'table', locals: {neos: @one_neos}
+- unless @all_neos.empty?
+  .panel.panel-success
+    .panel-heading: span = t('.all')
+    = render partial: 'table', locals: {neos: @all_neos}
+
+- if @all_neos.empty? and @one_neos.empty?
+  h3.text-info.text-center = t('.empty')

@@ -1,0 +1,13 @@
+<p>
+  <%= t(".#{@member.reload.id_document.aasm_state}") %>
+</p>
+
+<% if @member.id_document.note.present? %>
+  <p>
+    Note from Admin: <%= @member.id_document.note %>
+  </p>
+<% end %>
+
+<p>
+  <%= raw t("mailer.please_contact", contact_mail: ENV['SUPPORT_MAIL']) %>
+</p>

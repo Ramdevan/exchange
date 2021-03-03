@@ -1,0 +1,27 @@
+.row
+  .panel.panel-primary
+    .panel-heading
+      span COIN Holders Discount
+    .panel-body
+      = table_for(@discounts, class: 'table table-condensed table-hover') do |t|
+        - t.column "Min", class: 'min col-xs-2' do |x|
+          = x.min
+        - t.column "Max", class: 'max col-xs-2' do |x|
+          = x.max
+        - t.column "Percent", class: 'percent fee col-xs-2' do |x|
+          = x.percent
+        - t.column :actions, class: 'col-xs-1' do |x|
+          = link_to "Edit",{ }, class: 'edit-discount', data: {id: x.id}
+          '
+          = link_to "Delete", url_for([:admin, x]) ,method: :delete, data: { confirm: 'Are you sure?' }
+
+      = paginate @discounts
+button.btn-primary.btn#new-discount New Holder Discount
+.error_messages
+= simple_form_for [:admin, @new_discount],remote: true do |f|
+  .form-group
+    = f.input :min
+    = f.input :max
+    = f.input :percent
+    hr.split
+    = f.button :wrapped

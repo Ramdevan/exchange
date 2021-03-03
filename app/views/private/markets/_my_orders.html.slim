@@ -1,0 +1,63 @@
+.orders
+  .card_header    
+    ul#openmy-order.nav role="tablist" 
+      li
+        a#openorder-tab.nav-link.active aria-controls="openorder" aria-selected="false" data-toggle="tab" href="#openorder" role="tab" Open Orders
+
+      li.order_action     
+        i.fas.fa-caret-square-down 
+
+        
+        ul.cusdropdown-menu style="display:none;"
+          li = link_to t('.clear_bids_html'), clear_market_order_bids_path(market_id: current_market.id), remote: true, method: :post, data: {confirm: t('.confirm_clear_bids')}
+          li = link_to t('.clear_asks_html'), clear_market_order_asks_path(market_id: current_market.id), remote: true, method: :post, data: {confirm: t('.confirm_clear_asks')}
+          li = link_to t('.clear_all_html'),  clear_market_orders_path(market_id: current_market.id), remote: true, method: :post, data: {confirm: t('.confirm_clear_all')}
+
+
+      
+    
+  
+
+  #openmy-orderContent.tab-content  
+    #openorder.tab-pane.fade.show.active aria-labelledby="openorder-tab" role="tabpanel"
+      #my_orders_wrapper   
+        #my_orders
+          
+          .card_body
+            .data_thead
+              table.table.table-sm.mb-0
+                thead
+                  tr
+                    th scope="col" Time
+                    th scope="col" Type
+                    th scope="col" Price
+                    th scope="col" Amount
+                    th scope="col" Total
+            .data_tbody.scroll_css              
+              .empty-row.p-3 = t('.no_open_orders')
+              table.table.table-hover.table-responsive-sm
+                tbody
+              
+
+    
+
+
+
+  = render partial: 'mask' 
+      
+
+    
+
+ 
+
+
+
+
+
+
+
+
+      
+    
+
+

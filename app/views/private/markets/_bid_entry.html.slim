@@ -1,0 +1,65 @@
+#bid_entry
+  .widget-body
+    
+    = form_for [market, order], :remote => true do |f|
+      = f.hidden_field :ord_type, class: 'market-type'
+
+      .input_cus.stop_price.hide
+        .input_coin
+          p = t('.stop_price')
+          p = t(market.bid['currency'], scope: 'market.currency')
+        div.bid_input
+          = f.text_field :stop_price, class: 'form-control stop-price-field'
+        .alert_msg
+          p.cur_label = t(market.bid['currency'], scope: 'market.currency')
+          p.hint.hint-price-disadvantage
+
+      .input_cus.bid_price
+        .input_coin
+          p = t('.price')
+          p = t(market.bid['currency'], scope: 'market.currency')
+        div.bid_input
+          = f.text_field :price, class: 'form-control price-field'
+        .alert_msg          
+          p.cur_label = t(market.bid['currency'], scope: 'market.currency')
+          p.hint.hint-price-disadvantage
+
+      .input_cus.bid_amount
+        .input_coin
+          p = t('.amount')
+          p = t(market.ask['currency'], scope: 'market.currency')
+        div.bid_input
+          = f.text_field :origin_volume, class: 'form-control amount-field'
+        .alert_msg
+          p.cur_label = t(market.ask['currency'], scope: 'market.currency') 
+
+      .input_cus.bid_total.mb-0
+        .input_coin
+          p.order-total = t('.total')
+          p = t(market.bid['currency'], scope: 'market.currency')
+        div.bid_input
+          = f.text_field :total, class: 'form-control  total-field'
+        .alert_msg          
+          p.cur_label = t(market.bid['currency'], scope: 'market.currency')
+          p.hint.hint-positions
+           
+      .row.walletval
+          .balence.p-0            
+            = render partial: 'balance', locals: {currency: t(market.bid['currency'], scope: 'market.currency')}
+          .amt-choice.p-0
+            .d-flex.btn-group role="group" 
+              button.btn.limitSel limit="25" type="button"  25%
+              button.btn.limitSel limit="50" type="button"  50%
+              button.btn.limitSel limit="75" type="button"  75%
+              button.btn.limitSel limit="100" type="button"  100% 
+            .alert-msg.text-center
+               span.label.label-info.status-info
+               span.label.label-success.status-success
+               span.label.label-danger.status-danger     
+
+      
+
+      button.btn.btn-buy.w-100.mt-3 type="submit" = t('.action', currency: t(market.ask['currency'], scope: 'market.currency'))
+      / small.text-muted Fee: Maker fee: 0.2% | Taker fee: 0.2%
+
+  /= render partial: 'mask'

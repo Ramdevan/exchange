@@ -1,0 +1,22 @@
+
+= form_for StakingDuration.new, url: save_durations_admin_stakings_path, method: :post, remote: true do |f|
+  .modal-body
+    .col-md-24
+      = f.label :currency
+      = f.select :currency, options_for_select(Currency.all.map{|m| m.code.upcase }),{prompt: "Select currency"}, {class: "form-control",required: true}
+      span.error.staking_duration_currency
+    .col-md-24
+      = f.label :staking_type
+      = f.select :flexible, options_for_select([["Locked",false],["Flexible",true]]),{prompt: "Select duration type"},{class: "form-control",required: true}
+      span.error.staking_duration_flexible
+    .col-md-24
+      = f.label :duration_days
+      = f.number_field :duration_days, class: "form-control",required: true, placeholder: 0
+      span.error.staking_duration_duration_days
+    .col-md-24
+      = f.label :estimate_apy
+      = f.number_field :estimate_apy,value: "", class: "form-control",required: true,step: 'any'
+      span.error.staking_duration_estimate_apy
+  .modal-footer
+    .col-md-24
+      = f.submit "Create", class: "btn btn-primary"

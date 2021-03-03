@@ -1,0 +1,22 @@
+.container
+  .col-md-12
+    h3 Lending Types
+    .pull-right
+      button.btn.btn-primary.remove_backdrop data-target="#newTypeModal" data-toggle="modal" type="button"= t('actions.create')
+    = table_for(@types, class: 'table table-condensed table-hover') do |t|
+    	- t.column :name
+
+  #newTypeModal.modal.fade role="dialog" data-backdrop="static" data-keyboard="false"
+	  .modal-dialog
+	    /! Modal content
+	    .modal-content
+	      .modal-header
+	        button.close data-dismiss="modal" type="button"  &times;
+	        h4.modal-title New Lending Type
+	      .error_messages.hide
+				.success_messages.hide
+	      = form_tag save_types_admin_lendings_path, method: :post, remote: true
+	      	.modal-body
+	      		= text_field_tag 'lending_types[name]', "", class: 'form-control', placeholder: 'Enter Type Name'
+	      	.modal-footer
+	        	= submit_tag t('actions.submit'), class: 'lending-type-submit btn btn-primary btn-success disabled'

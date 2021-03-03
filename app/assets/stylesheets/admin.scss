@@ -1,0 +1,284 @@
+@import "bourbon";
+@import 'bootstrap';
+@import "font-awesome-sprockets";
+@import 'font-awesome';
+@import 'bootstrap-switch.min'; 
+@import "bootstrap-wysihtml5/core-b3";
+@import "bootstrap-wysihtml5/wysiwyg-color";
+@import "daterangepicker.css";
+
+@import 'chosen';
+@import 'jquery.dataTables.min';
+
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&display=swap');
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+
+
+:root {
+--primary-color: #198fff;
+--secondary-color: #4fb24c;
+--tertiary-color:#f04b3d;
+--bg-dark1: #000000;
+--bg-dark2: #0a0b0c;
+--bg-dark3: #0e1011;
+--light-color1:#c7c8c9;
+--light-color2:#cccccc;
+--border-color:#212729; 
+}
+body {
+  font: 100% "Poppins", sans-serif;
+  overflow-x: hidden;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  background-color: #f7f8f9;
+
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Poppins', sans-serif;
+}
+
+p,
+span,
+a,
+i,
+ul {
+  font-family: 'Poppins', sans-serif;
+}
+a {
+    text-decoration: none!important;
+}
+abbr {
+    color: #FF5722;
+}
+
+
+.sidebar {
+    width: 320px;
+    position: fixed;
+    background-color: #040d17;
+    height: 100%;
+    min-height: 100vh;
+    z-index: 1024;
+}
+.content {
+    width: calc(100% - 320px);
+    min-height: 900px;
+    margin-left: auto;
+    margin-top: 77px;
+    z-index:0;
+}
+
+
+.header.fixedtop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    background-color: #fff;
+    z-index:1;
+}
+
+.profile_link {
+    margin: 0 auto;
+}
+
+ul.tr_menu {
+    display: flex;
+    list-style: none;
+    padding: 15px;
+    justify-content: flex-end;
+    margin: 0;
+    align-items: center;
+}
+
+ul.admin_menu li {
+    list-style: none;
+    padding: 15px 0;
+}
+
+ul.admin_menu li a {
+    padding: 15px 15px;
+    color: #fff;
+}
+
+ul.admin_menu {
+    padding: 0;
+    margin: 20px 10px;
+}
+.navbar-brand .logo {
+    width: 200px;
+    object-fit: contain;
+    height: 70px;
+}
+.logo {
+    text-align: center;
+    padding: 10px;
+}
+.panel-primary {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 6px;
+}
+
+.panel-heading {
+    padding: 15px 10px;
+    font-size: 18px;
+    font-weight: 600;
+}
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 1px solid #dee2e6;
+    font-weight: 500;
+}
+.table th, .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 0px solid #dee2e6;
+}
+.table tbody tr:hover {
+    background-color: #f7f8f9;
+}
+.doc_view img {
+    padding: 5px;
+    background-color: #f7f8f9;
+    border-radius: 4px;
+}
+
+.doc_view .form-row {
+    margin: 15px 0;
+}
+
+.doc_view label {
+    font-size: 15px;
+    color: #283840;
+}
+.carbox {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 6px;
+}
+.admin-dropdown.show li a {
+    color: #000;
+}
+
+.admin-dropdown.show li:hover {
+    background-color: #050d16;
+}
+
+.admin-dropdown.show li:hover a {
+    color: #fff;
+}
+.admin-dropdown.show li {
+    padding: 10px;
+}
+.error_messages {
+    color: #FF5722;
+}
+.amdin_member_search select {
+    padding: 6px 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.amdin_member_search input {
+    padding: 6px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.amdin_member_search input[type='Submit'] {
+    background-color: #2196F3;
+    color: #fff;
+    padding: 6px 20px;
+}
+.admin_ticket p {
+    margin: 5px 0;
+}
+.tic_time {
+    font-size: 14px;
+    color: #607D8B;
+}
+.tic_closed a {
+    background-color: #dd4544;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    border-radius: 4px;
+}
+.tictime i {
+    color: #64B5F6;
+}
+input[type="search"] {
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    padding: 6px 10px;
+}
+.commissions_table select {
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    padding: 4px 10px;
+}
+
+.total-balance span {
+    padding: 10px;
+    background-color: #f2f2f2;
+    margin: 5px;
+    display: inline-flex;
+    border-radius: 4px;
+}
+
+.total-balance {
+    margin: 25px 0;
+}
+
+div
+
+.multi_cur_choosen #search_currencies_chosen {
+    width: 520px !important;
+    /* border: 1px solid #ccc; */
+}
+
+.multi_cur_choosen #search_currencies_chosen ul {
+    border-color: #ccc;
+    border-radius: 4px;
+    padding: 4px 6px;
+}
+.admin_menu i {
+    margin: 6px;
+}
+.border-btn, .border-btn:hover, .border-btn:focus{
+  color: #000;
+  border: 1px solid #54d8df;  
+  outline: none;
+}
+.error_messages {
+  color:red;
+  padding:10px;
+  text-align:center;
+}
+
+.success_messages {
+  color:#54d8df;
+  padding:10px;
+  text-align:center;
+}
+
+.error{
+  font-size:10px;
+  color:red;
+}

@@ -1,0 +1,22 @@
+li#settings
+  a href="#" 
+    i.fas.fa-user-circle
+    
+  ul.cusdropdown-menu
+    li: a href=settings_path target='_blank'
+      i.fas.fa-user-circle
+      span = t('.settings')
+    li: a href=funds_path target='_blank'
+      i.fas.fa-wallet
+      span = t('.funds')    
+    li: a href=order_history_path target='_blank'
+      i.fas.fa-history
+      span = t('.history')
+    li: a href=signout_path
+      i.fas.fa-external-link-alt
+      span = t('.signout')
+    
+    /li: a
+     / input type="checkbox" name="sound-checkbox" data-size='mini' data-on-color='success'
+    /li: a
+     / input type="checkbox" name="notification-checkbox" data-size='mini' data-on-color='success'

@@ -1,0 +1,10 @@
+.row
+	.col-lg-6.content-center.m-auto.p-5
+	  div
+		h4 Password Change
+		= simple_form_for @identity do |f|
+		  = f.input :old_password
+		  = f.input :password
+		  = f.input :password_confirmation
+		  
+		  = f.button :wrapped, cancel: settings_path

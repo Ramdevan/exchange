@@ -1,0 +1,5 @@
+<% if @referal_commission.errors.any? %>
+  $('.error_messages').html( "<%= @referal_commission.errors.full_messages.first %>");
+<% else %>
+  location.reload();
+<% end %>

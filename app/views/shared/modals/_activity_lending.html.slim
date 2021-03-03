@@ -1,0 +1,61 @@
+#transferActivitydModal.modal.fade aria-hidden="true" aria-labelledby="transferModalLabel" role="dialog" tabindex="-1" data-backdrop="static" data-keyboard="false"
+  .modal-dialog role="document" 
+    .modal-content
+      .modal-header.display-flex
+        .col-sm-12
+          h4#transferModalLabel.modal-title= "#{t('actions.transfer')} #{al.currency}"
+        .col-sm-12
+          button.close aria-label="Close" data-dismiss="modal" type="button" 
+            span aria-hidden="true"  &times;
+      .error_messages.hide
+      .success_messages.hide
+      = form_tag activity_saving_path, method: :post, remote: true
+        .modal-body
+          .row
+            .col-xs-24.col-sm-24.col-md-24
+              .lending-details
+                .pull-right.fs-12
+                  = "Available #{al.available_amount(current_user)}"
+                .pull-left
+                  = link_to "Buy Now>", funds_path
+              .lending-details
+                = hidden_field_tag 'lending_subscriptions[lending_id]', al.id
+                = hidden_field_tag 'lending_subscriptions[start_date]', Date.today
+                = hidden_field_tag 'lending_subscriptions[end_date]', al.asset_redeem_date
+                = text_field_tag 'lending_subscriptions[amount]', "", class: 'form-control', placeholder: t('lendings.index.placeholders.amount'), "data-amount" => "#{al.amount(current_user)}"
+              div.activity_amount_error.fs-12
+            .col-xs-24.col-sm-24.col-md-24
+              .lending-details
+                .pull-left
+                  = t('.lot_size')
+                .pull-right
+                  = "#{al.lot_size} #{al.currency}"
+              .lending-details
+                .pull-left
+                  = t('.interest_per_lot')
+                .pull-right
+                  = "#{al.interest_per_lot} #{al.currency}"
+              .lending-details
+                .pull-left
+                  = t('.max_sub_amount')
+                .pull-right
+                  = "#{number_with_delimiter(al.max_lot_size, delimiter: ',')} #{al.currency}"
+              .lending-details
+                .pull-left
+                  = t('.value_date')
+                .pull-right
+                  = Date.today
+              .lending-details
+                .pull-left
+                  = t('.redeemption_date')
+                .pull-right
+                  = al.asset_redeem_date
+        .modal-footer
+          .lending-details
+            .col-xs-24.col-sm-24.col-md-24
+              .pull-left
+                input type="checkbox" name="terms_conditions" data-size='mini' data-on-color='success' class='mr-10' id='activity-transfer-checkbox'
+                span= t('.agree_terms')
+          .lending-details
+            .col-xs-24.col-sm-24.col-md-24
+              = submit_tag t('actions.transfer_confirmed'), class: 'activity-submit btn btn-primary btn-success disabled'

@@ -1,0 +1,46 @@
+.panel-primary
+  .row
+    .col-lg-12
+      h4 Trading fee calculation
+      p
+        Min and max are the trade volume range for a user, for the past 30 days.
+        It is calculated by taking user's last 30 days trade and converting its value to USD.
+        The maker and taker fees are in percent. It's value can be from 0% to 100%. 
+
+
+.panel-primary
+  .row
+    .col-lg-12
+      .panel-heading
+        span Taker and Maker Fees
+      .panel-body
+        = table_for(@fees, class: 'table table-condensed table-hover') do |t|
+          - t.column "Min", class: 'min col-xs-2' do |x|
+            = x.min
+          - t.column "Max", class: 'max col-xs-2' do |x|
+            = x.max
+          - t.column "Taker (%)", class: 'taker fee col-xs-2' do |x|
+            = x.taker
+          - t.column "Maker (%)", class: 'maker col-xs-2' do |x|
+            = x.maker
+          - t.column :actions, class: 'col-xs-1' do |x|
+            = link_to "Edit",{ }, class: 'edit-fee btn btn-primary', data: {id: x.id}
+            '
+            = link_to "Delete", url_for([:admin, x]) ,method: :delete,class: 'btn btn-danger', data: { confirm: 'Are you sure?' }
+
+        = paginate @fees
+
+.panel-primary
+  .row
+    .col-lg-6       
+      h5.new-fee New Fee
+
+      .error_messages
+      = simple_form_for [:admin, @new_fee],remote: true do |f|
+        .form-group
+          = f.input :min
+          = f.input :max
+          = f.input :taker
+          = f.input :maker
+          hr.split
+          = f.button :wrapped

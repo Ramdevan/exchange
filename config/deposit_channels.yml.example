@@ -1,0 +1,15 @@
+- id: 100
+  key: bank
+  currency: krw
+  bank_accounts:
+    -
+      bank: 'Bank of Korea'
+      branch: 'Some Branch Name'
+      holder: 'Client'
+      account: '0987654-876'
+
+- id: 200
+  key: satoshi
+  currency: btc
+  min_confirm: 1
+  max_confirm: 6

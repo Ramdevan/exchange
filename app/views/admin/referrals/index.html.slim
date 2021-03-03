@@ -1,0 +1,21 @@
+.row
+  .panel.panel-primary
+    .panel-heading
+      span = t('.members')
+    .panel-body
+      = table_for(@members, class: 'table table-condensed table-hover') do |t|
+        - t.column :id, class: 'col-xs-1'
+        - t.column :email, class: 'col-xs-2' do |x|
+          code.text-info = x.email
+        - t.column :referral_code, class: 'col-xs-3'
+        - t.column 'Total Referrals', class: 'col-xs-1' do |x|
+          = Member.referrals(x.id).count
+        - t.column 'Activated', class: 'col-xs-1' do |x|
+          = Member.referrals(x.id).select {|x| x.valid_referral?}.count
+        - t.column 'Inactive', class: 'col-xs-1' do |x|
+          = Member.referrals(x.id).reject {|x| x.valid_referral?}.count
+        - Currency.all.each do |currency|
+          - t.column "#{currency.code.upcase}", class: 'col-xs-1' do |x|
+            = Member.find(x.id).accounts.find_by_currency(currency.code).referral_commissions.round(2)
+
+      = paginate @members

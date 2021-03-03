@@ -1,0 +1,8 @@
+= table_for(lendings, class: 'table table-condensed table-hover') do |t|
+  - t.column :currency
+  - t.column "Today APY %" do |a|
+    = a.today_apy
+  - t.column "Yesterday APY %" do |a|
+    = a.yesterday_apy
+  - t.column :max_subscription_amount
+  - t.column :published_on

@@ -1,0 +1,9 @@
+<% if @staking.any_present_locked.present? %>
+	alert("Unable active because currently user are in locked his/her account");
+<%else%>
+	<% if @staking.errors.any? %>
+		alert("<%= @staking.errors.join(',') %>");
+	<%else%>
+		$(".update_status_<%= @staking.try(:id) %>").html("<%= @staking.status_action.titlecase %>");
+	<%end%>
+<%end%>

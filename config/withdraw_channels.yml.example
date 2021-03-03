@@ -1,0 +1,23 @@
+- id: 100
+  key: bank
+  currency: krw
+  fixed: 2
+  # fee_max: 101
+  min: 1000
+  max: 999999999
+  fee: 102
+  min_withdraw: 100
+  proportion: true
+  inuse: true
+  type: WithdrawChannelBank
+
+- id: 200
+  key: satoshi
+  currency: btc
+  min_confirm: 1
+  max_confirm: 6
+  inuse: true
+  fixed: 8
+  fee: 0.0005
+  min_withdraw: 0.002
+  type: WithdrawChannelSatoshi

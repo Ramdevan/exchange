@@ -1,0 +1,57 @@
+#order_book_body {
+  font-size: 12px;
+}
+.limit-or-market{ 
+
+  input[type="radio"]{
+    opacity: 0;
+    position: absolute;
+  }
+  input.checked+label {
+    color: #74d813;
+    font-weight: bolder;
+  }
+
+  ul.orderOption {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-transform: uppercase;
+
+    li {
+      display: initial;
+    }
+  }
+}
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+  cursor: not-allowed;
+  background-color: #151515;
+  opacity: 1;
+}
+
+.limitSel {
+  background-color:#252a2f;
+}
+
+.limitSel:hover {
+  background-color:#252a2f;
+  color:#54d8df;
+}
+
+.LimitBtn {
+   margin: 0 0 10px 0;
+}
+.row-tips .unit {
+    color: #ccc;
+    font-weight: 600;
+}
+.trade-markets .panel-body-content {
+  overflow-y: scroll !important;
+    outline: none;
+    height: 42vh;
+}
+div#market_list_wrapper, #market_trades_wrapper {
+    height: 50vh;
+}
+.navbar {margin:0;}

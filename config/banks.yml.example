@@ -1,0 +1,35 @@
+- id: 1
+  code: boa
+  currency: usd
+  deposit: true
+  withdraw: true
+
+- id: 2
+  code: cg
+  currency: usd
+  deposit: true
+  withdraw: true
+
+- id: 3
+  code: wf
+  currency: usd
+  deposit: true
+  withdraw: true
+
+- id: 4
+  code: jpmc
+  currency: usd
+  deposit: true
+  withdraw: true
+
+- id: 5
+  code: gs
+  currency: usd
+  deposit: true
+  withdraw: true
+
+- id: 6
+  code: ms
+  currency: usd
+  deposit: true
+  withdraw: true

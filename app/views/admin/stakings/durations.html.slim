@@ -1,0 +1,24 @@
+.container
+  .col-md-24
+    h3 Staking durations
+    .pull-right
+      = link_to t('actions.create'), "#","data-target"=>"#newlockedModal", "data-toggle"=>"modal", class: "btn btn-primary remove_backdrop"
+    = table_for(@durations, class: 'table table-condensed table-hover') do |t|
+      - t.column :currency
+      - t.column :duration_days
+      - t.column :type do |f|
+        = f.view_locked
+      - t.column :estimate_apy
+
+    .pull-right = paginate @durations
+
+
+.staking_model_data
+  #newlockedModal.modal.fade role="dialog" data-backdrop="static" data-keyboard="false"
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close data-dismiss="modal" type="button"  &times;
+          h4.modal-title New Staking Duration
+        .staking_new_form
+          = render 'admin/stakings/new_durations'

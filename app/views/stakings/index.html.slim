@@ -1,0 +1,55 @@
+- content_for :frame do
+  .container
+    .col-md-24
+      h3 Stakings
+      ul.nav.nav-tabs
+        li.active
+          a data-toggle='tab' href="#locked_staking" Locked Staking
+        li
+          a data-toggle='tab' href="#defi_staking" Defi Staking
+      .tab-content
+        #locked_staking.tab-pane.fade.in.active
+          table.table.table-condensed.table-hover
+            thead
+              th= t('.token')
+              th= t('.est_apy')
+              th= t('.duration')
+              th= t('.minimum_lock_amount')
+              th
+            tbody
+              - @locked_stakings.each do |staking|
+                tr
+                  td= staking.currency
+                  td class="estimate_apy-#{staking.try(:id)}"
+                    - staking_locked = staking.locked_durations.first
+                    = number_to_percentage(staking_locked.try(:estimate_apy).to_f,precision: 2)
+                  td
+                    - staking.locked_durations.each_with_index do |b,i|
+                      button(class="staking_locked_duration_btn staking_locked_duration_summary_btn_#{staking.id} btn btn-sm #{'border-btn' if staking_locked.try(:id) == b.id}" type="button" data-duration=b.id data-staking=staking.id data-stype='summary' data-interest=b.estimate_apy)= b.duration_days
+                    =
+                  td= "#{staking.minimum_locked_amount.to_i}#{staking.currency}"
+                  td {class="staking_action_#{staking.try(:id)}"}
+                    = render partial: '/stakings/actions/staking_action', locals: {staking: staking,staking_locked: staking_locked}
+
+        #defi_staking.tab-pane.fade
+          table.table.table-condensed.table-hover
+            thead
+              th= t('.token')
+              th= t('.est_apy')
+              th= t('.duration')
+              th= t('.minimum_lock_amount')
+              th
+            tbody
+              - @defi_stakings.each do |staking|
+                tr
+                  td= staking.currency
+                  td class="estimate_apy-#{staking.try(:id)}"
+                    - staking_locked = staking.defi_durations.first
+                    = number_to_percentage(staking_locked.try(:estimate_apy).to_f,precision: 2)
+                  td
+                    - staking.defi_durations.each_with_index do |b,i|
+                      button(class="staking_locked_duration_btn staking_locked_duration_summary_btn_#{staking.id} btn btn-sm #{'border-btn' if staking_locked.try(:id) == b.id}" type="button" data-duration=b.id data-staking=staking.id data-stype='summary' data-interest=b.estimate_apy)= "Flexible"
+                  td= "#{staking.minimum_locked_amount.to_i}#{staking.currency}"
+                  td {class="staking_action_#{staking.try(:id)}"}
+                    = render partial: '/stakings/actions/staking_action', locals: {staking: staking,staking_locked: staking_locked}
+      .staking_locked_body_process

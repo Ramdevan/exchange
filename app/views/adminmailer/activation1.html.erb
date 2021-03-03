@@ -1,0 +1,7 @@
+<% if @check_id %>
+  <%= t('.signup_mail') %>
+  <%= link_to "Verify" ,verify_token_loginhistory_index_url(@user)%>
+<%else %>
+  <%= t('.login_mail', ip: @ip) %>
+  <%= link_to "Verify" ,verify_token_loginhistory_index_url(@user)%>
+<%end %>

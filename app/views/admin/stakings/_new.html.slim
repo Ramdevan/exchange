@@ -1,0 +1,24 @@
+= form_for Staking.new, url: admin_stakings_path(@staking), method: :post, remote: true do |f|
+  .modal-body
+    .col-md-24
+      = f.label :staking_type
+      = f.select :staking_type, options_for_select([Staking::LOCKED_STAKING,Staking::DEFI_STAKING]),{prompt: "Select staking type"}, {class: "form-control",required: true}
+      span.error.staking_staking_type
+    .col-md-24
+      = f.label :minimum_locked_amount
+      = f.number_field :minimum_locked_amount,value: "", class: "form-control",step: 'any', required: true
+      span.error.staking_minimum_locked_amount
+    .col-md-24
+      = f.label :maximum_locked_amount
+      = f.number_field :maximum_locked_amount,value: "", class: "form-control",step: 'any', required: true
+      span.error.staking_maximum_locked_amount
+    .col-md-24
+      = f.label :currency
+      = f.select :currency, options_for_select(StakingDuration.all.map{|m| m.currency}.uniq),{prompt: "Select Currency"},{class: "form-control staking_duration_currency",required: true}
+      span.error.staking_currency
+    .col-md-24
+      = f.label :published_on
+      = f.text_field :published_on, class: 'form-control datepicker', required: true
+  .modal-footer
+    .col-md-24
+      = f.submit "Create", class: "btn btn-primary"

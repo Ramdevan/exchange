@@ -1,0 +1,16 @@
+.row
+  .col-lg-12.text-right.mb-3
+    .ticket_action
+      = close_open_toggle_link
+      = link_to t('.new_ticket'), new_ticket_path, class: 'ml-2 btn btn-primary'
+
+ul.tickettslist
+  - @tickets.each do |t|
+    li class = (t.comments.unread_by(current_user).any? ? ["unread", "list-group-item"] : ["list-group-item"])
+      .row.ticket_list
+        .col-lg-12
+          h4 = link_to t.title_for_display, ticket_path(t)
+          p = t.content
+          .ticket-time
+            i.fas.fa-clock
+            span = time_ago_in_words t.created_at

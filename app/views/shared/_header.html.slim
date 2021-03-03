@@ -1,0 +1,28 @@
+header.header_bg
+  .container
+     nav.navbar.navbar-expand-lg.navbar-dark
+      a.navbar-brand href=ENV['LANDING_HOST']
+        img.logo.logo src="/assets/logo_white.png"
+      button.navbar-toggler aria-controls="navbar_innerpage" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbar_innerpage" data-toggle="collapse" type="button" 
+        span.navbar-icon
+          i.fas.fa-bars
+      #navbar_innerpage.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          = top_nav_link(t('header.market'), market_path(current_market.id), 'exchange', target: true)
+          = top_nav_link(t('header.funds'), funds_path, 'money', controllers: ['funds']) if current_user
+          /= top_nav_link(t('header.assets'), exchange_assets_path, 'bar-chart-o')
+          
+          = top_nav_link(t('header.history'), order_history_path,  controllers: ['history']) if current_user
+          = top_nav_link(t('header.sessions'), show_history_loginhistory_index_path,  controllers: ['loginhistory']) if current_user
+        ul.navbar-nav.ml-auto
+            //li.nav-item
+              a.nav-link href="#"  INVITE &amp; EARN 50% FEES            
+            = render partial: 'shared/header_profile_setting' if current_user
+            = top_nav_link(t('header.signin'), signin_path, '') unless current_user
+            = top_nav_link(t('header.signup'), signup_path, '') unless current_user
+            /= render partial: 'shared/header_lang_sel'
+
+
+
+
+
