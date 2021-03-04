@@ -1,19 +1,17 @@
 <div class="form-group cpyInput">
   <div class="d-flex mt-2 mb-2">
-  <div class="">
-    <span>{{'funds.deposit_coin.address' | t}}</span>
+    <div class="">
+      <span>{{'funds.deposit_coin.address' | t}}</span>
+    </div>
+    <div class="ml-auto">
+      <span class="countdown hint" style="display:none;">...</span>
+    </div>
   </div>
-  <div class="ml-auto">
-    <span class="countdown hint" style="display:none;">...</span>
-    <a id="new_address" ng-click="genAddress(deposit_channel.resource_name); $event.preventDefault()" href="#">
-      {{"funds.deposit_coin.new_address" | t}}</a>
+  <div class="form-row">
+    <div class="form-control col-lg-10 form-control-static" id="deposit_address">{{account.deposit_address}}</div>
+    <div class="col-lg-2 btn btn-primary" id="deposit_address_data" data-toggle="tooltip" title="Click to Copy"
+         data-placement="bottom" data-trigger="hover" ,data-animation="true">
+      <i class="fa fa-copy" data-clipboard-text="{{account.deposit_address}}"></i> Copy
+    </div>
   </div>
-</div>
-<div class="form-row">
-  <div class="form-control col-lg-10 form-control-static" id="deposit_address">{{account.deposit_address}}</div>
-  <div class="col-lg-2 btn btn-primary" id="deposit_address_data" data-toggle="tooltip" title="Click to Copy"
-    data-placement="bottom" data-trigger="hover" ,data-animation="true">
-    <i class="fa fa-copy" data-clipboard-text="{{account.deposit_address}}"></i> Copy
-  </div>
-  
 </div>

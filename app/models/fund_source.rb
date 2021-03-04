@@ -13,11 +13,11 @@ class FundSource < ActiveRecord::Base
   validates_presence_of :uid, :extra, :member
 
   def label
-    if currency_obj.try :coin?
+    # if currency_obj.try :coin?
       "#{uid} (#{extra})"
-    else
-      [I18n.t("banks.#{extra}"), "****#{uid[-4..-1]}"].join('#')
-    end
+    # else
+    #   [I18n.t("banks.#{extra}"), "****#{uid[-4..-1]}"].join('#')
+    # end
   end
 
   def as_json(options = {})

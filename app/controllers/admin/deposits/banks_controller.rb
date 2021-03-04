@@ -45,6 +45,7 @@ module Admin
           redirect_to :back and return
         end
 
+        @bank.update_attribute(:amount, target_params[:amount]) if target_params[:amount].to_f != @bank.amount.to_f
         @bank.charge!(target_params[:txid])
         redirect_to :back
       end

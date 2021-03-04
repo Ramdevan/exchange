@@ -24,7 +24,11 @@
         = form_for [:admin, @bank] do |f|
           dl.dl-horizontal.dl-member
             = item_for @bank, :sn
-            = item_for @bank, :amount
+            - if @bank.may_submit? or @bank.may_accept?
+              dt = t('.amount')
+              dd = f.text_field :amount, class: 'col-xs-24'
+            - else
+              = item_for @bank, :amount
             = item_for @bank, :done_at
             - if @bank.may_submit? or @bank.may_accept?
               dt = t('.txid')

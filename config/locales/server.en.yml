@@ -785,34 +785,34 @@ en:
     deposits:
       satoshis:
         gen_address:
-          require_transaction: it can't generate new address if it hasn't been used.
+          require_transaction: Use the existing address atleast once.
       dashcoins:
         gen_address:
-          require_transaction: it can't generate new address if it hasn't been used.
+          require_transaction: Use the existing address atleast once.
       ethers:
         gen_address:
-          require_transaction: it can't generate new address if it hasn't been used.
+          require_transaction: Use the existing address atleast once.
       bitcoincashs:
         gen_address:
-          require_transaction: it can't generate new address if it hasn't been used.
+          require_transaction: Use the existing address atleast once.
       litecoins:
         gen_address:
-          require_transaction: it can't generate new address if it hasn't been used.
+          require_transaction: Use the existing address atleast once.
       moneros:
         gen_address:
-          require_transaction: it can't generate new address if it hasn't been used.
+          require_transaction: Use the existing address atleast once.
       ripples:
         gen_address:
-          require_transaction: it can't generate new address if it hasn't been used.
+          require_transaction: Use the existing address atleast once.
       neos:
         gen_address:
-          require_transaction: it can't generate new address if it hasn't been used.
+          require_transaction: Use the existing address atleast once.
       neoscoins:
         gen_address:
-          require_transaction: it can't generate new address if it hasn't been used.
+          require_transaction: Use the existing address atleast once.
       usdc:
         gen_address:
-          require_transaction: it can't generate new address if it hasn't been used.
+          require_transaction: Use the existing address atleast once.
       banks:
         destroy:
           notice: Revocation request is successful.
