@@ -105,4 +105,8 @@ class Currency < ActiveYamlBase
       hot: hot
     }
   end
+
+  def has_destination_tag?
+    !!self[:has_destination_tag]
+  end
 end
