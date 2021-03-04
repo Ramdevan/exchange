@@ -191,9 +191,9 @@ input[type='file']::before {
     background-color: var(--theme-primary);
     left: 0px;
     bottom: 3px;
-    width: 106px;
+    width: 95px;
     color: #fff;
-    padding: 8px 0 0 30px;
+    padding: 5px 0 0 30px;
     border-radius: 4px;
 }
 
@@ -208,7 +208,7 @@ input[type='file']::after {
     color: #ffffff;
     top: 10px;
     left: 8px;
-    font-size: 15px;
+    font-size: 12px;
 }
 div#guide {
     margin: 25px 0;
