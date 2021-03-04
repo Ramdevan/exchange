@@ -145,10 +145,10 @@ a:hover {
 }
 
 .header_bg li a {
-    color: rgba(255, 255, 255, 0.5);
+    color: #fff;
     text-decoration: none;
     padding: 10px 15px;
-    text-transform: uppercase;
+    text-transform: capitalize;
     font-size: 14px;
     font-weight: 600;
 }
@@ -352,8 +352,8 @@ border-radius: 2px;
 }
 
 .flash-message i {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -370,6 +370,7 @@ border-radius: 2px;
 
 .flash-message p span {
     width: 70%;
+    padding-top: 4px;
 }
 /*ID UPLOAD*/
 .id_document_upload {
@@ -561,7 +562,7 @@ td.currency-logo img {
 }
 .currency-actions p {
     margin: 5px 2px;
-  background-color: #FFF8E1;
+  background-color: #fff;
   text-align: center;
   padding: 4px;
   border-radius: 4px;
@@ -685,7 +686,19 @@ a#new_address {
     text-overflow: ellipsis;
 }
 
+.ngdialog-content h4.ng-binding {
+    font-size: 18px;
+}
 
+.ngdialog-content p.ng-binding {
+    font-size: 16px;
+}
+
+th.ng-binding {
+    font-size: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
 
 /*Footer */
 
