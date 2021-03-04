@@ -101,7 +101,7 @@ module Worker
     end
 
     def write_h24_key(key, value, ttl=24.hours)
-      ttl=24.hours if ttl < 0
+      ttl=24.hours if ttl <= 0
       Rails.cache.write key, value, expires_in: ttl
     end
 
