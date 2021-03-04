@@ -1,0 +1,74 @@
+<%= stylesheet_link_tag "jquery.dataTables.min" %>
+<%= javascript_include_tag "jquery.dataTables.min" %>
+
+<style type="text/css">
+  .table .thead-dark th {
+    color: #fff;
+    background-color: #1c262b;
+    border-color: #27333a;
+    width: 26% !important;
+  }
+  table.dataTable.no-footer {
+    border-bottom: 1px solid #1110;
+  }
+  div#myTable_paginate {
+    background: #1c262b;
+    padding-top: 0;
+    border-radius: 6px;
+    margin-top: 5px;
+    color: white; 
+  }
+  div#myTable_paginate a {
+    color: white!important;
+  }
+  .dataTables_wrapper .dataTables_paginate .paginate_button{
+    padding: .2em 0.5em;
+  }
+  .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+      color: #1c262b !important;
+      border: 1px solid #1c262b;
+      background-color: white;
+      background: linear-gradient(to bottom, #62717b 0%, #1c262b 100%);
+  }
+</style>
+
+<section class="container feesTable">
+  <h3 class="text-left mt-3 mb-3">FEES and LIMITS</h3>
+  <div class="row ">
+    <div class="col-lg-4">
+      <div class="feesBox mt-3">
+        <p>Trade fee - 0.1%</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-8">
+      <table class="table feesTable table-hover table-responsive table-bordered" id="myTable">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">FULLNAME</th>
+          <th scope="col">WITHDRAWAL FEE</th>
+          <th scope="col">MIN WITHDRAW</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @fee.each do |fee| %>
+          <tr>
+            <td><%= fee[:name] %></td>
+            <td> <%= fee[:fee_val] %></td>
+            <td> <%= fee[:min_val] %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript">
+  $(document).ready( function () {
+      $('#myTable').DataTable({
+        "bLengthChange" : false,
+      });
+  } );
+</script>

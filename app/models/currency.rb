@@ -109,4 +109,18 @@ class Currency < ActiveYamlBase
   def has_destination_tag?
     !!self[:has_destination_tag]
   end
+
+  def self.all_fee_details
+    all_coins = []
+    Currency.all.each do |currency|
+      next unless currency.coin?
+      withdraw = WithdrawChannel.find_by_currency(currency.code)
+      all_coins << {name: "#{currency.display_name} (#{currency.code.upcase})",
+                    fee_val: withdraw.fee,
+                    min_val: withdraw.min_withdraw
+      }
+    end
+    return all_coins
+  end
+  
 end

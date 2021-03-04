@@ -634,7 +634,17 @@ a#new_address {
     width: 130px;
     margin: 12px 0;
 }
+.cls-fee {
+    background: white;
+    padding: 30px 20px 5px 20px;
+    border-radius: 10px;
+    height: 150px;
+    margin-bottom: 20px;
+}
 
+.cls-fee p {
+    margin-bottom: 10px;
+}
 
 .withdraw-instruction h4 {
     font-size: 18px;
@@ -810,10 +820,22 @@ footer a {
 }
 
 
+.ngdialog-content h3 {
+    font-size: 18px;
+}
+
+.ngdialog-content h5 {
+    font-size: 16px;
+    font-weight: 400;
+}
 
 
 
-
+.ngdialog-content button.form-control.ng-binding {
+    border-color: var(--theme-primary);
+    background-color: var(--theme-primary);
+    color: #fff;
+}
 
 
 

@@ -1,5 +1,5 @@
-<h3 ng-bind="'fund_sources.manage_bank_account' | t"></h3>
-<h5 ng-bind="'fund_sources.manage_bank_account_desc' | t"></h5>
+<h4 ng-bind="'fund_sources.manage_bank_account' | t"></h4>
+<p ng-bind="'fund_sources.manage_bank_account_desc' | t"></p>
 <table class="table table-condensed table-hover">
   <thead>
     <tr>
@@ -33,7 +33,7 @@
         <input class="string form-control" placeholder="{{'fund_sources.account' | t}}" ng-model="uid" ng-init="uid = ''" />
       </td>
       <td class="col-xs-6">
-        <button class="form-control" type="submit" ng-click="add()" ng-bind="'fund_sources.add' | t"></button>
+        <button class="btn btn-primary ng-binding" type="submit" ng-click="add()" ng-bind="'fund_sources.add' | t"></button>
       </td>
     </tr>
   </tbody>

@@ -86,6 +86,10 @@ class SessionsController < ApplicationController
   def show
   end
 
+  def fee
+    @fee = Currency.all_fee_details
+  end
+
   private
 
 

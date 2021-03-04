@@ -11,7 +11,7 @@ Exchange::Application.routes.draw do
 
   root 'sessions#new'
 
-  get '/terms' => 'welcome#terms'
+  get '/fee' => 'sessions#fee'
 
   post '/webhooks/btc' => 'webhooks#btc'
   post '/webhooks/bchabc' => 'webhooks#bchabc'
