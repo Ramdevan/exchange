@@ -1,5 +1,5 @@
 :root {
---theme-primary:#f0b90b;
+--theme-primary:#2d7ee0;
 --secondary-color: #4fb24c;
 --tertiary-color:#f04b3d;
 --bg-dark1: #ffffff;
@@ -142,6 +142,14 @@ li.marketlist ul.dropdown-menu {
 
 .cusdropdown-menu li a {
     color: #11161d !important;
+}
+
+#trade_chart .tab-content {
+    background: #eceff2;
+}
+
+div#trade_chart ul.nav.nav-tabs li{
+    background: #ffffff;
 }
 
 @media only screen and (max-width: 799px) {
