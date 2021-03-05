@@ -1,0 +1,11 @@
+- unless @one_links.empty?
+  .panel.panel-primary
+    .panel-heading: span = t('.one')
+    = render partial: 'table', locals: {links: @one_links}
+- unless @all_links.empty?
+  .panel.panel-success
+    /.panel-heading: span = t('.all')
+    = render partial: 'table', locals: {links: @all_links}
+
+- if @all_links.empty? and @one_links.empty?
+  h3.text-info.text-center = t('.empty')
