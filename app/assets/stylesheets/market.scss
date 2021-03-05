@@ -280,7 +280,7 @@ header {
 
 /*CHART CSS*/
 div#chartBox {
-  height: 380px;
+  height: 400px;
 }
 
 #tv_chart_container {
@@ -294,15 +294,30 @@ html.theme-dark .chart-page {
 
 div#highcharts-0 {
   margin: 0 auto;
-  width: 100%;
+  width: 100% !important;
   color: var(--gray);
-  height: 400px !important;
+  height: 380px !important;
 }
 
 table.depths-table {
   color: var(--white);
 }
 
+div#trade_chart ul.nav.nav-tabs {
+    float: right;
+    border-bottom: none;
+}
+
+div#trade_chart ul.nav.nav-tabs li {
+    text-align: right;
+    width: auto;
+    font-size: 12px;
+    background: #13151a;
+    padding: 3px 10px;
+    display: block;
+    float: right;
+    position: relative;
+}
 
 /*LIMIT MARKET*/
 .orderOption {
@@ -751,7 +766,7 @@ div#market_list_wrapper {
 }
 
 div#market_trades_wrapper {
-  height: 402px;
+  height: 362px;
 }
 
 .trade_his_content {
@@ -1334,18 +1349,26 @@ ul#openmy-order li {
 
 
 .orderbook_tradehistory {
-  height: 56vh;
+  height: 51vh;
   background-color: var(--bg-color-light);
   border-radius: 4px;
-  margin: 4px 0;
+  margin: 30px 0;
 }
 
 .orderbook_tradehistory .data_tbody {
-  height: calc(47vh - 60px);
+  height: calc(47vh - 110px);
   overflow-y: scroll;
   overflow-x: hidden;
 }
 
+#trade_chart .tab-content {
+    background: #0a0b0c;
+}
+
+div#depths_wrapper {
+    width: 100% !important;
+    height: 400px;
+}
 
 .order_book, .trade_history {
   background-color: var(--bg-color-light);

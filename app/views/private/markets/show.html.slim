@@ -27,8 +27,19 @@ html lang="en"
         = render partial: 'market_list'       
         
       #trade_chart.trade-grid-item.chart_area
+        <ul class="nav nav-tabs">
+          <li class="active"><a data-toggle="tab" href="#TradeviewChartCustom">Trade View</a></li>
+          <li><a data-toggle="tab" href="#DepthviewChartCustom">Depth View</a></li>
+        </ul>
+        <div class="tab-content">
+          <div id="TradeviewChartCustom" class="tab-pane fade in active show">
+            = render partial: 'tradeview_depths'
+          </div>
+          <div id="DepthviewChartCustom" class="tab-pane fade">
+            = render partial: 'depths'
+          </div>
+        </div>
         
-        = render partial: 'tradeview_depths'
         .orderbook_tradehistory
           .row.m-0
             .order_book.col-lg-8.col-md-6.col-sm-12
@@ -40,6 +51,7 @@ html lang="en"
       #trade_orderbook.trade-grid-item
         = render partial: 'my_orders'
         = render partial: 'buy_sell'
+        
         
     .resHeader
 
