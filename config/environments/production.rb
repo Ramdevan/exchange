@@ -73,13 +73,20 @@ Exchange::Application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    port:           ENV["SMTP_PORT"],
-    domain:         ENV["SMTP_DOMAIN"],
-    address:        ENV["SMTP_ADDRESS"],
-    user_name:      ENV["SMTP_USERNAME"],
-    password:       ENV["SMTP_PASSWORD"],
-    authentication: ENV["SMTP_AUTHENTICATION"],
-    enable_starttls_auto: ENV["SMTP_ENABLE_STARTTLS_AUTO"]
+    port:           ENV["MAILGUN_PORT"],
+    domain:         ENV["MAILGUN_DOMAIN"],
+    address:        ENV["MAILGUN_ADDRESS"],
+    user_name:      ENV["MAILGUN_USERNAME"],
+    password:       ENV["MAILGUN_PASSWORD"],
+    authentication: ENV["MAILGUN_AUTHENTICATION"],
+    enable_starttls_auto: ENV["MAILGUN_ENABLE_STARTTLS_AUTO"]
+    #port:           ENV["SMTP_PORT"],
+    #domain:         ENV["SMTP_DOMAIN"],
+    #address:        ENV["SMTP_ADDRESS"],
+    #user_name:      ENV["SMTP_USERNAME"],
+    #password:       ENV["SMTP_PASSWORD"],
+    #authentication: ENV["SMTP_AUTHENTICATION"],
+    #enable_starttls_auto: ENV["SMTP_ENABLE_STARTTLS_AUTO"]
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
