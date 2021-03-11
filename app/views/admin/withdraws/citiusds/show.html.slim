@@ -1,0 +1,32 @@
+.row
+  .col-xs-12
+    .panel.panel-primary
+      .panel-heading
+        span = t('.withdraw', sn: @citiusd.id)
+      .panel-body
+        = description_for :withdraw do
+          = item_for @citiusd, :id
+          = item_for @citiusd, :created_at
+          = item_for @citiusd, :aasm_state_text
+          = item_for @citiusd, :txid do
+            = link_to @citiusd.txid, @citiusd.blockchain_url, target: :blank
+          hr.split
+          = item_for @citiusd.member, :name
+          = item_for @citiusd, :fund_extra
+          = item_for @citiusd, :fund_uid do
+            span = @citiusd.fund_uid.truncate(22)
+          = item_for @citiusd, :amount
+          hr.split
+          = item_for @citiusd, :remark
+          hr.split
+          ul.list-inline.pull-right
+            - if @citiusd.may_reject?
+              li
+                = link_to t('.reject'), url_for([:admin, @citiusd]), class: 'btn btn-danger', method: 'DELETE', confirm: t('.reject_confirm')
+            - if @citiusd.may_process?
+              li
+                = link_to t('.process'), url_for([:admin, @citiusd]), class: 'btn btn-primary', method: 'PATCH'
+
+  .col-xs-12
+    = render partial: 'shared/admin/member', locals: {member: @citiusd.member}
+    = render partial: 'shared/admin/account', locals: {account: @citiusd.account}
