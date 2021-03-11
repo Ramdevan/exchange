@@ -24,6 +24,10 @@ Exchange::Application.routes.draw do
   post '/webhooks/xrp'  => 'webhooks#xrp'
   post '/webhooks/neo'  => 'webhooks#neo'
 
+
+
+
+  post '/webhooks/citiusd'  => 'webhooks#citiusd'
   if Rails.env.development?
     mount MailsViewer::Engine => '/mails'
   end

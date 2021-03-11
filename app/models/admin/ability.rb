@@ -27,6 +27,7 @@ module Admin
       can :manage, ::Deposits::Dash
       can :manage, ::Deposits::Neo
       can :manage, ::Deposits::Usdc
+      can :manage, ::Deposits::Citiusd
 
       can :menu, Withdraw
       can :manage, ::Withdraws::Bank
@@ -40,6 +41,8 @@ module Admin
       can :manage, ::Withdraws::Dash
       can :manage, ::Withdraws::Neo
       can :manage, ::Withdraws::Usdc
+      can :manage, ::Withdraws::Citiusd
+
     end
   end
 end

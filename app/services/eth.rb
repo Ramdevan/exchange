@@ -178,4 +178,17 @@ class CoinRPC
 
   end
 
+    class CITIUSD < USDT
+
+    def convert_from_base_unit value
+      (value.to_i / 1e2).to_d
+    end
+
+    def convert_to_base_unit value
+      (value.to_f * 1e2).to_i
+    end
+
+  end
+
+
 end

@@ -572,10 +572,17 @@ ul#myTab.nav-tabs {
   }
 
   &.usdt {
-    tr.quote-btc {
+    tr.quote-usdt {
       display: inline-flex;
     }
   }
+
+  &.citiusd {
+    tr.quote-citiusd {
+      display: inline-flex;
+    }
+  }
+
 }
 
 div.buysell_table {

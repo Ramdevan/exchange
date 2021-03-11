@@ -97,6 +97,8 @@ en:
         title: XMR Deposit
       deposit_dash:
         title: DASH Deposit
+      deposit_citiusd:
+        title: CITIUSD Deposit
       deposit_xrp:
         title: XRP Deposit
       deposit_neo:
@@ -179,6 +181,8 @@ en:
         title: XMR Withdraw
       withdraw_dash:
         title: DASH Withdraw
+      withdraw_citiusd:
+        title: CITIUSD Withdraw
       withdraw_xrp:
         title: XRP Withdraw
       withdraw_zec:

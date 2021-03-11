@@ -463,6 +463,7 @@ en:
       inr: INR
       usd: USD
       eth: ETH
+      citiusd: CITIUSD
       bchabc: BCHABC
       ltc: LTC
       xmr: XMR
@@ -691,6 +692,13 @@ en:
       key: Ethereum
       title: Ethereum Deposits
       intro: Deposit ethereum from your own wallet address to Citioption account
+      latency: 1 confirmation
+      transfer: Manual
+      go: Deposit
+    citiusd:
+      key: Citiusd
+      title: Citiusd Deposits
+      intro: Deposit citiusd from your own wallet address to Citioption account
       latency: 1 confirmation
       transfer: Manual
       go: Deposit
@@ -1380,6 +1388,7 @@ en:
         eth_html: "<span>ETH</span>"
         usdt_html: "<span>USDT</span>"
         usdc_html: "<span>USDC</span>"
+        citiusd_html: "<span>CITIUSD</span>"
         price: Price
         change: "24h %"
       range_switch:
@@ -1814,6 +1823,19 @@ en:
         index:
           accept: Accept
           accept_confirm: Confirm deposit?
+      citiusds:
+        update:
+          notice: The deposit was successful.
+        index:
+          txid: TxId
+          created_at: Created At
+          currency_obj: Currency Obj
+          member_name: Member
+          amount: Amount
+          confirmations: Confirmations
+          state_and_actions: State/Actions
+          accept: Accept
+          accept_confirm: Confirm deposit?
       dashcoins:
         update:
           notice: The deposit was successful.
@@ -1889,6 +1911,12 @@ en:
         name: Name
         phone: Phone Number
         wallet_address: Wallet Address
+        id: Id
+        created_at: Created At
+        acitvated?: Activated?
+        id_document_verifed?: Id Document Verified?
+        actions: actions
+
       show:
         member_title: User Information
         actions_title: Action
@@ -2199,6 +2227,7 @@ en:
       inr: INR
       usd: USD
       eth: ETH
+      citiusd: CITIUSD
       bchabc: BCHABC
       ltc: LTC
       xmr: XMR
@@ -2783,6 +2812,13 @@ en:
       key: Bitcoin
       title: Bitcoin Withdraw
       intro: Withdraw bitcoin to your own wallet
+      latency: 30 minutes
+      transfer: Manual
+      go: Withdraw
+    citiusd:
+      key: Citiusd
+      title: Citiusd Withdraw
+      intro: Withdraw citiusd to your own wallet
       latency: 30 minutes
       transfer: Manual
       go: Withdraw
