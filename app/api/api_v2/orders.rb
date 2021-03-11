@@ -13,7 +13,6 @@ module APIv2
     get "/history/orders/my" do
       orders = current_user.orders
                    .order(order_param)
-                   .with_state(params[:state])
 
       present :history, orders, with: APIv2::Entities::Order
     end
