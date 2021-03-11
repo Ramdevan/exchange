@@ -80,11 +80,11 @@ class Global
 
   def trigger_orderbook
     data = {asks: asks[0..100], bids: bids[0..100], market_data: Market.find(self.currency).details}
-    Pusher.trigger_async(channel, "update", data) if self.currency == 'ethbtc'
+    Pusher.trigger_async(channel, "update", data)
   end
 
   def trigger_trades(trades)
-    Pusher.trigger_async(channel, "trades", trades: trades) if self.currency == 'ethbtc'
+    Pusher.trigger_async(channel, "trades", trades: trades)
   end
 
   def at

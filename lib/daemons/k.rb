@@ -85,7 +85,7 @@ def append_point(market, period, ts)
   #@logger.info "append #{k}: #{point.to_json}"
   @r.rpush k, point.to_json
   if TIME_PERIODS.include? period
-    Pusher.trigger_async("market-#{market}-global", "chart-ticker-" + period.to_s, point.to_json) if market == 'ethbtc'
+    Pusher.trigger_async("market-#{market}-global", "chart-ticker-" + period.to_s, point.to_json)
   end
 
   if period == 1
@@ -104,7 +104,7 @@ def update_point(market, period, ts)
   @r.rpop k
   @r.rpush k, point.to_json
   if TIME_PERIODS.include? period
-    Pusher.trigger_async("market-#{market}-global", "chart-ticker-" + period.to_s, point.to_json) if market == 'ethbtc'
+    Pusher.trigger_async("market-#{market}-global", "chart-ticker-" + period.to_s, point.to_json)
   end
 end
 
