@@ -14,7 +14,7 @@ Rails.logger = @logger = Logger.new STDOUT
 
 @r ||= KlineDB.redis
 
-$running = true
+$running = (ENV["RAILS_ENV"] == "production")
 Signal.trap("TERM") do
   $running = false
 end

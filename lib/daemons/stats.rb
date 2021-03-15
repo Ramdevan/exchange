@@ -11,7 +11,7 @@ require File.join(root, "config", "environment")
 Rails.logger = @logger = Logger.new STDOUT
 
 
-$running = true
+$running = (ENV["RAILS_ENV"] == "production")
 Signal.trap("TERM") do
   $running = false
 end
