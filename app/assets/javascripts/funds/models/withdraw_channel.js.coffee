@@ -1,5 +1,5 @@
 class WithdrawChannel extends ExchangeModel.Model
-  @configure 'WithdrawChannel', 'key', 'currency', 'resource_name'
+  @configure 'WithdrawChannel', 'key', 'currency', 'resource_name', 'fee', 'min_withdraw'
 
   @initData: (records) ->
     ExchangeModel.Ajax.disable ->
