@@ -1,7 +1,7 @@
 namespace :restart do
   desc 'Restart Daemons if its down'
   task  daemons: :environment do
-    skip_daemons = []
+    skip_daemons = ['autobot.rb']
     while true
       begin
         Daemons::Rails::Monitoring.controllers.each{|controller|

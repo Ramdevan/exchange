@@ -1,0 +1,52 @@
+.row
+  p
+    h3 Bot Setup
+    button.btn.btn-primary data-target="#botModal" data-toggle="modal" style='float: right;' type="button" = t('new_bot')
+    = link_to t('restart_bot'), restart_admin_bots_path, remote: true, method: :get, class: 'button btn btn-primary restartBot', style: 'float: right;', data: {confirm: t('are_you_sure')}
+    = link_to t('kill_bot'), kill_bot_admin_bots_path, remote: true, method: :get, class: 'button btn btn-primary restartBot', style: 'float: right;', data: {confirm: t('are_you_sure')}
+  .panel.panel-primary
+    .panel-heading
+      span Bots
+    .panel-body
+      = table_for(@bots, class: 'table table-condensed table-hover') do |t|
+        - t.column t('market_head'), class: 'min col-xs-2' do |x|
+          = x.market_name.upcase
+        - t.column t('order_time'), class: 'max col-xs-2' do |x|
+          = "#{x.start_sec} - #{x.end_sec}"
+        - t.column t('trade_time'), class: 'max col-xs-2' do |x|
+          = "#{x.start_sec_trade} - #{x.end_sec_trade}"
+        - t.column t('best_price'), class: 'max col-xs-2' do |x|
+          = x.best_price
+        - t.column t('best_buy'), class: 'max col-xs-2' do |x|
+          = x.best_buy
+        - t.column t('best_sell'), class: 'max col-xs-2' do |x|
+          = x.best_sell
+        - t.column t('price'), class: 'max col-xs-2' do |x|
+          = "#{x.min_price} - #{x.max_price}"
+        - t.column t('best_vol'), class: 'max col-xs-2' do |x|
+          = x.best_vol
+        - t.column t('vol'), class: 'max col-xs-2' do |x|
+          = "#{x.min_vol} - #{x.max_vol}"
+        - t.column t('actions_head'), class: 'col-xs-1' do |x|
+          = link_to (x.disabled? ? 'Enable' : 'Disable'), toggle_admin_bot_path(x), remote: true, method: :post, class: 'toggle-web'
+          | &nbsp;|&nbsp;
+          = link_to "Edit", edit_admin_bot_path(x), remote: true
+          | &nbsp;|&nbsp;
+          = link_to "Delete", url_for([:admin, x]) ,method: :delete, data: { confirm: 'Are you sure?' }
+
+      = paginate @bots
+
+  #botModal.modal.fade aria-hidden="true" aria-labelledby="botModalLabel" role="dialog" tabindex="-1"
+    .modal-dialog role="document"
+      .modal-content
+        .modal-header
+          h5#exampleModalLabel.modal-title = t('new_bot')
+          button.close aria-label="Close" data-dismiss="modal" type="button"
+            span aria-hidden="true"  &times;
+        .modal-body
+          .flash_msg
+            - flash[:alert] = nil
+            = render 'shared/errors'
+          .botForm
+            = render partial: 'bot_modal', locals: {bot: Bot.new}
+        .modal-footer

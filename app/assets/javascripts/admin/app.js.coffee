@@ -10,3 +10,7 @@ $ ->
     )
   clipboard.on 'success', (e) ->
   clipboard.on 'error', (e) ->
+
+  $('.restartBot').click ->
+    $('.loading-gif').show()
+    return

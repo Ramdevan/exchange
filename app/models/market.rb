@@ -128,6 +128,10 @@ class Market < ActiveYamlBase
     find_by_id('btcusdt') || first
   end
 
+  def self.select_options
+    all.map { |market| ["#{market.name} (#{market.bid['fixed']} Decimals)", market.id] }
+  end
+
   private
 
   def global

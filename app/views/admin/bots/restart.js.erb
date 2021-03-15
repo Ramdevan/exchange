@@ -1,0 +1,3 @@
+<% flash[:notice] = (@msg ? t('restart_success') : t('restart_failed')) %>
+$('.flashText').html("<%= j render(:partial => 'shared/flash') %>");
+$('.loading-gif').hide()

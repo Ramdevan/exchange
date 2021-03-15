@@ -47,6 +47,15 @@ namespace :admin do
   resources :referral_commissions
   resources :fees
   resources :holder_discounts
+  resources :bots, only: [:index, :create, :edit, :update, :destroy] do
+    collection do
+      get :restart
+      get :kill_bot
+    end
+    member do
+      post :toggle
+    end
+  end
 
   resources :stakings do
     member do 

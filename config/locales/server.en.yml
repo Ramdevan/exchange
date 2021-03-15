@@ -2456,6 +2456,12 @@ en:
     withdraws: Withdraws
     statistics: Data Statistics
     id_documents: Verify Account
+    referrals: Referrals
+    referal_stats: Referral Stats
+    referal_commissions: Referral Commissions
+    trade_fees: Trade Fees
+    commissions: Commissions
+    bots: Bots
   footer:
     about: About
     privacy: Privacy
@@ -2982,3 +2988,27 @@ en:
   redeem_lendings:
     standard: Standard
     fasr: Fast
+  update_success: Updated Successfully
+  create_success: Created Successfully
+  kill_success: Killed Successfully
+  restart_success: Restarted Successfully
+  market_head: Market
+  best_price: Best Price
+  min_price: Min Price
+  max_price: Max Price
+  between_price: Between Price
+  best_vol: Best Volume
+  min_vol: Min Volume
+  max_vol: Max Volume
+  between_vol: Between Volume
+  actions_head: Actions
+  between_sec: Order create between seconds
+  trade_between_sec: Trade create between seconds
+  order_time: OrderIn(Seconds)
+  trade_time: TradeIn(Seconds)
+  are_you_sure: Are you sure?
+  new_bot: New Bot
+  restart_bot: Restart Bot
+  kill_bot: Stop Bot
+  best_buy: Best Buy
+  best_sell: Best Sell

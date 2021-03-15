@@ -1,0 +1,3 @@
+<% flash[:notice] = t('update_success') %>
+$('.flashText').html("<%= j render(:partial => 'shared/flash') %>");
+$('#bot-<%= @bot.id %> a.toggle-web').text('<%= @bot.disabled? ? 'Enable' : 'Disable' %>');

@@ -1,0 +1,9 @@
+<% flash[:alert] = nil %>
+<% flash[:notice] = nil %>
+<% if @errors.present? %>
+  <% flash[:alert] = @errors.join('<br/>').html_safe %>
+  $('.flash_msg').html("<%= j render(:partial => 'shared/flash') %>");
+<% else %>
+  <% flash.keep[:notice] = t('create_success') %>
+  window.location.replace("<%= admin_bots_path %>");
+<% end %>

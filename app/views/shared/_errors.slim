@@ -1,0 +1,7 @@
+.flash-message
+  -if flash[:alert]
+    .alert.alert-dismissable.alert-danger
+      button.close type="button" data-dismiss="alert" aria-hidden="true" &times;
+      p
+        i.fa.fa-info-circle
+        span = flash[:alert]

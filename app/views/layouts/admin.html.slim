@@ -3,10 +3,8 @@ html lang="en"
   head
     link rel="shortcut icon" href="/favicon.png"
     = stylesheet_link_tag :admin, media: "all"
-    script crossorigin="anonymous" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" 
-
+    script crossorigin="anonymous" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
     = javascript_include_tag :admin
-
     = csrf_meta_tags
 
   body id='#{body_id}'
@@ -86,6 +84,7 @@ html lang="en"
                 li = link_to 'Referral Commissions', admin_referral_commissions_path
             li = link_to "<i class='fa fa-money-bill-alt'></i>#{('Trade Fees')}".html_safe, main_app.admin_fees_path 
             li = link_to "<i class='fa fa-money-check-alt'></i>#{('Commissions')}".html_safe, main_app.admin_commissions_path
+            li = link_to "<i class='fa fa-robot'></i>#{t('admin_header.bots')}".html_safe, admin_bots_path
 
             / li.dropdown
             /   = link_to 'javascript:;', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do
@@ -103,7 +102,6 @@ html lang="en"
             /     li = link_to 'Lending Durations', durations_admin_lendings_path
             /     li = link_to 'Lendings', admin_lendings_path
 
-            
       .content
         .header.fixedtop
           .profile_link id="" 

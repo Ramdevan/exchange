@@ -132,6 +132,10 @@ class Order < ActiveRecord::Base
     created_at.to_i
   end
 
+  def display_currency
+    config.name rescue '--'
+  end
+
   def market
     currency
   end
