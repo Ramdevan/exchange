@@ -120,3 +120,18 @@ html lang="en"
         .container
           = render 'shared/flash'
           = yield
+
+    #botModal.modal.fade aria-hidden="true" aria-labelledby="botModalLabel" role="dialog" tabindex="-1"
+      .modal-dialog role="document"
+        .modal-content
+          .modal-header
+            h5#exampleModalLabel.modal-title = t('new_bot')
+            button.close aria-label="Close" data-dismiss="modal" type="button"
+              span aria-hidden="true"  &times;
+          .modal-body
+            .flash_msg
+              - flash[:alert] = nil
+              = render 'shared/errors'
+            .botForm
+              = render partial: 'bot_modal', locals: {bot: Bot.new}
+          .modal-footer
