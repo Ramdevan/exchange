@@ -5,12 +5,18 @@
     = select_tag :market_id, options_for_select(Market.select_options, bot.market_id), class: 'form-control', required: true
   .form-group.wid100
     label.col-form-label.floatLeft.wid100 = t('between_sec')
-    = text_field_tag :start_sec, bot.start_sec, class: 'form-control floatLeft wid47', placeholder: 'Start Second', type: :number
-    = text_field_tag :end_sec, bot.end_sec, class: 'form-control floatLeft wid47 ml6', placeholder: 'End Second', type: :number
+    .row
+      .col-md-6
+        = text_field_tag :start_sec, bot.start_sec, class: 'form-control floatLeft wid47', placeholder: 'Start Second', type: :number
+      .col-md-6
+        = text_field_tag :end_sec, bot.end_sec, class: 'form-control floatLeft wid47 ml6', placeholder: 'End Second', type: :number
   .form-group.wid100
     label.col-form-label.floatLeft.wid100 = t('trade_between_sec')
-    = text_field_tag :start_sec_trade, bot.start_sec_trade, class: 'form-control floatLeft wid47', placeholder: 'Trade Start Second', type: :number
-    = text_field_tag :end_sec_trade, bot.end_sec_trade, class: 'form-control floatLeft wid47 ml6', placeholder: 'Trade End Second', type: :number
+    .row
+      .col-md-6
+        = text_field_tag :start_sec_trade, bot.start_sec_trade, class: 'form-control floatLeft wid47', placeholder: 'Trade Start Second', type: :number
+      .col-md-6
+        = text_field_tag :end_sec_trade, bot.end_sec_trade, class: 'form-control floatLeft wid47 ml6', placeholder: 'Trade End Second', type: :number
   .form-group.wid100
     label.col-form-label.floatLeft.wid33 = t('best_price')
     = text_field_tag :best_price, bot.best_price, class: 'form-control floatLeft wid33', placeholder: 'Best Price', required: true
@@ -20,14 +26,20 @@
     = text_field_tag :best_sell, bot.best_sell, class: 'form-control floatLeft wid30 m3', placeholder: 'Max Price', required: true
   .form-group.wid100
     label.col-form-label.floatLeft.wid100 = t('between_price')
-    = text_field_tag :min_price, bot.min_price, class: 'form-control floatLeft wid47', placeholder: 'Min Price', required: true
-    = text_field_tag :max_price, bot.max_price, class: 'form-control floatLeft wid47 ml6', placeholder: 'Max Price', required: true
+    .row
+      .col-md-6
+        = text_field_tag :min_price, bot.min_price, class: 'form-control floatLeft wid47', placeholder: 'Min Price', required: true
+      .col-md-6
+        = text_field_tag :max_price, bot.max_price, class: 'form-control floatLeft wid47 ml6', placeholder: 'Max Price', required: true
   .form-group.wid100
     label.col-form-label.floatLeft.wid33 = t('best_vol')
     = text_field_tag :best_vol, bot.best_vol, class: 'form-control floatLeft wid33', placeholder: 'Best Volume', required: true
     label.col-form-label.floatLeft.wid64.m3 = t('between_vol')
-    = text_field_tag :min_vol, bot.min_vol, class: 'form-control floatLeft wid30 m3', placeholder: 'Min Volume', required: true
-    = text_field_tag :max_vol, bot.max_vol, class: 'form-control floatLeft wid30 m3', placeholder: 'Max Volume', required: true
+    .row
+      .col-md-6
+        = text_field_tag :min_vol, bot.min_vol, class: 'form-control floatLeft wid30 m3', placeholder: 'Min Volume', required: true
+      .col-md-6
+        = text_field_tag :max_vol, bot.max_vol, class: 'form-control floatLeft wid30 m3', placeholder: 'Max Volume', required: true
 
-  button.btn.btn-secondary data-dismiss="modal" type="button" = t('close')
-  = submit_tag "#{bot.persisted? ? 'Update' : 'Create'}", class: 'button.btn.btn-primary'
+  button.btn.btn-default data-dismiss="modal" type="button" = t('close')
+  = submit_tag "#{bot.persisted? ? 'Update' : 'Create'}", class: 'button btn btn-primary float-right'

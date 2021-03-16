@@ -1,9 +1,11 @@
-.row
-  p
+.row.padding-top-5-per
+  div.col-md-7
     h3 Bot Setup
-    button.btn.btn-primary data-target="#botModal" data-toggle="modal" style='float: right;' type="button" = t('new_bot')
-    = link_to t('restart_bot'), restart_admin_bots_path, remote: true, method: :get, class: 'button btn btn-primary restartBot', style: 'float: right;', data: {confirm: t('are_you_sure')}
-    = link_to t('kill_bot'), kill_bot_admin_bots_path, remote: true, method: :get, class: 'button btn btn-primary restartBot', style: 'float: right;', data: {confirm: t('are_you_sure')}
+  div.col-md-5
+    .margin-lr-auto
+      button.btn.btn-primary.margin-lr-5 data-target="#botModal" data-toggle="modal" type="button" = t('new_bot')
+      = link_to t('restart_bot'), restart_admin_bots_path, remote: true, method: :get, class: 'button margin-lr-5 btn btn-primary restartBot', data: {confirm: t('are_you_sure')}
+      = link_to t('kill_bot'), kill_bot_admin_bots_path, remote: true, method: :get, class: 'button margin-lr-5 btn btn-primary restartBot', data: {confirm: t('are_you_sure')}
   .panel.panel-primary
     .panel-heading
       span Bots

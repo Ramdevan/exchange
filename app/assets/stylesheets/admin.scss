@@ -282,3 +282,25 @@ div
   font-size:10px;
   color:red;
 }
+
+.modal-backdrop.show {
+    opacity: 0;
+}
+
+.modal-backdrop{
+    position: unset;
+}
+
+.margin-lr-auto{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.margin-lr-5{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.padding-top-5-per{
+    padding-top: 5%;
+}
