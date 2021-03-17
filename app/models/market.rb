@@ -129,7 +129,7 @@ class Market < ActiveYamlBase
   end
 
   def self.select_options
-    all.map { |market| ["#{market.name} (#{market.bid['fixed']} Decimals)", market.id] }
+    where(quote_unit: 'citiusd').map { |market| ["#{market.name} (#{market.bid['fixed']} Decimals)", market.id] }
   end
 
   private
