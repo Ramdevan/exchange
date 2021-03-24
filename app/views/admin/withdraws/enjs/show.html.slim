@@ -1,0 +1,32 @@
+.row
+  .col-xs-12
+    .panel.panel-primary
+      .panel-heading
+        span = t('.withdraw', sn: @enj.id)
+      .panel-body
+        = description_for :withdraw do
+          = item_for @enj, :id
+          = item_for @enj, :created_at
+          = item_for @enj, :aasm_state_text
+          = item_for @enj, :txid do
+            = link_to @enj.txid, @enj.blockchain_url, target: :blank
+          hr.split
+          = item_for @enj.member, :name
+          = item_for @enj, :fund_extra
+          = item_for @enj, :fund_uid do
+            span = @enj.fund_uid.truncate(22)
+          = item_for @enj, :amount
+          hr.split
+          = item_for @enj, :remark
+          hr.split
+          ul.list-inline.pull-right
+            - if @enj.may_reject?
+              li
+                = link_to t('.reject'), url_for([:admin, @enj]), class: 'btn btn-danger', method: 'DELETE', confirm: t('.reject_confirm')
+            - if @enj.may_process?
+              li
+                = link_to t('.process'), url_for([:admin, @enj]), class: 'btn btn-primary', method: 'PATCH'
+
+  .col-xs-12
+    = render partial: 'shared/admin/member', locals: {member: @enj.member}
+    = render partial: 'shared/admin/account', locals: {account: @enj.account}
