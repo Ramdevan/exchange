@@ -228,6 +228,18 @@ en:
         amount: Amount
         confirmations: Confirmation
         aasm_state_text: State
+      deposits/enj:
+        created_at: Created At
+        txid: Transaction ID
+        amount: Amount
+        confirmations: Confirmation
+        aasm_state_text: State
+      deposits/mana:
+        created_at: Created At
+        txid: Transaction ID
+        amount: Amount
+        confirmations: Confirmation
+        aasm_state_text: State
       deposits/usdc:
         created_at: Created At
         txid: Transaction ID
@@ -333,6 +345,35 @@ en:
         remark: Remark
         fee: Fee
       withdraws/usdt:
+        id: ID
+        member_name: Account
+        currency_obj_key_text: Currency
+        state_and_actions: State/Action
+        fund_extra_text: Withdraw Label
+        fund_extrat: Withdraw Label
+        fund_source: Bank
+        fund_uid: Account
+        created_at: Created At
+        sum: Amount
+        amount: Amount
+        remark: Remark
+        fee: Fee
+      withdraws/enj:
+        id: ID
+        member_name: Account
+        currency_obj_key_text: Currency
+        state_and_actions: State/Action
+        fund_extra_text: Withdraw Label
+        fund_extrat: Withdraw Label
+        fund_source: Bank
+        fund_uid: Account
+        created_at: Created At
+        sum: Amount
+        amount: Amount
+        remark: Remark
+        fee: Fee
+      
+      withdraws/mana:
         id: ID
         member_name: Account
         currency_obj_key_text: Currency
@@ -471,6 +512,8 @@ en:
       xrp: XRP
       zec: ZEC
       usdt: USDT
+      enj: ENJ
+      mana: MANA
       usdc: USDC
   currency:
     satoshi:
@@ -537,6 +580,16 @@ en:
       key: USDT
       code: USDT
       name: Usdt
+      format: '0,0.0000'
+    enj:
+      key: ENJ
+      code: ENJ
+      name: Enj
+      format: '0,0.0000'
+    mana:
+      key: MANA
+      code: MANA
+      name: Mana
       format: '0,0.0000'
     usdc:
       key: USDC
@@ -762,6 +815,29 @@ en:
       key: USDT
       title: USDT Deposits
       intro: Deposit USDT from your own wallet address to Citioption account
+      latency: 1 confirmation
+      transfer: Manual
+      go: Deposit
+    enj:
+      key: ENJ
+      title: ENJ Deposits
+      intro: Deposit ENJ from your own wallet address to Citioption account
+      latency: 1 confirmation
+      transfer: Manual
+      go: Deposit
+    
+    mana:
+      key: MANA
+      title: MANA Deposits
+      intro: Deposit MANA from your own wallet address to Citioption account
+      latency: 1 confirmation
+      transfer: Manual
+      go: Deposit
+    
+    mana:
+      key: MANA
+      title: MANA Deposits
+      intro: Deposit MANA from your own wallet address to Citioption account
       latency: 1 confirmation
       transfer: Manual
       go: Deposit
@@ -1169,6 +1245,8 @@ en:
         neos-assets: NEOS Assets
         zec-assets: ZEC Assets
         usdt-assets: USDT Assets
+        enj-assets: ENJ Assets
+        mana-assets: MANA Assets
       liability_tabs:
         verify-btc: Verify My BTC Assets
         verify-inr: Verify My INR Assets
@@ -1183,6 +1261,8 @@ en:
         verify-dash: Verify My DASH Assets
         verify-zec: Verify My ZEC Assets
         verify-usdt: Verify My USDT Assets
+        verify-enj: Verify My ENJ Assets
+        verify-mana: Verify My MANA Assets
         usdc-assets: USDC Assets
         btc-assets-total: 'Total BTC assets of exchange: '
         inr-assets-total: 'Total INR assets of exchange: '
@@ -1198,6 +1278,8 @@ en:
         dash-assets-total: 'Total DASH assets of exchange: '
         zec-assets-total: 'Total ZEC assets of exchange: '
         usdt-assets-total: 'Total USDT assets of exchange: '
+        enj-assets-total: 'Total ENJ assets of exchange: '
+        mana-assets-total: 'Total MANA assets of exchange: '
         usdc-assets-total: 'Total USDC assets of exchange: '
       liability_proof:
         title: Proof of Liabilities
@@ -1269,6 +1351,16 @@ en:
         title: USDT Assets
         intro: All of exchange's USDT assets are listed here.
         total: Total USDT Assets
+        address: Address
+      enj_assets:
+        title: ENJ Assets
+        intro: All of exchange's ENJ assets are listed here.
+        total: Total ENJ Assets
+        address: Address
+      mana_assets:
+        title: MANA Assets
+        intro: All of exchange's MANA assets are listed here.
+        total: Total MANA Assets
         address: Address
       usdc_assets:
         title: USDC Assets
@@ -1387,6 +1479,8 @@ en:
         btc_html: "<span>BTC</span>"
         eth_html: "<span>ETH</span>"
         usdt_html: "<span>USDT</span>"
+        enj_html: "<span>ENJ</span>"
+        mana_html: "<span>MANA</span>"
         usdc_html: "<span>USDC</span>"
         citiusd_html: "<span>CITIUSD</span>"
         price: Price
@@ -2195,6 +2289,23 @@ en:
       member_name: Member
       state_and_actions: State/Actions
       currency_obj_key_text: Currency
+    enj:
+      amount: Amount
+      txid: TxId
+      created_at: Created At
+      confirmations: Confirmations
+      member_name: Member
+      state_and_actions: State/Actions
+      currency_obj_key_text: Currency
+    
+    mana:
+      amount: Amount
+      txid: TxId
+      created_at: Created At
+      confirmations: Confirmations
+      member_name: Member
+      state_and_actions: State/Actions
+      currency_obj_key_text: Currency
     usdc:
       amount: Amount
       txid: TxId
@@ -2237,6 +2348,8 @@ en:
       dash: DASH
       zec: ZEC
       usdt: USDT
+      enj: ENJ
+      mana: MANA
       usdc: USDC
     order:
       state:
@@ -2895,6 +3008,20 @@ en:
       key: USDT
       title: USDT Withdraw
       intro: Withdraw USDT to your own wallet
+      latency: 30 minutes
+      transfer: Manual
+      go: Withdraw
+    enj:
+      key: ENJ
+      title: ENJ Withdraw
+      intro: Withdraw ENJ to your own wallet
+      latency: 30 minutes
+      transfer: Manual
+      go: Withdraw
+    mana:
+      key: MANA
+      title: MANA Withdraw
+      intro: Withdraw MANA to your own wallet
       latency: 30 minutes
       transfer: Manual
       go: Withdraw

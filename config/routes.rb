@@ -20,6 +20,8 @@ Exchange::Application.routes.draw do
   post '/webhooks/dash'  => 'webhooks#dash'
   post '/webhooks/zec' => 'webhooks#zec'
   post '/webhooks/usdt' => 'webhooks#usdt'
+  post '/webhooks/enj' => 'webhooks#enj'
+  post '/webhooks/mana' => 'webhooks#mana'
   post '/webhooks/xmr'  => 'webhooks#xmr'
   post '/webhooks/xrp'  => 'webhooks#xrp'
   post '/webhooks/neo'  => 'webhooks#neo'
