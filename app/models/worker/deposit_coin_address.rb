@@ -9,7 +9,7 @@ module Worker
 
       currency = payload[:currency]
       case currency
-        when 'eth', 'usdt', 'citiusd'
+        when 'eth', 'usdt', 'citiusd','mana','enj'
           address  = CoinRPC[currency].personal_newAccount("")
         else
           address  = CoinRPC[currency].getnewaddress("payment")

@@ -26,7 +26,7 @@ module Worker
           from_address = Currency.find_by_code(withdraw.currency)[:assets]['accounts'].first['address']
           CoinRPC[withdraw.currency].personal_unlockAccount(from_address, "", 15000)
           txid = CoinRPC[withdraw.currency].eth_sendTransaction(from: from_address, to: withdraw.fund_uid, value: '0x' + ((withdraw.amount.to_f * 1e18).to_i.to_s(16)))
-        when 'usdt', 'citiusd'
+        when 'usdt', 'citiusd','mana','enj'
           from_address = Currency.find_by_code(withdraw.currency)[:assets]['accounts'].first['address']
           CoinRPC[withdraw.currency].personal_unlockAccount(from_address, "", 15000)
           txid = CoinRPC[withdraw.currency].sendtoaddress(from_address, withdraw.fund_uid, withdraw.amount)

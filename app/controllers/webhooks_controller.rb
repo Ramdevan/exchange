@@ -22,6 +22,18 @@ class WebhooksController < ApplicationController
       render :json => {:status => "queued"}
     end
   end
+  def enj
+    if params[:type] == "transaction" && params[:hash].present?
+      AMQPQueue.enqueue(:deposit_coin, txid: params[:hash], channel_key: "enj")
+      render :json => {:status => "queued"}
+    end
+  end
+  def mana
+    if params[:type] == "transaction" && params[:hash].present?
+      AMQPQueue.enqueue(:deposit_coin, txid: params[:hash], channel_key: "mana")
+      render :json => {:status => "queued"}
+    end
+  end
 
   def usdc
     if params[:type] == "transaction" && params[:hash].present?

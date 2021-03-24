@@ -17,7 +17,7 @@ module Worker
           raw  = get_raw_eth channel, txid
           raw.symbolize_keys!
           deposit_eth!(channel, txid, 1, raw)
-        when 'usdt', 'usdc', 'citiusd'
+        when 'usdt', 'usdc', 'citiusd','mana','enj'
           raw = get_raw_eth channel, txid
           raw.symbolize_keys!
           deposit_erc!(channel, txid, 1, raw)

@@ -127,6 +127,12 @@ class Market < ActiveYamlBase
   def self.default_one
     find_by_id('btcusdt') || first
   end
+  def self.default_one
+    find_by_id('btcmana') || first
+  end
+  def self.default_one
+    find_by_id('btcenj') || first
+  end
 
   def self.select_options
     where(quote_unit: 'citiusd').map { |market| ["#{market.name} (#{market.bid['fixed']} Decimals)", market.id] }

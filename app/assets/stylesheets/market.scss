@@ -576,6 +576,16 @@ ul#myTab.nav-tabs {
       display: inline-flex;
     }
   }
+  &.enj {
+    tr.quote-enj {
+      display: inline-flex;
+    }
+  }
+  &.mana {
+    tr.quote-mana {
+      display: inline-flex;
+    }
+  }
 
   &.citiusd {
     tr.quote-citiusd {
@@ -1112,6 +1122,16 @@ ul#openmy-order li {
   margin: 0 10px;
   width: 33%;
 }
+.pair_enj {
+  text-align: right;
+  margin: 0 10px;
+  width: 33%;
+}
+.pair_mana {
+  text-align: right;
+  margin: 0 10px;
+  width: 33%;
+}
 
 .pair_img, .pair_name {
   width: 33%;
@@ -1135,6 +1155,20 @@ ul#openmy-order li {
   font-weight: 500;
   margin: 0;
 }
+
+.pair_enj p {
+  font-size: 14px;
+  color: #ccc;
+  font-weight: 500;
+  margin: 0;
+}
+.pair_mana p {
+  font-size: 14px;
+  color: #ccc;
+  font-weight: 500;
+  margin: 0;
+}
+
 
 .text-sm {
   font-size: 12px !important;

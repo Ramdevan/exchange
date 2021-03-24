@@ -45,6 +45,8 @@ en:
         dash: DASH
         xrp: XRP
         usdt: USDT
+        enj: ENJ
+        mana: MANA
       deposit_inr:
         title: INR
         desc: "To deposit via Bank transfer, please follow these steps:"
@@ -107,6 +109,10 @@ en:
         title: ZEC Deposit
       deposit_usdt:
         title: USDT Deposit
+      deposit_enj:
+        title: ENJ Deposit
+      deposit_mana:
+        title: MANA Deposit
       deposit_usdc:
         title: USDC Deposit
       deposit_coin:
@@ -189,6 +195,10 @@ en:
         title: ZEC Withdraw
       withdraw_usdt:
         title: USDT Withdraw
+      withdraw_enj:
+        title: ENJ Withdraw
+      withdraw_mana:
+        title: MANA Withdraw
       withdraw_usdc:
         title: USDC Withdraw
       withdraw_coin:
@@ -248,4 +258,6 @@ en:
         btc: BTC Market
         eth: ETH Market
         usdt: USDT Market
+        enj: ENJ Market
+        mana: MANA Market
         usdc: USDC Market
