@@ -133,5 +133,5 @@ html lang="en"
               - flash[:alert] = nil
               = render 'shared/errors'
             .botForm
-              = render partial: 'bot_modal', locals: {bot: Bot.new}
+              = render partial: 'admin/bots/bot_modal', locals: {bot: Bot.new}
           .modal-footer
