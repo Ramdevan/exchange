@@ -43,7 +43,7 @@ module Worker
             binance_client.fill_orders order, {price: result['price'], quantity: result['executedQty'], side: result['side']}
           else
         end
-        liquidity_status = order.create_liquidity_status(liquid_id: result['orderId'], state: result['status'])
+        liquidity_status = order.liquidity_status || order.create_liquidity_status(liquid_id: result['orderId'], state: result['status'])
         liquidity_status.liquidity_histories.create(detail: result)
       end
     end
