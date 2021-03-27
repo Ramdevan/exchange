@@ -110,8 +110,8 @@ GEM
       thor (~> 0.19)
     browser (0.8.0)
     builder (3.2.3)
-    bunny (1.2.2)
-      amq-protocol (>= 1.9.2)
+    bunny (2.9.2)
+      amq-protocol (~> 2.3.0)
     callsite (0.0.11)
     cancancan (2.2.0)
     capybara (3.1.1)
@@ -551,7 +551,7 @@ DEPENDENCIES
   bootstrap-wysihtml5-rails (~> 0.3.1.23)
   bourbon (~> 4.3.4)
   browser (~> 0.8.0)
-  bunny (~> 1.2.1)
+  bunny (~> 2.9.0)
   cancancan
   capybara
   carrierwave (~> 0.10.0)
