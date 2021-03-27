@@ -7,7 +7,7 @@
   <td class="d-none">
     <i class='fa fa-star'></i>
   </td>
-  <td class='price <%= trend %>'>
+  <td class='price text-center <%= trend %>'>
     <span class=""><%- formatter.mask_fixed_price @price %></span>
   </td>
   <td class='volume' title='<%= formatter.fix_bid(@price*@amount) %>'>

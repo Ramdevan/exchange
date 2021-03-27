@@ -1,43 +1,38 @@
 #market_list_wrapper.widget_box
   #market_list
-    
     .coin_pair
-        .card_header
-          .title_box
-            h5 Market List
-
-          ul
-            //li.active
-              a href="#"  Market List
-            li.dropdown.marketlist.padding-custom-0
-              //a#marketpair_list.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button" 
-                span = t('.all')               
-              - if @market_groups.size > 1
-                  .dropdown-wrapper
-                    ul.dropdown-menu.drop-down-custom-li aria-labelledby="marketpair_list" 
-                      li: a.active data-name='all' href="javascript:;" = t('.all_html')
-                      - @market_groups.each do |name|
-                        li: a data-name=name href="javascript:;" = t(".#{name}_html")
-            
-        
-          
-        .card_body
-          .data_thead
-            table.table.table-sm.mb-0
-              thead
-                tr
-                  th.text-center scope="col"  Pair
-                  th.text-center scope="col"  Vol
-                  th.text-center scope="col"  Change
-          .data_tbody.scroll_css            
-            .trade-markets
-              table.markets.table.table-sm.mb-0.all
-                tbody
-                  - @markets.each do |market|
-                    tr.coin_pair_list.market id="market-list-#{market.id}" class="quote-#{market.quote_unit}" data-market=market.id
-                      td.pair_name
-                        = link_to market.name, market_path(market)
-                      td.pair_usdt.text-center
-                        = Global[market.id].ticker[:last]
-                      td.change
-                        | +0.00% 
+      .card_header
+        .title_box
+          h5 Market List
+        ul
+          //li.active
+            a href="#"  Market List
+          li.dropdown.marketlist.padding-custom-0
+            //a#marketpair_list.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+              span = t('.all')
+            - if @market_groups.size > 1
+              .dropdown-wrapper
+                ul.dropdown-menu.drop-down-custom-li aria-labelledby="marketpair_list"
+                  li: a.active data-name='all' href="javascript:;" = t('.all_html')
+                  - @market_groups.each do |name|
+                    li: a data-name=name href="javascript:;" = t(".#{name}_html")
+      .card_body
+        .data_thead
+          table.table.table-sm.mb-0
+            thead
+              tr
+                th.text-center scope="col" Pair
+                th.text-center scope="col" Vol
+                th.text-center scope="col" Change
+        .data_tbody.scroll_css
+          .trade-markets
+            table.markets.table.table-sm.mb-0.all
+              tbody
+                - @markets.each do |market|
+                  tr.coin_pair_list.market id="market-list-#{market.id}" class="quote-#{market.quote_unit}" data-market=market.id
+                    td.pair_name.name
+                      = link_to market.name, market_path(market)
+                    td.pair_usdt.text-center.price
+                      = Global[market.id].ticker[:last]
+                    td.change
+                      | +0.00%
