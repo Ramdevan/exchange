@@ -14,6 +14,6 @@
     <span><%- formatter.mask_fixed_volume @volume %></span>
   </td>
   <td class='amount text-center'>
-    <span><%- formatter.amount @volume, @price %></span>
+    <span><%- formatter.mask_fixed_amount @volume, @price, 'ask' %></span>
   </td>
 </tr>

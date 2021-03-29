@@ -18,14 +18,14 @@
       if len == 0
         element = template(data)
       else
-        element = @updateOrderData(@bid_elements[len - 1], data)
+        element = @updateOrderData(@bid_elements[len - 1], data, 'bid')
         @bid_elements.splice(len - 1, 1)
     else
       len = @ask_elements.length
       if len == 0
         element = template(data)
       else
-        element = @updateOrderData(@ask_elements[len - 1], data)
+        element = @updateOrderData(@ask_elements[len - 1], data, 'ask')
         @ask_elements.splice(len - 1, 1)
 
     book.append element
@@ -38,25 +38,25 @@
       if len == 0
         element = template(data)
       else
-        element = @updateOrderData(@bid_elements[len - 1], data)
+        element = @updateOrderData(@bid_elements[len - 1], data, 'bid')
         @bid_elements.splice(len - 1, 1)
     else
       len = @ask_elements.length
       if len == 0
         element = template(data)
       else
-        element = @updateOrderData(@ask_elements[len - 1], data)
+        element = @updateOrderData(@ask_elements[len - 1], data, 'ask')
         @ask_elements.splice(len - 1, 1)
 
     row.before element
 
-  @updateOrderData = (element, data) ->
+  @updateOrderData = (element, data, type) ->
     element.className = data.classes
     element.dataset['order'] = data.index
     element.dataset['price'] = data.price
     element.dataset['volume'] = data.volume
     # Order total amount
-    element.getElementsByClassName("amount")[0].innerText = formatter.amount data.volume, data.price
+    element.getElementsByClassName("amount")[0].innerText = formatter.mask_fixed_amount data.volume, data.price, type
     # Order price
     element.getElementsByClassName("price")[0].innerText = formatter.mask_fixed_price data.price
     # Order volume
@@ -64,7 +64,7 @@
     
     element
 
-  @updateRow = (row, order, index, v1, v2) ->
+  @updateRow = (row, order, index, v1, v2, bid_or_ask) ->
     row.data('order', index)
     return if v1.equals(v2)
 
@@ -75,7 +75,7 @@
 
     row.data('volume', order[1])
     row.find('td.volume').html(formatter.mask_fixed_volume(order[1]))
-    row.find('td.amount').html(formatter.amount(order[1], order[0]))
+    row.find('td.amount').html(formatter.mask_fixed_amount(order[1], order[0], bid_or_ask))
 
   @mergeUpdate = (bid_or_ask, book, orders, template) ->
     rows = book.find('tr')
@@ -96,7 +96,7 @@
             price: order[0], volume: order[1], index: j)
           j += 1
         else if p1.equals(p2)
-          @updateRow($row, order, j, v1, v2)
+          @updateRow($row, order, j, v1, v2, bid_or_ask)
           i += 1
           j += 1
         else

@@ -9,6 +9,13 @@ class Formatter
     else if type is 'bid'
       @.round(str, gon.market.bid.fixed)
 
+  fixAmount: (type, str) ->
+    str = '0' unless $.isNumeric(str)
+    if type is 'ask'
+      @.round(str, (gon.market.ask.total_fixed||gon.market.ask.fixed))
+    else if type is 'bid'
+      @.round(str, (gon.market.bid.total_fixed||gon.market.bid.fixed))
+
   fixAsk: (str) ->
     @.fix('ask', str)
 
@@ -91,6 +98,10 @@ class Formatter
 
   fix_bid: (price) ->
     @.fixBid price
+
+  mask_fixed_amount: (amount, price, type='ask') ->
+    val = (new BigNumber(amount)).times(new BigNumber(price))
+    @.fixAmount(type, val)
 
   amount: (amount, price) ->
     val = (new BigNumber(amount)).times(new BigNumber(price))

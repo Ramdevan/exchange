@@ -12,7 +12,7 @@
     <%= formatter.fix_ask @volume %>
   </td>
   <td class='amount text-right'>
-    <%- formatter.amount @volume, @price %>
+    <%- formatter.mask_fixed_amount @volume, @price, 'ask' %>
   </td>
   <td class='col-xs-3'></td>
 </tr>
