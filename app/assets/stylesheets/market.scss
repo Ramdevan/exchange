@@ -1176,7 +1176,7 @@ ul#openmy-order li {
 }
 
 .coin_pair .data_tbody {
-  height: calc(100vh - 18vh);
+  height: calc(100vh - 19vh);
   overflow-y: scroll;
   overflow-x: hidden;
   padding: 0 5px;
@@ -1561,10 +1561,19 @@ li#settings span {
     padding-left: 15px;
 }
 
+table.table.table-hover.bids tr td {
+    width: 65%;
+}
+
 /*RESPONSIVE MEDIA QUERY*/
 
 /* Extra small devices (phones, 600px and down) */
 
+@media only screen and (max-width: 991px) {
+  table.table.table-hover.bids tr td {
+      width: auto;
+  }
+}
 
 @media only screen and (max-width: 600px) {
   .table thead th {
@@ -1594,7 +1603,7 @@ li#settings span {
   }
 
   .coin_pair .data_tbody {
-    height: 300px;
+    height: 300px!important;
   }
 
 
@@ -1708,7 +1717,7 @@ li#settings span {
   }
 
   .coin_pair .data_tbody {
-    height: 720px;
+    height: 720px!important;
   }
 
   div#trade_orderbook {
