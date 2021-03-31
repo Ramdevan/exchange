@@ -164,7 +164,8 @@ module Matching
       return if order.filled?
       if order.is_a?(LimitOrder)
         book.add(order)
-        AMQPQueue.enqueue(:liquidity_orders, action: 'create', source: BINANCE_SOURCE, order_id: order.id) if (Order.check_eligibility(order.id, BINANCE_SOURCE))
+        # BINANCE_ORDER_ID IS 0 ALWAYS. SO HARDCOADING TO AVOID TO_I
+        AMQPQueue.enqueue(:liquidity_orders, action: 'create', source: BINANCE_SOURCE, order_id: order.id) if (order.id != 0 && Order.check_eligibility(order.id, BINANCE_SOURCE))
       elsif order.is_a?(StopOrder)
         sbook = orderbook.get_stop_book order.trigger_cond
         sbook.add(order)

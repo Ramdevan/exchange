@@ -81,7 +81,9 @@ class Market < ActiveYamlBase
   end
 
   def latest_price
-    Trade.latest_price(id.to_sym)
+    # cache_last_price = Rails.cache.read("citioption:#{self.id}:ticker")[:last]
+    # cache_last_price > 0.0 ? cache_last_price : Trade.latest_price(id.to_sym)
+    Rails.cache.read("citioption:#{self.id}:ticker")[:last]
   end
 
   # type is :ask or :bid

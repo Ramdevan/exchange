@@ -79,7 +79,7 @@ class Global
   end
 
   def trigger_orderbook
-    data = {asks: asks[0..100], bids: bids[0..100], market_data: Market.find(self.currency).details}
+    data = {asks: asks[0..100], bids: bids[0..100]}
     Pusher.trigger_async(channel, "update", data)
   end
 
