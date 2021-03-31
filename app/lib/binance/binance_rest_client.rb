@@ -11,6 +11,7 @@ class BinanceRestClient
                                         secret_key: ENV['BINANCE_SECRET']
     @websocket = Binance::Client::WebSocket.new
     @market = market
+    @markets = Market.all.group_by(&:id)
     @source = 'Binance'
     @member = Member.find_by_email(ENV['BINANCE_USER'])
   end
@@ -77,7 +78,7 @@ class BinanceRestClient
         open    = proc { puts 'connected' }
         message = proc { |e|
           data = JSON.parse(e.data)
-          market = Market.find(pairs.key(data['s'].upcase))
+          market = @markets[pairs.key(data['s'].upcase)].first
           # puts data
           update_orderbook(market, data['a'], 'OrderAsk') if data['a'].present?
           update_orderbook(market, data['b'], 'OrderBid') if data['b'].present?
@@ -247,7 +248,8 @@ class BinanceRestClient
   end
 
   def create_trade trade
-    market = Market.find(pairs.key(trade['s'].upcase))
+    market = @markets[pairs.key(trade['s'].upcase)].first
+    return if Rails.cache.read("citioption:#{market.id}:push_binance_trade").present?
     new_trade = Trade.create(price: trade['p'],
                              volume: trade['q'],
                              funds: trade['p'].to_f * trade['q'].to_f,
@@ -258,6 +260,7 @@ class BinanceRestClient
 
   def publish_trade(trade, market=nil)
     market ||= @market
+    Rails.cache.write("citioption:#{market.id}:push_binance_trade", true, expires_in: rand(1..5).seconds)
     AMQPQueue.publish(
       :trade,
       trade.as_json,
