@@ -21,7 +21,6 @@ while($running) do
       unless market_pairs.has_key? market.quote_unit
         market_pairs[market.quote_unit] = []
       end
-
       global = Global[market.id]
       global.trigger_orderbook
       all_tickers[market.id] = market.unit_info.merge(global.ticker)
@@ -35,5 +34,5 @@ while($running) do
     puts $!.backtrace.join("\n")
     next
   end
-  sleep 6
+  sleep 5
 end
