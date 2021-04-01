@@ -12,7 +12,7 @@ class Autobot
   end
 
   def latest_market_price market
-    Rails.cache.read("citioption:#{@markets[market.id]}:ticker")[:last]
+    Rails.cache.read("citioption:#{@markets[market.id]}:ticker")[:last] rescue Trade.latest_price(@markets[market.id].to_sym)
   end
 
   def random_price market, type, match_price=false
