@@ -11,7 +11,7 @@ module Worker
     end
 
     def key_for(period)
-      "citioption:stats:trades:#{@market.id}:#{period}"
+      "ioio:stats:trades:#{@market.id}:#{period}"
     end
 
     def point_1(from)

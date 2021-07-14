@@ -2,7 +2,7 @@ module Worker
   class MemberStats < Stats
 
     def key_for(period)
-      "citioption:stats:member:#{period}"
+      "ioio:stats:member:#{period}"
     end
 
     def to_s

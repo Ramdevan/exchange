@@ -40,8 +40,8 @@ module Worker
     def cache_book
       @managers.keys.each do |id|
         market = Market.find id
-        Rails.cache.write "citioption:#{market}:depth:asks", get_depth(market, :ask)
-        Rails.cache.write "citioption:#{market}:depth:bids", get_depth(market, :bid)
+        Rails.cache.write "ioio:#{market}:depth:asks", get_depth(market, :ask)
+        Rails.cache.write "ioio:#{market}:depth:bids", get_depth(market, :bid)
         # Rails.logger.debug "SlaveBook (#{market}) updated"
       end
     rescue => e

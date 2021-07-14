@@ -1,5 +1,5 @@
-ADMIN_EMAIL = 'admin@citioption.com'
-BINANCE_EMAIL = 'binance@citioption.com'
+ADMIN_EMAIL = 'admin@iuxbit.com'
+BINANCE_EMAIL = 'binance@iuxbit.com'
 PASSWORD = '20d52bee'
 
 admin_identity = Identity.find_or_create_by(email: ADMIN_EMAIL)

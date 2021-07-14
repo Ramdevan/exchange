@@ -46,7 +46,7 @@ class Currency < ActiveYamlBase
   end
 
   def balance_cache_key
-    "citioption:hotwallet:#{code}:balance"
+    "ioio:hotwallet:#{code}:balance"
   end
 
   def balance

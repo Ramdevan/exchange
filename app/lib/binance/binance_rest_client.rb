@@ -31,8 +31,8 @@ class BinanceRestClient
       next if pair.blank?
       params = {symbol: pair, limit: 50}
       orders = @client.depth params
-      Rails.cache.delete "citioption:#{market}:depth:asks"
-      Rails.cache.delete "citioption:#{market}:depth:bids"
+      Rails.cache.delete "ioio:#{market}:depth:asks"
+      Rails.cache.delete "ioio:#{market}:depth:bids"
       update_orderbook market, orders['bids'], 'OrderBid'
       update_orderbook market, orders['asks'], 'OrderAsk'
     end
@@ -249,7 +249,7 @@ class BinanceRestClient
 
   def create_trade trade
     market = @markets[pairs.key(trade['s'].upcase)].first
-    return if Rails.cache.read("citioption:#{market.id}:push_binance_trade").present?
+    return if Rails.cache.read("ioio:#{market.id}:push_binance_trade").present?
     new_trade = Trade.create(price: trade['p'],
                              volume: trade['q'],
                              funds: trade['p'].to_f * trade['q'].to_f,
@@ -260,7 +260,7 @@ class BinanceRestClient
 
   def publish_trade(trade, market=nil)
     market ||= @market
-    Rails.cache.write("citioption:#{market.id}:push_binance_trade", true, expires_in: rand(1..5).seconds)
+    Rails.cache.write("ioio:#{market.id}:push_binance_trade", true, expires_in: rand(1..5).seconds)
     AMQPQueue.publish(
       :trade,
       trade.as_json,

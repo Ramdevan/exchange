@@ -18,7 +18,7 @@ module Worker
     end
 
     def key_for(period)
-      "citioption:stats:wallet:#{@currency.code}:#{period}"
+      "ioio:stats:wallet:#{@currency.code}:#{period}"
     end
 
     def point_n(from, period)
