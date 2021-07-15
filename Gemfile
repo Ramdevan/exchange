@@ -92,6 +92,7 @@ gem 'toastr-rails'
 gem 'cash-addr', '~> 0.1.1', require: 'cash_addr'
 gem 'axlsx'
 gem 'axlsx_rails'
+gem 'mimemagic', '0.3.9'
 
 group :development, :test do
   gem 'factory_girl_rails'
