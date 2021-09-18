@@ -2767,6 +2767,7 @@ en:
       verify_ip: Verify IP to login, check your mail
       error: You account has been disabled, contact admin if you have any problem.
       captcha_error: Invalid captcha.
+      disabled: You account has been disabled, contact admin if you have any problem.
     sendmail:
       Mail_sent: Mail_sent
     failure:

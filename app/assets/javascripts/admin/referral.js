@@ -39,6 +39,9 @@ $(document).ready(function(){
     action = "/admin/referral_commissions"
     $('form').attr('action', action)
     $('table tr').removeClass('info')
+      $('html,body').animate({
+          scrollTop: $("#new_referral_commission").offset().top},
+      'slow');
   })
 
   $('.edit-fee').click(function(e){
@@ -128,6 +131,9 @@ $(document).ready(function(){
     action = "/admin/holder_discounts"
     $('form').attr('action', action)
     $('table tr').removeClass('info')
+    $('html,body').animate({
+          scrollTop: $("#new_referral_commission").offset().top},
+        'slow');
   })
 
   $(document).on('change','.staking_duration_currency',function(){
@@ -211,3 +217,8 @@ $(document).ready(function(){
     startDate: new Date(),
   });
 })
+ // $("#new-commission").click(function() {
+ //   $('html,body').animate({
+ //        scrollTop: $("#new_referral_commission").offset().top},
+ //   'slow');
+ //  });

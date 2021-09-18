@@ -12,7 +12,7 @@
             a#pills-users-tab.nav-link aria-controls="pills-users" aria-selected="false" data-toggle="pill" href="#pills-users" role="tab"  Users
        
         #pills-tabContent.tab-content
-          #pills-coins.tab-pane.fade.show.active aria-labelledby="pills-coins-tab" role="tabpanel" 
+          #pills-coins.tab-pane.fade.show.active aria-labelledby="pills-coins-tab" role="tabpanel"
             .row
               .col-lg-12.refCard.reff-table.table-responsive.his-table
                 table.table
@@ -26,16 +26,16 @@
 
           #pills-users.tab-pane.fade aria-labelledby="pills-users-tab" role="tabpanel"
             .row
-              .col-lg-12.refCard.table-responsive.his-table  
-              table.table
-                thead: tr
-                  th Email
-                  th Status
-                  th Joined Date
-                tbody.list
-                  = render partial: 'member', collection: @referred_members
-              .text-right
-                = paginate @referred_members
+              .col-lg-12.refCard.table-responsive.his-table
+                table.table
+                  thead: tr
+                    th Email
+                    th Status
+                    th Joined Date
+                  tbody.list
+                    = render partial: 'member', collection: @referred_members
+                .text-right
+                  = paginate @referred_members
         
           
 

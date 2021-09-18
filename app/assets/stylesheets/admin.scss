@@ -68,6 +68,7 @@ abbr {
     height: 100%;
     min-height: 100vh;
     z-index: 1024;
+    overflow-y: scroll
 }
 .content {
     width: calc(100% - 320px);
