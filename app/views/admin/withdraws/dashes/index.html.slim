@@ -1,0 +1,11 @@
+- unless @one_dashes.empty?
+  .panel.panel-primary
+    .panel-heading: span = t('.one')
+    = render partial: 'table', locals: {dashes: @one_dashes}
+- unless @all_dashes.empty?
+  .panel.panel-success
+    .panel-heading: span = t('.all')
+    = render partial: 'table', locals: {dashes: @all_dashes}
+
+- if @all_dashes.empty? and @one_dashes.empty?
+  h3.text-info.text-center = t('.empty')
