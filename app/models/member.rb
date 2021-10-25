@@ -51,7 +51,7 @@ class Member < ActiveRecord::Base
   after_update :resend_activation
   after_update :sync_update
 
-  attr_accessor :sms_2fa_activated, :app_2fa_activated, :two_factor_needed
+  attr_accessor :sms_2fa_activated, :app_2fa_activated, :two_factor_needed, :document_verification, :sms_check_activated
 
   class << self
     def from_auth(auth_hash,referral_code = nil)

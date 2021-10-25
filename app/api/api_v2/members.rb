@@ -15,7 +15,9 @@ module APIv2
       end
       member.sms_2fa_activated = current_user.sms_two_factor.activated?
       member.app_2fa_activated = current_user.app_two_factor.activated?
-      member.two_factor_needed = false
+      member.document_verification = current_user.id_document.aasm_state
+      member.sms_check_activated = current_user.sms_two_factor.sms_check_activated
+      member.two_factor_needed = true
       present member, with: APIv2::Entities::Member
     end
 

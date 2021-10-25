@@ -33,7 +33,7 @@ class TwoFactor < ActiveRecord::Base
   end
 
   def expired?
-    Time.now >= 30.minutes.since(refreshed_at)
+    Time.now >= 1.minutes.since(refreshed_at)
   end
 
   def refresh!
@@ -47,6 +47,10 @@ class TwoFactor < ActiveRecord::Base
 
   def deactive!
     update activated: false
+  end
+
+  def sms_check_active(sms_verified)
+    update sms_check_activated: sms_verified if !sms_verified.nil?
   end
 
   private

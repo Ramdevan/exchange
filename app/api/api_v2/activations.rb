@@ -81,10 +81,13 @@ module APIv2
     params do
       requires :two_factor_type, type: String, desc: 'Provide the two factor type (sms, app).'
       requires :two_factor_otp, type: String, desc: 'Provide the one time password.'
+      optional :sms_check_activated, type: Boolean, desc: 'To check sms verify or not.'
     end
     put "/two_factor/sms" do
       authenticate!
+      @sms_auth ||= current_user.sms_two_factor
       if two_factor_auth_verified?
+        @sms_auth.sms_check_active(params[:sms_check_activated])
         return :success => { message: I18n.t('verify.sms_auths.show.notice.otp_success') }
       else
         raise CustomError.new(I18n.t('two_factors.update.alert'))

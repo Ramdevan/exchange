@@ -10,6 +10,8 @@ module APIv2
       expose :sms_2fa_activated
       expose :app_2fa_activated
       expose :two_factor_needed
+      expose :sms_check_activated
+      expose :document_verification
       expose :accounts, using: ::APIv2::Entities::Account
     end
   end
