@@ -164,10 +164,10 @@
 
     $('.asks').on 'click', 'tr', (e) =>
       i = $(e.target).closest('tr').data('order')
-      @placeOrder $('#bid_entry'), _.extend(@computeDeep(e, gon.asks), type: 'ask')
+      @placeOrder $('#bid_entry'), {price: BigNumber(gon.asks[i][0]), volume: BigNumber(gon.asks[i][1])}
       @placeOrder $('#ask_entry'), {price: BigNumber(gon.asks[i][0]), volume: BigNumber(gon.asks[i][1])}
 
     $('.bids').on 'click', 'tr', (e) =>
       i = $(e.target).closest('tr').data('order')
-      @placeOrder $('#ask_entry'), _.extend(@computeDeep(e, gon.bids), type: 'bid')
+      @placeOrder $('#ask_entry'), {price: BigNumber(gon.bids[i][0]), volume: BigNumber(gon.bids[i][1])}
       @placeOrder $('#bid_entry'), {price: BigNumber(gon.bids[i][0]), volume: BigNumber(gon.bids[i][1])}
