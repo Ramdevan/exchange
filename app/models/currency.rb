@@ -46,7 +46,7 @@ class Currency < ActiveYamlBase
   end
 
   def balance_cache_key
-    "ioio:hotwallet:#{code}:balance"
+    "xsea:hotwallet:#{code}:balance"
   end
 
   def balance

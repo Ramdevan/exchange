@@ -141,7 +141,7 @@ module APIv2
     end
 
     def failed_two_factor_auth_key
-      "ioio:session:#{request.ip}:failed_two_factor_auths"
+      "xsea:session:#{request.ip}:failed_two_factor_auths"
     end
 
     def failed_two_factor_auth
@@ -175,14 +175,14 @@ module APIv2
 
     def clear_all_sessions(member_id)
       if redis = Rails.cache.instance_variable_get(:@data)
-        redis.keys("ioio:sessions:#{member_id}:*").each {|k| Rails.cache.delete k.split(':').last }
+        redis.keys("xsea:sessions:#{member_id}:*").each {|k| Rails.cache.delete k.split(':').last }
       end
 
-      Rails.cache.delete_matched "ioio:sessions:#{member_id}:*"
+      Rails.cache.delete_matched "xsea:sessions:#{member_id}:*"
     end
 
     def get_k_json
-      key = "ioio:#{params[:market]}:k:#{params[:period]}"
+      key = "xsea:#{params[:market]}:k:#{params[:period]}"
 
       if params[:timestamp] && params[:endtimestamp]
         get_range_data(key)

@@ -370,7 +370,7 @@ class Member < ActiveRecord::Base
   def generate_sn
     self.sn and return
     begin
-      self.sn = "COIN#{ROTP::Base32.random_base32(8).upcase}AGE"
+      self.sn = "X#{ROTP::Base32.random_base32(8).upcase}SEA"
     end while Member.where(:sn => self.sn).any?
   end
 

@@ -737,63 +737,63 @@ en:
     satoshi:
       key: Bitcoin
       title: Bitcoin Deposits
-      intro: Deposit bitcoin from your own wallet address to Ioio account
+      intro: Deposit bitcoin from your own wallet address to Xsea account
       latency: 1 confirmation
       transfer: Manual
       go: Deposit
     ether:
       key: Ethereum
       title: Ethereum Deposits
-      intro: Deposit ethereum from your own wallet address to Ioio account
+      intro: Deposit ethereum from your own wallet address to Xsea account
       latency: 1 confirmation
       transfer: Manual
       go: Deposit
     citiusd:
       key: Citiusd
       title: Citiusd Deposits
-      intro: Deposit citiusd from your own wallet address to Ioio account
+      intro: Deposit citiusd from your own wallet address to Xsea account
       latency: 1 confirmation
       transfer: Manual
       go: Deposit
     bcash:
       key: Bitcoin Cash ABC
       title: Bitcoin Cash ABC Deposits
-      intro: Deposit Bitcoin Cash ABC from your own wallet address to Ioio account
+      intro: Deposit Bitcoin Cash ABC from your own wallet address to Xsea account
       latency: 1 confirmation
       transfer: Manual
       go: Deposit
     litecoin:
       key: Litecoin
       title: Litecoin Deposits
-      intro: Deposit litecoin from your own wallet address to Ioio account
+      intro: Deposit litecoin from your own wallet address to Xsea account
       latency: 1 confirmation
       transfer: Manual
       go: Deposit
     monero:
       key: Monero
       title: Monero Deposits
-      intro: Deposit monero from your own wallet address to Ioio account
+      intro: Deposit monero from your own wallet address to Xsea account
       latency: 1 confirmation
       transfer: Manual
       go: Deposit
     bitcoincash:
       key: Bitcoincash
       title: Bitcoincash Deposits
-      intro: Deposit bitcoincash from your own wallet address to Ioio account
+      intro: Deposit bitcoincash from your own wallet address to Xsea account
       latency: 1 confirmation
       transfer: Manual
       go: Deposit
     dash:
       key: Dashcoin
       title: Dashcoin Deposits
-      intro: Deposit dashcoin from your own wallet address to Ioio account
+      intro: Deposit dashcoin from your own wallet address to Xsea account
       latency: 1 confirmation
       transfer: Manual
       go: Deposit
     ripple:
       key: Ripple
       title: Ripple Deposits
-      intro: Deposit ripple from your own wallet address to Ioio account
+      intro: Deposit ripple from your own wallet address to Xsea account
       latency: 1 confirmation
       transfer: Manual
       go: Deposit
@@ -807,21 +807,21 @@ en:
     neoscoin:
       key: Neoscoin
       title: Neoscoin Deposits
-      intro: Deposit neoscoin from your own wallet address to Ioio account
+      intro: Deposit neoscoin from your own wallet address to Xsea account
       latency: 1 confirmation
       transfer: Manual
       go: Deposit
     usdt:
       key: USDT
       title: USDT Deposits
-      intro: Deposit USDT from your own wallet address to Ioio account
+      intro: Deposit USDT from your own wallet address to Xsea account
       latency: 1 confirmation
       transfer: Manual
       go: Deposit
     enj:
       key: ENJ
       title: ENJ Deposits
-      intro: Deposit ENJ from your own wallet address to Ioio account
+      intro: Deposit ENJ from your own wallet address to Xsea account
       latency: 1 confirmation
       transfer: Manual
       go: Deposit
@@ -829,7 +829,7 @@ en:
     mana:
       key: MANA
       title: MANA Deposits
-      intro: Deposit MANA from your own wallet address to Ioio account
+      intro: Deposit MANA from your own wallet address to Xsea account
       latency: 1 confirmation
       transfer: Manual
       go: Deposit
@@ -837,7 +837,7 @@ en:
     mana:
       key: MANA
       title: MANA Deposits
-      intro: Deposit MANA from your own wallet address to Ioio account
+      intro: Deposit MANA from your own wallet address to Xsea account
       latency: 1 confirmation
       transfer: Manual
       go: Deposit
@@ -1288,7 +1288,7 @@ en:
           this page, we present you our liabilities. We also provide you a way to
           verify that your account balance is indeed part of our liabilities.
         how-to-verify: How to verify an exchange is solvent?
-        how-to-verify-uri: https://ioio.com/documents/liability_proof
+        how-to-verify-uri: https://xsea.com/documents/liability_proof
       liability_data:
         liability-proof-generating: Proof of Liability generation in process, please
           come back after 30 minutes.
@@ -1764,10 +1764,10 @@ en:
       panel: Login
       new:
         title: Login my account
-        intro: Login Ioio now for you to coinage.
+        intro: Login Xsea now for you to coinage.
       failure:
         title: Login my account
-        intro: Login Ioio now for you to coinage.
+        intro: Login Xsea now for you to coinage.
     identities:
       panel: Create Account
       new:
@@ -2399,7 +2399,7 @@ en:
   mailer:
     dear_user: Dear user,
     dear_name: Dear %{name},
-    signature: Thanks,<br/>The Ioio Exchange Team
+    signature: Thanks,<br/>The Xsea Exchange Team
     please_contact: If it's not you, please <a href='mailto:%{contact_mail}'>contact us</a> as soon as possible.
     footer: This is an automatically generated email, please do not reply, if you have any question, please <a href="mailto:%{contact_mail}">contact us</a>.
   adminmailer:
@@ -2408,48 +2408,48 @@ en:
       login_mail: you are logging in with different ip %{ip} if this was you just verify
   comment_mailer:
     admin_notification:
-      subject: "[Ioio] User reply a ticket"
+      subject: "[Xsea] User reply a ticket"
       notification_content: User %{email} reply a ticket, please follow the link below to see the detail
     user_notification:
-      subject: "[Ioio] Your ticket got a new reply"
+      subject: "[Xsea] Your ticket got a new reply"
       notification_content: 'Your ticket received a new reply, please follow the below link for more details.'
   deposit_mailer:
     accepted:
-      subject: "[Ioio] Your deposit has been credited into your account"
+      subject: "[Xsea] Your deposit has been credited into your account"
       content: Your %{currency} deposit of %{amount} has been credited into your account.
     submitted:
-      subject: "[Ioio] Your deposit has been submitted"
+      subject: "[Xsea] Your deposit has been submitted"
       content: Your %{currency} deposit of %{amount} has been submitted and will be processed soon.
   member_mailer:
     notify_signin:
-      subject: "[Ioio] You have just signed in"
+      subject: "[Xsea] You have just signed in"
       just_signed_in: You have just signed in.
     google_auth_activated:
-      subject: "[Ioio] Google authenticator activated"
+      subject: "[Xsea] Google authenticator activated"
       google_auth_activated: You have successfully activated google authenticator.
     google_auth_deactivated:
-      subject: "[Ioio] Google authenticator deactivated"
+      subject: "[Xsea] Google authenticator deactivated"
       google_auth_deactivated: You have successfully deactivated google authenticator.
     sms_auth_activated:
-      subject: "[Ioio] SMS authenticator activated"
+      subject: "[Xsea] SMS authenticator activated"
       sms_auth_activated: You have successfully activated SMS authenticator.
     sms_auth_deactivated:
-      subject: "[Ioio] SMS authenticator deactivated"
+      subject: "[Xsea] SMS authenticator deactivated"
       sms_auth_deactivated: You have successfully deactivated SMS authenticator.
     reset_password_done:
-      subject: "[Ioio] Your password changed"
+      subject: "[Xsea] Your password changed"
       successful: Your password has been successfully changed.
     phone_number_verified:
-      subject: "[Ioio] Your phone number verified"
+      subject: "[Xsea] Your phone number verified"
       verified: 'Your phone number is now verified: %{phone_number}'
     notify_kyc_status:
-      subject: "[Ioio] Status of KYC"
+      subject: "[Xsea] Status of KYC"
     kyc_verified:
-      subject: "[Ioio] Your KYC verified"
+      subject: "[Xsea] Your KYC verified"
       verified: 'Your KYC is now verified.'
       login_link: 'Login to %{login_link} and start trading. Happy trading.'
     kyc_status:
-      subject: "[Ioio] KYC updated"
+      subject: "[Xsea] KYC updated"
       verifying: Your KYC status is submited. Please be patient with us and do not hesitate to contact us if you have any questions.
       verified: Your KYC status is Approved. Please do not hesitate to contact us if you have any questions.
       rejected: Your KYC status is Rejected. Please do not hesitate to contact us if you have any questions.
@@ -2464,40 +2464,40 @@ en:
       trades_change_total: Trades Changes Total
   ticket_mailer:
     admin_notification:
-      subject: "[Ioio] User created a new ticket"
+      subject: "[Xsea] User created a new ticket"
       admin_notification_content: User %{email} created a new ticket, please follow the link below to see the detail
     author_notification:
-      subject: "[Ioio] Thank you for submit ticket"
+      subject: "[Xsea] Thank you for submit ticket"
       thanks_for_submit_ticket: Your ticket has now been submitted, we will get back to you as soon as possible.
   token_mailer:
     activation:
-      subject: "[Ioio] Account Activation"
-      click_to_verify: 'Thank you for signing up to Ioio, please follow this link to verify your email:'
+      subject: "[Xsea] Account Activation"
+      click_to_verify: 'Thank you for signing up to Xsea, please follow this link to verify your email:'
       unable_to_click: Copy and paste the link into your web browser if you are unable to click and view it.
       link_expire: The link expires in 30 minutes.
     reset_password:
-      subject: "[Ioio] Please Reset Your Password"
+      subject: "[Xsea] Please Reset Your Password"
       hi: Hi,
       follow_the_link: 'Please click the below link to reset your password within 30 minutes:'
   withdraw_mailer:
     submitted:
-      subject: "[Ioio] Your withdraw state update"
+      subject: "[Xsea] Your withdraw state update"
       content: The request of your %{amount} %{currency} withdrawal has been successfully submitted, we will process it as soon as possible. Please be patient with us and do not hesitate to contact us if you have any questions.
     processing:
-      subject: "[Ioio] Your withdraw state update"
+      subject: "[Xsea] Your withdraw state update"
       content: We are currently processing the request of your %{amount} %{currency} withdrawal. Please be patient with us and do not hesitate to contact us if you have any questions.
     done:
-      subject: "[Ioio] Your withdraw state update"
+      subject: "[Xsea] Your withdraw state update"
       content: The request of your%{amount}  %{currency} withdrawal is complete. Please check it out and do not hesitate to contact us if you have any questions.
     withdraw_state:
-      subject: "[Ioio] Your withdraw state update"
+      subject: "[Xsea] Your withdraw state update"
       your_state: 'Your withdrawal state: '
 
   'true': true
   'false': false
   view_on_github: View on Github
   slogan: Cryptocurrency Exchange
-  brand: Ioio
+  brand: Xsea
   tags:
     vip: VIP
     hero: Hero Member
@@ -2511,9 +2511,9 @@ en:
   gon:
     ask: Ask
     bid: Bid
-    brand: Ioio
+    brand: Xsea
     notification:
-      title: Ioio
+      title: Xsea
       enabled: Notification enabled.
       new_trade: "%{kind} order#%{id} executed at %{price} %{quote_unit} for %{volume} %{base_unit}。"
   back: Back
@@ -2738,9 +2738,9 @@ en:
     application:
       close: Close
     meta:
-      page_title: Ioio
-      page_description: Ioio
-      page_keywords: Ioio,Exchange,Cryptocurrency
+      page_title: Xsea
+      page_description: Xsea
+      page_keywords: Xsea,Exchange,Cryptocurrency
   members:
     edit:
       name: Please fill out the application.
@@ -2873,7 +2873,7 @@ en:
       edit:
         submit: Disable
         warning: 'Tip: If you have lost your Two-Factor Authentication by some reason
-          and can''t login your Ioio account, please contact our online customer
+          and can''t login your Xsea account, please contact our online customer
           service.'
       show:
         step-1: Step 1

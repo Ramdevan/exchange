@@ -13,7 +13,7 @@ class Global
     end
 
     def daemon_statuses
-      Rails.cache.fetch('ioio:daemons:statuses', expires_in: 3.minute) do
+      Rails.cache.fetch('xsea:daemons:statuses', expires_in: 3.minute) do
         Daemons::Rails::Monitoring.statuses
       end
     end
@@ -40,15 +40,15 @@ class Global
   def key(key, interval=5)
     seconds  = Time.now.to_i
     time_key = seconds - (seconds % interval)
-    "ioio:#{@currency}:#{key}:#{time_key}"
+    "xsea:#{@currency}:#{key}:#{time_key}"
   end
 
   def asks
-    Rails.cache.read("ioio:#{currency}:depth:asks") || []
+    Rails.cache.read("xsea:#{currency}:depth:asks") || []
   end
 
   def bids
-    Rails.cache.read("ioio:#{currency}:depth:bids") || []
+    Rails.cache.read("xsea:#{currency}:depth:bids") || []
   end
 
   def default_ticker
@@ -56,8 +56,8 @@ class Global
   end
 
   def ticker
-    ticker           = Rails.cache.read("ioio:#{currency}:ticker") || default_ticker
-    open = Rails.cache.read("ioio:#{currency}:ticker:open") || ticker[:last]
+    ticker           = Rails.cache.read("xsea:#{currency}:ticker") || default_ticker
+    open = Rails.cache.read("xsea:#{currency}:ticker:open") || ticker[:last]
     best_buy_price   = bids.first && bids.first[0] || ZERO
     best_sell_price  = asks.first && asks.first[0] || ZERO
 
@@ -71,11 +71,11 @@ class Global
   end
 
   def h24_volume
-    Rails.cache.read("ioio:#{currency}_24h") || []
+    Rails.cache.read("xsea:#{currency}_24h") || []
   end
 
   def trades
-    Rails.cache.read("ioio:#{currency}:trades") || []
+    Rails.cache.read("xsea:#{currency}:trades") || []
   end
 
   def trigger_orderbook

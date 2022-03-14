@@ -18,7 +18,7 @@ module Worker
     end
 
     def key_for(period)
-      "ioio:stats:top:#{@market.id}:#{period}"
+      "xsea:stats:top:#{@market.id}:#{period}"
     end
 
     def point_n(from, period)

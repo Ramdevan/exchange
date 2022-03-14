@@ -6,7 +6,7 @@ module KlineDB
     end
 
     def kline(market, period)
-      key = "ioio:#{market}:k:#{period}"
+      key = "xsea:#{market}:k:#{period}"
       length = redis.llen(key)
       data = redis.lrange(key, length - 5000, -1).map{|str| JSON.parse(str)}
     end

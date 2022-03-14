@@ -110,7 +110,7 @@ class SessionsController < ApplicationController
   end
 
   def failed_login_key
-    "ioio:session:#{request.ip}:failed_logins"
+    "xsea:session:#{request.ip}:failed_logins"
   end
 
   def auth_hash

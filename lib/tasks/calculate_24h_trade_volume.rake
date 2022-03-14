@@ -4,7 +4,7 @@ namespace :calculate_24h_trade_volume do
     while true
       begin
         Market.all.each do |market| 
-          Rails.cache.write("ioio:#{market.id}_24h", Trade.with_currency(market).h24.sum(:volume))
+          Rails.cache.write("xsea:#{market.id}_24h", Trade.with_currency(market).h24.sum(:volume))
         end
       rescue => e
         ExceptionNotifier.notify_exception(e)

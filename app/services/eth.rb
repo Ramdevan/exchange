@@ -154,7 +154,7 @@ class CoinRPC
 
     def safe_getbalance
       begin
-        Rails.cache.fetch "ioio:#{@currency[:key]}_erc20_balance", expires_in: 60.seconds do
+        Rails.cache.fetch "xsea:#{@currency[:key]}_erc20_balance", expires_in: 60.seconds do
           EthereumBalance.get_erc20 @currency
         end
       rescue
