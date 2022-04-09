@@ -149,7 +149,7 @@ INDICATOR = {MA: false, EMA: false}
             dashStyle: 'solid',
             color: '#777'
         }, false],
-        valueDecimals: gon.market.bid.fixed
+        valueDecimals: gon.market.price_precision
         borderWidth: 0
         backgroundColor: 'rgba(0,0,0,0)'
         borderRadius: 2

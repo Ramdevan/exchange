@@ -62,8 +62,9 @@ class MarketDetail < ActiveRecord::Base
   end
 
   # type is :ask or :bid
-  def fix_number_precision(type, d)
-    digits = send(type)['fixed']
+  def fix_number_precision(type, d, volume = false)
+    digits = send(:price_precision) unless volume
+    digits ||= send(type)['fixed']
     d.round digits, 2
   end
 

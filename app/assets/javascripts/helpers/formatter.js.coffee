@@ -12,9 +12,9 @@ class Formatter
   fixAmount: (type, str) ->
     str = '0' unless $.isNumeric(str)
     if type is 'ask'
-      @.round(str, (gon.market.ask.total_fixed||gon.market.ask.fixed))
+      @.round(str, (gon.market.price_precision||gon.market.ask.fixed))
     else if type is 'bid'
-      @.round(str, (gon.market.bid.total_fixed||gon.market.bid.fixed))
+      @.round(str, (gon.market.price_precision||gon.market.bid.fixed))
 
   fixAsk: (str) ->
     @.fix('ask', str)
@@ -23,9 +23,9 @@ class Formatter
     @.fix('bid', str)
 
   fixPriceGroup: (str) ->
-    if gon.market.price_group_fixed
+    if gon.market.price_precision
       str = '0' unless $.isNumeric(str)
-      @.round(str, gon.market.price_group_fixed)
+      @.round(str, gon.market.price_precision)
     else
       @fixBid(str)
 

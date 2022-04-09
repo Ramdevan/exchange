@@ -69,10 +69,10 @@ module Worker
 
     def get_depth(market, side)
       depth = Hash.new {|h, k| h[k] = 0 }
-      price_group_fixed = market[:price_group_fixed]
+      price_precision = market[:price_precision]
       mode  = side == :ask ? BigDecimal::ROUND_UP : BigDecimal::ROUND_DOWN
       @managers[market.id].send("#{side}_orders").limit_orders.each do |price, orders|
-        price = price.round(price_group_fixed, mode) if price_group_fixed
+        price = price.round(price_precision, mode) if price_precision
         depth[price] += orders.map(&:volume).sum
       end
 

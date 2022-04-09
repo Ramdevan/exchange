@@ -87,8 +87,9 @@ class Market < ActiveYamlBase
   end
 
   # type is :ask or :bid
-  def fix_number_precision(type, d)
-    digits = send(type)['fixed']
+  def fix_number_precision(type, d, volume = false)
+    digits = send(:price_precision) unless volume
+    digits ||= send(type)['fixed']
     d.round digits, 2
   end
 
@@ -123,7 +124,7 @@ class Market < ActiveYamlBase
   end
 
   def unit_info
-    {name: name, base_unit: base_unit, quote_unit: quote_unit}
+    {name: name, base_unit: base_unit, quote_unit: quote_unit, price_precision: price_precision}
   end
 
   def self.default_one

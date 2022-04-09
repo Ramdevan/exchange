@@ -158,8 +158,8 @@ class Order < ActiveRecord::Base
     self.price = config.fix_number_precision(:bid, price.to_d) if price
 
     if volume
-      self.volume = config.fix_number_precision(:ask, volume.to_d)
-      self.origin_volume = origin_volume.present? ? config.fix_number_precision(:ask, origin_volume.to_d) : volume
+      self.volume = config.fix_number_precision(:ask, volume.to_d, true)
+      self.origin_volume = origin_volume.present? ? config.fix_number_precision(:ask, origin_volume.to_d, true) : volume
     end
   end
 
