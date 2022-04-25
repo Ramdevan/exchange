@@ -1,5 +1,5 @@
-ADMIN_EMAIL = 'admin@xsea.com'
-BINANCE_EMAIL = 'binance@xsea.com'
+ADMIN_EMAIL = 'admin@xubiq.com'
+BINANCE_EMAIL = 'binance@xubiq.com'
 #PASSWORD = '20d52bee'
 PASSWORD = '60ba801aa77a60e9'
 

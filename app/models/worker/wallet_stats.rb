@@ -18,7 +18,7 @@ module Worker
     end
 
     def key_for(period)
-      "xsea:stats:wallet:#{@currency.code}:#{period}"
+      "xubiq:stats:wallet:#{@currency.code}:#{period}"
     end
 
     def point_n(from, period)

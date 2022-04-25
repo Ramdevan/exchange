@@ -1,5 +1,5 @@
 # Extend Doorkeeper::AccessToken to add a new access token type:
-#   urn:xsea:api:v2:token
+#   urn:xubiq:api:v2:token
 #
 # This type will return APIv2 token in format "<access_key>:<secret_key>", then
 # users can authenticate themselves using the keys and APIv2 authentication
@@ -14,7 +14,7 @@ module Doorkeeper
     after_create :link_api_token
 
     def token_type
-      'urn:xsea:api:v2:token'
+      'urn:xubiq:api:v2:token'
     end
 
     def revoke(clock = DateTime)

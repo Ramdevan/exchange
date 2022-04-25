@@ -11,7 +11,7 @@ module Worker
     end
 
     def key_for(period)
-      "xsea:stats:trades:#{@market.id}:#{period}"
+      "xubiq:stats:trades:#{@market.id}:#{period}"
     end
 
     def point_1(from)

@@ -110,7 +110,7 @@ class SessionsController < ApplicationController
   end
 
   def failed_login_key
-    "xsea:session:#{request.ip}:failed_logins"
+    "xubiq:session:#{request.ip}:failed_logins"
   end
 
   def auth_hash
