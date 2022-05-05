@@ -3,7 +3,10 @@
     .coin_pair
       .card_header
         .title_box
-          h5 Market List
+          h5
+            | Market List
+            span.mkt_close_btn.m_only
+              i.far.fa-times-circle
         ul
           //li.active
             a href="#"  Market List
@@ -21,9 +24,9 @@
           table.table.table-sm.mb-0
             thead
               tr
-                th.text-center scope="col" Pair
-                th.text-center scope="col" Vol
-                th.text-center scope="col" Change
+                th.pair_name scope="col" Pair
+                th.price.text-right scope="col" Vol
+                th.change.text-right scope="col" Change
         .data_tbody.scroll_css
           .trade-markets
             table.markets.table.table-sm.mb-0.all
@@ -32,7 +35,7 @@
                   tr.coin_pair_list.market id="market-list-#{market.id}" class="quote-#{market.quote_unit}" data-market=market.id
                     td.pair_name.name
                       = link_to market.name, market_path(market)
-                    td.pair_usdt.text-center.price
+                    td.pair_usdt.text-right.price
                       = Global[market.id].ticker[:last]
-                    td.change
+                    td.change.text-right
                       | +0.00%

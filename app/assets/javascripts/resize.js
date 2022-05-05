@@ -70,4 +70,29 @@
       $('.buy_sell').removeClass('open');
       // $('.buy_sell_close').removeClass('d-block');
     });
+
+    $('.mmt_list a').click(function() {
+      var data_id = $(this).attr("data-id");
+      $('.tgi').removeClass('active');
+      $('#'+data_id).addClass('active');
+
+      $(this).siblings().removeClass('active')
+      $(this).addClass('active');
+    });
+
+    $('.cnt_s_h1').click(function() {
+      $('#market_list_wrapper').addClass('active');
+    });
+    $('.mkt_close_btn').click(function() {
+      $('#market_list_wrapper').removeClass('active');
+    });
+
+    $('.h_notes_show_all').click(function() {
+      $('.h-notes-main').toggleClass('open');
+    });
+
+    $('.h_notes_close').click(function() {
+      $('.h-notes-main').css('display','none');
+    });
+
   });

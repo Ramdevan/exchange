@@ -1,6 +1,6 @@
 header
   nav.navbar.navbar-expand-md.navbar-dark
-    a.navbar-brand href="/"  
+    a.navbar-brand.logo-main href="/"
       img.logo#logo src="/assets/logo.png"
     button.navbar-toggler aria-controls="market_menu" aria-expanded="false" aria-label=("Toggle navigation") data-target="#market_menu" data-toggle="collapse" type="button" 
       span.navbaricon
@@ -13,7 +13,11 @@ header
             span.sr-only (current)
         li.nav-item
           = link_to 'Funds', funds_path, class: 'nav-link'
-      .my-2.my-md-0
+      .my-2.my-md-0.d_flex_center
+        .reg_log
+          =link_to 'Log In', funds_path, class:'btn btn_login'
+          =link_to 'Register', funds_path, class:'btn btn_register'
+
         ul.navbar-nav.mr-auto
           //li.nav-item
             a.nav-link href="#"  INVITE &amp; EARN 50% FEES
@@ -28,3 +32,41 @@ header
             a href="#" class="themeBox darkTheme" id="darkThemeBtn" title="Dark"
               i class="far fa-moon"
 
+.h-notes-main
+  .h-notes-inner.trade_mw
+    .h-notes-box
+      a.h-notes-link[href="ffff"]
+          span
+            | Notice on the Suspension of Withdrawals on Solana (SOL) Network
+          span
+            | 04-29
+
+      a.h-notes-link[href="ffff"]
+        span
+          | Binance Concludes 6 Promos: Register & Share ApeCoin (APE), Learn & Trade ApeCoin (APE), Gift Card Sharing Promo, AVAX Community Giveaway, and More 
+        span
+          | 04-29
+      a.h-notes-link[href="ffff"]
+        span
+          | Dual Investment - Subscription Quota Increased by Up to 10X
+        span
+          | 04-29
+      a.h-notes-link[href="ffff"]
+        span
+          | Dual Investment - Subscription Quota Increased by Up to 10X
+        span
+          | 04-29
+      a.h-notes-link[href="ffff"]
+        span
+          | Dual Investment - Subscription Quota Increased by Up to 10X
+        span
+          | 04-29
+      a.h-notes-link[href="ffff"]
+        span
+          | Dual Investment - Subscription Quota Increased by Up to 10X
+        span
+          | 04-29
+    .h_notes_show_all
+      i class="fa fa-chevron-down"
+    .h_notes_close
+      i class="fa fa-times"

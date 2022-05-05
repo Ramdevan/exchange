@@ -1,7 +1,7 @@
 :root {
---theme-primary:#2d7ee0;
---secondary-color: #4fb24c;
---tertiary-color:#f04b3d;
+--theme-primary:#fcd535;
+--secondary-color: #0ecb81;
+--tertiary-color:#f6465d;
 --bg-dark1: #ffffff;
 --bg-dark2: #ffffff;
 --bg-dark3: #fafafa;
@@ -82,10 +82,11 @@ label, table th{
 .input_cus, .walletval {border: 1px solid var(--border-color);}
 .card_header ul li.active, ul#pills-tab-buysell li a.active, #openmy-order li a.active {
     border-color: var(--theme-primary);
+    background-color: #ffffff;
     color: #1e2026;
 }
 
-.coin_pair, .orders, .chart_area, .orderbook_tradehistory,.order_book, .trade_history,.buy_sell {
+.coin_pair, .orders, .chart_area, .orderbook_tradehistory,.order_book, .trade_history,.buy_sell, .cnt-main, .h-notes-main, .buy-form, .input_cus, #trade_chart .tab-content, ul.pills_nav li a.active, div#market_list_wrapper, div#market_list_wrapper .title_box {
     background-color: #ffffff;
    
 }
@@ -145,7 +146,7 @@ li.marketlist ul.dropdown-menu {
 }
 
 #trade_chart .tab-content {
-    background: #eceff2;
+    background: #ffffff;
 }
 
 div#trade_chart ul.nav.nav-tabs li{
@@ -180,4 +181,15 @@ card_header ul li, ul#pills-tab-buysell li a, #openmy-order li a {
     color: #76808f !important;
     border-radius: 4px !important;
 }
+}
+#market_list .pair_name a { color: #000; }
+.h-notes-link { color: #666; }
+.h-notes-main {
+    border-color: #ddd;
+}
+.cnt-select h1, .rcb-s, .cst-s, .cnt-main {
+    color: #222222;
+}
+.cs-spa {
+    color: #666666;
 }

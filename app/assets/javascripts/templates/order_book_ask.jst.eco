@@ -5,7 +5,7 @@
   <td class='volume'>
     <span><%- formatter.mask_fixed_volume @volume %></span>
   </td>
-  <td class='amount'>
+  <td class='amount text-right'>
     <span><%- formatter.mask_fixed_amount @volume, @price, 'ask' %></span>
   </td>
 </tr>

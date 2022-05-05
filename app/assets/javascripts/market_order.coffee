@@ -8,9 +8,11 @@ $ ->
     if order_type == "market"
       $('.total').addClass('hide')
       $('.price-field').prop 'disabled', true
+      $('.bid_amount').addClass('hide')
     else
       $('.total').removeClass('hide')
       $('.price-field').prop 'disabled', false
+      $('.bid_amount').removeClass('hide')
     if order_type == "stop_limit"
       $('.stop_price.hide').removeClass('hide')
     else

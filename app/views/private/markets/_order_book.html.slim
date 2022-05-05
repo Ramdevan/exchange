@@ -2,31 +2,26 @@
   #market_trades
     #order_book_header 
 
-      .d-flex   
-        .card_body.w-50
-          .card_header
-            ul
-              li.active
-                a href="#"  Buy Order
-          .data_thead
-            table.table.table-sm.mb-0
-              thead: tr
-                th.amount = t('.amount')
-                th.volume.text-center = t('.volume')
-                th.price.text-center = t('.bid')
-        .card_body.w-50
-          .card_header
-            ul
-              li.active
-                a href="#"  Sell Order
-          .data_thead
-            table.table.table-sm.mb-0
-              thead: tr
-                th.price = t('.ask')
-                th.volume = t('.volume')
-                th.amount.text-center = t('.amount')
-      
+
   .data_tbody.scroll_css
-    #order_book_body.row
-      .col-lg-6: table.table.table-hover.bids
-      .col-lg-6.p-0: table.table.table-hover.asks
+    #order_book_body
+      .data_thead
+        table.table.table-sm.mb-0
+          thead: tr
+            th.price = t('.Price')
+            th.volume.text-center = t('.Amount')
+            th.amount.text-right = t('.Total')
+      .buy_order_table: table.table.table-hover.bids
+      .orderbook-ticker
+        .contractprice.status-primary
+          | 38,409.49
+          .ob_icon_arrow
+            svg.arrow-icon.status-buy.css-3kwgah[xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" style="transform: rotate(180deg);"]
+              path[d="M5 13.47l1.41-1.41 5.1 5.1V3h1.99v14.15l5.09-5.09L20 13.47l-7.5 7.5-7.5-7.5z" fill="currentColor"]
+        .markprice
+          | $38,421.01
+        div
+          a.more[target="" href="#"]
+            | More
+
+      .sell_order_table: table.table.table-hover.asks

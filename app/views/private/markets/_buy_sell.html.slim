@@ -6,11 +6,16 @@
         p.text-right.w-50
           a href="#"
             i.far.fa-times-circle
-    ul#pills-tab-buysell.nav.nav-pills role="tablist" 
+    ul.pills_nav.nav.nav-pills.d_only role="tablist"
+      li
+        a.active  Spot
+
+    ul#pills-tab-buysell.nav.nav-pills.m_only role="tablist"
       li role="presentation" 
         a#pills-buy-tab.active aria-controls="pills-buy" aria-selected="true" data-toggle="pill" href="#pills-buy" role="tab"  Buy
       li role="presentation" 
         a#pills-sell-tab aria-controls="pills-sell" aria-selected="false" data-toggle="pill" href="#pills-sell" role="tab"  Sell
+
   .card_body
     .buy-form
       .limit-or-market
@@ -25,7 +30,9 @@
             /   | Stop Limit
 
       #pills-tabContent-buysell.tab-content
+
         #pills-buy.tab-pane.fade.show.active aria-labelledby="pills-buy-tab" role="tabpanel"
           = render partial: 'bid_entry', locals: {market: @market, order: @order_bid }
+
         #pills-sell.tab-pane.fade aria-labelledby="pills-sell-tab" role="tabpanel" 
           = render partial: 'ask_entry', locals: {market: @market, order: @order_ask }

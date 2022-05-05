@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/ncri/globalize.git
+  remote: https://github.com/ncri/globalize.git
   revision: 5b0ff2c92e7536f908dc82a4c2a15b04be79e821
   specs:
     globalize (5.1.0)

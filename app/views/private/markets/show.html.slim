@@ -23,36 +23,99 @@ html lang="en"
 
     #marekt_trade.trade-grid.trade_mw
 
-      #trade_list.trade-grid-item
-        = render partial: 'market_list'       
-        
-      #trade_chart.trade-grid-item.chart_area
-        <ul class="nav nav-tabs">
-          <li class="active"><a data-toggle="tab" href="#TradeviewChartCustom">Trade View</a></li>
-          <li><a data-toggle="tab" href="#DepthviewChartCustom">Depth View</a></li>
-        </ul>
-        <div class="tab-content">
-          <div id="TradeviewChartCustom" class="tab-pane fade in active show">
-            = render partial: 'tradeview_depths'
-          </div>
-          <div id="DepthviewChartCustom" class="tab-pane fade">
-            = render partial: 'depths'
-          </div>
-        </div>
-        
-        .orderbook_tradehistory
-          .row.m-0
-            .order_book.col-lg-8.col-md-6.col-sm-12
-              = render partial: 'order_book'
 
-            .trade_history.col-lg-4.col-md-6.col-sm-12
-              = render partial: 'market_trades'
+      .cnt-main
+        .cnt-nner
+          .left-cnt
+            .cnt-select
+                h1.cnt_s_h1
+                  | BTC/BUSD
+                  span
+                    i class="fa fa-caret-down"
 
-      #trade_orderbook.trade-grid-item
-        = render partial: 'my_orders'
-        = render partial: 'buy_sell'
-        
-        
+                .cs-spa
+                  svg.iconLeave.css-bka6he[xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none"]
+                    path[d="M15.11 5.63L6 6.89 15.11 4v1.63zM17.61 6.89v11.2h-1.25V8.33L6 6.89h11.61z" fill="currentColor"]
+                    path[d="M6 6.89v11.16l.1.01.07.01.17.03h-.27l9.04 2.86V9.77L6 6.89zm3.4 3.2l1.87.6v1.84l-1.87-.59v-1.85zm1.87 7.66l-1.87-.59.03-3.85 1.88.59-.04 3.85z" fill="currentColor"]
+                  | Bitcoin Price
+            .cnt-sel-to
+                .cst-f
+                  | 38,832.49
+                .cst-s.d_only
+                  | $38,824.35
+                .cst-s.m_only
+                  span.rcbs_f
+                    | 879.41
+                  span.rcbs_s
+                    | +2.35
+          .right-cnt
+            .tickerlist
+              .rc-box
+                .rcb-f
+                  | 24h Change
+                .rcb-s
+                  span.rcbs_f
+                    | 879.41
+                  span.rcbs_s
+                    | +2.35
+              .rc-box
+                .rcb-f
+                  | 24h High
+                .rcb-s
+                  | 38,646.96
+              .rc-box
+                .rcb-f
+                  | 24h Low
+                .rcb-s
+                  | 37,520.00
+              .rc-box
+                .rcb-f
+                  | 24h Volume(BTC)
+                .rcb-s
+                  | 10,882.00
+              .rc-box
+                .rcb-f
+                  | 24h Volume(BUSD)
+                .rcb-s
+                  | 414,521,130.57
+      .market_main_tab
+        .mm_tab
+          .mmt_list
+            a.active[href="javascript:void(0)" data-id="chart_box"]
+              | Chart
+            a[href="javascript:void(0)" data-id="trade_orderbook"]
+              | Order Book
+            a[href="javascript:void(0)" data-id="market_box"]
+              | Trades
+
+      #trade_orderbook.tgi.trade-grid-item.order_book_main.order-2.order-lg-1.order-md-1
+        = render partial: 'order_book'
+      #trade_chart.trade-grid-item.chart_area.order-1.order-lg-2.order-md-2
+          #chart_box.tgi.active
+            <ul class="nav nav-tabs">
+              <li class=""><a class="active" data-toggle="tab" href="#TradeviewChartCustom">Trade View</a></li>
+              <li><a data-toggle="tab" href="#DepthviewChartCustom">Depth View</a></li>
+            </ul>
+            <div class="tab-content">
+              <div id="TradeviewChartCustom" class="tab-pane fade in active show">
+                = render partial: 'tradeview_depths'
+              </div>
+              <div id="DepthviewChartCustom" class="tab-pane fade">
+                = render partial: 'depths'
+              </div>
+            </div>
+          .orderbook_tradehistory
+            .row.m-0
+              .order_book.col-lg-12.col-md-12.col-sm-12
+                = render partial: 'buy_sell'
+
+      #trade_list.trade-grid-item.order-3.order-lg-3.order-md-3
+        = render partial: 'market_list'
+        #market_box.tgi
+          = render partial: 'market_trades'
+
+    .trade_mw_container
+      = render partial: 'my_orders'
     .resHeader
 
       - if ENV['CHAT_FEATURE']
