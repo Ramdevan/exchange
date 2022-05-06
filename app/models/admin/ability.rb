@@ -23,14 +23,9 @@ module Admin
       can :manage, ::Deposits::Ether
       can :manage, ::Deposits::Bcash
       can :manage, ::Deposits::Usdt
-      can :manage, ::Deposits::Enj
-      can :manage, ::Deposits::Mana
-      can :manage, ::Deposits::Monero
       can :manage, ::Deposits::Ripple
       can :manage, ::Deposits::Dash
-      can :manage, ::Deposits::Neo
       can :manage, ::Deposits::Usdc
-      can :manage, ::Deposits::Citiusd
 
       can :menu, Withdraw
       can :manage, ::Withdraws::Bank
@@ -39,14 +34,9 @@ module Admin
       can :manage, ::Withdraws::Ether
       can :manage, ::Withdraws::Bcash
       can :manage, ::Withdraws::Usdt
-      can :manage, ::Withdraws::Enj
-      can :manage, ::Withdraws::Mana
-      can :manage, ::Withdraws::Monero
       can :manage, ::Withdraws::Ripple
       can :manage, ::Withdraws::Dash
-      can :manage, ::Withdraws::Neo
       can :manage, ::Withdraws::Usdc
-      can :manage, ::Withdraws::Citiusd
 
     end
   end

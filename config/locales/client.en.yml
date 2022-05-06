@@ -45,8 +45,7 @@ en:
         dash: DASH
         xrp: XRP
         usdt: USDT
-        enj: ENJ
-        mana: MANA
+        usdc: USDC
       deposit_inr:
         title: INR
         desc: "To deposit via Bank transfer, please follow these steps:"
@@ -95,24 +94,12 @@ en:
         title: BCHABC Deposit
       deposit_ltc:
         title: LTC Deposit
-      deposit_xmr:
-        title: XMR Deposit
       deposit_dash:
         title: DASH Deposit
-      deposit_citiusd:
-        title: CITIUSD Deposit
       deposit_xrp:
         title: XRP Deposit
-      deposit_neo:
-        title: NEO Deposit
-      deposit_zec:
-        title: ZEC Deposit
       deposit_usdt:
         title: USDT Deposit
-      deposit_enj:
-        title: ENJ Deposit
-      deposit_mana:
-        title: MANA Deposit
       deposit_usdc:
         title: USDC Deposit
       deposit_coin:
@@ -183,22 +170,12 @@ en:
         title: BCHABC Withdraw
       withdraw_ltc:
         title: LTC Withdraw
-      withdraw_xmr:
-        title: XMR Withdraw
       withdraw_dash:
         title: DASH Withdraw
-      withdraw_citiusd:
-        title: CITIUSD Withdraw
       withdraw_xrp:
         title: XRP Withdraw
-      withdraw_zec:
-        title: ZEC Withdraw
       withdraw_usdt:
         title: USDT Withdraw
-      withdraw_enj:
-        title: ENJ Withdraw
-      withdraw_mana:
-        title: MANA Withdraw
       withdraw_usdc:
         title: USDC Withdraw
       withdraw_coin:
@@ -258,6 +235,4 @@ en:
         btc: BTC Market
         eth: ETH Market
         usdt: USDT Market
-        enj: ENJ Market
-        mana: MANA Market
         usdc: USDC Market

@@ -178,7 +178,7 @@ class CoinRPC
 
   end
 
-  class CITIUSD < USDT
+  class USDC < USDT
 
     def convert_from_base_unit value
       (value.to_i / 1e2).to_d
@@ -189,30 +189,5 @@ class CoinRPC
     end
 
   end
-
-  class MANA < USDT
-
-    def convert_from_base_unit value
-      (value.to_i / 1e18).to_d
-    end
-
-    def convert_to_base_unit value
-      (value.to_f * 1e18).to_i
-    end
-
-  end
-
-  class ENJ < USDT
-
-    def convert_from_base_unit value
-      (value.to_i / 1e18).to_d
-    end
-
-    def convert_to_base_unit value
-      (value.to_f * 1e18).to_i
-    end
-
-  end
-
 
 end

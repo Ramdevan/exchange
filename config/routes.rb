@@ -18,18 +18,10 @@ Exchange::Application.routes.draw do
   post '/webhooks/ltc' => 'webhooks#ltc'
   post '/webhooks/eth' => 'webhooks#eth'
   post '/webhooks/dash'  => 'webhooks#dash'
-  post '/webhooks/zec' => 'webhooks#zec'
   post '/webhooks/usdt' => 'webhooks#usdt'
-  post '/webhooks/enj' => 'webhooks#enj'
-  post '/webhooks/mana' => 'webhooks#mana'
-  post '/webhooks/xmr'  => 'webhooks#xmr'
   post '/webhooks/xrp'  => 'webhooks#xrp'
-  post '/webhooks/neo'  => 'webhooks#neo'
+  post '/webhooks/usdc'  => 'webhooks#usdc'
 
-
-
-
-  post '/webhooks/citiusd'  => 'webhooks#citiusd'
   if Rails.env.development?
     mount MailsViewer::Engine => '/mails'
   end

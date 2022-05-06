@@ -228,18 +228,6 @@ en:
         amount: Amount
         confirmations: Confirmation
         aasm_state_text: State
-      deposits/enj:
-        created_at: Created At
-        txid: Transaction ID
-        amount: Amount
-        confirmations: Confirmation
-        aasm_state_text: State
-      deposits/mana:
-        created_at: Created At
-        txid: Transaction ID
-        amount: Amount
-        confirmations: Confirmation
-        aasm_state_text: State
       deposits/usdc:
         created_at: Created At
         txid: Transaction ID
@@ -345,35 +333,6 @@ en:
         remark: Remark
         fee: Fee
       withdraws/usdt:
-        id: ID
-        member_name: Account
-        currency_obj_key_text: Currency
-        state_and_actions: State/Action
-        fund_extra_text: Withdraw Label
-        fund_extrat: Withdraw Label
-        fund_source: Bank
-        fund_uid: Account
-        created_at: Created At
-        sum: Amount
-        amount: Amount
-        remark: Remark
-        fee: Fee
-      withdraws/enj:
-        id: ID
-        member_name: Account
-        currency_obj_key_text: Currency
-        state_and_actions: State/Action
-        fund_extra_text: Withdraw Label
-        fund_extrat: Withdraw Label
-        fund_source: Bank
-        fund_uid: Account
-        created_at: Created At
-        sum: Amount
-        amount: Amount
-        remark: Remark
-        fee: Fee
-      
-      withdraws/mana:
         id: ID
         member_name: Account
         currency_obj_key_text: Currency
@@ -504,16 +463,11 @@ en:
       inr: INR
       usd: USD
       eth: ETH
-      citiusd: CITIUSD
       bchabc: BCHABC
       ltc: LTC
-      xmr: XMR
       dash: DASH
       xrp: XRP
-      zec: ZEC
       usdt: USDT
-      enj: ENJ
-      mana: MANA
       usdc: USDC
   currency:
     satoshi:
@@ -536,11 +490,6 @@ en:
       code: LTC
       name: Litecoin
       format: '0,0.0000'
-    monero:
-      key: XMR
-      code: XMR
-      name: Monero
-      format: '0,0.0000'
     bitcoincash:
       key: BCH
       code: BCH
@@ -556,40 +505,15 @@ en:
       code: XRP
       name: Ripple
       format: '0,0.0000'
-    neo:
-      key: NEO
-      code: NEO
-      name: Neo
-      format: '0,0.0000'
-    neoscoin:
-      key: NEOS
-      code: NEOS
-      name: Neoscoin
-      format: '0,0.0000'
     dash:
       key: DASH
       code: DASH
       name: Dash
       format: '0,0.0000'
-    zcash:
-      key: ZEC
-      code: ZEC
-      name: Zcash
-      format: '0,0.0000'
     usdt:
       key: USDT
       code: USDT
       name: Usdt
-      format: '0,0.0000'
-    enj:
-      key: ENJ
-      code: ENJ
-      name: Enj
-      format: '0,0.0000'
-    mana:
-      key: MANA
-      code: MANA
-      name: Mana
       format: '0,0.0000'
     usdc:
       key: USDC
@@ -748,13 +672,6 @@ en:
       latency: 1 confirmation
       transfer: Manual
       go: Deposit
-    citiusd:
-      key: Citiusd
-      title: Citiusd Deposits
-      intro: Deposit citiusd from your own wallet address to Xubiq account
-      latency: 1 confirmation
-      transfer: Manual
-      go: Deposit
     bcash:
       key: Bitcoin Cash ABC
       title: Bitcoin Cash ABC Deposits
@@ -766,13 +683,6 @@ en:
       key: Litecoin
       title: Litecoin Deposits
       intro: Deposit litecoin from your own wallet address to Xubiq account
-      latency: 1 confirmation
-      transfer: Manual
-      go: Deposit
-    monero:
-      key: Monero
-      title: Monero Deposits
-      intro: Deposit monero from your own wallet address to Xubiq account
       latency: 1 confirmation
       transfer: Manual
       go: Deposit
@@ -797,20 +707,6 @@ en:
       latency: 1 confirmation
       transfer: Manual
       go: Deposit
-    neo:
-      key: Neo
-      title: Neo Deposits
-      intro: Deposit neo from your own wallet address to Xdat account
-      latency: 1 confirmation
-      transfer: Manual
-      go: Deposit
-    neoscoin:
-      key: Neoscoin
-      title: Neoscoin Deposits
-      intro: Deposit neoscoin from your own wallet address to Xubiq account
-      latency: 1 confirmation
-      transfer: Manual
-      go: Deposit
     usdt:
       key: USDT
       title: USDT Deposits
@@ -818,33 +714,10 @@ en:
       latency: 1 confirmation
       transfer: Manual
       go: Deposit
-    enj:
-      key: ENJ
-      title: ENJ Deposits
-      intro: Deposit ENJ from your own wallet address to Xubiq account
-      latency: 1 confirmation
-      transfer: Manual
-      go: Deposit
-    
-    mana:
-      key: MANA
-      title: MANA Deposits
-      intro: Deposit MANA from your own wallet address to Xubiq account
-      latency: 1 confirmation
-      transfer: Manual
-      go: Deposit
-    
-    mana:
-      key: MANA
-      title: MANA Deposits
-      intro: Deposit MANA from your own wallet address to Xubiq account
-      latency: 1 confirmation
-      transfer: Manual
-      go: Deposit
     usdc:
       key: Usdc
       title: Usdc Deposits
-      intro: Deposit usdc from your own wallet address to Trustlink account
+      intro: Deposit usdc from your own wallet address to Xsea account
       latency: 1 confirmation
       transfer: Manual
       go: Deposit
@@ -1236,50 +1109,32 @@ en:
         inr-assets: INR Assets
         usd-assets: USD Assets
         ltc-assets: LTC Assets
-        xmr-assets: XMR Assets
         dash-assets: DASH Assets
         bchabc-assets: BCHABC Assets
         eth-assets: ETH Assets
         xrp-assets: XRP Assets
-        neo-assets: NEO Assets
-        neos-assets: NEOS Assets
-        zec-assets: ZEC Assets
         usdt-assets: USDT Assets
-        enj-assets: ENJ Assets
-        mana-assets: MANA Assets
+        usdc-assets: USDC Assets
       liability_tabs:
         verify-btc: Verify My BTC Assets
         verify-inr: Verify My INR Assets
         verify-usd: Verify My USD Assets
         verify-eth: Verify My ETH Assets
         verify-ltc: Verify My LTC Assets
-        verify-xmr: Verify My XMR Assets
         verify-bchabc: Verify My BCHABC Assets
         verify-xrp: Verify My XRP Assets
-        verify-neo: Verify My NEO Assets
-        verify-neos: Verify My NEOS Assets
         verify-dash: Verify My DASH Assets
-        verify-zec: Verify My ZEC Assets
         verify-usdt: Verify My USDT Assets
-        verify-enj: Verify My ENJ Assets
-        verify-mana: Verify My MANA Assets
-        usdc-assets: USDC Assets
+        verify-usdc: Verify My USDC Assets
         btc-assets-total: 'Total BTC assets of exchange: '
         inr-assets-total: 'Total INR assets of exchange: '
         usd-assets-total: 'Total USD assets of exchange: '
         ltc-assets-total: 'Total LTC assets of exchange: '
-        xmr-assets-total: 'Total XMR assets of exchange: '
         bchabc-assets-total: 'Total BCHABC assets of exchange: '
         eth-assets-total: 'Total ETH assets of exchange: '
         xrp-assets-total: 'Total XRP assets of exchange: '
-        etc-assets-total: 'Total ETC assets of exchange: '
-        neo-assets-total: 'Total NEO assets of exchange: '
-        neos-assets-total: 'Total NEOS assets of exchange: '
         dash-assets-total: 'Total DASH assets of exchange: '
-        zec-assets-total: 'Total ZEC assets of exchange: '
         usdt-assets-total: 'Total USDT assets of exchange: '
-        enj-assets-total: 'Total ENJ assets of exchange: '
-        mana-assets-total: 'Total MANA assets of exchange: '
         usdc-assets-total: 'Total USDC assets of exchange: '
       liability_proof:
         title: Proof of Liabilities
@@ -1317,50 +1172,20 @@ en:
         intro: All of exchange's LTC assets are listed here.
         total: Total LTC Assets
         address: Address
-      xmr_assets:
-        title: XMR Assets
-        intro: All of exchange's XMR assets are listed here.
-        total: Total XMR Assets
-        address: Address
       dash_assets:
         title: DASH Assets
         intro: All of exchange's DASH assets are listed here.
         total: Total DASH Assets
-        address: Address
-      eos_assets:
-        title: EOS Assets
-        intro: All of exchange's EOS assets are listed here.
-        total: Total EOS Assets
         address: Address
       xrp_assets:
         title: XRP Assets
         intro: All of exchange's XRP assets are listed here.
         total: Total XRP Assets
         address: Address
-      neos_assets:
-        title: NEOS Assets
-        intro: All of exchange's NEOS assets are listed here.
-        total: Total NEOS Assets
-        address: Address
-      zec_assets:
-        title: ZEC Assets
-        intro: All of exchange's ZEC assets are listed here.
-        total: Total ZEC Assets
-        address: Address
       usdt_assets:
         title: USDT Assets
         intro: All of exchange's USDT assets are listed here.
         total: Total USDT Assets
-        address: Address
-      enj_assets:
-        title: ENJ Assets
-        intro: All of exchange's ENJ assets are listed here.
-        total: Total ENJ Assets
-        address: Address
-      mana_assets:
-        title: MANA Assets
-        intro: All of exchange's MANA assets are listed here.
-        total: Total MANA Assets
         address: Address
       usdc_assets:
         title: USDC Assets
@@ -1479,10 +1304,7 @@ en:
         btc_html: "<span>BTC</span>"
         eth_html: "<span>ETH</span>"
         usdt_html: "<span>USDT</span>"
-        enj_html: "<span>ENJ</span>"
-        mana_html: "<span>MANA</span>"
         usdc_html: "<span>USDC</span>"
-        citiusd_html: "<span>CITIUSD</span>"
         price: Price
         change: "24h %"
       range_switch:
@@ -2289,23 +2111,6 @@ en:
       member_name: Member
       state_and_actions: State/Actions
       currency_obj_key_text: Currency
-    enj:
-      amount: Amount
-      txid: TxId
-      created_at: Created At
-      confirmations: Confirmations
-      member_name: Member
-      state_and_actions: State/Actions
-      currency_obj_key_text: Currency
-    
-    mana:
-      amount: Amount
-      txid: TxId
-      created_at: Created At
-      confirmations: Confirmations
-      member_name: Member
-      state_and_actions: State/Actions
-      currency_obj_key_text: Currency
     usdc:
       amount: Amount
       txid: TxId
@@ -2338,18 +2143,11 @@ en:
       inr: INR
       usd: USD
       eth: ETH
-      citiusd: CITIUSD
       bchabc: BCHABC
       ltc: LTC
-      xmr: XMR
       xrp: XRP
-      neo: NEO
-      neos: NEOS
       dash: DASH
-      zec: ZEC
       usdt: USDT
-      enj: ENJ
-      mana: MANA
       usdc: USDC
     order:
       state:
@@ -2935,13 +2733,6 @@ en:
       latency: 30 minutes
       transfer: Manual
       go: Withdraw
-    citiusd:
-      key: Citiusd
-      title: Citiusd Withdraw
-      intro: Withdraw citiusd to your own wallet
-      latency: 30 minutes
-      transfer: Manual
-      go: Withdraw
     ether:
       key: Ethereum
       title: Ethereum Withdraw
@@ -2960,13 +2751,6 @@ en:
       key: Litecoin
       title: Litecoin Withdraw
       intro: Withdraw litecoin to your own wallet
-      latency: 30 minutes
-      transfer: Manual
-      go: Withdraw
-    monero:
-      key: Monero
-      title: Monero Withdraw
-      intro: Withdraw monero to your own wallet
       latency: 30 minutes
       transfer: Manual
       go: Withdraw
@@ -2991,38 +2775,10 @@ en:
       latency: 30 minutes
       transfer: Manual
       go: Withdraw
-    neo:
-      key: Neo
-      title: Neo Withdraw
-      intro: Withdraw neo to your own wallet
-      latency: 30 minutes
-      transfer: Manual
-      go: Withdraw
-    neoscoin:
-      key: Neoscoin
-      title: Neoscoin Withdraw
-      intro: Withdraw neoscoin to your own wallet
-      latency: 30 minutes
-      transfer: Manual
-      go: Withdraw
     usdt:
       key: USDT
       title: USDT Withdraw
       intro: Withdraw USDT to your own wallet
-      latency: 30 minutes
-      transfer: Manual
-      go: Withdraw
-    enj:
-      key: ENJ
-      title: ENJ Withdraw
-      intro: Withdraw ENJ to your own wallet
-      latency: 30 minutes
-      transfer: Manual
-      go: Withdraw
-    mana:
-      key: MANA
-      title: MANA Withdraw
-      intro: Withdraw MANA to your own wallet
       latency: 30 minutes
       transfer: Manual
       go: Withdraw
