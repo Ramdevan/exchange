@@ -178,7 +178,7 @@ class CoinRPC
 
   end
 
-  class USDC < USDT
+  class USDC < ETH
 
     def convert_from_base_unit value
       (value.to_i / 1e2).to_d
