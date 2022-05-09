@@ -30,6 +30,13 @@ module Worker
           from_address = Currency.find_by_code(withdraw.currency)[:assets]['accounts'].first['address']
           CoinRPC[withdraw.currency].personal_unlockAccount(from_address, "", 15000)
           txid = CoinRPC[withdraw.currency].sendtoaddress(from_address, withdraw.fund_uid, withdraw.amount)
+        when 'xrp'
+          balance = CoinRPC[withdraw.currency].getbalance - 10 # 10 XRP is account's reserve balance
+          raise Account::BalanceError, 'Insufficient coins' if balance < withdraw.sum
+          from_address = {address: CoinRPC[withdraw.currency].get_account_address,
+                          secret: CoinRPC[withdraw.currency].get_account_secret}
+          to_address = {address: CoinRPC[withdraw.currency].mergeaddress(withdraw.fund_uid, withdraw.fund_tag)}
+          txid = CoinRPC[withdraw.currency].sendtoaddress(from_address, to_address, (withdraw.amount).to_i)  
         else
           balance = CoinRPC[withdraw.currency].getbalance.to_d
           raise Account::BalanceError, 'Insufficient coins' if balance < withdraw.sum

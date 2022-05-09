@@ -21,6 +21,10 @@ module Worker
           raw = get_raw_eth channel, txid
           raw.symbolize_keys!
           deposit_erc!(channel, txid, 1, raw)
+        when 'xrp'
+          raw = get_raw_xrp channel, txid
+          raw.symbolize_keys!
+          deposit_xrp!(channel, txid, 1, raw)  
         else
           raw  = get_raw channel, txid
           raw[:details].each_with_index do |detail, i|
@@ -162,12 +166,64 @@ module Worker
       Rails.logger.error $!.backtrace.join("\n")
     end
 
+    def deposit_xrp!(channel, txid, txout, raw)
+      ActiveRecord::Base.transaction do
+
+        destination_tag = CoinRPC[channel.currency_obj.code].destination_tag_from_transaction(raw)
+        address = CoinRPC[channel.currency_obj.code].mergeaddress raw[:Destination], destination_tag
+
+        unless PaymentAddress.where(currency: channel.currency_obj.id, address: address).first
+          Rails.logger.info "Deposit address not found, skip. txid: #{txid}, txout: #{txout}, address: #{raw[:Destination]}, amount: #{raw[:Amount].to_i(16) / 1e18}"
+          return
+        end
+
+        unless (raw[:TransactionType].to_s == 'Payment' && raw[:meta]['TransactionResult'].to_s == 'tesSUCCESS' && String === raw[:Amount])
+          Rails.logger.info "Invalid data found, skip. raw: #{raw}"
+          return
+        end
+
+        Rails.logger.info "RAW DATA -- RAW-#{raw}, txid--#{txid}, txout-#{txout}"
+        return if PaymentTransaction::Normal.where(txid: txid, txout: txout).first
+        Rails.logger.info "Creating PaymentTransaction -- txid--#{txid}, txout-#{txout}"
+        tx = PaymentTransaction::Normal.create! \
+        txid: txid,
+        txout: txout,
+        address: address,
+        amount: (raw[:Amount].to_i / 1_000_000).to_d,
+        confirmations: CoinRPC[channel.currency_obj.code].calculate_confirmations(raw),
+        receive_at: Time.now.to_datetime,
+        currency: channel.currency
+
+        deposit = channel.kls.create! \
+        payment_transaction_id: tx.id,
+        txid: tx.txid,
+        txout: tx.txout,
+        amount: tx.amount,
+        member: tx.member,
+        account: tx.account,
+        currency: tx.currency,
+        confirmations: tx.confirmations
+
+        deposit.submit!
+        deposit.accept!
+      end
+    rescue => e
+      ExceptionNotifier.notify_exception(e)
+      Rails.logger.error "Failed to deposit: #{$!}"
+      Rails.logger.error "txid: #{txid}, txout: #{txout}, detail: #{raw.inspect}"
+      Rails.logger.error $!.backtrace.join("\n")
+    end
+
     def get_raw(channel, txid)
       channel.currency_obj.api.gettransaction(txid)
     end
 
     def get_raw_eth(channel, txid)
       CoinRPC[channel.currency_obj.code].eth_getTransactionByHash(txid)
+    end
+
+    def get_raw_xrp(channel, txid)
+      CoinRPC[channel.currency_obj.code].gettransaction(txid)
     end
 
   end

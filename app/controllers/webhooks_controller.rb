@@ -51,39 +51,11 @@ class WebhooksController < ApplicationController
     end
   end
 
-  def zec
-    if params[:type] == "transaction" && params[:hash].present?
-      AMQPQueue.enqueue(:deposit_coin, txid: params[:hash], channel_key: "zcash")
-      render :json => {:status => "queued"}
-    end
-  end
-
-  def xmr
-    if params[:type] == "transaction" && params[:hash].present?
-      AMQPQueue.enqueue(:deposit_coin, txid: params[:hash], channel_key: "monero")
-      render :json => {:status => "queued"}
-    end
-  end
-
   def xrp
     if params[:type] == "transaction" && params[:hash].present?
       AMQPQueue.enqueue(:deposit_coin, txid: params[:hash], channel_key: "ripple")
       render :json => {:status => "queued"}
     end
-  end
-
-  def neo
-    if params[:type] == "transaction" && params[:hash].present?
-      AMQPQueue.enqueue(:deposit_coin, txid: params[:hash], channel_key: "neo")
-      render :json => {:status => "queued"}
-    end
-  end
-
-  def citiusd
-    if params[:type] == "transaction" && params[:hash].present?
-      AMQPQueue.enqueue(:deposit_coin, txid: params[:hash], channel_key: "citiusd")
-      render :json => {:status => "queued"}
-    end
-  end
+  end  
 
 end

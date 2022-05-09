@@ -1305,6 +1305,7 @@ en:
         eth_html: "<span>ETH</span>"
         usdt_html: "<span>USDT</span>"
         usdc_html: "<span>USDC</span>"
+        xrp_html: "<span>XRP</span>"
         price: Price
         change: "24h %"
       range_switch:

@@ -11,6 +11,9 @@ module Worker
       case currency
         when 'eth', 'usdt', 'usdc'
           address  = CoinRPC[currency].personal_newAccount("")
+        when 'xrp'
+          address, secret = CoinRPC[currency].getnewaddress
+          payment_address.secret = secret  
         else
           address  = CoinRPC[currency].getnewaddress("payment")
       end
