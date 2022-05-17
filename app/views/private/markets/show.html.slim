@@ -29,7 +29,7 @@ html lang="en"
           .left-cnt
             .cnt-select
                 h1.cnt_s_h1
-                  | BTC/BUSD
+                  =@market.name
                   span
                     i class="fa fa-caret-down"
 
@@ -40,44 +40,35 @@ html lang="en"
                   | Bitcoin Price
             .cnt-sel-to
                 .cst-f
-                  | 38,832.49
-                .cst-s.d_only
-                  | $38,824.35
-                .cst-s.m_only
-                  span.rcbs_f
-                    | 879.41
-                  span.rcbs_s
-                    | +2.35
+                  = Global[@market.id].ticker[:last]
           .right-cnt
             .tickerlist
               .rc-box
                 .rcb-f
                   | 24h Change
                 .rcb-s
-                  span.rcbs_f
-                    | 879.41
-                  span.rcbs_s
-                    | +2.35
+                  span.header_change_price
+                    | +0.01
               .rc-box
                 .rcb-f
                   | 24h High
                 .rcb-s
-                  | 38,646.96
+                  = Global[@market.id].ticker[:high]
               .rc-box
                 .rcb-f
                   | 24h Low
                 .rcb-s
-                  | 37,520.00
+                  = Global[@market.id].ticker[:low]
               .rc-box
                 .rcb-f
-                  | 24h Volume(BTC)
+                  | 24h Volume(#{@market.base_unit.upcase || "BTC"})
                 .rcb-s
-                  | 10,882.00
+                  = Rails.cache.read("xubiq:#{@market.id}_24h_volumes")[:base_volume] || 0
               .rc-box
                 .rcb-f
-                  | 24h Volume(BUSD)
+                  | 24h Volume(#{@market.quote_unit.upcase || "BTC"})
                 .rcb-s
-                  | 414,521,130.57
+                  = Rails.cache.read("xubiq:#{@market.id}_24h_volumes")[:quote_volume] || 0
       .market_main_tab
         .mm_tab
           .mmt_list

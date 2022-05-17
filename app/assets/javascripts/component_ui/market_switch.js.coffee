@@ -22,7 +22,6 @@ window.MarketSwitchUI = flight.component ->
     select.find('td.price')
       .attr('title', ticker.last)
       .html("<span class='#{trend}'>#{formatter.ticker_price ticker.last, decimalPoints}</span>")
-
     p1 = parseFloat(ticker.open)
     p2 = parseFloat(ticker.last)
     trend = formatter.trend(p1 <= p2)
@@ -38,6 +37,11 @@ window.MarketSwitchUI = flight.component ->
   @after 'initialize', ->
     @on document, 'market::tickers', @refresh
     @on @select('marketGroupItem'), 'click', @switchMarketGroup
+    ticker = gon.ticker
+    p1 = parseFloat(ticker.open)
+    p2 = parseFloat(ticker.last)
+    change = formatter.price_change(p1, p2)
+    $('.header_change_price').text(change)
 
     @select('table').on 'click', 'tr', (e) ->
       unless e.target.nodeName == 'I'

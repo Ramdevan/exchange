@@ -56,3 +56,7 @@ end
 every :day, at: '00:15' do
   rake 'stakings:subscription'
 end
+
+every 10.minutes do
+  rake 'calculate_24h_trade_volume:write_cache'
+end
