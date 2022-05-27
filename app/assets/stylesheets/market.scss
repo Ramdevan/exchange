@@ -2046,6 +2046,12 @@ transform: rotate(180deg);
 .btn {
   font-size: 13px;
 }
+.trade_history .data_tbody {
+  height: 40vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 0 5px;
+}
 
 @media only screen and (min-width: 800px) and (max-width: 1200px) {
   /* .cnt-main { width: 100% !important; overflow: auto; position: relative; } */

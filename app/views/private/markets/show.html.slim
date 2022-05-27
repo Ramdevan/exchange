@@ -30,14 +30,8 @@ html lang="en"
             .cnt-select
                 h1.cnt_s_h1
                   =@market.name
-                  span
+                  span.m_only
                     i class="fa fa-caret-down"
-
-                .cs-spa
-                  svg.iconLeave.css-bka6he[xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none"]
-                    path[d="M15.11 5.63L6 6.89 15.11 4v1.63zM17.61 6.89v11.2h-1.25V8.33L6 6.89h11.61z" fill="currentColor"]
-                    path[d="M6 6.89v11.16l.1.01.07.01.17.03h-.27l9.04 2.86V9.77L6 6.89zm3.4 3.2l1.87.6v1.84l-1.87-.59v-1.85zm1.87 7.66l-1.87-.59.03-3.85 1.88.59-.04 3.85z" fill="currentColor"]
-                  | Bitcoin Price
             .cnt-sel-to
                 .cst-f
                   = Global[@market.id].ticker[:last]
@@ -102,7 +96,7 @@ html lang="en"
 
       #trade_list.trade-grid-item.order-3.order-lg-3.order-md-3
         = render partial: 'market_list'
-        #market_box.tgi
+        #market_box.tgi.trade_history
           = render partial: 'market_trades'
 
     .trade_mw_container

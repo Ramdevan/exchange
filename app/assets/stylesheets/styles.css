@@ -43,8 +43,7 @@ h1,h2,h3,h4,h5,h6,p,span,table{font-family: 'Nunito Sans', sans-serif;}
 
 a {text-decoration: none !important;}
 .logo {
-    
-    width: 150px;
+    width:40px;
     object-fit: contain;
 }
 .dropdown:hover .dropdown-menu {
