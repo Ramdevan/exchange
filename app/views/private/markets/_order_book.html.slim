@@ -13,7 +13,7 @@
             th.amount.text-right = t('.Total')
       .buy_order_table: table.table.table-hover.bids
       .orderbook-ticker
-        .contractprice.status-primary
+        .contractprice.status-primary.green.red
           = Global[@market.id].ticker[:last]
           .ob_icon_arrow
             svg.arrow-icon.status-buy.css-3kwgah[xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" style="transform: rotate(180deg);"]
