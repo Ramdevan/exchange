@@ -128,6 +128,10 @@ Exchange::Application.routes.draw do
         end
       end
     end
+    
+    resources :stake_coins
+    resources :member_stake_coins
+    resources :member_stake_coin_credit_histories
 
     post '/pusher/auth', to: 'pusher#auth'
 
@@ -162,6 +166,12 @@ Exchange::Application.routes.draw do
     post 'locked_type_option' => "stakings#locked_type_option", as: :locked_type_option
     post 'early_redeem' => "stakings#early_redeem", as: :early_redeem
     post 'redeem_now' => "stakings#redeem_now", as: :redeem_now
+  end
+
+  namespace :admin do
+    resources :stake_coins do
+      post :update_status, on: :member
+    end
   end
 
   draw :admin

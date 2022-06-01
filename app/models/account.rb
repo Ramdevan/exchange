@@ -14,6 +14,8 @@ class Account < ActiveRecord::Base
   WITHDRAW_UNLOCK = :withdraw_unlock
   DEPOSIT = :deposit
   WITHDRAW = :withdraw
+  STAKING_LOCK = :staking_lock
+  STAKING_UNLOCK = :staking_unlock
   TRADE_FEES = :trade_fees
   ZERO = 0.to_d
   REFERRAL_FEES = :referral_fees

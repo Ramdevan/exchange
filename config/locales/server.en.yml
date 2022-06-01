@@ -1383,6 +1383,7 @@ en:
         sound: Sound
         notification: Notify
         funds: "Funds"
+        farm: "Farm"
         signout: "Sign Out"
         settings: "Profile"
         history: "History"
@@ -2342,7 +2343,8 @@ en:
     home: Home
     dashboard: Dashboard
     admin: Admin Panel
-    market: Trade
+    market: EXCHANGE
+    farm: FARM
     settings: Profile
     signin: Sign In
     signout: Exit

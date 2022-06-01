@@ -33,28 +33,12 @@ every :day, at: '11:59' do
   rake 'calculate_volume:for_30_days'
 end
 
-every :day, at: '2.00' do
-	rake 'lendings:auto_transfer'
-end
-
-every :day, at: '00.15' do
-	rake 'lendings:calculate_interest'
-end
-
-every :day, at: '00.15' do
-	rake 'lendings:standard_redeem'
-end
-
-every :day, at: '00.15' do
-	rake 'lendings:locked_interest_calculation'
-end
-
-every :day, at: '00.15' do
-	rake 'lendings:activity_interest_calculation'
-end
-
 every :day, at: '00:15' do
-  rake 'stakings:subscription'
+        rake 'stakings:add_daily_interest'
+end
+
+every :day, at: '05:00' do
+        rake 'stakings:process_matured_stakings'
 end
 
 every 10.minutes do

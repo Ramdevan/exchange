@@ -1,0 +1,110 @@
+
+<div class="lending-staking-form">
+    <h1>Edit Stake coin</h1>
+
+<%= form_for([:admin,@stake_coin]) do |f| %>
+    <p>
+        <%= f.label :currency %>
+        <%= f.collection_select(:currency, @currency, :id, :code, required: true) %>
+    </p>
+    <p>
+        <%= f.label :min_deposit %>
+        <%= f.number_field :min_deposit, step: :any, required: true, min: 0, class:'form-control' %>
+    </p>
+    <p>
+        <%= f.label :max_deposit %>
+        <%= f.number_field :max_deposit, step: :any, required: true, min: 0, class:'form-control' %>
+    </p>
+    <p>
+        <%= f.label :max_lot_size %>
+        <%= f.number_field :max_lot_size, step: :any, required: true, min: 0, class:'form-control' %>
+    </p>
+    <p>
+        <%= f.label :is_flexible %>
+       <%= f.check_box :is_flexible %>
+    </p>
+    <p>
+        <%= f.label :duration %>
+        <%= f.number_field :duration, min: 1, class:'form-control' %>
+    </p>
+Create APYs for the staking
+    <p>
+    <%= f.fields_for :variable_apy, @stake_coin.variable_apy do |t| %> 
+        <%=render partial: "variable_apy",locals: {t: t}%>
+    <%end%> 
+    <%= f.fields_for :variable_apy, @stake_coin.variable_apy.build do |t| %> 
+       <%=link_to_add_fields('Add Variable Apy', f, :variable_apy, {partial: "variable_apy",locals: {t: t}},{id: "add_var_apy"})%>
+    <%end%> 
+
+            
+        </p>
+        <div class="d-flex">
+        <div class="cre-submit">
+            <%= f.submit %>
+        </div>
+        <div>
+            <%= link_to 'Back', {:action => 'index'}, class:'back-btn' %>
+        </div>            
+    </div>
+    <% end %>
+
+    </div>
+<script>
+var j=$("div.stack_coin_variable_apy").length;
+var i = j-1;
+$("a#add_var_apy").click(function(e) {
+  i++;
+    var obj = $($(this).attr("data-form-prepend"));
+    obj.find("input, select, textarea").each(function() {
+    $(this).attr("name", function() {
+    return $(this)
+        .attr("name")
+        .replace(`${j}`, `${i}`);
+    });
+    $(this).attr("id", function() {
+    return $(this)
+        .attr("id")
+        .replace(`${j}`, `${i}`);
+    });
+    });
+    obj.find("label").each(function() {
+    $(this).attr("for", function() {
+    return $(this)
+        .attr("for")
+        .replace("0", `${i}`);
+    });
+    });
+    obj.insertBefore(this);
+  return false;
+});
+$("#stake_coin_is_flexible").change(function(){
+    if(this.checked){
+         $("#stake_coin_duration").val(null);
+        $("#stake_coin_duration").parent().hide();
+    }else{
+        $("#stake_coin_duration").parent().show();
+    }
+})
+$(document).ready(function(){
+    var is_flexible = document.getElementById('stake_coin_is_flexible');
+
+    if (is_flexible.checked) {
+      
+    $("#stake_coin_duration").val(null);
+    $("#stake_coin_duration").parent().hide();
+
+    }
+})
+
+$('#stake_coin_currency').addClass('form-control');
+$(document).on('click', '.remove_fields', function(e){
+    if(e.currentTarget.parentElement.children[1].children[0].value == ''){
+        i--;
+        e.currentTarget.parentElement.remove()
+    }
+    else{
+        e.currentTarget.parentElement.children[0].value = true;
+        e.currentTarget.parentElement.hidden = true;
+    }
+})
+</script>

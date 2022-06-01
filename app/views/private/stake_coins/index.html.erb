@@ -1,0 +1,132 @@
+<table class='table table-condensed table-hover'>
+<tr>
+    <th class="font-14">Id</th>
+    <th class="font-14">Currency</th>
+    <th class="font-14">Minimum Deposit</th>
+    <th class="font-14">Maximum Deposit</th>
+    <th class="font-14">Duration</th>
+    <th class="font-14">Staking Type</th> 
+    <th class="font-14">Apy</th>
+    <th class="font-14">History</th>
+    <th class="font-14">Action</th>
+</tr>
+<% @stake_coins.each_with_index do |stake_coin, index|%>
+    <tr>
+        <td><%= index + 1 %></td>
+        <td><%= stake_coin.currency %></td>
+        <td><%= stake_coin.min_deposit %></td>
+        <td><%= stake_coin.max_deposit %></td>
+        <td><%= stake_coin.duration %></td>
+        <%if(stake_coin.is_flexible)%>
+            <td>Flexible</td>
+        <%else%>
+            <td>Locked</td>  
+        <%end%>
+        <td><%=stake_coin.current_variable_apy.apy%></td>
+        <td><%= link_to "Staking History", member_stake_coins_path(stake_coin_id: stake_coin.id),class:'history' %></td>
+        <%if(stake_coin.is_active)%>
+            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target=<%="#exampleModal#{stake_coin.id}"%>>
+  Stake Now
+</button></td>
+        <%else%>
+            <td style="text-align: center;">-</td>  
+        <%end%>
+<div class="modal fade" id=<%="exampleModal#{stake_coin.id}"%> tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Stake Now</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+            <% member_stake_coin = MemberStakeCoin.new %>
+            <%= form_for([member_stake_coin]) do |f| %>
+                <p><%=f.number_field :stake_coin_id, value: stake_coin.id,type: :hidden%></p>
+                 <p>
+                    <%= f.label :amount %>
+                    <%= f.number_field :amount, step: :any, required: true, class:'form-control' %>
+                </p>
+                
+      </div>
+      <div class="modal-footer">
+        <div class="col-6">
+            <div class="input-customize">
+                <%= f.submit %>
+            </div>
+        </div>
+        <div class="col-6">
+            <button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Close</button>
+        </div>
+            <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+    </tr>
+<% end %>
+</table>
+
+<style type="text/css">
+    div#guide{
+        display: none;
+    }
+    div#content{
+        width: 100%;
+        border-left: none!important;
+    }
+    .history {
+        color: #fff !important;
+        background-color: #54d8df;
+        border-radius: 4px;
+        font-size: 13px;
+        padding: 8px 20px;
+        border: 1px solid #54d8df;
+        transition: all 0.4s ease-in-out;
+        display: inline-block;
+        margin-top: 0;
+        margin-bottom: 15px;
+        float: left;
+        width: 100%;
+        text-align: center;
+    }
+    .font-14{
+            font-size: 14px;
+    }
+    .panel-heading {
+        display: none;
+        border-bottom: none;
+    }
+    h5#exampleModalLabel {
+        display: inline-block;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .input-customize input {
+        box-shadow: none;
+        background-color: #27a6ad;
+        color: #ffffff;
+        border: 1px solid #27a6ad;
+        width: 100%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 600;
+    }
+    .btn-close {
+        width: 100%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 600;
+    }
+    .table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td{
+        font-size: 12px;
+    }
+</style>
+<script type="text/javascript">
+    $('.input-customize input').val('Confirm')
+</script>
