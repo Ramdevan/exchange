@@ -125,4 +125,28 @@ module APIv2
       super code: 2015, text: message, status: err_status, exist: record_exist
     end
   end
+
+  class CreateMemberStakeCoinError < Error
+    def initialize(e)
+      super code: 2016, text: "Failed to invest in the stake plan. Reason: #{e}", status: 400
+    end
+  end
+
+  class StakeCoinNotFoundError < Error
+    def initialize(id)
+      super code: 2017, text: "StakeCoin##{id} doesn't exist.", status: 404
+    end
+  end
+
+  class MemberStakeCoinNotFoundError < Error
+    def initialize(id)
+      super code: 2019, text: "MemberStakeCoin##{id} doesn't exist.", status: 404
+    end
+  end
+
+  class RedeemLockedInvestmentError < Error
+    def initialize(e)
+      super code: 2021, text: "Couldn't redeem the investment. Reason: #{e}.", status: 400
+    end
+  end
 end

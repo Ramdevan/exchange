@@ -35,6 +35,9 @@ module APIv2
     mount K
     mount Tools
     mount Activations
+    mount StakeCoins
+    mount MemberStakeCoins
+    mount MemberStakeCoinCreditHistories
 
     mount APIv2::Withdraws
 
