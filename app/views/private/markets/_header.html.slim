@@ -14,17 +14,14 @@ header
         li.nav-item
           = link_to 'Funds', funds_path, class: 'nav-link'
       .my-2.my-md-0.d_flex_center
-        .reg_log
-          =link_to 'Log In', funds_path, class:'btn btn_login'
-          =link_to 'Register', funds_path, class:'btn btn_register'
-
         ul.navbar-nav.mr-auto
           //li.nav-item
             a.nav-link href="#"  INVITE &amp; EARN 50% FEES
           - if current_user
-            = render partial: 'settings'
+              = render partial: 'settings'
           - else
-                      
+              =link_to 'Log In', signin_path, class:'btn btn_login'
+              =link_to 'Register', signup_path, class:'btn btn_register'
           
           li#themeChange
             a href="#" class="themeBox lightTheme" id="lightThemeBtn" title="Light"

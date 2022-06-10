@@ -17,7 +17,7 @@ window.MarketSwitchUI = flight.component ->
 
   @updateMarket = (select, ticker) ->
     trend = formatter.trend ticker.last_trend
-    decimalPoints = gon.currencies[ticker.quote_unit].precision
+    decimalPoints = ticker.price_precision || gon.currencies[ticker.quote_unit].precision
 
     select.find('td.price')
       .attr('title', ticker.last)
