@@ -245,6 +245,20 @@ module ApplicationHelper
     "#{number.first(3)}#{mask[3,number.size-7]}#{number.last(4)}"
   end
 
+  def partial_email(member)
+    email = member.email
+    mail_name = email.split('@').first
+    mail_domain = email.split('@').last
+
+    first_set = mail_name[0..2]
+    last_set = mail_domain
+
+    middle_set_char = mail_name[3..-1]
+    middle_set = "*" * (middle_set_char.size)
+    #mask = number.gsub(/\d/, '*')
+    "#{first_set}#{middle_set}@#{last_set}"
+  end
+
   def calculate_duration_date(duration)
     (Date.today + duration.to_i.days)
   end

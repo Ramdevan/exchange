@@ -31,7 +31,9 @@
               .user-name.w-75
                 h6 = current_user.name
                 p
-                  small Last login time: 2020-08-03 17:37:07
+                  small
+                    | Last login time:
+                    = current_user.last_login_time
 
             .identity-verify.d-flex
                 .w-75
@@ -49,6 +51,8 @@
                       a href="#" class="disabled" role="button"
                         i.green.fa.fa-check-circle
                         span = t('.email.activated')
+                      .notes
+                        p.text-center = t('.email.hint', hint: partial_email(current_user))
                     - else
                       = link_to t('.email.resend'), new_activation_path, class: 'btn btn-sm primary-btn'
 

@@ -12,7 +12,7 @@ li#settings
       i.fa.fa-comments
       span = t('header.tickets')
       | &nbsp;
-      span.badge = current_user.unread_comments.count
+      span.badge = current_user.tickets.open.size
     li.dropdown-item: a href = referrals_path
       i.fa.fa-plus-circle
       span My Referrals

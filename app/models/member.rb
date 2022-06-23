@@ -361,6 +361,11 @@ class Member < ActiveRecord::Base
     Phonelib.parse(phone_number).country
   end
 
+  def last_login_time
+     login = Loginhistory.where(member_id: self.id)
+     login.present? ? login.last.login_time : '2020-08-03 17:37:07'
+  end
+
   private
 
   def sanitize

@@ -1442,6 +1442,7 @@ en:
           resend: Send it again
           activated: Verified
           go: Set
+          hint: "Verified email %{hint}"
         phone_number:
           title: Phone Number
           description: Providing a phone number will make your account more secure.
