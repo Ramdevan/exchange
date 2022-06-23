@@ -5,7 +5,8 @@
       h3.text-center = t('.title')  
       = f.input :country, as: :country, priority: [  ], selected: @country_code
       = f.input :phone_number do
-        .input-group
+        .input-group.customize-div
+          span.custom-span id = 'country_code' +93
           == f.text_field :phone_number, value: @phone_number, label: t('.phone_number'), class: 'string optional form-control', placeholder: t('.phone_number')
           .input-group-btn
             button.btn.btn-primary type='submit' name="commit" value="send_code" data-orig-name=t('.send_code') data-alt-name=t('.send_code_alt') = t('.send_code')
@@ -23,5 +24,3 @@
     = t('.description')
   p.text-warning
     = t('.warning')
-
-

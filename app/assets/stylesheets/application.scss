@@ -952,3 +952,16 @@ header nav .collapse .nav-menu-l li {
     font-weight: 14p;
     padding-bottom: 19px;
 }
+
+.custom-span {
+    position: absolute;
+    top: 7px;
+    left: 10px;
+    z-index: 9;
+    padding-right: 5px;
+    border-right: 1px solid #ced4da;
+}
+
+.customize-div input {
+    padding-left: 60px;
+}
