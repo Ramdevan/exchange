@@ -1,9 +1,9 @@
-.container
-  .contact-section
-    h2.ct-section-head CONTACT US
+.row.contact-section.justify-content-center
+  .col-lg-6.col-md-8.col-sm-12
+    h2.ct-section-head.login_title.text-center CONTACT US
     .row.contact-fields
-      .col-md-8.left-form
-         form action="/sendmail" method="post" 
+      .col-md-12.left-form
+          form action="/sendmail" method="post" 
           .form-group
             label.sr-only for="name"  First Name *
             input#fname.required.form-control name="name" placeholder=("First Name*") required="" type="text" /
@@ -16,5 +16,5 @@
           .form-group
             label.sr-only for="comment"  Type your message here
             textarea#comment.required.form-control[name="comment" placeholder="Type your message here*" required="" rows="6"]
-          button.btn.btn-accent type="submit"  Submit
-          
+          button.btn.btn-accent.btn-theme-primary.w-100 type="submit"  Submit
+        

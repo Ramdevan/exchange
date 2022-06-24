@@ -33,12 +33,12 @@ $ ->
     autohidemode: true
     cursorborder: "none"
 
-  $('.themeBox').click ->
-    lighttheme_selected = $(this).hasClass('lightTheme')
-    document.getElementById('lightTheme').setAttribute 'href', if lighttheme_selected then '/assets/market_lighttheme' else ''
-    setTimeout ->
-      if lighttheme_selected then tvWidget.changeTheme('light') else tvWidget.changeTheme('dark')
-    , 100
+  #$('.themeBox').click ->
+  #  lighttheme_selected = $(this).hasClass('lightTheme')
+  #  document.getElementById('lightTheme').setAttribute 'href', if lighttheme_selected then '/assets/market_lighttheme' else ''
+  #  setTimeout ->
+  #    if lighttheme_selected then tvWidget.changeTheme('light') else tvWidget.changeTheme('dark')
+  #  , 100
 
   $('.chartBtn').click ->
     if $('.chartBox').hasClass('active') == false

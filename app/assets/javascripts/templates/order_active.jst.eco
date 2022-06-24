@@ -7,13 +7,13 @@
   <td class='kind text-left'>
     <span class='label label-<%= @kind %>'><%= formatter.short_trade @kind %></span>
   </td>
-  <td class='price text-center  <%= formatter.trend @kind %>'>
+  <td class='price  <%= formatter.trend @kind %>'>
     <span><%- formatter.mask_fixed_price @price %></span>
   </td>
-  <td class='volume text-center'>
+  <td class='volume'>
     <span><%- formatter.mask_fixed_volume @volume %></span>
   </td>
-  <td class='amount text-center'>
+  <td class='amount'>
     <span><%- formatter.mask_fixed_amount @volume, @price, 'ask' %></span>
   </td>
 </tr>

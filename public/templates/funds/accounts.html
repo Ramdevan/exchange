@@ -5,8 +5,8 @@
     data-currency="{{account.currency}}">
 
     <td class="currency-logo" ng-click="accountsCtrl.deposit(account); $event.preventDefault()">
-      <img ng-src="/icon-{{account.currency}}.png" alt="">
-      <span class="currency-symbol">{{ account.currency | uppercase }}</span>
+      <div><img ng-src="/icon-{{account.currency}}.png" alt=""></div>
+      <div><span class="currency-symbol">{{ account.currency | uppercase }}</span></div>
     </td>
 
     <td class="currency-balance-col">

@@ -110,19 +110,21 @@ ul.admin_menu li a {
     padding: 15px 15px;
     color: #fff;
 }
-
+ul.admin_menu li a:hover, ul.admin_menu li a:focus, ul.admin_menu li.active>a {
+    color: #fcd535;
+}
 ul.admin_menu {
     padding: 0;
     margin: 20px 10px;
 }
 .navbar-brand .logo {
-    width: 200px;
+    width: 150px;
     object-fit: contain;
-    height: 70px;
+    height: 55px;
 }
 .logo {
     text-align: center;
-    padding: 10px;
+    padding: 5px;
 }
 .panel-primary {
     background-color: #fff;
@@ -305,3 +307,7 @@ div
 .padding-top-5-per{
     padding-top: 5%;
 }
+.content .container {
+    max-width: 100%;
+}
+.dropdown-item i { margin-right: 5px; }

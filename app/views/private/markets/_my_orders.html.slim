@@ -15,17 +15,15 @@
       #my_orders_wrapper   
         #my_orders
           .card_body
-            .data_thead
+            .data_main.scroll_css
               table.table.table-sm.mb-0
-                thead
+                thead.data_thead
                   tr
                     th scope="col" Time
                     th scope="col" Type
                     th scope="col" Price
                     th scope="col" Amount
                     th scope="col" Total
-            .data_tbody.scroll_css              
-              .empty-row.p-3 = t('.no_open_orders')
-              table.table.table-hover.table-responsive-sm
-                tbody
+                tbody.data_tbody
+            .empty-row.p-3 = t('.no_open_orders')    
   = render partial: 'mask'

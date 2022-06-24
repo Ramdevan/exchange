@@ -1,21 +1,19 @@
 .header 
               
-.panel.panel-default.mt-4#Loginhistory
-    
-    .panel-body
-      .headerdesign
-        thead: tr 
-          th = t(".header")  
-      .col-xs-24
-        table.table.table-condensed.table-striped
-          thead: tr
-            th = t(".ip")
-            th = t(".country")
-            th = t(".os")
-            th = t("browser")
-            th = t(".login_time")
-          tbody.list
-            / = binding.pry
-            = render partial: '/loginhistory/history', collection: @login
-        .pull-right
-          = paginate @login
+.panel.panel-default#Loginhistory
+    h3.headerdesign
+      thead: tr 
+        th = t(".header")  
+    .col-xs-24
+      table.table.table-condensed.table-striped
+        thead: tr
+          th = t(".ip")
+          th = t(".country")
+          th = t(".os")
+          th = t("browser")
+          th = t(".login_time")
+        tbody.list
+          / = binding.pry
+          = render partial: '/loginhistory/history', collection: @login
+      .pull-right
+        = paginate @login

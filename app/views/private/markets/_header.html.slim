@@ -24,10 +24,14 @@ header
               =link_to 'Register', signup_path, class:'btn btn_register'
           
           li#themeChange
-            a href="#" class="themeBox lightTheme" id="lightThemeBtn" title="Light"
-              i class="far far fa-sun"
-            a href="#" class="themeBox darkTheme" id="darkThemeBtn" title="Dark"
-              i class="far fa-moon"
+            label.themeBox.lightTheme[for="radio-one"]
+              input#radio-one[type="radio" name="switch-one" value="light"]
+                span
+                  img src="/assets/sun.png"
+            label.themeBox.lightTheme[for="radio-two"]
+              input#radio-two[type="radio" name="switch-one" value="dark" checked=""]
+              span
+                i class="far fa-moon"
 
 /.h-notes-main
   .h-notes-inner.trade_mw

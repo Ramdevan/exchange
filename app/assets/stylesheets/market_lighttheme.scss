@@ -6,7 +6,7 @@
 --bg-dark2: #ffffff;
 --bg-dark3: #fafafa;
 --light-color1:#c7c8c9;
---light-color2:#444;
+--light-color2:#222;
 --border-color:#ddd; 
 }
 body {
@@ -46,7 +46,10 @@ p,
 i,
 ul {
   font-family: 'Poppins', sans-serif;
-  color:#444;
+  color:#222;
+}
+a {
+    color: #c99400;
 }
 a {
     text-decoration: none!important;
@@ -100,6 +103,9 @@ a#lightThemeBtn {
     background-color: var(--primary-color);
     border-radius: 30px;
     color: #fff !important;
+}
+li a#lightThemeBtn img{
+    filter: none;
 }
 a#lightThemeBtn i {
     color: #fff;
@@ -188,9 +194,40 @@ card_header ul li, ul#pills-tab-buysell li a, #openmy-order li a {
 .h-notes-main {
     border-color: #ddd;
 }
-.cnt-select h1, .rcb-s, .cst-s, .cnt-main {
+.cnt-select h1, .rcb-s, .cst-s, .cnt-main, .chart_area .nav-tabs li a, .rcb-f, .card_header li a, .data_thead .table th, .alert_msg p.cur_label, .btn_login, .walletval p, .data_thead .table th, thead.data_thead th {
     color: #222222;
+}
+.navbar-dark .navbar-nav .nav-link, li#settings a {
+    color: #222222;
+}
+.navbar-dark .navbar-nav .show > .nav-link, .navbar-dark .navbar-nav .active > .nav-link, .navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .nav-link.active {
+    color: #c99400;
+}
+header {
+    background-color:#ffffff;
+    border-color: #dddddd;
+}
+.input_cus input, .input_cus input, .input_cus input:active, .input_cus input:focus {
+    color: #000;
 }
 .cs-spa {
     color: #666666;
+}
+a:hover, .chart_area .nav-tabs li a:hover, .chart_area .nav-tabs li a.active {
+    color: #c99400;
+}
+ul.pills_nav li a.active, .drop-down-custom-li li a.active {
+    border-color: #c99400;
+}
+.walletval .btn {
+    color: #222222;
+}
+.status-success i {
+    color: #28a745;
+}
+li#themeChange {
+    background-color: #eeeeee;
+}
+#my_orders .data_main .table thead tr:nth-child(1) th {
+    background: #fff;
 }

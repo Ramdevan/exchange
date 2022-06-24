@@ -737,7 +737,7 @@ en:
       captcha_expired: Captcha Expired try login again
     show_history:
       ip: IP Address
-      login_time: Login_time
+      login_time: Login Time
       country: Country 
       os: OS
       browser: Browser
@@ -1410,9 +1410,9 @@ en:
         amount: Amount
         time: Place Time
       mask:
-        warning: Please <a class=text-up href='/signup'>Sign up</a> or <a class=text-up
-          href='/signin'>Sign in</a> for operation
-        ask_sign: <a class=text-up href='/signup'>Sign up</a>OR<a class=text-up href='/signin'>Sign in</a>
+        warning: Please <a href='/signup'>Register</a> or <a 
+          href='/signin'>Log In</a> for operation
+        ask_sign: <a href='/signup'>Register</a>OR<a href='/signin'>Log In</a>
       klime_chart:
         title: Candlestick Charts
       global:
@@ -1705,7 +1705,7 @@ en:
       reset_password:
         password: New Password
       ticket:
-        content: More detail
+        content: More Description
       withdraw:
         bank:
           fund_extra: Bank
@@ -2344,11 +2344,11 @@ en:
     home: Home
     dashboard: Dashboard
     admin: Admin Panel
-    market: EXCHANGE
-    farm: FARM
+    market: Exchange
+    farm: Farm
     settings: Profile
     signin: Sign In
-    signout: Exit
+    signout: Sign Out
     signup: Sign Up
     login_via_weibo: Login via Weibo
     funds: Funds
@@ -2481,7 +2481,7 @@ en:
     new:
       notice: An email has been sent to your mailbox, please check it for verification as soon as possible. If you do not received it , please click "send it again" button.
       verified: Your email adress has been verified successfully.
-      login_required: login required!
+      login_required: Login required!
       tip: Activation link was sent to %{email}
       spam: Please check your spam folder for the activation link.
     edit:
@@ -2669,7 +2669,7 @@ en:
       hints:
         app: Google Authenticator will re-generate a new password every thirty seconds,
           please input timely.
-        sms: We'll send a text message to you phone with verify code.
+        sms: We'll send a text message to your phone with verify code.
   verify:
     google_auths:
       edit:

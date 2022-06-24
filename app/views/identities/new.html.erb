@@ -30,7 +30,7 @@
                                                                {class: 'form-control', prompt: 'Select Country', required: true, id: "inputCountry"}) %>
             <p class="input_title">Phone Number</p>
             <%= text_field_tag 'phone_number', @identity.phone_number, required: true, class: 'form-control', id: "inputPhoneNo", required: true, placeholder: t('simple_form.placeholders.session.phone_no') %>
-            <p class="input_title">E-Mail Address</p>
+            <p class="input_title">E-mail Address</p>
             <%= f.email_field :email, name: 'email', autofocus: 'true', class: 'form-control', id: "inputEmail", required: true, placeholder: t('simple_form.placeholders.session.email') %>
             <p class="input_title">Password</p>
             <%= f.password_field :password, name: 'password', class: 'form-control', id: "inputPassword", required: true, placeholder: 'Password' %>
@@ -38,8 +38,8 @@
             <%= f.password_field :password_confirmation, name: 'password_confirmation', class: 'form-control', id: "inputConfirmPassword", required: true, placeholder: 'Confirm Password' %>
             <button class="btn btn-theme-primary w-100 mt-3" type="submit">Next</button>
           <% end %>
-          <div class="form-group ">
-            <p>Already have an account? <a href="<%= signin_path %>">Login</a></p>
+          <div class="form-group text-center">
+            <p>Already have an account? <a href="<%= signin_path %>">Sign In</a></p>
           </div>
         </div>
       </div>

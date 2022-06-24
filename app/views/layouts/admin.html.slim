@@ -47,7 +47,7 @@ html lang="en"
               li.dropdown class = check_active('withdraws')
                 = link_to 'javascript:;', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do
                   span                    
-                    i.fa.fa-wallet 
+                    i.fab.fa-get-pocket
                     = t('admin_header.withdraws')
                   span.caret
                 ul.dropdown-menu.admin-dropdown
@@ -84,7 +84,7 @@ html lang="en"
                 li = link_to 'Referral Commissions', admin_referral_commissions_path
             li = link_to "<i class='fa fa-money-bill-alt'></i>#{('Trade Fees')}".html_safe, main_app.admin_fees_path 
             li = link_to "<i class='fa fa-money-check-alt'></i>#{('Commissions')}".html_safe, main_app.admin_commissions_path
-            li = link_to 'Stakings', admin_stake_coins_path
+            li = link_to "<i class='fa fa-coins'></i>#{('Stakings')}".html_safe, admin_stake_coins_path
             /li = link_to "<i class='fa fa-robot'></i>#{t('admin_header.bots')}".html_safe, admin_bots_path
 
             / li.dropdown
@@ -116,7 +116,7 @@ html lang="en"
                     | Profile 
                   a.dropdown-item href="/signout" 
                     i.fas.fa-external-link-alt
-                    span.translation_missing title=("translation missing: en.logout")  Logout
+                    span.translation_missing title=("translation missing: en.logout")  Sign Out
 
         .container
           = render 'shared/flash'

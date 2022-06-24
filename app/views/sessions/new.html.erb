@@ -7,18 +7,18 @@
           <div align="center">
             <%= render 'shared/flash' %>
           </div>
-          <h2 class='login_title text-center'>Xubiq Login</h2>
+          <h2 class='login_title text-center'>Xubiq Log In</h2>
           <!-- <a href="/"><%= image_tag "favicon.png", :class => "authLogo" %></a> -->
             <!-- <h5 class="authMsg">Please register your details and as soon we are live we will let you know</h5> -->
           
           <%= form_for @identity, url: '/auth/identity/callback', method: :post, html: { class: 'form-signin' } do |f| %>
             <span id="reauth-email" class="reauth-email"></span>
-            <p class="input_title">E-Mail Address</p>
+            <p class="input_title">E-mail Address</p>
             <%= f.text_field :email, name: 'auth_key', autofocus: 'true', class: 'form-control', id: "inputEmail", required: true, placeholder: t('simple_form.placeholders.session.email') %>
             <p class="input_title">Password</p>
             <%= f.password_field :password, name: 'password', class: 'form-control', id: "inputPassword", required: true, placeholder: '******' %>
             
-            <button type="button" class="btn btn-theme-primary w-100 mt-3" data-toggle="modal" data-target="#myModallogin">Login</button>
+            <button type="button" class="btn btn-theme-primary w-100 mt-3" data-toggle="modal" data-target="#myModallogin">Log In</button>
          <% end %>
           <div class="login-btm">
           <p><a class="" href="<%= new_reset_password_path %>">
@@ -48,7 +48,7 @@
             <div class="col-12">
                 <div class="slidercaptcha card modal-contentlogin">
                     <div class="card-header  ">
-                        <span>Captcha verification!</span>
+                        <span>Captcha Verification!</span>
                           <button type="button" class="close btn-close-custom" data-dismiss="modal">&times;</button>
                         
                     </div>

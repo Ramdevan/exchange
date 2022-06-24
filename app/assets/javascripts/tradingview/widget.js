@@ -184,7 +184,39 @@ class Datafeed {
   }
 }
 
+$(document).ready(function() {
+    var modeFormat;
+    modeFormat = localStorage.getItem('mode');
+    if (modeFormat === 'light') {
+      $('input[name="switch-one"][value="light"]').prop('checked', true);
+      $('body').removeClass('active');
+      localStorage.setItem('mode', 'light');
+      document.getElementById('lightTheme').setAttribute('href', '/assets/market_lighttheme');
+    } else {
+      $('input[name="switch-two"][value="dark"]').prop('checked', true);
+      $('body').addClass('active');
+      localStorage.setItem('mode', 'dark');
+    }
+    $('input[name="switch-one"]').click(function() {
+      var darkLayer;
+      darkLayer = $('input[name="switch-one"]:checked').val();
+      if (darkLayer === 'dark') {
+        $('body').addClass('active');
+        localStorage.setItem('mode', $(this).val());
+        document.getElementById('lightTheme').setAttribute('href', ' ');
+        tvWidget.changeTheme('dark');
+      } else {
+        $('body').removeClass('active');
+        localStorage.setItem('mode', $(this).val());
+        document.getElementById('lightTheme').setAttribute('href', '/assets/market_lighttheme');
+        tvWidget.changeTheme('light');
+      }
+    });
+});
+  
+        
 TradingView.onready(function() {
+    modeFormat = localStorage.getItem('mode')
 	var widget = window.tvWidget = new TradingView.widget({
         symbol: gon.market.id.toUpperCase(),
         // BEWARE: no trailing slash is expected in feed URL
@@ -205,7 +237,7 @@ TradingView.onready(function() {
         fullscreen: false,
         autosize: true,
         debug: false,
-        theme: 'dark'
+        theme: modeFormat
 	});
 
 });
