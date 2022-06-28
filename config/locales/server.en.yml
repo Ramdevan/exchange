@@ -2862,7 +2862,7 @@ en:
   about: About
   news: News
   support: Support
-  export_to_xls: Export To Xls
+  export_to_xls: Export to Excel
   currency_xlsx: Currency
   reason: Reason
   income: Income

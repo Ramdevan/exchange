@@ -100,6 +100,9 @@ ul.tr_menu {
     margin: 0;
     align-items: center;
 }
+ul.tr_menu li a {
+    color: #222;
+}
 
 ul.admin_menu li {
     list-style: none;
@@ -111,7 +114,7 @@ ul.admin_menu li a {
     color: #fff;
 }
 ul.admin_menu li a:hover, ul.admin_menu li a:focus, ul.admin_menu li.active>a {
-    color: #fcd535;
+    color: #FFC300;
 }
 ul.admin_menu {
     padding: 0;
@@ -135,13 +138,14 @@ ul.admin_menu {
 
 .panel-heading {
     padding: 15px 10px;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 600;
 }
 .table thead th {
     vertical-align: bottom;
     border-bottom: 1px solid #dee2e6;
     font-weight: 500;
+    text-transform: uppercase;
 }
 .table th, .table td {
     padding: 0.75rem;
@@ -222,7 +226,7 @@ ul.admin_menu {
     border-radius: 4px;
 }
 .tictime i {
-    color: #64B5F6;
+    /* color: #64B5F6; */
 }
 input[type="search"] {
     background-color: #fff;
@@ -311,3 +315,14 @@ div
     max-width: 100%;
 }
 .dropdown-item i { margin-right: 5px; }
+.word-break {
+    word-break: break-word;
+}
+.tictime i { margin-right:5px; }
+.pl-10 { padding-left: 10px; }
+.alert i {
+    margin-right: 10px;
+}
+.alert p {
+    margin-bottom: 0px;
+}

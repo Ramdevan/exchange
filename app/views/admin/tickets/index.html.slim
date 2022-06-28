@@ -10,7 +10,7 @@
 
   ul.list-group
     - @tickets.each do |t|
-      li class = (t.unread?(current_user) || t.comments.unread_by(current_user).any? ? ["unread", "list-group-item"] : ["list-group-item"])
+      li class = (t.unread?(current_user) || t.comments.unread_by(current_user).any? ? ["unread", "list-group-item word-break"] : ["list-group-item word-break"])
 
         .row
           .col-lg-12      
@@ -23,7 +23,7 @@
               span = time_ago_in_words t.created_at
           .col-lg-3
             p.tic_count ="#{t('admin.tickets.comments_count')}(#{t.comments.count})"
-          .col-lg-3.tic_closed     
+          .col-lg-3.tic_closed.text-right  
               - unless t.closed?
                 = link_to(t('admin.tickets.close'), close_admin_ticket_path(t.id), confirm: t("private.tickets.close_confirm"), method: :patch)
             

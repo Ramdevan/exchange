@@ -3,7 +3,7 @@
   <div class="form-group">
     <div class="d-flex">
     <label class="select required control-label" for="withdraw_fund_source">{{"funds.withdraw_coin.label" | t}}</label>
-    <p class="help-block ml-auto"><a href="javascript:;" ng-click="openFundSourceManagerPanel()" ng-bind="'funds.withdraw_coin.manage_withdraw' | t"></a></p>
+    <p class="help-block ml-auto"><a class="btn btn-secondary" href="javascript:;" ng-click="openFundSourceManagerPanel()" ng-bind="'funds.withdraw_coin.manage_withdraw' | t"></a></p>
     </div>
     <div class="" ng-if="fund_sources().length">
       <select id="fund_source" class="select required form-control" name="fund_source"
@@ -23,7 +23,7 @@
   <div class="form-group required">
     <div class="d-flex">
       <label class="decimal required control-label" for="withdraw_sum">{{"funds.withdraw_coin.amount" | t}}</label>
-      <p class="help-block ml-auto"><a target="_balance" href="/fee">{{"funds.withdraw_coin.fee_explain" | t}}</a></p>
+      <p class="help-block ml-auto"><a class="btn btn-info" target="_balance" href="/fee">{{"funds.withdraw_coin.fee_explain" | t}}</a></p>
     </div>
     <div class="">
       <div class="input-group">

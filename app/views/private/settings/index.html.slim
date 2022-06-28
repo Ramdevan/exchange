@@ -38,7 +38,7 @@
             .identity-verify.d-flex
                 .w-75
                   h5
-                    i.fas.fa-envelope
+                    i.fas.fa-envelope.green
                     = t('.email.title')
                   .notes
                     - if current_user.activated?
@@ -48,7 +48,7 @@
                 .w-25.ml-5.text-center.flex-center
                   p.mt-4               
                     - if current_user.activated?
-                      a href="#" class="disabled" role="button"
+                      a href="#" class="disabled green" role="button"
                         i.green.fa.fa-check-circle
                         span = t('.email.activated')
                       .notes
@@ -59,13 +59,13 @@
             .identity-verify.d-flex
                 .w-75
                   h5
-                    i.fas.fa-mobile-alt
+                    i.fas.fa-mobile-alt.green
                     = t('.phone_number.title')
                   .notes
                     p.text-ignore = t('.phone_number.description')
                 .w-25.ml-5.text-center.flex-center
                   - if current_user.sms_two_factor.activated?
-                    a href="#" class="disabled" role="button"
+                    a href="#" class="disabled green" role="button"
                       i.green.fa.fa-check-circle
                       span = t('.phone_number.verified')
                     .notes
@@ -80,7 +80,7 @@
             .w-75
               h5 Identity Verification
               h6
-                i.fas.fa-user-circle
+                i.fas.fa-user-circle.green
                 = t('.verification.title')
               .notes
                 p.text-ignore = t('.verification.description')
@@ -90,9 +90,9 @@
             .w-25.text-center.flex-center
               p.mt-4              
                 - if current_user.id_document_verified?
-                  a href="#" class="disabled" role="button"
+                  a href="#" class="disabled green" role="button"
                     i.green.fas.fa-check-circle
-                  span = t('.verification.verified')
+                    span = t('.verification.verified')
                 - else
                   = link_to t('.verification.go'), edit_id_document_path, class: 'btn btn-sm primary-btn'
           
@@ -102,7 +102,7 @@
             .d-flex
               .w-75
                 h5
-                  i.fas.fa-user-shield
+                  i.fas.fa-user-shield.green
                   = t('.two_factor_auth.title')
                 .notes
                   p.text-ignore = t('.two_factor_auth.description')
@@ -122,7 +122,7 @@
             .d-flex
               .w-75
                 h5                
-                  i.fas.fa-lock
+                  i.fas.fa-lock.green
                   = t('.passwords.title')
                 .notes
                   p.text-ignore = t('.passwords.description')
@@ -140,7 +140,7 @@
               .d-flex
                 .w-75                  
                   h5
-                    i.fas.fa-code
+                    i.fas.fa-code.green
                     = t('.api_tokens.title')
                   .notes
                     p.text-ignore = t('.api_tokens.description')
@@ -155,7 +155,7 @@
             .d-flex
               .w-100               
                 h5
-                  i.fas.fa-share
+                  i.fas.fa-share.green
                   = "Referrals"
                 .notes
                   p.text-ignore = "Use this link to refer other users"              

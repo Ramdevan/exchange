@@ -17,7 +17,7 @@
 }
 
 :root {
-  --primary-color: #fcd535;
+  --primary-color: #FFC300;
   --secondary-color: #0ecb81;
   --tertiary-color: #f6465d;
   --bg-dark1: #13151a;
@@ -28,7 +28,7 @@
   --border-color: #252930;
 
 
-  --theme-primary: #fcd535;
+  --theme-primary: #FFC300;
 
   --buy-color: #02c076;
   --sell-color: f84960;
@@ -829,7 +829,7 @@ ul#marketDropdownMenu li a {
 
 :root {
 
-  --theme-primary: #fcd535;
+  --theme-primary: #FFC300;
 
   --buy-color: #02c076;
   --sell-color: #f84960;
@@ -1700,7 +1700,7 @@ header .navbar { padding-top: 10px; padding-bottom: 10px; }
 
 .chart_area .nav-tabs li a { color: #848e9c; }
 .chart_area .nav-tabs li a:hover, .chart_area .nav-tabs li a.active {
- color: #fcd535;
+ color: #FFC300;
 }
 .buy_sell .card_header{ position: relative; }
 .buy-form {
@@ -1946,8 +1946,8 @@ header {
 .reg_log .btn_login { margin-right:10px; }
 .reg_log { margin-right: 15px; }
 .btn_login { color: #fff; }
-.btn_register { color: #000; background-color: #fcd535; margin-right: 10px; }
-.btn_register:hover, .btn_register:focus { color: #000; background-color: #fcd535; }
+.btn_register { color: #000; background-color: #FFC300; margin-right: 10px; }
+.btn_register:hover, .btn_register:focus { color: #000; background-color: #FFC300; }
 
 .h-notes-main {
   margin: 0px;

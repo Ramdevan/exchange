@@ -9,9 +9,9 @@ module Private::TicketsHelper
 
   def close_open_toggle_link
     if params[:closed]
-      link_to t('private.tickets.view_open_tickets'), tickets_path
+      link_to t('private.tickets.view_open_tickets'), tickets_path, class: 'btn btn-secondary'
     else
-      link_to t('private.tickets.view_closed_tickets'), tickets_path(closed: true)
+      link_to t('private.tickets.view_closed_tickets'), tickets_path(closed: true), class: ' btn btn-secondary'
     end
   end
 

@@ -1,6 +1,6 @@
 <div class="stake_dis">
     <br>
-    <%= link_to "Create", {action: "new"}, class:"create-btn" %>
+    <%= link_to "Create", {action: "new"}, class:"create-btn btn btn-primary" %>
     <br></br>
     <table class='table table-bordered'>
         <thead style="background: #efefef;">
@@ -37,11 +37,11 @@
                 <td>
                 <% if(stake_coin.is_active)%>
                     <form action=<%="#{admin_stake_coin_path(stake_coin)}/update_status?is_active=0"%> method="post">
-                        <input type="submit" class="deact-act" value=Deactivate>
+                        <input type="submit" class="deact-act btn btn-danger btn-sm" value=Deactivate>
                     </form>
                 <%else%>
                     <form action=<%="#{admin_stake_coin_path(stake_coin)}/update_status?is_active=1"%> method="post">
-                        <input type="submit" class="deact-act" value=Activate>
+                        <input type="submit" class="deact-act btn btn-success btn-sm" value=Activate>
                     </form>
                 <%end%>
                 </td>

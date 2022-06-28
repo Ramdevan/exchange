@@ -31,8 +31,8 @@ $btn-default-border:#ccc;
 
 
 :root {
---theme-primary:#fcd535;
---theme-primary:#fcd535;
+--theme-primary:#FFC300;
+--theme-primary:#FFC300;
 
 --buy-color: #02c076;
 --sell-color:f84960;
@@ -423,7 +423,7 @@ border-radius: 2px;
     position: relative;
     padding: 40px;
     border-radius: 6px;
-    margin: 5% 0;
+    margin:3% 0;
 }
 body#sms_auths-show #guide h3 {
     color: #017bff;
@@ -527,6 +527,7 @@ body#sms_auths-show #guide h3 i {
 .ticket_list {
     padding: 20px;
     background-color: #ffffff;
+    word-break: break-word;
 }
 .ticket_list h4 {font-size: 20px;}
 .ticket_list p {
@@ -595,6 +596,9 @@ td.currency-logo img {
     border-radius: 4px;
     border: 1px solid var(--theme-primary);
 }
+.currency-actions .currency-withdraw a, .currency-actions .currency-deposit a{
+    color: #000;
+}
 
 .currency-actions p a {
     font-size: 12px;
@@ -610,14 +614,14 @@ tr.currency-item.selected.deposit-now .currency-deposit {
 }
 
 tr.currency-item.selected.deposit-now .currency-deposit a {
-    color: #fff;
+    color: #000;
 }
 
 tr.currency-item.selected.withdraw-now  .currency-withdraw {
     background-color: var(--theme-primary);
 }
 tr.currency-item.selected.withdraw-now  .currency-withdraw a{
-    color: #fff;
+    color: #000;
 }
 a#new_address {
     font-size: 14px;
@@ -628,7 +632,7 @@ a#new_address {
 }
 #btc_withdraw .help-block a {
     font-size: 14px;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     margin: 15px 0 !important;
 }
 #btc_withdraw .help-block.sms {
@@ -700,7 +704,7 @@ a#new_address {
     color: var(--label-color);
 }
 #btc_withdraw label {
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     font-size: 14px;
     font-weight: 600;
     color: #555;
@@ -803,7 +807,7 @@ footer a {
     font-size: 20px;
     margin: 0;
     font-weight: 800;
-    color: #fff;
+    color: #000;
 }
 .user-name p {
     margin: 0;
@@ -948,6 +952,11 @@ header nav .collapse .nav-menu-l li {
 @media only screen and (min-width: 1200px) {
     
 }
+@media only screen and (min-width: 1360px) {
+    .container {
+        max-width:1300px;
+    }
+}
 .error{
   font-size:10px;
   color:red;
@@ -965,12 +974,30 @@ header .navbar {
     font-size: 18px;
     vertical-align: middle;
 }
-#Loginhistory .table thead th, #orders .table thead th {
+#Loginhistory .table thead th, #orders .table thead th, #trades .table thead th, #transactions .table thead th, .farm_table th {
+    text-transform: uppercase;
     background: #161a1e;
     color: #fff;
 }
+.table th, .table td {
+    font-size: 13px;
+}
+.table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
+    font-size:13px;
+}
 #fnd_optBox .table.table-currencies tr.currency-item.selected {
     background: #eceff1;
+}
+.farm_table td .history{
+    margin: 0px;
+    vertical-align: middle;
+    padding: 6px 8px;
+}
+.farm_table td .btn{
+    font-size: 13px;
+}
+.farm_table td {
+    vertical-align: middle;
 }
 .identity-verify .disabled i { margin-right: 5px; }
 .edit_two_factor_main {
@@ -981,10 +1008,10 @@ header .navbar {
 }
 .btn-theme-primary {
     padding: 10px 20px;
-    background-color: #fcd535;
+    background-color: #FFC300;
     color: #000;
     font-weight: bold;
-    border: 2px solid #fcd535;
+    border: 2px solid #FFC300;
     transition: .4s all;
     text-transform: uppercase;
 }
@@ -1011,4 +1038,13 @@ header .navbar {
 
 .customize-div input {
     padding-left: 60px;
+}
+.mt-20{
+    margin-top: 20px;
+}
+.mb-20{
+    margin-bottom: 20px;
+}
+.history_tabs {
+    margin-bottom: 20px;
 }

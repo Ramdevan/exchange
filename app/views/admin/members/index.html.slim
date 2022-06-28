@@ -6,14 +6,14 @@
       .panel-body.amdin_member_search
         = form_tag admin_members_path, method: :get do |f|
           .row        
-            .col-lg-2 = select_tag :search_field, options_for_select([ \
+            .col-lg-3 = select_tag :search_field, options_for_select([ \
                 [t('.email'), 'email'],                                \
                 [t('.name'),  'name'],                                 \
                 [t('.phone'), 'phone_number'],                         \
                 [t('.wallet_address'), 'wallet_address'],              \
-              ], @search_field)
-            .col-lg-4 = text_field_tag :search_term, @search_term
-            .col-lg-2 = submit_tag t('.search')
+              ], @search_field), class: 'w-100'
+            .col-lg-4 = text_field_tag :search_term, @search_term, class: 'w-100'
+            div = submit_tag t('.search'), class: 'w-100'
 
 .row
   .col-lg-12

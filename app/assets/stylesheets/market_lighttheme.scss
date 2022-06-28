@@ -1,5 +1,5 @@
 :root {
---theme-primary:#fcd535;
+--theme-primary:#FFC300;
 --secondary-color: #0ecb81;
 --tertiary-color:#f6465d;
 --bg-dark1: #ffffff;
@@ -49,7 +49,7 @@ ul {
   color:#222;
 }
 a {
-    color: #c99400;
+    color: #FFC300;
 }
 a {
     text-decoration: none!important;
@@ -201,7 +201,7 @@ card_header ul li, ul#pills-tab-buysell li a, #openmy-order li a {
     color: #222222;
 }
 .navbar-dark .navbar-nav .show > .nav-link, .navbar-dark .navbar-nav .active > .nav-link, .navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .nav-link.active {
-    color: #c99400;
+    color: #FFC300;
 }
 header {
     background-color:#ffffff;
@@ -214,10 +214,10 @@ header {
     color: #666666;
 }
 a:hover, .chart_area .nav-tabs li a:hover, .chart_area .nav-tabs li a.active {
-    color: #c99400;
+    color: #FFC300;
 }
 ul.pills_nav li a.active, .drop-down-custom-li li a.active {
-    border-color: #c99400;
+    border-color: #FFC300;
 }
 .walletval .btn {
     color: #222222;

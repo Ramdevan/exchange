@@ -1,7 +1,7 @@
 .col-lg-12
   .d-flex
     h4.text-left = t('.member_info')
-    p.ml-auto = link_to 'View', url_for([:admin, member]), class: 'btn btn-primary', target: '_blank'
+    /p.ml-auto = link_to 'View', url_for([:admin, member]), class: 'btn btn-primary', target: '_blank'
   .panel-body
     = description_for :member do
       = item_for member, :name

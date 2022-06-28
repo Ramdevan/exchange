@@ -4,8 +4,8 @@
 
 :root{
     
---theme-primary:#fcd535;
---primary-color:#fcd535;
+--theme-primary:#FFC300;
+--primary-color:#FFC300;
 
 --buy-color: #02c076;
 --sell-color:f84960;
@@ -126,7 +126,7 @@ header.header {
     font-size: 13px;
 }
 .login-btm a {
-    color:#c99400;
+    color:#FFC300;
 }
 .login_box{
     background: #f8f8f8 !important;
