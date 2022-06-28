@@ -16,6 +16,6 @@
           = Member.referrals(x.id).reject {|x| x.valid_referral?}.count
         - Currency.all.each do |currency|
           - t.column "#{currency.code.upcase}", class: 'col-xs-1' do |x|
-            = Member.find(x.id).accounts.find_by_currency(currency.code).referral_commissions.round(2)
+            = Member.find(x.id).accounts.find_by_currency(currency.code).try(:referral_commissions).try(:round, 2)
 
       = paginate @members

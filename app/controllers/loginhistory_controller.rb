@@ -1,8 +1,8 @@
 class LoginhistoryController < ApplicationController
 
   def show_history
-    @login = Loginhistory.where(member_id: current_user.id)
-    @login = @login.page(params[:page]).per(20)
+    @login = Loginhistory.where(member_id: current_user.id).order(created_at: :desc)
+    @login = @login.page(params[:page]).per(5)
   end
 
   def verify_token

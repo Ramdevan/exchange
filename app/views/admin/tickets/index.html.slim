@@ -22,8 +22,8 @@
             p.tic_time
               span = time_ago_in_words t.created_at
           .col-lg-3
-            p.tic_count ="#{t('admin.tickets.comments_count')}(#{t.comments.count})"
-          .col-lg-3.tic_closed.text-right  
+            p.tic_count ="#{t('admin.tickets.comments_count')}(#{t.comments.size})"
+          .col-lg-3.tic_closed.text-right
               - unless t.closed?
                 = link_to(t('admin.tickets.close'), close_admin_ticket_path(t.id), confirm: t("private.tickets.close_confirm"), method: :patch)
             
