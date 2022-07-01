@@ -1,7 +1,8 @@
 .panel-primary
 	.row
-		.col-lg-12		
-			h4 Trade Commissions
+		.col-lg-12	
+			.panel-heading
+				span Trade Commissions
 			= simple_form_for :search, {url: admin_update_filters_path, remote: true, html: { class: 'form-inline' }} do |f|
 			  .col-lg-7.multi_cur_choosen
 			    = f.input :currencies, collection: Currency.all.map{|x| [x.display_name,x.id]},label: false, input_html: { multiple: true}
