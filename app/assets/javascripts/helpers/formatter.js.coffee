@@ -51,9 +51,9 @@ class Formatter
 
   short_trade: (type) ->
     if type == 'buy' or type == 'bid'
-      gon.i18n['bid']
+      'Buy'
     else if type == "sell" or type = 'ask'
-      gon.i18n['ask']
+      'Sell'
     else
       'n/a'
 

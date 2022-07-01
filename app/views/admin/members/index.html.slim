@@ -28,12 +28,15 @@
           - t.column :created_at,t('.created_at'),  class: 'col-xs-3'
           - t.column :activated?,t('.activated?'),  class: 'col-xs-1' do |x|
             = yesno x.activated?
-          - t.column 'Disabled? (Web/API)', class: 'col-xs-1' do |x|
-            - text = x.disabled? ? 'Yes' : 'No'
-            = link_to text, toggle_admin_member_path(x), remote: true, method: :post, class: 'toggle-web'
-            | &nbsp;/&nbsp;
-            - text = x.api_disabled? ? 'Yes' : 'No'
-            = link_to text, toggle_admin_member_path(x, api: true), remote: true, method: :post, class: 'toggle-api'
+          - t.column 'Disabled? (Web/API)', class: 'col-xs-1 admin-' do |x|
+            - if admin_user = ENV["ADMIN"] == x.email
+              | No / No
+            - else
+              - text = x.disabled? ? 'Yes' : 'No'
+              = link_to text, toggle_admin_member_path(x), remote: true, method: :post, class: 'toggle-web'
+              | &nbsp;/&nbsp;
+              - text = x.api_disabled? ? 'Yes' : 'No'
+              = link_to text, toggle_admin_member_path(x, api: true), remote: true, method: :post, class: 'toggle-api'
           - t.column :id_document_verified?,t('.id_document_verified?'),  class: 'col-xs-2' do |x|
             = x.id_document_verified? ? x.name : yesno(x.id_document_verified?)
           - t.column :actions, t('.actions'), class: 'col-xs-1' do |x|
