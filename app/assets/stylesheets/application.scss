@@ -296,8 +296,8 @@ border-radius: 2px;
     margin: 5px 5px 0 0;
 } 
 .sidenav .nav-pills .nav-link.active, .box.sidenav .nav-pills .show > .nav-link {
-    color: var(--theme-primary);
-    background-color: transparent !important;
+    color: #000;
+    background-color: var(--theme-primary) !important;
     border-left: 4px solid var(--theme-primary);
 }
 
@@ -502,11 +502,14 @@ body#sms_auths-show #guide h3 i {
     border-radius: 4px;
     background-color: #fcfcfc;
 }
+.pagination li a {
+    color: #c99400;
+}
 .pagination li.page.active {
     background-color: var(--theme-primary);
     border-color: var(--theme-primary);
 }
-.pagination li.page.active a {color: #fff;}
+.pagination li.page.active a {color: #000; }
 .pagination li.previous.disabled {opacity: .7;}
 
 
@@ -854,7 +857,7 @@ footer a {
 
 .primary-btn,.primary-btn:hover {
     background-color: var(--theme-primary);
-    color: #fff;
+    color: #000;
 }
 
 .tickettslist li {
@@ -975,7 +978,7 @@ header .navbar {
     vertical-align: middle;
 }
 #Loginhistory .table thead th, #orders .table thead th, #trades .table thead th, #transactions .table thead th, .farm_table th {
-    text-transform: uppercase;
+    text-transform: capitalize;
     background: #161a1e;
     color: #fff;
 }

@@ -134,6 +134,7 @@ ul.admin_menu {
     padding: 20px;
     margin: 20px 0;
     border-radius: 6px;
+    width: 100%;
 }
 
 .panel-heading {
@@ -144,8 +145,8 @@ ul.admin_menu {
 .table thead th {
     vertical-align: bottom;
     border-bottom: 1px solid #dee2e6;
-    font-weight: 500;
-    text-transform: uppercase;
+    font-weight: 900;
+    text-transform: capitalize;
 }
 .table th, .table td {
     padding: 0.75rem;
@@ -325,4 +326,19 @@ div
 }
 .alert p {
     margin-bottom: 0px;
+}
+.m-wd-200 {
+    min-width: 200px;
+}
+.m-wd-150 {
+    min-width: 150px;
+}
+.m-wd-250 {
+    min-width: 250px;
+}
+.m-wd-300 {
+    min-width: 300px;
+}
+.m-wd-350 {
+    min-width: 350;
 }

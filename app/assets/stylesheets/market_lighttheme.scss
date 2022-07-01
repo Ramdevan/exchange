@@ -201,7 +201,7 @@ card_header ul li, ul#pills-tab-buysell li a, #openmy-order li a {
     color: #222222;
 }
 .navbar-dark .navbar-nav .show > .nav-link, .navbar-dark .navbar-nav .active > .nav-link, .navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .nav-link.active {
-    color: #FFC300;
+    color: #c99400;
 }
 header {
     background-color:#ffffff;
@@ -214,12 +214,12 @@ header {
     color: #666666;
 }
 a:hover, .chart_area .nav-tabs li a:hover, .chart_area .nav-tabs li a.active {
-    color: #FFC300;
+    color: #c99400;
 }
 ul.pills_nav li a.active, .drop-down-custom-li li a.active {
     border-color: #FFC300;
 }
-.walletval .btn {
+.walletval .btn, #order_book_body .table .amount, #order_book_body .table .volume{
     color: #222222;
 }
 .status-success i {

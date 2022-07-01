@@ -1675,8 +1675,8 @@ header .navbar { padding-top: 10px; padding-bottom: 10px; }
 .sell_order_table .table , .buy_order_table .table { margin-bottom: 0px; }
 
 #order_book_body .table .amount  { padding-right:15px; width: 40%; }
-#order_book_body .table .price { padding-left:15px; width: 40%; }
-#order_book_body .table .volume { width: 20%; text-align: right; }
+#order_book_body .table .price { padding-left:15px; width: 40%; color: var(--light-color2); }
+#order_book_body .table .volume { width: 20%; text-align: right; color: var(--light-color2); }
 #order_book_body .data_thead {
   padding:5px 0px;
 }
