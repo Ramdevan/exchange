@@ -26,8 +26,8 @@
       .error_messages
       = simple_form_for [:admin, @new_commission],remote: true do |f|
         .form-group
-          = f.input :min
-          = f.input :max
-          = f.input :fee_percent
+          = f.input :min, label: 'Min (USD)'
+          = f.input :max, label: 'Max (USD)'
+          = f.input :fee_percent, label: 'Fee Percent (USD)'
           hr.split
           = f.button :wrapped

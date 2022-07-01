@@ -10,8 +10,8 @@
         
       = table_for(@register_group, class: 'table table-condensed table-hover') do |t|
         - t.column :date, 'Date', class: 'col-xs-8' do |x|
-          span = x.date.to_formatted_s(:short)
-        - t.column :reg, 'Act / Reg', class: 'col-xs-10' do |x|
+          span = x.date
+        - t.column :reg, 'Active / Register', class: 'col-xs-10' do |x|
           code.text-success = x.total_activated
           span = '/'
           code.text-info = x.total
