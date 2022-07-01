@@ -1007,7 +1007,7 @@ li#settings a {
 }
 
 .order_action i {
-  margin: 10px 0;
+  margin: 10px 5px 10px 0;
 }
 
 span.navbaricon {
@@ -1132,6 +1132,7 @@ ul.pills_nav li a.active {
 
 ul#openmy-order li {
   padding: 0;
+  display: flex;
 }
 
 
