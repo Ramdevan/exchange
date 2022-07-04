@@ -510,8 +510,11 @@ body#sms_auths-show #guide h3 i {
     border-color: var(--theme-primary);
 }
 .pagination li.page.active a {color: #000; }
-.pagination li.previous.disabled {opacity: .7;}
 
+.pagination li.previous.disabled, .pagination li.next.disabled{
+    opacity: .4;
+    pointer-events: none;
+}
 
 /*TICKET*/
 .ticket-view p {
