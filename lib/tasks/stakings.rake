@@ -10,15 +10,23 @@ namespace :stakings do
           next if Time.zone.now - accepted_staking.start_date < 1.day
         end
         account = accepted_staking.get_account
-        account.lock!.plus_funds(accepted_staking.interest_per_day)
-        history = MemberStakeCoinCreditHistory.new
-        stake_coin = accepted_staking.stake_coin
-        history.member_stake_coin_id = accepted_staking.id
-        history.credit_amount = accepted_staking.interest_per_day
-        history.credit_percent = stake_coin.current_variable_apy.apy
-        history.save
-        if accepted_staking.end_date
-          accepted_staking.mature! if accepted_staking.end_date < Time.zone.now
+        admin = Member.find_by_email(ENV['ADMIN'])
+        admin_currency = admin.accounts.find_by_currency(account.currency)
+        interest = accepted_staking.interest_per_day
+        if (admin_currency.balance > interest)
+          account.lock!.plus_funds(interest)
+          admin_currency.sub_funds(interest)
+          history = MemberStakeCoinCreditHistory.new
+          stake_coin = accepted_staking.stake_coin
+          history.member_stake_coin_id = accepted_staking.id
+          history.credit_amount = accepted_staking.interest_per_day
+          history.credit_percent = stake_coin.current_variable_apy.apy
+          history.save
+          if accepted_staking.end_date
+            accepted_staking.mature! if accepted_staking.end_date < Time.zone.now
+          end
+        else
+          Rails.logger.info "INFO: Insufficient balance for currency #{account.currency}"
         end
       end
     end
