@@ -12,8 +12,6 @@ class PaymentTransaction < ActiveRecord::Base
 
   has_one :deposit
   belongs_to :payment_address, foreign_key: 'address', primary_key: 'address'
-  has_one :account, through: :payment_address
-  has_one :member, through: :account
 
   after_update :sync_update
 
@@ -56,6 +54,19 @@ class PaymentTransaction < ActiveRecord::Base
     if deposit.may_accept?
       deposit.accept! 
     end
+  end
+
+  def payment_address
+    PaymentAddress.where(address: self.address, currency: self.currency).first
+  end
+
+  def account
+    payment_address = PaymentAddress.where(address: self.address, currency: self.currency).first
+    payment_address.account
+  end
+
+  def member
+    account.member
   end
 
   private

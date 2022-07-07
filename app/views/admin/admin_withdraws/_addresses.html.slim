@@ -1,0 +1,45 @@
+.row
+  .col-xs-12
+    .panel.panel-primary
+      .panel-heading Common Withdrawal Address
+      .panel-body
+        table.table.table-condensed
+          caption.table-caption
+            h5.table-caption-heading Address
+            span = details[:common_address]
+          thead: tr
+            th.text-left Token
+            th.text-left Balance
+          tbody
+            - details[:balance].each do |key,value|
+             tr
+               td = key.try(:upcase)
+               td = value
+
+.row
+ .col-xs-24
+    div.alert.alert-warning = 'Address balances will be updated once in every 15 minutes.'
+    .panel.panel-primary
+      .panel-heading Address Balance
+      .panel-body
+        table.table.table-condensed
+          thead: tr
+            th Address
+            th token
+            th balance
+            th Send Address
+            th amount
+            - details[:address_with_balance].each do |token,value|
+              tbody
+                - if value
+                  - value.each do |address,balance|
+                    tr
+                      td = address
+                      td = token
+                      td = balance
+                      = form_tag make_transaction_admin_admin_withdraw_path(current_user.id), method: :post do |c|
+                        td = text_field_tag :to_address
+                        td = number_field_tag :amount, nil, step: "any"
+                        td = hidden_field_tag :from_address, address
+                        td = hidden_field_tag :token, token
+                        td = submit_tag 'Proceed', data: { confirm: 'Are you sure to proceed', disabled: true }

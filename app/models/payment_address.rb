@@ -6,7 +6,7 @@ class PaymentAddress < ActiveRecord::Base
 
   has_many :transactions, class_name: 'PaymentTransaction', foreign_key: 'address', primary_key: 'address'
 
-  validates_uniqueness_of :address, allow_nil: true
+  validates_uniqueness_of :address, allow_nil: true, scope: :currency
 
   def gen_address
     payload = { payment_address_id: id, currency: currency }

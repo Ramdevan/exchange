@@ -52,3 +52,11 @@ end
 every 10.minutes do
   rake 'stats:daemons'
 end
+
+every 10.minutes do
+	rake 'stats:daemons'
+end
+
+every 15.minutes do
+	rake 'web3_currency:get_address_balances'
+end

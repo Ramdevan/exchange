@@ -34,6 +34,12 @@ namespace :admin do
     end
   end
 
+  resources :admin_withdraws do
+    member do
+      post :make_transaction
+    end
+  end
+
   namespace :statistic do
     resource :members, :only => :show
     resource :orders, :only => :show

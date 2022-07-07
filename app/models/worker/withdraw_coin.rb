@@ -20,14 +20,17 @@ module Worker
 
         return unless withdraw.almost_done?
         case withdraw.currency
-        when 'eth'
-          balance = EthereumBalance.get
+
+        when 'eth', 'bnb'
+          from_address = Currency.find_by_code(withdraw.currency)[:assets]['accounts'].first['address']
+          balance = Web3Currency.get_balance(withdraw.currency, from_address)
           raise Account::BalanceError, 'Insufficient coins' if balance < withdraw.sum
-          from_address = Currency.find_by_code(withdraw.currency)[:assets]['accounts'].first['address']
           CoinRPC[withdraw.currency].personal_unlockAccount(from_address, "", 15000)
-          txid = CoinRPC[withdraw.currency].eth_sendTransaction(from: from_address, to: withdraw.fund_uid, value: '0x' + ((withdraw.amount.to_f * 1e18).to_i.to_s(16)))
-        when 'usdt', 'usdc'
+          txid = CoinRPC[withdraw.currency].sendtoaddress(from_address, withdraw.fund_uid, withdraw.amount)
+        when 'usdt'
           from_address = Currency.find_by_code(withdraw.currency)[:assets]['accounts'].first['address']
+          balance = Web3Currency.get_token_balance(withdraw.currency, from_address)
+          raise Account::BalanceError, 'Insufficient coins' if balance < withdraw.sum
           CoinRPC[withdraw.currency].personal_unlockAccount(from_address, "", 15000)
           txid = CoinRPC[withdraw.currency].sendtoaddress(from_address, withdraw.fund_uid, withdraw.amount)
         when 'xrp'

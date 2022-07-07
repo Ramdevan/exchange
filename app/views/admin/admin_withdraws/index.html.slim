@@ -1,0 +1,17 @@
+.container
+  #admin_withdraw.col-md-24
+    h3 Admin withdraw
+    ul.nav.nav-pills
+        - if @balances[:eth].present?
+            li.nav-item.active
+                a.nav-link.active data-toggle='tab' href="#ethereum" Ethereum
+        - if @balances[:bnb].present?
+            li.nav-item
+                a.nav-link data-toggle='tab' href="#binace_smart_chain" Binance Smart chain        
+    .tab-content
+        - if @balances[:eth].present?
+            #ethereum.tab-pane.active.in
+                = render partial: 'addresses', locals: {details: @balances[:eth]}
+        - if @balances[:bnb].present?
+            #binace_smart_chain.tab-pane.fade
+                = render partial: 'addresses', locals: {details: @balances[:bnb]}

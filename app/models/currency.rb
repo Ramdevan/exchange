@@ -6,6 +6,7 @@ class Currency < ActiveYamlBase
   attr :name
 
   TAGS_REQUIRED = [:xrp, :xmr]
+  DEPENDENT_NODES = [:eth, :bnb]
 
   self.singleton_class.send :alias_method, :all_with_invisible, :all
   def self.all
@@ -18,6 +19,10 @@ class Currency < ActiveYamlBase
 
   def self.codes
     @keys ||= all.map &:code
+  end
+
+  def self.get_dependent_coins(node = 'eth')
+    coins ||= where(dependant_node: node, visible: true).map(&:code)
   end
 
   def self.crypto_coin_codes

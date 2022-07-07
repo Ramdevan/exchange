@@ -94,6 +94,9 @@ html lang="en"
                 = link_to "<i class='fa fa-coins'></i>#{('Stakings')}".html_safe, admin_stake_coins_path
             /li = link_to "<i class='fa fa-robot'></i>#{t('admin_header.bots')}".html_safe, admin_bots_path
 
+            - if current_user.admin?
+              li = link_to t("admin_header.admin_withdraw"), admin_admin_withdraws_path
+
             / li.dropdown
             /   = link_to 'javascript:;', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do
             /     span = 'Stakings'
