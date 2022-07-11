@@ -21,12 +21,22 @@ namespace :stakings do
           history.member_stake_coin_id = accepted_staking.id
           history.credit_amount = accepted_staking.interest_per_day
           history.credit_percent = stake_coin.current_variable_apy.apy
+          history.credit_date = Time.zone.now
+          history.credit_status = "Done"
           history.save
           if accepted_staking.end_date
             accepted_staking.mature! if accepted_staking.end_date < Time.zone.now
           end
         else
           Rails.logger.info "INFO: Insufficient balance for currency #{account.currency}"
+          history = MemberStakeCoinCreditHistory.new
+          stake_coin = accepted_staking.stake_coin
+          history.member_stake_coin_id = accepted_staking.id
+          history.credit_amount = accepted_staking.interest_per_day
+          history.credit_percent = stake_coin.current_variable_apy.apy
+          history.credit_date = Time.zone.now
+          history.credit_status = "Pending"
+          history.save
         end
       end
     end
@@ -48,4 +58,21 @@ namespace :stakings do
       end
     end
   end
+  
+  desc 'Process pending interests'
+  task process_pending_interests: :environment do
+      pendings = MemberStakeCoinCreditHistory.pending_interest
+      pendings.each do |pending|
+      interest = pending.credit_amount
+      account = pending.member_stake_coin.get_account
+      admin = Member.find_by_email(ENV['ADMIN'])
+      admin_currency = admin.accounts.find_by_currency(account.currency)
+      if (admin_currency.balance > interest)
+        account.lock!.plus_funds(interest)
+        admin_currency.sub_funds(interest)
+        pending.update_attributes(credit_date: Time.zone.now, credit_status: "Done")
+      end
+      end
+  end
+
 end

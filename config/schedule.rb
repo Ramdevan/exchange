@@ -44,3 +44,7 @@ end
 every 10.minutes do
   rake 'calculate_24h_trade_volume:write_cache'
 end
+
+every 1.hours do
+  rake 'stakings:process_pending_interests'
+end
