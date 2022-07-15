@@ -7,7 +7,7 @@ html lang="en"
     = render 'shared/html5'
     = render 'shared/meta'
   body id='#{body_id}' data-lang="#{locale_name}"
-    /.navbar.navbar-default.navbar-static-top role='navigation'
+    .navbar.navbar-default.navbar-static-top role='navigation'
       .container
         .navbar-header
           a.navbar-brand href='#' API Document
@@ -34,4 +34,4 @@ html lang="en"
     .container
       = yield
 
-  /  = render 'shared/footer'
+    = render 'shared/footer'
