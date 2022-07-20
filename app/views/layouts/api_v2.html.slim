@@ -7,11 +7,11 @@ html lang="en"
     = render 'shared/html5'
     = render 'shared/meta'
   body id='#{body_id}' data-lang="#{locale_name}"
-    .navbar.navbar-default.navbar-static-top role='navigation'
-      .container
+    .navbar.navbar-default.navbar-static-top.header_bg role='navigation'
+      .container.new-container
         .navbar-header
           a.navbar-brand href='#' API Document
-        ul.nav.navbar-nav.pull-right
+        ul.nav.navbar-nav
           - if current_user
             = top_nav_link(current_user.email, settings_path, 'user', controllers: ['two_factors', 'identities', 'id_documents'])
             - if is_admin?
@@ -23,11 +23,10 @@ html lang="en"
             = top_nav_link(t('header.signin'), signin_path, '')
             = top_nav_link(t('header.signup'), signup_path, '')
 
-          li.dropdown
-            a.dropdown-toggle href="#" data-toggle="dropdown"
+          li
+            a href="#"
               img src='#{language_path}'
-              b.caret
-            ul#languages.dropdown-menu
+            //ul#languages.dropdown-menu
               - I18n.available_locales.each do |lang|
                 li: a href="?lang=#{lang}": img src='#{language_path(lang)}'
 
