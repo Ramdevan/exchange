@@ -33,7 +33,7 @@ module Admin
     def destroy
       @fee.destroy
       respond_to do |format|
-        format.html { redirect_to admin_fees_url, notice: 'Fee was successfully destroyed.' }
+        format.html { redirect_to admin_fees_url, notice: 'Fee was successfully deleted.' }
       end
     end
 

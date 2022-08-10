@@ -33,7 +33,7 @@ module Admin
     def destroy
       @referral_commission.destroy
       respond_to do |format|
-        format.html { redirect_to admin_referral_commissions_url, notice: 'Commission was successfully Deleted.' }
+        format.html { redirect_to admin_referral_commissions_url, notice: 'Commission was successfully deleted.' }
       end
     end
 

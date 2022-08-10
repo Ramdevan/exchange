@@ -40,6 +40,14 @@ h1,h2,h3,h4,h5,h6,p,span,table{font-family: 'Nunito Sans', sans-serif;}
   transition: .4s all;
     text-transform: uppercase;
 }
+.btn-theme-primary:hover {
+    background:#fcd535;
+    border-color:#fcd535;
+}
+.login-btm a:hover, .login-btm a:focus {
+    color: #fcd535;
+    text-decoration: underline !important;
+}
 
 a {text-decoration: none !important;}
 .logo {
@@ -123,7 +131,7 @@ header.header {
 }
 .login-btm p {
     margin: 0px 0px 5px 0px;
-    font-size: 13px;
+    font-size: 14px;
 }
 .login-btm a {
     color:#c99400;

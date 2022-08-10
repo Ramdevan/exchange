@@ -1,8 +1,11 @@
-<div class="input-group  cpyInput">
-  <div class="input-group-addon">
-    <span>{{'funds.deposit_coin.payment_id' | t}}</span></div>
-  <div class="form-control form-control-static" id="destination_tag">{{account.destination_tag}}</div>
-  <div class="input-group-addon" id="destination_tag_data" data-toggle="tooltip" title="Click to Copy" data-placement="bottom" data-trigger="hover",data-animation = "true" >
-    <i class="fa fa-copy" data-clipboard-text="{{account.destination_tag}}"></i>
+<div class="form-group cpyInput">
+  <div class="d-flex mt-2 mb-2">
+    <span>{{'funds.deposit_coin.payment_id' | t}}</span>
+  </div>
+  <div class="form-row m-0">
+    <div class="form-control col-lg-10 form-control-static" id="destination_tag">{{account.destination_tag}}</div>
+    <div class="col-lg-2 btn btn-success input-group-addon" id="destination_tag_data" data-toggle="tooltip" title="Click to Copy" data-placement="bottom" data-trigger="hover",data-animation = "true" >
+      <i class="fa fa-copy" data-clipboard-text="{{account.destination_tag}}"></i>
+    </div>
   </div>
 </div>

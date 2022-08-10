@@ -966,7 +966,7 @@ li#settings i.fa-caret-down {
 }
 
 .cusdropdown-menu i {
-  margin: 0 10px 0 0;
+  margin: 0 5px 0 0;
 }
 
 .cusdropdown-menu li:hover {
@@ -987,7 +987,7 @@ li#settings a {
 }
 
 .order_action ul li a {
-  display: contents !important;
+  display: block !important;
   font-size: 12px !important;
 }
 
@@ -1006,7 +1006,7 @@ li#settings a {
   margin: 0 0 0 auto;
 }
 
-.order_action i {
+.order_action>i {
   margin: 10px 5px 10px 0;
 }
 
@@ -2103,6 +2103,25 @@ transform: rotate(180deg);
   font-size: 18px;
   vertical-align: middle;
 }
+.order_action ul li a i {
+  justify-content: center;
+}
+#openmy-order .order_action ul.cusdropdown-menu  li a {
+  padding: 10px 10px;
+}
+.card_header .order_action ul.cusdropdown-menu {
+  padding:0px;
+}
+.order_action ul.cusdropdown-menu li {
+  padding: 0px !important;
+}
+.navbar-dark .navbar-nav .active > .nav-link {
+  color: #FFC300;
+}
+.navbar-dark .navbar-nav .nav-link:hover, .navbar-dark .navbar-nav .nav-link:focus {
+  color: #FFC300;
+}
+
 @media only screen and (min-width: 1201px) {
   .market_main_tab { position: absolute; display: none; }
 }

@@ -69,26 +69,30 @@
   <h2 class="panel-title">{{ "funds.withdraw_history.title" | t }}</h2>
 
   <table class="table withdraw-history" ng-controller="WithdrawHistoryController as wdCtrl">
-    <tr>
-      <th>{{ "funds.withdraw_history.number" | t }}</th>
-      <th>{{ "funds.withdraw_history.withdraw_time" | t }}</th>
-      <th>{{ "funds.withdraw_history.withdraw_account" | t }}</th>
-      <th>{{ "funds.withdraw_history.withdraw_amount" | t }}</th>
-      <th>{{ "funds.withdraw_history.fee" | t }}</th>
-      <th>{{ "funds.withdraw_history.state_and_action" | t }}</th>
-    </tr>
-    <tr ng-repeat="withdraw in wdCtrl.withdraws | orderBy:predicate">
-      <td>{{withdraw.id}}</td>
-      <td>{{withdraw.created_at | date:'yyyy-MM-dd HH:mm'}}</td>
-      <td>{{withdraw.fund_extra}} @ {{withdraw.fund_uid}}</td>
-      <td>{{withdraw.amount}}</td>
-      <td>{{withdraw.fee}}</td>
-      <td>{{"funds.withdraw_history." + withdraw.aasm_state | t}}
-        <span ng-if="wdCtrl.canCancel(withdraw.aasm_state)">/
-          <a ng-click="wdCtrl.cancelWithdraw(withdraw); $event.preventDefault()" href="#" class="cancel_link">{{ "funds.withdraw_history.cancel" | t }}</a>
-        </span>
-      </td>
-    </tr>
-    <tr ng-if="wdCtrl.noWithdraw()"><td colspan="6"><span class="help-block text-center">{{"funds.withdraw_history.no_data" | t}}</span></td></tr>
+    <thead>
+      <tr>
+        <th>{{ "funds.withdraw_history.number" | t }}</th>
+        <th>{{ "funds.withdraw_history.withdraw_time" | t }}</th>
+        <th>{{ "funds.withdraw_history.withdraw_account" | t }}</th>
+        <th>{{ "funds.withdraw_history.withdraw_amount" | t }}</th>
+        <th>{{ "funds.withdraw_history.fee" | t }}</th>
+        <th>{{ "funds.withdraw_history.state_and_action" | t }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="withdraw in wdCtrl.withdraws | orderBy:predicate">
+        <td>{{withdraw.id}}</td>
+        <td>{{withdraw.created_at | date:'yyyy-MM-dd HH:mm'}}</td>
+        <td>{{withdraw.fund_extra}} @ {{withdraw.fund_uid}}</td>
+        <td>{{withdraw.amount}}</td>
+        <td>{{withdraw.fee}}</td>
+        <td>{{"funds.withdraw_history." + withdraw.aasm_state | t}}
+          <span ng-if="wdCtrl.canCancel(withdraw.aasm_state)">/
+            <a ng-click="wdCtrl.cancelWithdraw(withdraw); $event.preventDefault()" href="#" class="cancel_link">{{ "funds.withdraw_history.cancel" | t }}</a>
+          </span>
+        </td>
+      </tr>
+      <tr ng-if="wdCtrl.noWithdraw()"><td colspan="6"><span class="help-block text-center">{{"funds.withdraw_history.no_data" | t}}</span></td></tr>
+    </tbody>
   </table>
 

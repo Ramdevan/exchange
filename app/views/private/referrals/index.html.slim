@@ -16,9 +16,10 @@
             .row
               .col-lg-12.refCard.reff-table.table-responsive.his-table
                 table.table
-                  thead: tr
-                  - Currency.all.each do |currency|
-                    th = currency.code.upcase
+                  thead
+                    tr
+                    - Currency.all.each do |currency|
+                      th = currency.code.upcase
                   tbody.list
                     tr
                     - Currency.all.each do |currency|

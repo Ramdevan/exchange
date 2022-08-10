@@ -12,15 +12,25 @@
     border-bottom: 1px solid #1110;
   }
   div#myTable_paginate {
-    background: #1c262b;
     padding-top: 0;
-    border-radius: 6px;
     margin-top: 5px;
     color: white;
   }
   div#myTable_paginate a {
-    color: white!important;
+    padding: 6px 12px;
+    margin: 0 5px;
+    border: 1px solid #eceff1;
+    border-radius: 4px;
+    background: #fcfcfc;
+    color: #000 !important;
   }
+
+  div#myTable_paginate a.current {
+    background:#ffc300;
+    border-color:#ffc300;
+    color:#000 !important;
+}
+
   .dataTables_wrapper .dataTables_paginate .paginate_button{
     padding: .2em 0.5em;
   }
@@ -42,8 +52,8 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-8">
-      <table class="table feesTable table-hover table-responsive table-bordered" id="myTable">
+    <div class="col-lg-12">
+      <table class="table feesTable table-bordered table-striped" id="myTable">
         <thead class="thead-dark">
         <tr>
           <th scope="col">FULLNAME</th>

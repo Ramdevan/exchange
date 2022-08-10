@@ -154,7 +154,7 @@ a:hover {
     font-size: 14px;
     font-weight: 600;
 }
-.header_bg li a:hover{color:var(--theme-primary);}
+.header_bg li a:hover, .header_bg li.active a{color:var(--theme-primary);}
 
 /*COMMON*/
 
@@ -213,14 +213,14 @@ input[type='file']::after {
     font-size: 12px;
 }
 div#guide {
-    margin: 25px 0;
+    margin: 0px 0 25px 0;
 }
 div#guide h3 {
     font-size: 22px;
-    color: #017bff;
+    /* color: #017bff; */
 }
 div#guide h4 {
-    color: var(--theme-primary);
+    /* color: var(--theme-primary);*/
     font-size: 22px;
 }
 div#guide p {
@@ -302,11 +302,11 @@ border-radius: 2px;
 }
 
 .settings #set-pills-tabContent {
-    min-height: 600px;
-    }
+    /* min-height: 600px; */
+}
 .settings #content {position: relative;
     border-radius: 6px;
-    margin: 0 0 5% 0;
+    margin: 0 0 3% 0;
     }
 
 .cardBox {
@@ -424,6 +424,7 @@ border-radius: 2px;
     padding: 40px;
     border-radius: 6px;
     margin:3% 0;
+    min-height:500px;
 }
 body#sms_auths-show #guide h3 {
     color: #017bff;
@@ -503,7 +504,7 @@ body#sms_auths-show #guide h3 i {
     background-color: #fcfcfc;
 }
 .pagination li a {
-    color: #c99400;
+    color: #000;
 }
 .pagination li.page.active {
     background-color: var(--theme-primary);
@@ -733,9 +734,9 @@ a#new_address {
 }
 
 th.ng-binding {
-    font-size: 15px;
+   /* font-size: 15px;
     padding-top: 5px;
-    padding-bottom: 5px;
+    padding-bottom: 5px; */
 }
 
 span.currency-symbol {
@@ -882,14 +883,9 @@ footer a {
     background-color: var(--theme-primary);
     color: #fff;
 }
-
-
-
-
-
-
-
-
+#myTable_wrapper {
+    margin-top: -60px;
+}
 
 
 
@@ -969,10 +965,11 @@ header .navbar {
     font-size: 18px;
     vertical-align: middle;
 }
-#Loginhistory .table thead th, #orders .table thead th, #trades .table thead th, #transactions .table thead th, .farm_table th {
+#Loginhistory .table thead th, #orders .table thead th, #trades .table thead th, #transactions .table thead th, .farm_table th, .coin_deposit thead th, .withdraw-history thead th {
     text-transform: capitalize;
     background: #161a1e;
     color: #fff;
+    font-weight: 600;
 }
 .table th, .table td {
     font-size: 13px;
@@ -1045,4 +1042,17 @@ header .navbar {
 }
 .url_a {
     color: #c99400;
+}
+.ref_tab .nav-item {
+    margin-right: 10px;
+}
+.ref_tab .nav-item .nav-link {
+    color: #000;
+    border: 1px solid #ccc;
+}
+.ref_tab .nav-link.active, .ref_tab .nav-pills .show > .nav-link {
+    border-color: var(--theme-primary) !important; 
+}
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: transparent !important;
 }
