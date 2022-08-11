@@ -7,8 +7,9 @@
   .row.carbox
     .col-lg-12
       .panel.panel-info
-        h4 Accounts Log
-        = link_to t('.export_to_xls'), admin_member_path(@member.id, format: :xlsx), class: 'pull-right'
+        .d-flex.justify-content-between.w-100.mb-3
+          h4 Accounts Log
+          = link_to t('.export_to_xls'), admin_member_path(@member.id, format: :xlsx), class: 'btn btn-primary pull-right'
         .panel-body
           = table_for(@account_versions, class: 'table table-condensed table-hover', model: AccountVersion) do |t|
             - t.column :created_at, class: ''

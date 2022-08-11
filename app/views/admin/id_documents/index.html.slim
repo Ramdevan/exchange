@@ -17,6 +17,6 @@
         - t.column :verified, class: 'col-xs-1' do |x|
           = yesno(x.verified?)
         - t.column '', class: 'col-xs-1' do |x|
-          = link_to t('actions.view'), admin_id_document_path(x)
+          = link_to t('actions.view'), admin_id_document_path(x), :class => "btn btn-primary btn-sm"
 
   = paginate @id_documents

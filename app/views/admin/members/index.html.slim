@@ -40,7 +40,7 @@
           - t.column :id_document_verified?,t('.id_document_verified?'),  class: 'col-xs-2' do |x|
             = x.id_document_verified? ? x.name : yesno(x.id_document_verified?)
           - t.column :actions, t('.actions'), class: 'col-xs-1' do |x|
-            = link_to t('actions.view'), url_for([:admin, x]), target: '_blank'
+            = link_to t('actions.view'), url_for([:admin, x]), target: '_blank',  class: 'btn btn-primary btn-sm'
 
         = paginate @members
 

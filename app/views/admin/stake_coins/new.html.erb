@@ -32,9 +32,10 @@
  <%= f.fields_for :variable_apy, @stake_coin.variable_apy.build do |t| %> 
     <%= render "variable_apy", t: t %>
     <%=link_to_add_fields('Add Variable Apy', f, :variable_apy, {partial: "variable_apy",locals: {t: t}},{id: "add_var_apy"})%>
+     </p>
  <%end%> 
             
-        </p>
+       
         <div class="d-flex">
             <div class="cre-submit">
                 <%= f.submit %>

@@ -13,9 +13,9 @@
           - t.column "Fee", class: 'fee col-xs-2' do |x|
             = x.fee_percent
           - t.column :actions, class: 'col-xs-1' do |x|
-            = link_to "Edit",{ }, class: 'edit-commission btn btn-primary', data: {id: x.id}
+            = link_to "Edit",{ }, class: 'edit-commission btn btn-primary btn-sm', data: {id: x.id}
             '
-            = link_to "Delete", url_for([:admin, x]), class: 'btn btn-danger' ,method: :delete, data: { confirm: 'Are you sure?' }
+            = link_to "Delete", url_for([:admin, x]), class: 'btn btn-danger btn-sm' ,method: :delete, data: { confirm: 'Are you sure?' }
 
         = paginate @commissions
 

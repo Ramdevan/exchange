@@ -1,12 +1,12 @@
 .panel-primary.admin_ticket
   .row
     .col-lg-12.mb-3
-      .d-flex
-        p
-          = link_to t("admin.tickets.open_tickets"), admin_tickets_path, :class => "btn btn-primary"
-         
-        p
-          = link_to t("admin.tickets.closed_tickets"), admin_tickets_path(closed: true), :class => "ml-2 btn btn-danger"
+      .d-block.w-100.mb-4
+        ul.nav.nav-tabs.history_tabs
+          li.nav-item
+            = link_to t("admin.tickets.open_tickets"), admin_tickets_path, :class => "nav-link active"
+          li.nav-item
+            = link_to t("admin.tickets.closed_tickets"), admin_tickets_path(closed: true), :class => "nav-link"
 
   ul.list-group
     - @tickets.each do |t|

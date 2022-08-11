@@ -1,54 +1,58 @@
 <div class="stake_dis">
-<table  class='table table-bordered' style="margin-bottom: 50px;">
-    <thead style="background: #efefef;">
-        <tr>
-            <th>Id</th>
-            <th>Currency</th>
-            <th>Minimum Deposit</th>
-            <th>Maximum Deposit</th>
-            <th>Duration</th>
-            <th>Staking Type</th>
-            <th>Maximum Lot Size</th>
-            <th>Total invested Coins</th> 
-            <th>Active</th>
-        </tr>
-    </thead>
+    <div class="panel panel-primary">
+        <h3 class="panel-heading">Variable Apys</h3>
 
-    <tr>
-        <td><%= @stake_coin.id %></td>
-        <td><%= @stake_coin.currency %></td>
-        <td><%= @stake_coin.min_deposit %></td>
-        <td><%= @stake_coin.max_deposit %></td>
-        <td><%= @stake_coin.duration %></td>
-        <%if(@stake_coin.is_flexible)%>
-            <td>Flexible</td>
-        <%else%>
-            <td>Locked</td>  
-        <%end%>
-        <td><%= @stake_coin.max_lot_size %></td>
-        <td><%= @stake_coin.cur_lot_size %></td> 
-        <td><%= @stake_coin.is_active %></td>    
-    </tr>
-</table>
+        <table  class='table table-bordered' style="margin-bottom: 50px;">
+            <thead style="background: #efefef;">
+                <tr>
+                    <th>Id</th>
+                    <th>Currency</th>
+                    <th>Minimum Deposit</th>
+                    <th>Maximum Deposit</th>
+                    <th>Duration</th>
+                    <th>Staking Type</th>
+                    <th>Maximum Lot Size</th>
+                    <th>Total invested Coins</th> 
+                    <th>Active</th>
+                </tr>
+            </thead>
 
-<h3 style="margin-bottom: 20px;">Variable Apys</h3>
-
-<table class='table table-bordered' style="margin-bottom: 50px;">
-<thead style="background: #efefef;">
             <tr>
-                <th>Id</th>
-                <th>lot size</th>
-                <th>apy</th>
+                <td><%= @stake_coin.id %></td>
+                <td><%= @stake_coin.currency %></td>
+                <td><%= @stake_coin.min_deposit %></td>
+                <td><%= @stake_coin.max_deposit %></td>
+                <td><%= @stake_coin.duration %></td>
+                <%if(@stake_coin.is_flexible)%>
+                    <td>Flexible</td>
+                <%else%>
+                    <td>Locked</td>  
+                <%end%>
+                <td><%= @stake_coin.max_lot_size %></td>
+                <td><%= @stake_coin.cur_lot_size %></td> 
+                <td><%= @stake_coin.is_active %></td>    
             </tr>
-        </thead>
+        </table>
 
-<% @stake_coin.variable_apy.each do |apy| %>
-    <tr>
-        <td><%= apy.id %></td>
-        <td><%= apy.lot_size %></td>
-        <td><%= apy.apy %></td>
-    </tr>
-<% end %>
-</table>
-<%= link_to "back", admin_stake_coins_path, class:'back-btn'%>
+        <h3 class="panel-heading">Variable Apys</h3>
+
+        <table class='table table-bordered' style="margin-bottom: 50px;">
+            <thead style="background: #efefef;">
+                        <tr>
+                            <th>Id</th>
+                            <th>lot size</th>
+                            <th>apy</th>
+                        </tr>
+                    </thead>
+
+            <% @stake_coin.variable_apy.each do |apy| %>
+                <tr>
+                    <td><%= apy.id %></td>
+                    <td><%= apy.lot_size %></td>
+                    <td><%= apy.apy %></td>
+                </tr>
+            <% end %>
+        </table>
+        <%= link_to "back", admin_stake_coins_path, class:'btn btn-light'%>
+    </div>    
 </div>

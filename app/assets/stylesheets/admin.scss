@@ -55,6 +55,10 @@ ul {
 }
 a {
     text-decoration: none!important;
+    color: #ffc300;
+}
+a:hover {
+    color: #fcd535;
 }
 abbr {
     color: #FF5722;
@@ -62,7 +66,7 @@ abbr {
 
 
 .sidebar {
-    width: 320px;
+    width: 280px;
     position: fixed;
     background-color: #040d17;
     height: 100%;
@@ -71,7 +75,7 @@ abbr {
     overflow-y: scroll
 }
 .content {
-    width: calc(100% - 320px);
+    width: calc(100% - 280px);
     min-height: 900px;
     margin-left: auto;
     margin-top: 77px;
@@ -153,6 +157,7 @@ ul.admin_menu {
 .table th, .table td {
     padding: 0.75rem;
     vertical-align: top;
+    font-size: 14px;
     border: 1px solid #dee2e6;
 }
 .table tbody tr:hover {
@@ -209,8 +214,9 @@ ul.admin_menu {
 }
 
 .amdin_member_search input[type='Submit'] {
-    background-color: #2196F3;
-    color: #fff;
+    background-color: #ffc300;
+    border-color: #ffc300;
+    color: #000;
     padding: 6px 20px;
 }
 .admin_ticket p {
@@ -343,4 +349,108 @@ div
 }
 .m-wd-350 {
     min-width: 350;
+}
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:focus, .btn-primary:not(:disabled):not(.disabled):active {
+    color: #000000;
+    background-color: #ffc300;
+    border-color: #ffc300;
+    box-shadow: none;
+}
+.table-condensed td a {
+    color: #212529;
+}
+.pagination li {
+    padding: 6px 12px;
+    margin: 0 5px;
+    border: 1px solid #eceff1;
+    border-radius: 4px;
+    background-color: #fcfcfc;
+}
+.pagination li a {
+    color: #000;
+}
+.pagination li.page.active {
+    background-color: #ffc300;
+    border-color: #ffc300;
+}
+.pagination li.page.active a {color: #000; }
+
+.pagination li.previous.disabled, .pagination li.next.disabled{
+    opacity: .4;
+    pointer-events: none;
+}
+.acc_title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+.text-info {
+    color:#c99400 !important;
+}
+.nav-tabs {
+    border-bottom: 1px solid #dee2e6;
+}
+.nav-tabs .nav-item {
+    margin-bottom: -1px;
+}
+.history_tabs li a {
+    color: #1e2026;
+    font-weight: bold;
+}
+.nav-tabs .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    display: block;
+    padding: 0.5rem 1rem;
+}
+.history_tabs li a.active {
+    color: #000 !important;
+    background: transparent !important;
+}
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    color: #495057;
+    background-color: #fff;
+    border-color: #dee2e6 #dee2e6 #fff;
+}
+.select-date .control-label {
+    margin-right: 10px;
+}
+.dataTable th {
+    border-bottom: 1px solid #dee2e6;
+    font-weight: 900;
+    text-transform: capitalize;
+    background: #040d17;
+    color: #fff;
+}
+.dataTable th, .dataTable td {
+    font-size: 14px;
+    padding: 0.75rem;
+    font-size: 14px;
+    border: 1px solid #dee2e6;
+}
+table.dataTable.no-footer {
+    border: 0px;
+}
+.table-condensed td a.btn.btn-danger {
+    color: #fff;
+}
+.table-condensed td .btn {
+    font-size: 14px;
+}
+
+@media only screen and (min-width: 992px) {
+    .members-box .dl-horizontal {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    .members-box .dl-horizontal dt, .members-box .dl-horizontal  dd {
+        width: 50%;
+        height: 100%;
+        border: 1px solid #dee2e6;
+        padding: 12px;
+        margin: 0px;
+        min-height: 52px;
+    }
 }
