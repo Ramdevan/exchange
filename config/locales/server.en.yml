@@ -433,7 +433,7 @@ en:
               invalid_uri: must be a valid URI.
               relative_uri: must be an absolute URI.
       messages:
-        invalid_email: Invalid Email Address
+        invalid_email: Is Invalid
         undef: unknown reason
         less: balance less
         verify: verify error
@@ -1427,9 +1427,9 @@ en:
         safety_instruction: In order to protect your bitcoins and personal information, we strongly suggest that you use Two-Factor Authentication.
         reset_password: Rest your Password
         reauthenticate: Authentication
-        activated: An  email has been sent to your mailbox, please check it for verification
-          as soon as possible. If you do not received it , please click "send it again"
-          button
+        activated: An email has been sent to your mailbox, please check it for verification
+          as soon as possible. If you do not received it, please click "send it again"
+          button.
         auth-activated: Please confirm your email address first.
         auth-verified: Please verify your account first.
         email:
@@ -1459,8 +1459,8 @@ en:
           disable: Disable
         verification:
           title: Verify Account
-          description: Help keep the bad guys out of your account by using both your
-            password and your phone
+          description: Help keep the hackers out of your account by using both your
+            password and your phone.
           go: Submit
           verified: Verified
         asset_passwords:
@@ -2531,7 +2531,7 @@ en:
         create: Submit
   activations:
     new:
-      notice: An email has been sent to your mailbox, please check it for verification as soon as possible. If you do not received it , please click "send it again" button.
+      notice: An email has been sent to your mailbox, please check it for verification as soon as possible. If you do not received it, please click "send it again" button.
       verified: Your email adress has been verified successfully.
       login_required: Login required!
       tip: Activation link was sent to %{email}

@@ -3,7 +3,9 @@ class Token < ActiveRecord::Base
 
   before_validation :generate_token, on: :create
 
-  validates_presence_of :member, :token
+  validates_presence_of :token
+  validates :member_id, presence: { message: "does not exist." }
+
   validate :check_latest_send, on: :create
 
   scope :with_member, -> (id) { where(member_id: id) }
