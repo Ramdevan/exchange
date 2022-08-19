@@ -18,7 +18,7 @@
             p.text-ignore = t.content
         .row.mt-3.mb-3
           .col-lg-6
-            p.tic_email = "#{I18n.t("private.tickets.from")}: #{t.author.email}"         
+            p.tic_email = "#{I18n.t("private.tickets.from")}: #{t.author.try(:email)}"
             p.tic_time
               span = time_ago_in_words t.created_at
           .col-lg-3
