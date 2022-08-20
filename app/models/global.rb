@@ -13,9 +13,7 @@ class Global
     end
 
     def daemon_statuses
-      Rails.cache.fetch('xubiq:daemons:statuses', expires_in: 3.minute) do
-        Daemons::Rails::Monitoring.statuses
-      end
+      Rails.cache.read('xubiq:daemons:statuses')
     end
   end
 

@@ -6,8 +6,8 @@
 # Example:
 #
 # set :output, "/path/to/my/cron_log.log"
-set :output, "log/referral.log"
-
+#set :output, "log/referral.log"
+set :output, "log/cron.log"
 #
 # every 2.hours do
 #   command "/usr/bin/some_great_command"
@@ -47,4 +47,8 @@ end
 
 every 1.hours do
   rake 'stakings:process_pending_interests'
+end
+
+every 10.minutes do
+  rake 'stats:daemons'
 end

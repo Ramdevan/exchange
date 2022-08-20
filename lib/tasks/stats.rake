@@ -52,4 +52,9 @@ namespace :stats do
     SystemMailer.daily_stats(yesterday.to_i, yesterday_stats, base_stats).deliver
   end
 
+  desc "Get daemon status"
+  task daemons: :environment do
+    status = Global.get_daemon_statuses
+    Rails.cache.write('xubiq:daemons:statuses', status)
+  end
 end
