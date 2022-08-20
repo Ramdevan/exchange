@@ -396,7 +396,7 @@ en:
             password:
               invalid: Invalid Password
             member:
-              blank: Not exist!
+              blank: not exist!
         activation:
           attributes:
             base:
@@ -2568,8 +2568,8 @@ en:
       password: Please enter a password at least 6 characters and it's better to contain
         uppercase and lowercase letters and numbers.
     update:
-      auth-error: The original password you entered is incorrect, please re-enter.
-      auth-same: The new password you entered is the same as the old password, please
+      auth-error: The current password you entered is incorrect, please re-enter.
+      auth-same: The new password you entered is same as the old password, please
         re-enter.
       notice: Account password updated successfully.
   layouts:

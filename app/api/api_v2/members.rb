@@ -63,7 +63,7 @@ module APIv2
         return response
       rescue => e
         ExceptionNotifier.notify_exception(e, env: request.env)
-        raise CustomError.new("Incorrect Email or Password")
+        raise CustomError.new("Incorrect email or password")
       end
     end
 
