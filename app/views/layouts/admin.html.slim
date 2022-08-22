@@ -5,6 +5,7 @@ html lang="en"
     = stylesheet_link_tag :admin, media: "all"
     script crossorigin="anonymous" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
     = javascript_include_tag :admin
+    = yield(:scripts) if content_for?(:scripts)
     = csrf_meta_tags
 
   body id='#{body_id}'

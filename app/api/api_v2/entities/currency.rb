@@ -9,6 +9,7 @@ module APIv2
       expose :locked, format_with: :decimal, documentation: "Balance locked for trade or withdrawl."
       expose :trade_pairs, documentation: "If this currency is a base market if count is greater than 0."
       expose :fiat
+      expose :fiat_price, documentation: "convert crypto to usd"
     end
   end
 end

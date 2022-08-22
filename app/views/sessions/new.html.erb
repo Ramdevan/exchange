@@ -18,7 +18,7 @@
             <p class="input_title">Password</p>
             <%= f.password_field :password, name: 'password', class: 'form-control', id: "inputPassword", required: true, placeholder: '******' %>
             
-            <button type="button" class="btn btn-theme-primary w-100 mt-3" data-toggle="modal" data-target="#myModallogin">Log In</button>
+            <button type="button" class="btn btn-theme-primary w-100 mt-3" data-toggle="modal" data-target="#myModallogin" id="signInBtn">Log In</button>
          <% end %>
           <div class="login-btm">
           <p><a class="" href="<%= new_reset_password_path %>">
@@ -69,6 +69,13 @@
 </div>
     <script src="assets/longbow.slidercaptcha.js"></script>
     <script>
+        document.getElementById("signInBtn").addEventListener("click", signInValidation);
+
+        function signInValidation() {
+          modal = document.getElementById("myModallogin")
+          console.log('modal')
+        }
+
         var captcha = sliderCaptcha({
             id: 'captcha-val',
             setSrc: function () {
