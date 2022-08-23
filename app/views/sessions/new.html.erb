@@ -17,8 +17,8 @@
             <%= f.text_field :email, name: 'auth_key', autofocus: 'true', class: 'form-control', id: "inputEmail", required: true, placeholder: t('simple_form.placeholders.session.email') %>
             <p class="input_title">Password</p>
             <%= f.password_field :password, name: 'password', class: 'form-control', id: "inputPassword", required: true, placeholder: '******' %>
-            
-            <button type="button" class="btn btn-theme-primary w-100 mt-3" data-toggle="modal" data-target="#myModallogin" id="signInBtn">Log In</button>
+            <p style="color: red;" class="hide" id="customError">Enter the email and password</p>
+            <button type="button" class="btn btn-theme-primary w-100 mt-3" data-toggle="modal" id="signInBtn">Log In</button>
          <% end %>
           <div class="login-btm">
           <p><a class="" href="<%= new_reset_password_path %>">
@@ -72,8 +72,16 @@
         document.getElementById("signInBtn").addEventListener("click", signInValidation);
 
         function signInValidation() {
-          modal = document.getElementById("myModallogin")
-          console.log('modal')
+          LogInBtn = document.getElementById("signInBtn")
+          email = document.getElementById("inputEmail")
+          password = document.getElementById("inputPassword")
+          customError = document.getElementById("customError")
+          if(email.value.length > 0 && password.value.length > 0){
+            LogInBtn.setAttribute("data-target", "#myModallogin");
+          }
+          else{
+            customError.classList.remove('hide');
+          }
         }
 
         var captcha = sliderCaptcha({
@@ -89,3 +97,8 @@
         });
         
     </script>
+    <style>
+        .hide{
+            display: none;
+        }
+    </style>
