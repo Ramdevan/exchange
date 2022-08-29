@@ -715,9 +715,9 @@ en:
       transfer: Manual
       go: Deposit
     usdc:
-      key: Usdc
-      title: Usdc Deposits
-      intro: Deposit usdc from your own wallet address to Xsea account
+      key: USDC
+      title: USDC Deposits
+      intro: Deposit USDC from your own wallet address to Xsea account
       latency: 1 confirmation
       transfer: Manual
       go: Deposit
@@ -1428,7 +1428,7 @@ en:
         reset_password: Rest your Password
         reauthenticate: Authentication
         activated: An email has been sent to your mailbox, please check it for verification
-          as soon as possible. If you do not received it, please click "send it again"
+          as soon as possible. If you have not received it, please click "send it again"
           button.
         auth-activated: Please confirm your email address first.
         auth-verified: Please verify your account first.
@@ -2531,7 +2531,7 @@ en:
         create: Submit
   activations:
     new:
-      notice: An email has been sent to your mailbox, please check it for verification as soon as possible. If you do not received it, please click "send it again" button.
+      notice: An email has been sent to your mailbox, please check it for verification as soon as possible. If you have not received it, please click "send it again" button.
       verified: Your email adress has been verified successfully.
       login_required: Login required!
       tip: Activation link was sent to %{email}
@@ -2839,9 +2839,9 @@ en:
       transfer: Manual
       go: Withdraw
     usdc:
-      key: Usdc
-      title: Usdc Withdraw
-      intro: Withdraw usdc to your own wallet
+      key: USDC
+      title: USDC Withdraw
+      intro: Withdraw USDC to your own wallet
       latency: 30 minutes
       transfer: Manual
       go: Withdraw

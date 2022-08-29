@@ -61,7 +61,7 @@ html lang="en"
                 = link_to "<i class='fa fa-address-card'></i>#{t('.menus.sections.members')}".html_safe, main_app.admin_members_path
 
             - if can? :manage, Ticket
-              li class = check_active(Proof)
+              li class = check_active('tickets')
                 = link_to "<i class='fa fa-ticket-alt'></i>   #{t('.menus.items.operating.tickets')}".html_safe,main_app.admin_tickets_path 
 
             li.dropdown class = check_active('statistic')
@@ -72,7 +72,7 @@ html lang="en"
                 span.caret
               ul.dropdown-menu.admin-dropdown
                 - if can? :stat, Member
-                  li class = check_active(Member)
+                  li class = check_active('statistic/members')
                     = link_to Member.model_name.human, admin_statistic_members_path
             li.dropdown
               = link_to 'javascript:;', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do
@@ -82,10 +82,16 @@ html lang="en"
                 span.caret
               ul.dropdown-menu.admin-dropdown
                 li = link_to 'Referral Stats', admin_referrals_path
-                li = link_to 'Referral Commissions', admin_referral_commissions_path
-            li = link_to "<i class='fa fa-money-bill-alt'></i>#{('Trade Fees')}".html_safe, main_app.admin_fees_path 
-            li = link_to "<i class='fa fa-money-check-alt'></i>#{('Commissions')}".html_safe, main_app.admin_commissions_path
-            li = link_to "<i class='fa fa-coins'></i>#{('Stakings')}".html_safe, admin_stake_coins_path
+                li = link_to 'Referral Commissions', admin_referral_commissions_path 
+
+            li class = check_active('fees')
+                = link_to "<i class='fa fa-money-bill-alt'></i>#{('Trade Fees')}".html_safe, main_app.admin_fees_path
+
+            li class = check_active('commissions')
+                = link_to "<i class='fa fa-money-check-alt'></i>#{('Commissions')}".html_safe, main_app.admin_commissions_path
+
+            li class = check_active('stake_coins')
+                = link_to "<i class='fa fa-coins'></i>#{('Stakings')}".html_safe, admin_stake_coins_path
             /li = link_to "<i class='fa fa-robot'></i>#{t('admin_header.bots')}".html_safe, admin_bots_path
 
             / li.dropdown
