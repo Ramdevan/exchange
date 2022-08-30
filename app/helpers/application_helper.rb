@@ -197,27 +197,27 @@ module ApplicationHelper
       title = model_or_title
       capture do
         if block_given?
-          content_tag(:dt, title.to_s) +
-            content_tag(:dd, capture(&block))
+          content_tag(:td, title.to_s) +
+            content_tag(:td, capture(&block))
         else
           value = name
-          content_tag(:dt, title.to_s) +
-            content_tag(:dd, value)
+          content_tag(:td, title.to_s) +
+            content_tag(:td, value)
         end
       end
     else
       model = model_or_title
       capture do
         if block_given?
-          content_tag(:dt, model.class.human_attribute_name(name)) +
-            content_tag(:dd, capture(&block))
+          content_tag(:td, model.class.human_attribute_name(name)) +
+            content_tag(:td, capture(&block))
         else
           value ||= model.try(name)
           value = value.localtime if value.is_a? DateTime
           value = I18n.t(value) if value.is_a? TrueClass
 
-          content_tag(:dt, model.class.human_attribute_name(name)) +
-            content_tag(:dd, value)
+          content_tag(:td, model.class.human_attribute_name(name)) +
+            content_tag(:td, value)
         end
       end
     end

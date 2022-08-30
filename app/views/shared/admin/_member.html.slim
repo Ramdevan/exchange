@@ -5,15 +5,21 @@
   .panel-body
     .members-box
       = description_for :member do
-        = item_for member, :name
-        = item_for member, :email
-        = item_for member, :phone_number do
-          - if member.phone_number
-            span = member.phone_number
-          - else
-            span = '-'
-        = item_for member, :activated
-        = item_for member, :created_at
+        table.mem_table
+          tr
+            = item_for member, :name
+          tr
+            = item_for member, :email
+          tr
+            = item_for member, :phone_number do
+              - if member.phone_number
+                span = member.phone_number
+              - else
+                span = '-'
+          tr
+            = item_for member, :activated
+          tr
+            = item_for member, :created_at
 
     - if ENV["ADMIN"] != member.email
       .row

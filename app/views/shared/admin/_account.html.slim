@@ -5,10 +5,16 @@
       span = account.currency_text
     .members-box
       .panel-body
-        dl.dl-horizontal
-          = item_for account, :amount
-          = item_for account, :locked
-          = item_for account, :balance
-          - if account.currency_obj.coin?
-            = item_for t('.payment_address') do
-              = account.payment_address.address
+        table.dl-horizontal.mem_table
+          tr
+            = item_for account, :amount
+          tr
+            = item_for account, :locked
+          tr
+            = item_for account, :balance
+          tr
+            - if account.currency_obj.coin?
+              tr
+                  = item_for t('.payment_address') do
+              tr
+                  = account.payment_address.address
