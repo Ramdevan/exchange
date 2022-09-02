@@ -12,9 +12,9 @@
             = item_for account, :locked
           tr
             = item_for account, :balance
-          tr
-            - if account.currency_obj.coin?
-              tr
-                  = item_for t('.payment_address') do
-              tr
-                  = account.payment_address.address
+            
+          - if account.currency_obj.coin?
+            tr
+              = item_for t('.payment_address') do
+            
+                = account.payment_address.address
