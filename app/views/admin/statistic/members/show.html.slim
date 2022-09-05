@@ -17,3 +17,13 @@
           code.text-info = x.total
         - t.column :rate, 'Rate', class: 'col-xs-6' do |x|
           code = number_to_percentage(x.total_activated.fdiv(x.total) * 100, precision: 0)
+
+= content_for :scripts
+  javascript:
+    $(function() {
+      var path = window.location.pathname;
+      var elems = document.querySelector('.admin_menu');
+      if(path == '/admin/statistic/members'){
+        elems.children[4].classList.remove('active');
+      }
+    });
