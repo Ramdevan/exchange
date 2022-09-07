@@ -49,7 +49,7 @@ namespace :stats do
     yesterday_stats = collect_stats yesterday.to_i
     base_stats      = collect_stats base.to_i
 
-    SystemMailer.daily_stats(yesterday.to_i, yesterday_stats, base_stats).deliver
+    SystemMailer.daily_stats(yesterday.to_i, yesterday_stats, base_stats).deliver!
   end
 
   desc "Get daemon status"

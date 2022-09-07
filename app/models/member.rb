@@ -255,7 +255,7 @@ class Member < ActiveRecord::Base
   end
 
   def send_password_changed_notification
-    MemberMailer.reset_password_done(self.id).deliver
+    MemberMailer.reset_password_done(self.id).deliver!
 
     if sms_two_factor.activated?
       sms_message = I18n.t('sms.password_changed', name: (self.name || self.email))

@@ -9,6 +9,6 @@ class Token::Activation < ::Token
   private
 
   def send_token
-    TokenMailer.activation(member.email, token).deliver
+    TokenMailer.activation(member.email, token).deliver!
   end
 end

@@ -114,9 +114,9 @@ class Deposit < ActiveRecord::Base
   def send_email
     case aasm_state
     when 'submitting'
-      DepositMailer.submitted(self.id).deliver
+      DepositMailer.submitted(self.id).deliver!
     when 'accepted'
-      DepositMailer.accepted(self.id).deliver
+      DepositMailer.accepted(self.id).deliver!
     end
   end
 

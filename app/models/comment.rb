@@ -13,9 +13,9 @@ class Comment < ActiveRecord::Base
     ticket_author = self.ticket.author
 
     if ticket_author != self.author
-      CommentMailer.user_notification(self.id).deliver
+      CommentMailer.user_notification(self.id).deliver!
     else
-      CommentMailer.admin_notification(self.id).deliver
+      CommentMailer.admin_notification(self.id).deliver!
     end
   end
 end

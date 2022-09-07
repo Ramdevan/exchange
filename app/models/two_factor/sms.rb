@@ -58,9 +58,9 @@ class TwoFactor::Sms < ::TwoFactor
     return if not self.activated_changed?
 
     if self.activated
-      MemberMailer.sms_auth_activated(member.id).deliver
+      MemberMailer.sms_auth_activated(member.id).deliver!
     else
-      MemberMailer.sms_auth_deactivated(member.id).deliver
+      MemberMailer.sms_auth_deactivated(member.id).deliver!
     end
   end
 end

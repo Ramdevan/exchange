@@ -89,7 +89,7 @@ class IdDocument < ActiveRecord::Base
   end
 
   def send_status_email
-    MemberMailer.kyc_status(member.id).deliver
+    MemberMailer.kyc_status(member.id).deliver!
   end
 
   def send_sms

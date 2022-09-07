@@ -186,11 +186,11 @@ class Withdraw < ActiveRecord::Base
   def send_email
     case aasm_state
     when 'submitted'
-      WithdrawMailer.submitted(self.id).deliver
+      WithdrawMailer.submitted(self.id).deliver!
     when 'processing'
-      WithdrawMailer.processing(self.id).deliver
+      WithdrawMailer.processing(self.id).deliver!
     when 'done'
-      WithdrawMailer.done(self.id).deliver
+      WithdrawMailer.done(self.id).deliver!
     # else
     #   WithdrawMailer.withdraw_state(self.id).deliver
     end

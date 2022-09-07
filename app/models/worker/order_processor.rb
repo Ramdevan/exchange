@@ -17,7 +17,7 @@ module Worker
       end
     rescue => e
       ExceptionNotifier.notify_exception(e)
-      SystemMailer.order_processor_error(payload, $!.message, $!.backtrace.join("\n")).deliver
+      SystemMailer.order_processor_error(payload, $!.message, $!.backtrace.join("\n")).deliver!
       raise $!
     end
 

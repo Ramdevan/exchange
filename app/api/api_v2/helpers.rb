@@ -82,7 +82,7 @@ module APIv2
       token.save
 
       # Send mail for activated user - if login succeed
-      MemberMailer.notify_signin(member.id).deliver if member.activated?
+      MemberMailer.notify_signin(member.id).deliver! if member.activated?
 
       token
     end

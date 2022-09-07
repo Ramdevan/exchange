@@ -47,7 +47,7 @@ class SessionsController < ApplicationController
           user_agent = ::UserAgent.parse(user_agent_string)
           save_login_history @member.id, country, user_agent
           if @member.activated?
-            MemberMailer.notify_signin(@member.id).deliver
+            MemberMailer.notify_signin(@member.id).deliver!
             redirect_back_or_settings_page
           else
             redirect_to settings_path
