@@ -25,6 +25,6 @@ class Token::ResetPassword < ::Token
   end
 
   def send_token
-    TokenMailer.reset_password(member.email, token).deliver
+    TokenMailer.reset_password(member.email, token).deliver!
   end
 end
