@@ -8,23 +8,30 @@ class CoinRPC
 
     SUCCESS = '0x1'
 
-    def handle(name, *args)
+    def handle(name, local=false, *args)
       post_body = {"jsonrpc" => "2.0", 'method' => name, 'params' => args, 'id' => '1'}.to_json
-      resp = JSON.parse(http_post_request(post_body))
-      raise JSONRPCError, resp['error'] if resp['error']
-      result = resp['result']
-      result.symbolize_keys! if result.is_a? Hash
-      result
+      resp = http_post_request(post_body, local)
+      unless resp.blank?
+        parsed_resp = JSON.parse(resp)
+        raise JSONRPCError, parsed_resp['error'] if parsed_resp['error']
+        result = parsed_resp['result']
+        result.symbolize_keys! if result.is_a? Hash
+        result
+      end
     end
 
-    def http_post_request(post_body)
-      http    = Net::HTTP.new(@uri.host, @uri.port)
-      request = Net::HTTP::Post.new(@uri.request_uri)
+    def http_post_request(post_body, local)
+      @current_uri = (local ==true) ? @uri : @public_uri
+      http    = Net::HTTP.new(@current_uri.host, @current_uri.port)
+      request = Net::HTTP::Post.new(@current_uri.request_uri)
+      ssl_status  = (@current_uri.to_s.split(':').first  == 'http') ? false : true
+      http.use_ssl = ssl_status
       request.content_type = 'application/json'
       request.body = post_body
-      http.request(request).body
-    rescue Errno::ECONNREFUSED => e
-      ExceptionNotifier.notify_exception(e)
+      res = http.request(request)
+      res.code.to_i == 200.to_i ? res.body : nil
+      rescue Errno::ECONNREFUSED => e
+        ExceptionNotifier.notify_exception(e)
       raise ConnectionRefusedError
     end
 
@@ -47,7 +54,7 @@ class CoinRPC
 
     def safe_getbalance
       begin
-        Web3Currency.get('bnb')
+        Web3Currency.get(@currency[:code])
       rescue
         'N/A'
       end
@@ -62,7 +69,7 @@ class CoinRPC
     end
 
     def gettransaction txid
-      handle :eth_getTransactionByHash, txid
+      handle(:eth_getTransactionByHash, false, txid)
     end
 
     def listtransactions latest_block=nil, diff=20
@@ -75,24 +82,51 @@ class CoinRPC
       to_block = latest_block
       Rails.logger.info "diff #{diff},latest_block #{latest_block}, diff block #{diff_block}"
       (from_block..to_block).each do |block_id|
+        re_exec_transaction(block_id)
+      end
+    end
+
+    def re_exec_transaction(block_id)
+      re_exec_transaction(block_id) unless exec_transaction(block_id)
+    end
+
+    def exec_transaction(block_id)
+      begin
         block_json = get_block block_id
-        next if block_json.blank? || block_json[:transactions].blank?
+
+        if block_json.blank?
+          DepositTrackLogger.debug("block id: #{block_id}-- block json blank #{@currency[:code]}")
+          MissingBlock.where(block_id: block_id, currency: @currency[:code], status: false ).first_or_create
+          return true
+        elsif block_json[:transactions].blank?
+          #Even block has no transactions
+          DepositTrackLogger.debug("block id: #{block_id}-- block json present but transaction is blank")
+          return true
+        else
+          DepositTrackLogger.debug("block id: #{block_id}-- block json present and transaction is present #{@currency[:code]}")
+        end
 
         all_accounts = get_accounts
         block_json[:transactions].each do |block_txn|
-          if all_accounts.include?(block_txn['to']) || Currency.all.map(&:erc20_contract_address).compact.include?(block_txn['to'])
-            if block_txn.fetch('input').hex <= 0
+          if all_accounts.include?(block_txn.with_indifferent_access['to']) || Currency.all.map(&:erc20_contract_address).compact.map(&:downcase).include?(block_txn.with_indifferent_access['to'])
+            if block_txn.with_indifferent_access.fetch('input').hex <= 0
               next if invalid_eth_transaction?(block_txn.symbolize_keys)
-              AMQPQueue.enqueue(:deposit_coin, txid: block_txn.fetch('hash'), channel_key: 'bnb')
+              AMQPQueue.enqueue(:deposit_coin, txid: block_txn.with_indifferent_access.fetch('hash'), channel_key: 'bnb')
             else
-              txn_receipt = get_txn_receipt(block_txn.fetch('hash'))
+              txn_receipt = get_txn_receipt(block_txn.with_indifferent_access.fetch('hash'))
               next if txn_receipt.nil? || invalid_erc20_transaction?(txn_receipt.symbolize_keys) || (all_accounts.exclude?(to_address(txn_receipt).first))
-              currency_key = Currency.where(erc20_contract_address: block_txn['to']).first.key rescue nil
+              currency_with_erc20_contract_addresses = Currency.all.select{|c| c.erc20_contract_address!= nil }
+              currency_with_erc20_contract_address = currency_with_erc20_contract_addresses.select{|a| a.erc20_contract_address.downcase == block_txn.with_indifferent_access['to']}
+              currency_key = currency_with_erc20_contract_address.first.key
               next if currency_key.blank?
-              AMQPQueue.enqueue(:deposit_coin, txid: block_txn.fetch('hash'), channel_key: currency_key)
+              AMQPQueue.enqueue(:deposit_coin, txid: block_txn.with_indifferent_access.fetch('hash'), channel_key: currency_key)
             end
           end
         end
+        true
+      rescue => e
+       DepositTrackLogger.debug("block id #{block_id} is failed.Error: #{e}")
+       true
       end
     end
 
@@ -110,12 +144,12 @@ class CoinRPC
     end
 
     def getnewaddress label = ''
-      handle :personal_newAccount, label
+      Web3Currency.createaddress(@currency[:code])
     end
 
     def get_block(height)
       current_block   = height || 0
-      handle :eth_getBlockByNumber, "0x#{current_block.to_s(16)}", true
+      handle(:eth_getBlockByNumber, false,"0x#{current_block.to_s(16)}", true)
     end
 
     def current_node_coins
@@ -142,11 +176,11 @@ class CoinRPC
     end
 
     def get_txn_receipt(txid)
-      handle :eth_getTransactionReceipt, txid
+      handle(:eth_getTransactionReceipt, false, txid)
     end
 
     def get_accounts
-      handle :eth_accounts
+      handle(:eth_accounts,true)
     end
 
     def to_address tx
@@ -177,31 +211,42 @@ class CoinRPC
       eth_address_regex.match(address) ? {isvalid: true} : {isvalid: false}
     end
 
+    def sendtoaddress(from, to, amount)
+      txid = ""
+      base_amount = '0x' + convert_to_base_unit(amount).to_s(16)
+      txid = Web3Currency.send_transaction(@currency[:code], {address: from, to_address: to, value: amount.to_s})
+
+      txid
+    end
+
     private
 
     def get_blok_diff
       latest_block = latest_block_number
-      balance_blocks = Rails.cache.read("exit:bnb:balance").to_i
+      balance_blocks = Rails.cache.read("gwl:bnb:balance").to_i
       previous_block = ( balance_blocks > 0 && balance_blocks < latest_block ) ? balance_blocks : 0
 
-      Rails.cache.write("exit:bnb:balance", latest_block)
+      Rails.cache.write("gwl:bnb:balance", latest_block)
 
       previous_block
     end
   end
 
-  class EXIT < BNB
-    def getnewaddress label
-      handle :personal_newAccount, ''
+  class BUSD < BNB
+
+    def getnewaddress label = ''
+      Web3Currency.createaddress(@currency[:code])
     end
 
     def get_contract_address
       contract_address
     end
 
-    def sendtoaddress from, to, amount
-      data = abi_encode 'transfer(address,uint256)', normalize_address(to), '0x' + convert_to_base_unit(amount).to_s(16)
-      txid = handle :eth_sendTransaction, {from: normalize_address(from), to: contract_address, data: data}
+    def sendtoaddress(from, to, amount)
+      txid = ""
+      converted_amount = convert_to_base_unit(amount)
+      txid = Web3Currency.send_transaction(@currency[:code], {address: from, to_address: to, token_value: converted_amount.to_f})
+
       txid
     end
 
@@ -213,9 +258,7 @@ class CoinRPC
 
     def safe_getbalance
       begin
-        Rails.cache.fetch "exit:#{@currency[:key]}_erc20_balance", expires_in: 60.seconds do
-          Web3Currency.get(@currency[:code])
-        end
+        Web3Currency.get(@currency[:code])
       rescue
         'N/A'
       end
@@ -230,11 +273,11 @@ class CoinRPC
     end
 
     def convert_from_base_unit value
-      (value.to_i / 1e8).to_d
+      (value.to_i / 1e18).to_d
     end
 
     def convert_to_base_unit value
-      (value.to_f * 1e8).to_i
+      (value.to_f * 1e18).to_i
     end
 
     private
@@ -244,4 +287,24 @@ class CoinRPC
     end
 
   end
+
+  class USDT < BUSD
+
+   def sendtoaddress(from, to, amount)
+      txid = ""
+      converted_amount = convert_to_base_unit(amount)
+      txid = Web3Currency.send_transaction(@currency[:code], {address: from, to_address: to, token_value: converted_amount.to_s})
+
+      txid
+    end
+
+    def convert_from_base_unit value
+      (value.to_i / 1e18).to_d
+    end
+
+    def convert_to_base_unit value
+      (value.to_f * 1e18).to_i
+    end
+  end
+
 end

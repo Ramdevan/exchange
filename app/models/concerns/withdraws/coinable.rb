@@ -17,10 +17,12 @@ module Withdraws
         Rails.logger.info "#{self.class.name}##{id} uses invalid address: #{fund_uid.inspect}"
         reject
         save!
-      elsif (result[:ismine] == true) || PaymentAddress.find_by_address(fund_uid)
+      elsif (result[:ismine] == true) || PaymentAddress.find_by_address(fund_uid) || PaymentAddress.where("address LIKE ?", "#{fund_uid}%").present?
         Rails.logger.info "#{self.class.name}##{id} uses hot wallet address: #{fund_uid.inspect}"
-        reject
-        save!
+        self.txid = Withdraw::INTERNAL_TRANSFER
+	save!
+
+	super # Transfer to withdraw#audit!
       else
         super
       end

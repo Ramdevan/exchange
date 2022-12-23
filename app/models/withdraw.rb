@@ -2,6 +2,7 @@ class Withdraw < ActiveRecord::Base
   STATES = [:submitting, :submitted, :rejected, :accepted, :suspect, :processing,
             :done, :canceled, :almost_done, :failed]
   COMPLETED_STATES = [:done, :rejected, :canceled, :almost_done, :failed]
+  INTERNAL_TRANSFER = "internaltransfer"
 
   extend Enumerize
 

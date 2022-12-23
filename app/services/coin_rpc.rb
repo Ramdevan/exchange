@@ -11,6 +11,9 @@ class CoinRPC
   def initialize(currency)
     @currency = currency
     @uri = URI.parse(currency.rpc)
+    if currency.public_rpc
+     @public_uri = URI.parse(currency.public_rpc)
+    end
   end
 
   def self.[](currency)
