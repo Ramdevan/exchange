@@ -1,0 +1,92 @@
+
+Step: 1
+-------
+	file -> app/models/admin/ability.rb
+
+		can :manage, ::Deposits::<%= name.camelize %>
+
+		can :manage, ::Withdraws::<%= name.camelize %>
+Step: 2
+-------
+    folder -> app/models/worker
+
+    2.1 file ->  deposit_coin.rb
+
+    	when 'usdt', 'busd', '<%= name.camelize.underscore %>'
+
+    2.2 file -> deposit_coin_address.rb
+
+    	when 'eth', 'bnb', 'usdt', 'busd', '<%= name.camelize.underscore %>'
+
+    2.3 file -> withdraw_coin.rb
+
+    	when 'usdt', 'busd', '<%= name.camelize.underscore %>'
+
+Step: 3
+-------
+    folder -> app/services/
+
+    	* If the token is etherum node like usdt
+
+    	file -> eth.rb
+
+    	 class <%= name.camelize.upcase %> < USDT
+
+		    def convert_from_base_unit value
+		      (value.to_i / 1e18).to_d
+		    end
+
+		    def convert_to_base_unit value
+		      (value.to_f * 1e18).to_i
+		    end
+
+  		end
+
+  		* If the token is bnb node like busd
+
+  		file -> bnb.rb
+
+  		class <%= name.camelize.upcase %> < BUSD
+
+		    def convert_from_base_unit value
+		      (value.to_i / 1e18).to_d
+		    end
+
+		    def convert_to_base_unit value
+		      (value.to_f * 1e18).to_i
+		    end
+  		end
+
+Step: 4
+-------
+
+	file -> config/routes.rb
+
+	  post '/webhooks/<%= name.camelize.underscore %>' => 'webhooks#<%= name.camelize.underscore %>'
+
+Step: 5
+-------
+    file -> lib/daemons/coins.rb
+
+    	when 'eth', 'usdt', 'bnb', 'busd', '<%= name.camelize.underscore %>'
+Step: 6
+-------
+    file -> public/templates/funds/deposit.html
+
+    	<ng-include ng-if="currency == '<%= name.camelize.underscore %>'"  src="'/templates/funds/deposit_<%= name.camelize.underscore %>.html'"></ng-include>
+Step: 7
+-------
+	file -> public/templates/funds/withdraw.html
+
+		<ng-include ng-if="currency == '<%= name.camelize.underscore %>'"  src="'/templates/funds/withdraw_<%= name.camelize.underscore %>.html'"></ng-include>
+
+Step: 8
+-------
+    folder -> public/
+
+    	* Add the TOKEN image as icon-<%= name.camelize.underscore %>.png
+
+Step: 9
+-------
+
+     * Need to add the locales manually

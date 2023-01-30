@@ -4,5 +4,7 @@ Description:
 Example:
     rails generate deposit Thing
 
+    rails generate deposit NAME [CODE] [SYMBOL] [options]
+
     This will create:
         what/will/it/create

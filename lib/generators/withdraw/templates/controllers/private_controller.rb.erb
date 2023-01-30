@@ -1,7 +1,7 @@
 module Private
   module Withdraws
     class <%= name.camelize.pluralize %>Controller < ::Private::Withdraws::BaseController
-      include ::Withdraws::CtrlCoinable
+      include ::Withdraws::Withdrawable
     end
   end
 end

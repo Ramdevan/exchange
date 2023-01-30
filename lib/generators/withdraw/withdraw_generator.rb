@@ -4,11 +4,25 @@ class WithdrawGenerator < Rails::Generators::NamedBase
   argument :symbol, :type => :string, :default => '#'
 
   def copy_initializer_file
-    template "model.rb.erb", "app/models/withdraws/#{name.underscore}.rb"
-    template "controller.rb.erb", "app/controllers/private/withdraws/#{name.underscore.pluralize}_controller.rb"
-    template "locales/zh-CN.yml.erb", "config/locales/withdraws/#{name.underscore.pluralize}/zh-CN.yml"
-    template "locales/en.yml.erb", "config/locales/withdraws/#{name.underscore.pluralize}/en.yml"
-    template "views/new.html.slim.erb", "app/views/private/withdraws/#{name.underscore.pluralize}/new.slim"
-    template "views/edit.html.slim.erb", "app/views/private/withdraws/#{name.underscore.pluralize}/edit.slim"
+    template "models/model.rb.erb", "app/models/withdraws/#{name.underscore}.rb"
+
+    template "controllers/private_controller.rb.erb", "app/controllers/private/withdraws/#{name.underscore.pluralize}_controller.rb"
+
+    template "controllers/admin_controller.rb.erb", "app/controllers/admin/withdraws/#{name.underscore.pluralize}_controller.rb"
+
+    template "views/private/new.html.slim.erb", "app/views/private/withdraws/#{name.underscore.pluralize}/new.html.slim"
+
+    template "views/private/edit.html.slim.erb", "app/views/private/withdraws/#{name.underscore.pluralize}/edit.html.slim"
+
+    template "views/admin/_table.html.slim.erb", "app/views/admin/withdraws/#{name.underscore.pluralize}/_table.html.slim"
+
+    template "views/admin/index.html.slim.erb", "app/views/admin/withdraws/#{name.underscore.pluralize}/index.html.slim"
+
+    template "views/admin/show.html.slim.erb", "app/views/admin/withdraws/#{name.underscore.pluralize}/show.html.slim"
+
+    template "funds/withdraw.html.erb", "public/templates/funds/withdraw_#{name.underscore}.html"
+
+    # remaining files
+    template "instruction.html.erb", "instruction.html"
   end
 end
