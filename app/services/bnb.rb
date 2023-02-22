@@ -93,17 +93,22 @@ class CoinRPC
     def exec_transaction(block_id)
       begin
         block_json = get_block block_id
-
+        missing_block = MissingBlock.where(block_id: block_id, currency: @currency[:code]).first_or_initialize
         if block_json.blank?
           DepositTrackLogger.debug("block id: #{block_id}-- block json blank #{@currency[:code]}")
-          MissingBlock.where(block_id: block_id, currency: @currency[:code], status: false ).first_or_create
+          missing_block.status = false
+          missing_block.save
           return true
         elsif block_json[:transactions].blank?
           #Even block has no transactions
           DepositTrackLogger.debug("block id: #{block_id}-- block json present but transaction is blank")
+          missing_block.status = true
+          missing_block.save unless missing_block.new_record?
           return true
         else
           DepositTrackLogger.debug("block id: #{block_id}-- block json present and transaction is present #{@currency[:code]}")
+          missing_block.status = true
+          missing_block.save unless missing_block.new_record?
         end
 
         all_accounts = get_accounts

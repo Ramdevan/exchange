@@ -2,12 +2,12 @@
 #
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
-
+env :PATH, ENV['PATH']
 # Example:
 #
 # set :output, "/path/to/my/cron_log.log"
 #set :output, "log/referral.log"
-set :output, "log/cron.log"
+set :output, "/home/deploy/apps/exchange/log/cron.log"
 #
 # every 2.hours do
 #   command "/usr/bin/some_great_command"
@@ -51,6 +51,10 @@ end
 
 every 10.minutes do
   rake 'stats:daemons'
+end
+
+every 5.minutes do
+  rake 'deposit:manual_trigger'
 end
 
 every 15.minutes do
