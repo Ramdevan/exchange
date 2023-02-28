@@ -54,7 +54,7 @@ namespace :stats do
 
   desc "Get daemon status"
   task daemons: :environment do
-    status = Global.get_daemon_statuses
+    status = Daemons::Rails::Monitoring.statuses
     Rails.cache.write('xubiq:daemons:statuses', status)
   end
 end
