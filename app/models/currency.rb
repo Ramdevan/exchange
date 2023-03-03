@@ -46,7 +46,7 @@ class Currency < ActiveYamlBase
   end
 
   def balance_cache_key
-    "xubiq:hotwallet:#{code}:balance"
+    "gwl:hotwallet:#{code}:balance"
   end
 
   def balance

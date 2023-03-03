@@ -77,7 +77,7 @@ class Account < ActiveRecord::Base
       currency[:locked] = acc.locked
       currency[:balance] = acc.balance_precision
       currency[:trade_pairs] = Market.where(quote_unit: c.code).count
-      currency[:fiat_price] = (c.code == DEFAULT_FIAT) ? "1".to_d : Rails.cache.read("xubiq:#{c.code}#{DEFAULT_FIAT}:ticker")[:last] rescue Trade.latest_price("#{c.code}#{DEFAULT_FIAT}".to_sym)
+      currency[:fiat_price] = (c.code == DEFAULT_FIAT) ? "1".to_d : Rails.cache.read("gwl:#{c.code}#{DEFAULT_FIAT}:ticker")[:last] rescue Trade.latest_price("#{c.code}#{DEFAULT_FIAT}".to_sym)
       currency
     end
   end

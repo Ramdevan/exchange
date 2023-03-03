@@ -13,7 +13,7 @@ class Global
     end
 
     def daemon_statuses
-      Rails.cache.read('xubiq:daemons:statuses')
+      Rails.cache.read('gwl:daemons:statuses')
     end
   end
 
@@ -38,15 +38,15 @@ class Global
   def key(key, interval=5)
     seconds  = Time.now.to_i
     time_key = seconds - (seconds % interval)
-    "xubiq:#{@currency}:#{key}:#{time_key}"
+    "gwl:#{@currency}:#{key}:#{time_key}"
   end
 
   def asks
-    Rails.cache.read("xubiq:#{currency}:depth:asks") || []
+    Rails.cache.read("gwl:#{currency}:depth:asks") || []
   end
 
   def bids
-    Rails.cache.read("xubiq:#{currency}:depth:bids") || []
+    Rails.cache.read("gwl:#{currency}:depth:bids") || []
   end
 
   def default_ticker
@@ -54,8 +54,8 @@ class Global
   end
 
   def ticker
-    ticker           = Rails.cache.read("xubiq:#{currency}:ticker") || default_ticker
-    open = Rails.cache.read("xubiq:#{currency}:ticker:open") || ticker[:last]
+    ticker           = Rails.cache.read("gwl:#{currency}:ticker") || default_ticker
+    open = Rails.cache.read("gwl:#{currency}:ticker:open") || ticker[:last]
     best_buy_price   = bids.first && bids.first[0] || ZERO
     best_sell_price  = asks.first && asks.first[0] || ZERO
 
@@ -69,11 +69,11 @@ class Global
   end
 
   def h24_volume
-    Rails.cache.read("xubiq:#{currency}_24h") || []
+    Rails.cache.read("gwl:#{currency}_24h") || []
   end
 
   def trades
-    Rails.cache.read("xubiq:#{currency}:trades") || []
+    Rails.cache.read("gwl:#{currency}:trades") || []
   end
 
   def trigger_orderbook

@@ -1,7 +1,6 @@
-ADMIN_EMAIL = 'admin@xubiq.com'
-BINANCE_EMAIL = 'binance@xubiq.com'
-#PASSWORD = '20d52bee'
-PASSWORD = '60ba801aa77a60e9'
+ADMIN_EMAIL = 'admin@gwl.com'
+BINANCE_EMAIL = 'binance@gwl.com'
+PASSWORD = 'aa77a60e90'
 
 admin_identity = Identity.find_or_create_by(email: ADMIN_EMAIL)
 admin_identity.password = admin_identity.password_confirmation = PASSWORD

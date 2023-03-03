@@ -141,7 +141,7 @@ module APIv2
     end
 
     def failed_two_factor_auth_key
-      "xubiq:session:#{request.ip}:failed_two_factor_auths"
+      "gwl:session:#{request.ip}:failed_two_factor_auths"
     end
 
     def failed_two_factor_auth
@@ -175,14 +175,14 @@ module APIv2
 
     def clear_all_sessions(member_id)
       if redis = Rails.cache.instance_variable_get(:@data)
-        redis.keys("xubiq:sessions:#{member_id}:*").each {|k| Rails.cache.delete k.split(':').last }
+        redis.keys("gwl:sessions:#{member_id}:*").each {|k| Rails.cache.delete k.split(':').last }
       end
 
-      Rails.cache.delete_matched "xubiq:sessions:#{member_id}:*"
+      Rails.cache.delete_matched "gwl:sessions:#{member_id}:*"
     end
 
     def get_k_json
-      key = "xubiq:#{params[:market]}:k:#{params[:period]}"
+      key = "gwl:#{params[:market]}:k:#{params[:period]}"
 
       if params[:timestamp] && params[:endtimestamp]
         get_range_data(key)

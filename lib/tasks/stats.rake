@@ -4,7 +4,7 @@ namespace :stats do
     if currency.code != 'cny'
       redis = KlineDB.redis
       market = Market.find "#{currency.code}cny"
-      key = "xubiq:#{market.id}:k:60"
+      key = "gwl:#{market.id}:k:60"
       last_hour = 23.hours.since(Time.at ts)
 
       if redis.llen(key) > 0
@@ -55,6 +55,6 @@ namespace :stats do
   desc "Get daemon status"
   task daemons: :environment do
     status = Daemons::Rails::Monitoring.statuses
-    Rails.cache.write('xubiq:daemons:statuses', status)
+    Rails.cache.write('gwl:daemons:statuses', status)
   end
 end

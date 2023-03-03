@@ -57,12 +57,12 @@ html lang="en"
                 .rcb-f
                   | 24h Volume(#{@market.base_unit.upcase || "BTC"})
                 .rcb-s
-                  = Rails.cache.read("xubiq:#{@market.id}_24h_volumes")[:base_volume] || 0
+                  = Rails.cache.read("gwl:#{@market.id}_24h_volumes")[:base_volume] || 0
               .rc-box
                 .rcb-f
                   | 24h Volume(#{@market.quote_unit.upcase || "BTC"})
                 .rcb-s
-                  = Rails.cache.read("xubiq:#{@market.id}_24h_volumes")[:quote_volume] || 0
+                  = Rails.cache.read("gwl:#{@market.id}_24h_volumes")[:quote_volume] || 0
       .market_main_tab
         .mm_tab
           .mmt_list

@@ -21,7 +21,7 @@ end
 
 
 def key(market, period = 1)
-  "xubiq:#{market}:k:#{period}"
+  "gwl:#{market}:k:#{period}"
 end
 
 def last_ts(market, period = 1)
@@ -91,7 +91,7 @@ def append_point(market, period, ts)
   if period == 1
     # 24*60 = 1440
     if point = @r.lindex(key(market, period), -1441)
-      Rails.cache.write "xubiq:#{market}:ticker:open", JSON.parse(point)[4]
+      Rails.cache.write "gwl:#{market}:ticker:open", JSON.parse(point)[4]
     end
   end
 end

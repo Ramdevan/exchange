@@ -2,7 +2,7 @@ module Worker
   class MemberStats < Stats
 
     def key_for(period)
-      "xubiq:stats:member:#{period}"
+      "gwl:stats:member:#{period}"
     end
 
     def to_s
