@@ -81,16 +81,16 @@ class CoinRPC
 
         all_accounts = get_accounts
         block_json[:transactions].each do |block_txn|
-          if all_accounts.include?(block_txn['to']) || Currency.all.map(&:erc20_contract_address).compact.include?(block_txn['to'])
-            if block_txn.fetch('input').hex <= 0
+          if all_accounts.include?(block_txn.with_indifferent_access['to']) || Currency.all.map(&:erc20_contract_address).compact.include?(block_txn.with_indifferent_access['to'])
+            if block_txn.with_indifferent_access.fetch('input').hex <= 0
               next if invalid_eth_transaction?(block_txn.symbolize_keys)
-              AMQPQueue.enqueue(:deposit_coin, txid: block_txn.fetch('hash'), channel_key: 'ether')
+              AMQPQueue.enqueue(:deposit_coin, txid: block_txn.with_indifferent_access.fetch('hash'), channel_key: 'ether')
             else
-              txn_receipt = get_txn_receipt(block_txn.fetch('hash'))
+              txn_receipt = get_txn_receipt(block_txn.with_indifferent_access.fetch('hash'))
               next if txn_receipt.nil? || invalid_erc20_transaction?(txn_receipt.symbolize_keys) || (all_accounts.exclude?(to_address(txn_receipt).first))
-              currency_key = Currency.where(erc20_contract_address: block_txn['to']).first.key rescue nil
+              currency_key = Currency.where(erc20_contract_address: block_txn.with_indifferent_access['to']).first.key rescue nil
               next if currency_key.blank?
-              AMQPQueue.enqueue(:deposit_coin, txid: block_txn.fetch('hash'), channel_key: currency_key)
+              AMQPQueue.enqueue(:deposit_coin, txid: block_txn.with_indifferent_access.fetch('hash'), channel_key: currency_key)
             end
           end
         end
