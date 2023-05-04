@@ -26,6 +26,8 @@ module Admin
       can :manage, ::Deposits::Ripple
       can :manage, ::Deposits::Dash
       can :manage, ::Deposits::Usdc
+      can :manage, ::Deposits::Bnb
+      can :manage, ::Deposits::Busd
 
       can :menu, Withdraw
       can :manage, ::Withdraws::Bank
@@ -37,6 +39,8 @@ module Admin
       can :manage, ::Withdraws::Ripple
       can :manage, ::Withdraws::Dash
       can :manage, ::Withdraws::Usdc
+      can :manage, ::Withdraws::Bnb
+      can :manage, ::Withdraws::Busd
 
     end
   end

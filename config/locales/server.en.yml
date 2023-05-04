@@ -234,6 +234,18 @@ en:
         amount: Amount
         confirmations: Confirmation
         aasm_state_text: State
+      deposits/bnb:
+        created_at: Created At
+        txid: Transaction ID
+        amount: Amount
+        confirmations: Confirmation
+        aasm_state_text: State
+      deposits/busd:
+        created_at: Created At
+        txid: Transaction ID
+        amount: Amount
+        confirmations: Confirmation
+        aasm_state_text: State
       withdraws/satoshi:
         id: ID
         member_name: Account
@@ -360,6 +372,34 @@ en:
         amount: Amount
         remark: Remark
         fee: Fee
+      withdraws/bnb:
+        id: ID
+        member_name: Account
+        currency_obj_key_text: Currency
+        state_and_actions: State/Action
+        fund_extra_text: Withdraw Label
+        fund_extrat: Withdraw Label
+        fund_source: Bank
+        fund_uid: Account
+        created_at: Created At
+        sum: Amount
+        amount: Amount
+        remark: Remark
+        fee: Fee
+      withdraws/busd:
+        id: ID
+        member_name: Account
+        currency_obj_key_text: Currency
+        state_and_actions: State/Action
+        fund_extra_text: Withdraw Label
+        fund_extrat: Withdraw Label
+        fund_source: Bank
+        fund_uid: Account
+        created_at: Created At
+        sum: Amount
+        amount: Amount
+        remark: Remark
+        fee: Fee
     errors:
       models:
         order_bid:
@@ -469,6 +509,8 @@ en:
       xrp: XRP
       usdt: USDT
       usdc: USDC
+      bnb: BNB
+      busd: BUSD
   currency:
     satoshi:
       key: BTC
@@ -519,6 +561,16 @@ en:
       key: USDC
       code: USDC
       name: Usdc
+      format: '0,0.0000'
+    bnb:
+      key: BNB
+      code: BNB
+      name: BNB
+      format: '0,0.0000'
+    busd:
+      key: BUSD
+      code: BUSD
+      name: BUSD
       format: '0,0.0000'
   datagrid:
     empty: no data found
@@ -732,6 +784,20 @@ en:
       key: BNB
       title: BNB Deposits
       intro: Deposit BNB from your own wallet address to Axios account
+      latency: 1 confirmation
+      transfer: Manual
+      go: Deposit
+    bnb:
+      key: BNB
+      title: BNB Deposits
+      intro: Deposit BNB from your own wallet address to Gwl account
+      latency: 1 confirmation
+      transfer: Manual
+      go: Deposit
+    busd:
+      key: BUSD
+      title: BUSD Deposits
+      intro: Deposit BUSD from your own wallet address to Gwl account
       latency: 1 confirmation
       transfer: Manual
       go: Deposit
@@ -1129,6 +1195,8 @@ en:
         xrp-assets: XRP Assets
         usdt-assets: USDT Assets
         usdc-assets: USDC Assets
+        bnb-assets: BNB Assets
+        busd-assets: BUSD Assets
       liability_tabs:
         verify-btc: Verify My BTC Assets
         verify-inr: Verify My INR Assets
@@ -1140,6 +1208,8 @@ en:
         verify-dash: Verify My DASH Assets
         verify-usdt: Verify My USDT Assets
         verify-usdc: Verify My USDC Assets
+        verify-bnb: Verify My BNB Assets
+        verify-busd: Verify My BUSD Assets
         btc-assets-total: 'Total BTC assets of exchange: '
         inr-assets-total: 'Total INR assets of exchange: '
         usd-assets-total: 'Total USD assets of exchange: '
@@ -1150,6 +1220,8 @@ en:
         dash-assets-total: 'Total DASH assets of exchange: '
         usdt-assets-total: 'Total USDT assets of exchange: '
         usdc-assets-total: 'Total USDC assets of exchange: '
+        bnb-assets-total: 'Total BNB assets of exchange: '
+        busd-assets-total: 'Total BUSD assets of exchange: '
       liability_proof:
         title: Proof of Liabilities
         intro: As an exchange, our liabilities refer to the sum of money (in both
@@ -1205,6 +1277,16 @@ en:
         title: USDC Assets
         intro: All of exchange's USDC assets are listed here.
         total: Total USDC Assets
+        address: Address
+      bnb_assets:
+        title: BNB Assets
+        intro: All of exchange's BNB assets are listed here.
+        total: Total BNB Assets
+        address: Address
+      busd_assets:
+        title: BUSD Assets
+        intro: All of exchange's BUSD assets are listed here.
+        total: Total BUSD Assets
         address: Address
       inr_assets:
         title: INR Assets
@@ -1320,6 +1402,8 @@ en:
         usdt_html: "<span>USDT</span>"
         usdc_html: "<span>USDC</span>"
         xrp_html: "<span>XRP</span>"
+        bnb_html: "<span>BNB</span>"
+        busd_html: "<span>BUSD</span>"
         price: Price
         change: "24h %"
       range_switch:
@@ -1829,6 +1913,18 @@ en:
         index:
           accept: Accept
           accept_confirm: Confirm deposit?
+      bnb:
+        update:
+          notice: The deposit was successful.
+        index:
+          accept: Accept
+          accept_confirm: Confirm deposit?
+      busd:
+        update:
+          notice: The deposit was successful.
+        index:
+          accept: Accept
+          accept_confirm: Confirm deposit?
     tickets:
       view: View
       close: Close Ticket
@@ -2052,6 +2148,30 @@ en:
           succeed_confirm: Process withdrawal?
           reject_confirm: Reject withdrawal?
           withdraw: Withdrawals
+      bnbs:
+        index:
+          one: Pending withdrawals
+          all: Last 24 hours
+          empty: No data
+        show:
+          process: Accepted
+          succeed: Withdraw
+          reject: Reject
+          succeed_confirm: Process withdrawal?
+          reject_confirm: Reject withdrawal?
+          withdraw: Withdrawals
+      busds:
+        index:
+          one: Pending withdrawals
+          all: Last 24 hours
+          empty: No data
+        show:
+          process: Accepted
+          succeed: Withdraw
+          reject: Reject
+          succeed_confirm: Process withdrawal?
+          reject_confirm: Reject withdrawal?
+          withdraw: Withdrawals
   deposits/satoshi:
     aasm_state:
       submitted: Submitted
@@ -2188,6 +2308,22 @@ en:
       member_name: Member
       state_and_actions: State/Actions
       currency_obj_key_text: Currency
+    bnb:
+      amount: Amount
+      txid: TxId
+      created_at: Created At
+      confirmations: Confirmations
+      member_name: Member
+      state_and_actions: State/Actions
+      currency_obj_key_text: Currency
+    busd:
+      amount: Amount
+      txid: TxId
+      created_at: Created At
+      confirmations: Confirmations
+      member_name: Member
+      state_and_actions: State/Actions
+      currency_obj_key_text: Currency
   enumerize:
     account_version:
       reason:
@@ -2218,6 +2354,8 @@ en:
       dash: DASH
       usdt: USDT
       usdc: USDC
+      bnb: BNB
+      busd: BUSD
     order:
       state:
         done: DONE
@@ -2870,6 +3008,20 @@ en:
       key: BNB
       title: BNB Withdraw
       intro: Withdraw BNB to your own wallet
+      latency: 30 minutes
+      transfer: Manual
+      go: Withdraw
+    bnb:
+      key: BNB
+      title: BNB Withdraw
+      intro: Withdraw BNB to your own wallet
+      latency: 30 minutes
+      transfer: Manual
+      go: Withdraw
+    busd:
+      key: BUSD
+      title: BUSD Withdraw
+      intro: Withdraw BUSD to your own wallet
       latency: 30 minutes
       transfer: Manual
       go: Withdraw

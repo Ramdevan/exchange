@@ -21,6 +21,8 @@ Exchange::Application.routes.draw do
   post '/webhooks/usdt' => 'webhooks#usdt'
   post '/webhooks/xrp'  => 'webhooks#xrp'
   post '/webhooks/usdc'  => 'webhooks#usdc'
+  post '/webhooks/busd' => 'webhooks#busd'
+  post '/webhooks/bnb' => 'webhooks#bnb'
 
   if Rails.env.development?
     mount MailsViewer::Engine => '/mails'

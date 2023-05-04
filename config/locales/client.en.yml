@@ -46,6 +46,8 @@ en:
         xrp: XRP
         usdt: USDT
         usdc: USDC
+        bnb: BNB
+        busd: BUSD
       deposit_inr:
         title: INR
         desc: "To deposit via Bank transfer, please follow these steps:"
@@ -102,6 +104,10 @@ en:
         title: USDT Deposit
       deposit_usdc:
         title: USDC Deposit
+      deposit_bnb:
+        title: BNB Deposit
+      deposit_busd:
+        title: BUSD Deposit
       deposit_coin:
         address: Address
         destination_tag: Destination Tag
@@ -178,6 +184,10 @@ en:
         title: USDT Withdraw
       withdraw_usdc:
         title: USDC Withdraw
+      withdraw_bnb:
+        title: BNB Withdraw
+      withdraw_busd:
+        title: BUSD Withdraw
       withdraw_coin:
         intro: Please fill in the address and amount, then submit the form. It will be confirmed in 10 minutes
         label: Label
@@ -236,3 +246,6 @@ en:
         eth: ETH Market
         usdt: USDT Market
         usdc: USDC Market
+        gwl: GWL Market
+        bnb: BNB Market
+        busd: BUSD Market

@@ -239,10 +239,6 @@ class CoinRPC
 
   class BUSD < BNB
 
-    def getnewaddress label = ''
-      Web3Currency.createaddress(@currency[:code])
-    end
-
     def get_contract_address
       contract_address
     end
@@ -250,7 +246,7 @@ class CoinRPC
     def sendtoaddress(from, to, amount)
       txid = ""
       converted_amount = convert_to_base_unit(amount)
-      txid = Web3Currency.send_transaction(@currency[:code], {address: from, to_address: to, token_value: converted_amount.to_f})
+      txid = Web3Currency.send_transaction(@currency[:code], {address: from, to_address: to, token_value: converted_amount.to_s})
 
       txid
     end
