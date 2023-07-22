@@ -1,7 +1,7 @@
 - unless @one_<%= name.underscore.pluralize %>.empty?
   .panel.panel-primary
     .panel-heading: span = t('.one')
-    = render partial: 'table', locals: {<%= name.underscore.pluralize %>: @one_<%= name.underscore.pluralize %>
+    = render partial: 'table', locals: {<%= name.underscore.pluralize %>: @one_<%= name.underscore.pluralize %>}
 - unless @all_<%= name.underscore.pluralize %>.empty?
   .panel.panel-success
     /.panel-heading: span = t('.all')

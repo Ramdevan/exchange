@@ -64,6 +64,10 @@ Step: 4
 
 	  post '/webhooks/<%= name.camelize.underscore %>' => 'webhooks#<%= name.camelize.underscore %>'
 
+	file -> app/controllers/webhooks_controller.rb
+
+	  Add method
+
 Step: 5
 -------
     file -> lib/daemons/coins.rb
