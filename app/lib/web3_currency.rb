@@ -41,8 +41,8 @@ class Web3Currency
             balances[address] = balance if balance.try(:to_f) > 0
             sum + balance
         end
-        Rails.cache.write("gwl:#{currency_code}_balances", balances)
-        Rails.cache.write("gwl:#{currency_code}_total_balance", total_balance)
+        Rails.cache.write("axios:#{currency_code}_balances", balances)
+        Rails.cache.write("axios:#{currency_code}_total_balance", total_balance)
 
         total_balance
     end

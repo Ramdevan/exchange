@@ -228,10 +228,10 @@ class CoinRPC
 
     def get_blok_diff
       latest_block = latest_block_number
-      balance_blocks = Rails.cache.read("gwl:bnb:balance").to_i
+      balance_blocks = Rails.cache.read("axios:bnb:balance").to_i
       previous_block = ( balance_blocks > 0 && balance_blocks < latest_block ) ? balance_blocks : 0
 
-      Rails.cache.write("gwl:bnb:balance", latest_block)
+      Rails.cache.write("axios:bnb:balance", latest_block)
 
       previous_block
     end

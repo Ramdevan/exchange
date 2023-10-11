@@ -10,8 +10,8 @@ namespace :calculate_24h_trade_volume do
         end
         base_volume = base_volume.round(market[:bid]["fixed"])
         quote_volume = quote_volume.round(market[:ask]["fixed"])
-        Rails.cache.write("gwl:#{market.id}_24h", base_volume)
-        Rails.cache.write("gwl:#{market.id}_24h_volumes", {base_volume: base_volume, quote_volume: quote_volume})
+        Rails.cache.write("axios:#{market.id}_24h", base_volume)
+        Rails.cache.write("axios:#{market.id}_24h_volumes", {base_volume: base_volume, quote_volume: quote_volume})
       end
     rescue => e
       ExceptionNotifier.notify_exception(e)

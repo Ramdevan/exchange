@@ -2,7 +2,7 @@ module Worker
   class MemberStats < Stats
 
     def key_for(period)
-      "gwl:stats:member:#{period}"
+      "axios:stats:member:#{period}"
     end
 
     def to_s

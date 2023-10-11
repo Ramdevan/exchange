@@ -1,5 +1,5 @@
-ADMIN_EMAIL = 'admin@gwl.com'
-BINANCE_EMAIL = 'binance@gwl.com'
+ADMIN_EMAIL = 'admin@axios.com'
+BINANCE_EMAIL = 'binance@axios.com'
 PASSWORD = 'aa77a60e90'
 
 admin_identity = Identity.find_or_create_by(email: ADMIN_EMAIL)

@@ -51,7 +51,7 @@ class Currency < ActiveYamlBase
   end
 
   def balance_cache_key
-    "gwl:hotwallet:#{code}:balance"
+    "axios:hotwallet:#{code}:balance"
   end
 
   def balance

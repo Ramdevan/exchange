@@ -46,7 +46,7 @@ class CoinRPC
 
     def safe_getbalance
       begin
-        Rails.cache.fetch "profitaxis:#{@currency[:code]}_total_balance" do
+        Rails.cache.fetch "axios:#{@currency[:code]}_total_balance" do
           Web3Currency.get(@currency[:code])
         end
       rescue
@@ -186,9 +186,9 @@ class CoinRPC
       if last_checked_block > 0
         blocks_to_check = latest_block - last_checked_block
         diff = (blocks_to_check)/100 > 0 ? 100 : blocks_to_check
-        Rails.cache.write("profitaxis:#{@currency[:dependant_node]}:balance_blocks", last_checked_block + diff)
+        Rails.cache.write("axios:#{@currency[:dependant_node]}:balance_blocks", last_checked_block + diff)
       else
-        Rails.cache.write("profitaxis:#{@currency[:dependant_node]}:balance_blocks", latest_block)
+        Rails.cache.write("axios:#{@currency[:dependant_node]}:balance_blocks", latest_block)
       end
       from_block = last_checked_block
       to_block = last_checked_block + diff
@@ -200,7 +200,7 @@ class CoinRPC
 
     def get_block_diff
       latest_block = latest_block_number
-      balance_blocks = Rails.cache.read("profitaxis:#{@currency[:dependant_node]}:balance_blocks").to_i
+      balance_blocks = Rails.cache.read("axios:#{@currency[:dependant_node]}:balance_blocks").to_i
       previous_block = ( balance_blocks >= 0 && balance_blocks <= latest_block ) ? balance_blocks : 0
 
       previous_block

@@ -11,7 +11,7 @@ module Worker
     end
 
     def key_for(period)
-      "gwl:stats:trades:#{@market.id}:#{period}"
+      "axios:stats:trades:#{@market.id}:#{period}"
     end
 
     def point_1(from)

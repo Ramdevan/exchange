@@ -11,7 +11,7 @@ module Worker
     end
 
     def key_for(period)
-      "gwl:stats:funds:#{@currency.code}:#{period}"
+      "axios:stats:funds:#{@currency.code}:#{period}"
     end
 
     def point_1(from)
