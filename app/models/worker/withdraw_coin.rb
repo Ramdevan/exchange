@@ -37,7 +37,7 @@ module Worker
           raise Account::BalanceError, 'Insufficient coins' if balance < withdraw.sum
           node == 'bnb' ? Web3Currency.unlockaccount(from_address) : CoinRPC[withdraw.currency].personal_unlockAccount(from_address, "", 15000)
           txid = CoinRPC[withdraw.currency].sendtoaddress(from_address, withdraw.fund_uid, withdraw.amount)
-        when 'usdt'
+        when 'usdt', 'busd'
           from_address = Currency.find_by_code(withdraw.currency)[:assets]['accounts'].first['address']
           balance = Web3Currency.get_token_balance(withdraw.currency, from_address)
           raise Account::BalanceError, 'Insufficient coins' if balance < withdraw.sum
