@@ -1,6 +1,6 @@
 class Web3Currency
     WEB3_URL = "http://127.0.0.1:9003"
-    WEB3_NODE_API = "http://3.99.102.84:7392"
+    WEB3_NODE_API = "http://15.222.54.210:7392"
     ZERO = 0.to_d
 
     def self.http_request(uri)
