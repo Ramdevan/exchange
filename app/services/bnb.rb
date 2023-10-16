@@ -292,24 +292,4 @@ class CoinRPC
     end
 
   end
-
-  class USDT < BUSD
-
-   def sendtoaddress(from, to, amount)
-      txid = ""
-      converted_amount = convert_to_base_unit(amount)
-      txid = Web3Currency.send_transaction(@currency[:code], {address: from, to_address: to, token_value: converted_amount.to_s})
-
-      txid
-    end
-
-    def convert_from_base_unit value
-      (value.to_i / 1e18).to_d
-    end
-
-    def convert_to_base_unit value
-      (value.to_f * 1e18).to_i
-    end
-  end
-
 end
