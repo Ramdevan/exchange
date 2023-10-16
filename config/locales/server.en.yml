@@ -717,7 +717,21 @@ en:
     usdc:
       key: USDC
       title: USDC Deposits
-      intro: Deposit USDC from your own wallet address to Xsea account
+      intro: Deposit USDC from your own wallet address to Axios account
+      latency: 1 confirmation
+      transfer: Manual
+      go: Deposit
+    busd:
+      key: BUSD
+      title: BUSD Deposits
+      intro: Deposit BUSD from your own wallet address to Axios account
+      latency: 1 confirmation
+      transfer: Manual
+      go: Deposit
+    bnb:
+      key: BNB
+      title: BNB Deposits
+      intro: Deposit BNB from your own wallet address to Axios account
       latency: 1 confirmation
       transfer: Manual
       go: Deposit
@@ -2842,6 +2856,20 @@ en:
       key: USDC
       title: USDC Withdraw
       intro: Withdraw USDC to your own wallet
+      latency: 30 minutes
+      transfer: Manual
+      go: Withdraw
+    busd:
+      key: BUSD
+      title: BUSD Withdraw
+      intro: Withdraw BUSD to your own wallet
+      latency: 30 minutes
+      transfer: Manual
+      go: Withdraw
+    bnb:
+      key: BNB
+      title: BNB Withdraw
+      intro: Withdraw BNB to your own wallet
       latency: 30 minutes
       transfer: Manual
       go: Withdraw
