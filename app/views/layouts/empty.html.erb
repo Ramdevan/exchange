@@ -1,30 +1,30 @@
 <!doctype html>
 <html>
   <head lang="en">
-    <title>Axios</title>
+    <title>Axioex</title>
     <!-- Meta Tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- styles included -->
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
     <link rel="icon" href="<%=image_path('fav_icon.png')%>" type="image/x-icon">
-    <link rel="shortcut" type="imges/png" href="<%=image_path('fav_icon.png')%>">   
+    <link rel="shortcut" type="imges/png" href="<%=image_path('fav_icon.png')%>">
     <%= stylesheet_link_tag "empty" %>
-    <link rel="stylesheet" href="assets/slidercaptcha.css"> 
-    <link rel="stylesheet" href="assets/modal.css"> 
+    <link rel="stylesheet" href="assets/slidercaptcha.css">
+    <link rel="stylesheet" href="assets/modal.css">
     <%= csrf_meta_tags %>
     <link rel="stylesheet" src="assets/mailer_form.scss">
   </head>
   <body>
    <%= render 'shared/empty_header' %>
-    
+
     <%= yield %>
 
     <!-- scripts included -->
     <%= javascript_include_tag "empty" %>
-   
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  
+
     <script>
       // window.onscroll = function() { myFunction() };
       // var header = document.getElementById("head-nav");

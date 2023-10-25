@@ -2,15 +2,15 @@
   <div class="container-fluid">
     <div class="row login">
       <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="panelpanel-defaultcreate">        
+        <div class="panelpanel-defaultcreate">
 
           <div align="center">
             <%= render 'shared/flash' %>
           </div>
-          <h2 class='login_title text-center'>Axios Log In</h2>
+          <h2 class='login_title text-center'>Axioex Log In</h2>
           <!-- <a href="/"><%= image_tag "favicon.png", :class => "authLogo" %></a> -->
             <!-- <h5 class="authMsg">Please register your details and as soon we are live we will let you know</h5> -->
-          
+
           <%= form_for @identity, url: '/auth/identity/callback', method: :post, html: { class: 'form-signin' } do |f| %>
             <span id="reauth-email" class="reauth-email"></span>
             <p class="input_title">E-mail Address</p>
@@ -33,16 +33,16 @@
       </div>
     </div>
   </div>
- 
-  
-  
+
+
+
 </section>
 <div id="myModallogin" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
-    
-      
+
+
         <div class="container-fluid">
         <div class="form-row m-0">
             <div class="col-12">
@@ -50,7 +50,7 @@
                     <div class="card-header  ">
                         <span>Captcha Verification!</span>
                           <button type="button" class="close btn-close-custom" data-dismiss="modal">&times;</button>
-                        
+
                     </div>
                     <div class="card-body modal-body">
                         <div id="captcha-val"></div>
@@ -58,9 +58,9 @@
                 </div>
             </div>
         </div>
-   
+
       </div>
-      
+
     </div>
 
   </div>
@@ -89,13 +89,13 @@
             setSrc: function () {
                 return 'assets/Pic' + Math.round(Math.random() * 4) + '.jpg';
             },
-            onSuccess: function () { 
+            onSuccess: function () {
                 var handler = setTimeout(function () {
                     $('#new_identity').submit()
                 }, 500);
             }
         });
-        
+
     </script>
     <style>
         .hide{
