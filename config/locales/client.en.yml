@@ -48,6 +48,7 @@ en:
         usdc: USDC
         bnb: BNB
         busd: BUSD
+        tmd: TMD
       deposit_inr:
         title: INR
         desc: "To deposit via Bank transfer, please follow these steps:"
@@ -108,6 +109,8 @@ en:
         title: BNB Deposit
       deposit_busd:
         title: BUSD Deposit
+      deposit_tmd:
+        title: TMD Deposit
       deposit_coin:
         address: Address
         destination_tag: Destination Tag
@@ -188,6 +191,8 @@ en:
         title: BNB Withdraw
       withdraw_busd:
         title: BUSD Withdraw
+      withdraw_tmd:
+        title: TMD Withdraw
       withdraw_coin:
         intro: Please fill in the address and amount, then submit the form. It will be confirmed in 10 minutes
         label: Label
@@ -249,3 +254,4 @@ en:
         gwl: GWL Market
         bnb: BNB Market
         busd: BUSD Market
+        tmd: TMD Market

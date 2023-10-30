@@ -15,7 +15,7 @@ def load_transactions(coin)
   txs = []
 
   case coin.code
-  when 'eth', 'usdt', 'bnb', 'busd'
+  when 'eth', 'usdt', 'bnb', 'busd', 'tmd'
     CoinRPC[coin.code].listtransactions
   else
     txs = CoinRPC[coin.code].listtransactions('payment', 100)

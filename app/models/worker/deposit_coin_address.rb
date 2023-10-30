@@ -10,7 +10,7 @@ module Worker
       member = payment_address.account.member
       currency = payload[:currency]
       case currency
-        when 'eth', 'usdt', 'bnb', 'busd'
+        when 'eth', 'usdt', 'bnb', 'busd', 'tmd'
           address  = CoinRPC[currency].find_or_initialize_address(member.id) # Uses same address for all dependent coins (ex: ETH, USDT)
         when 'xrp'
           address, secret = CoinRPC[currency].getnewaddress

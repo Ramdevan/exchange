@@ -288,4 +288,16 @@ class CoinRPC
     end
 
   end
+
+  class TMD < BUSD
+
+    def convert_from_base_unit value
+      (value.to_i / 1e14).to_d
+    end
+
+    def convert_to_base_unit value
+      (value.to_f * 1e14).to_i
+    end
+
+  end
 end
