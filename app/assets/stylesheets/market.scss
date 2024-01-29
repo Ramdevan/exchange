@@ -550,8 +550,8 @@ ul#myTab.nav-tabs {
     }
   }
 
-  &.usd {
-    tr.quote-usd {
+  &.bnb {
+    tr.quote-bnb {
       display: inline-flex;
     }
   }
@@ -579,19 +579,19 @@ ul#myTab.nav-tabs {
       display: inline-flex;
     }
   }
-  &.enj {
-    tr.quote-enj {
+  &.busd {
+    tr.quote-busd {
       display: inline-flex;
     }
   }
-  &.mana {
-    tr.quote-mana {
+  &.tmd {
+    tr.quote-tmd {
       display: inline-flex;
     }
   }
 
-  &.citiusd {
-    tr.quote-citiusd {
+  &.tmc {
+    tr.quote-tmc {
       display: inline-flex;
     }
   }
