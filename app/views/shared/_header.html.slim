@@ -14,7 +14,7 @@ header.header_bg
           
           = top_nav_link(t('header.history'), order_history_path,  controllers: ['history']) if current_user
           = top_nav_link(t('header.sessions'), show_history_loginhistory_index_path,  controllers: ['loginhistory']) if current_user
-          /= top_nav_link(t('header.farm'), stake_coins_path, 'stake') if current_user
+          = top_nav_link(t('header.farm'), stake_coins_path, 'stake') if current_user
         ul.navbar-nav.ml-auto
             //li.nav-item
               a.nav-link href="#"  INVITE &amp; EARN 50% FEES            
