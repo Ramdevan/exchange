@@ -252,6 +252,12 @@ en:
         amount: Amount
         confirmations: Confirmation
         aasm_state_text: State
+      deposits/tmc:
+        created_at: Created At
+        txid: Transaction ID
+        amount: Amount
+        confirmations: Confirmation
+        aasm_state_text: State
       withdraws/satoshi:
         id: ID
         member_name: Account
@@ -420,6 +426,20 @@ en:
         amount: Amount
         remark: Remark
         fee: Fee
+      withdraws/tmc:
+        id: ID
+        member_name: Account
+        currency_obj_key_text: Currency
+        state_and_actions: State/Action
+        fund_extra_text: Withdraw Label
+        fund_extrat: Withdraw Label
+        fund_source: Bank
+        fund_uid: Account
+        created_at: Created At
+        sum: Amount
+        amount: Amount
+        remark: Remark
+        fee: Fee
     errors:
       models:
         order_bid:
@@ -532,6 +552,7 @@ en:
       bnb: BNB
       busd: BUSD
       tmd: TMD
+      tmc: TMC
   currency:
     satoshi:
       key: BTC
@@ -597,6 +618,11 @@ en:
       key: TMD
       code: TMD
       name: TMD
+      format: '0,0.0000'
+    tmc:
+      key: TMC
+      code: TMC
+      name: TMC
       format: '0,0.0000'
   datagrid:
     empty: no data found
@@ -817,6 +843,13 @@ en:
       key: TMD
       title: TMD Deposits
       intro: Deposit TMD from your own wallet address to Axioex account
+      latency: 1 confirmation
+      transfer: Manual
+      go: Deposit
+    tmc:
+      key: TMC
+      title: TMC Deposits
+      intro: Deposit TMC from your own wallet address to Axioex account
       latency: 1 confirmation
       transfer: Manual
       go: Deposit
@@ -1217,6 +1250,7 @@ en:
         bnb-assets: BNB Assets
         busd-assets: BUSD Assets
         tmd-assets: TMD Assets
+        tmc-assets: TMC Assets
       liability_tabs:
         verify-btc: Verify My BTC Assets
         verify-inr: Verify My INR Assets
@@ -1231,6 +1265,7 @@ en:
         verify-bnb: Verify My BNB Assets
         verify-busd: Verify My BUSD Assets
         verify-tmd: Verify My TMD Assets
+        verify-tmc: Verify My TMC Assets
         btc-assets-total: 'Total BTC assets of exchange: '
         inr-assets-total: 'Total INR assets of exchange: '
         usd-assets-total: 'Total USD assets of exchange: '
@@ -1244,6 +1279,7 @@ en:
         bnb-assets-total: 'Total BNB assets of exchange: '
         busd-assets-total: 'Total BUSD assets of exchange: '
         tmd-assets-total: 'Total TMD assets of exchange: '
+        tmc-assets-total: 'Total TMC assets of exchange: '
       liability_proof:
         title: Proof of Liabilities
         intro: As an exchange, our liabilities refer to the sum of money (in both
@@ -1314,6 +1350,11 @@ en:
         title: TMD Assets
         intro: All of exchange's TMD assets are listed here.
         total: Total TMD Assets
+        address: Address
+      tmc_assets:
+        title: TMC Assets
+        intro: All of exchange's TMC assets are listed here.
+        total: Total TMC Assets
         address: Address
       inr_assets:
         title: INR Assets
@@ -1432,6 +1473,7 @@ en:
         bnb_html: "<span>BNB</span>"
         busd_html: "<span>BUSD</span>"
         tmd_html: "<span>TMD</span>"
+        tmc_html: "<span>TMC</span>"
         price: Price
         change: "24h %"
       range_switch:
@@ -1959,6 +2001,12 @@ en:
         index:
           accept: Accept
           accept_confirm: Confirm deposit?
+      tmc:
+        update:
+          notice: The deposit was successful.
+        index:
+          accept: Accept
+          accept_confirm: Confirm deposit?
     tickets:
       view: View
       close: Close Ticket
@@ -2218,6 +2266,18 @@ en:
           succeed_confirm: Process withdrawal?
           reject_confirm: Reject withdrawal?
           withdraw: Withdrawals
+      tmcs:
+        index:
+          one: Pending withdrawals
+          all: Last 24 hours
+          empty: No data
+        show:
+          process: Accepted
+          succeed: Withdraw
+          reject: Reject
+          succeed_confirm: Process withdrawal?
+          reject_confirm: Reject withdrawal?
+          withdraw: Withdrawals
   deposits/satoshi:
     aasm_state:
       submitted: Submitted
@@ -2378,6 +2438,14 @@ en:
       member_name: Member
       state_and_actions: State/Actions
       currency_obj_key_text: Currency
+    tmc:
+      amount: Amount
+      txid: TxId
+      created_at: Created At
+      confirmations: Confirmations
+      member_name: Member
+      state_and_actions: State/Actions
+      currency_obj_key_text: Currency
   enumerize:
     account_version:
       reason:
@@ -2411,6 +2479,7 @@ en:
       bnb: BNB
       busd: BUSD
       tmd: TMD
+      tmc: TMC
     order:
       state:
         done: DONE
@@ -3070,6 +3139,13 @@ en:
       key: TMD
       title: TMD Withdraw
       intro: Withdraw TMD to your own wallet
+      latency: 30 minutes
+      transfer: Manual
+      go: Withdraw
+    tmc:
+      key: TMC
+      title: TMC Withdraw
+      intro: Withdraw TMC to your own wallet
       latency: 30 minutes
       transfer: Manual
       go: Withdraw

@@ -29,6 +29,7 @@ module Admin
       can :manage, ::Deposits::Bnb
       can :manage, ::Deposits::Busd
       can :manage, ::Deposits::Tmd
+      can :manage, ::Deposits::Tmc
 
       can :menu, Withdraw
       can :manage, ::Withdraws::Bank
@@ -43,6 +44,7 @@ module Admin
       can :manage, ::Withdraws::Bnb
       can :manage, ::Withdraws::Busd
       can :manage, ::Withdraws::Tmd
+      can :manage, ::Withdraws::Tmc
 
     end
   end

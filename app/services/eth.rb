@@ -264,4 +264,14 @@ class CoinRPC
       normalize_address(@currency[:erc20_contract_address])
     end
   end
+
+  class TMC < USDT
+    def convert_from_base_unit value
+      (value.to_i / 1e18).to_d
+    end
+
+    def convert_to_base_unit value
+      (value.to_f * 1e18).to_i
+    end
+  end
 end
