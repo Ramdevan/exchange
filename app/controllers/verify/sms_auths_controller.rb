@@ -36,9 +36,17 @@ module Verify
 
       respond_to do |format|
         if @sms_auth.valid?
-          @sms_auth.send_otp
-
-          text = I18n.t('verify.sms_auths.show.notice.send_code_success')
+          @sms_auth.send_otp 
+          service = BirdVerificationService.new(ENV['MESSAGEBIRD_WORKSPACE_ID'], ENV['MESSAGEBIRD_VERIFY_KEY'])
+          identifier = {emailaddress: "#{@sms_auth.try(:member).try(:email)}" }
+          steps = [{ channelId: ENV['MESSAGEBIRD_EMAIL_CHANNEL_ID'] }]
+          response = service.send_verification(identifier, steps)
+          if response["id"].present?
+            session[:verification_id] = response["id"]
+            text = I18n.t('verify.sms_auths.show.notice.send_code_success')
+          else 
+            text = I18n.t('verify.sms_auths.show.notice.send_code_fail')
+          end
           format.any { render status: :ok, text: {text: text}.to_json }
         else
           text = @sms_auth.errors.full_messages.to_sentence
@@ -49,12 +57,11 @@ module Verify
 
     def verify_code_phase
       @sms_auth.assign_attributes token_params
-
       respond_to do |format|
-
-        if @sms_auth.verify? || token_params[:otp] == ENV['FALLBACK_OTP']
+        service = BirdVerificationService.new(ENV['MESSAGEBIRD_WORKSPACE_ID'], ENV['MESSAGEBIRD_VERIFY_KEY'])
+        response = service.verify_code(session[:verification_id], token_params[:otp])
+        if @sms_auth.verify? || response["id"].present?
           @sms_auth.active! and unlock_two_factor!
-
           text = I18n.t('verify.sms_auths.show.notice.otp_success')
           flash[:notice] = text
           format.any { render status: :ok, text: {text: text, reload: true}.to_json }
