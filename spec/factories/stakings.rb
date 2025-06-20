@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :staking do
     staking_type "MyString"
     currency "MyString"

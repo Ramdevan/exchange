@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :whitelisting do
     member_id 1
     ip_address "MyString"

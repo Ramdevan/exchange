@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :lending_redeem do
     lending_subscription nil
     redeem_type "MyString"

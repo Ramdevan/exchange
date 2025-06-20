@@ -1,0 +1,74 @@
+# version: "3.9"
+services:
+  db:
+    image: mysql/mysql-server:latest
+    container_name: exchange_mysql
+    volumes:
+      - /home/user/exchange/mysql.cnf:/etc/my.cnf
+      - db_data:/var/lib/mysql
+    expose:
+      - '3306'
+    ports:
+      - '3307:3306'
+    networks:
+      - exchange_network
+    environment:
+      MYSQL_ROOT_PASSWORD: dockerpassw0rd
+
+  redis:
+    image: redis:4.0.14
+    container_name: exchange_redis
+    restart: always
+    ports:
+      - '6380:6379'
+    volumes:
+      - redis_data:/data
+    networks:
+      - exchange_network
+
+  rabbitmq:
+    image: rabbitmq:latest
+    container_name: exchange_rabbitmq
+    restart: always
+    ports:
+      - '5673:5672'
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    labels:
+      traefik.enable: true
+      traefik.frontend.rule: 'Host: rabbitmq.wb.local'
+      traefik.port: 15672
+    networks:
+      - exchange_network
+
+  # web:
+  #   build: .
+  #   container_name: exchange_app
+  #   volumes:
+  #     - /home/user/exchange/app:/home/dockeruser/exchange/app:z
+  #     - /home/user/exchange/db:/home/dockeruser/exchange/db:z
+  #     - /home/user/exchange/lib:/home/dockeruser/exchange/lib:z
+  #     - /home/user/exchange/config:/home/dockeruser/exchange/config:z
+  #     - /home/user/exchange/public:/home/dockeruser/exchange/public:z
+  #     - /home/user/exchange/log:/home/dockeruser/exchange/log:z
+  #   command: ./entrypoint.sh
+  #   networks:
+  #     - exchange_network
+  #   ports:
+  #     - "3000:3000"
+  #   extra_hosts:
+  #     - "localhost:192.168.18.73"
+  #   depends_on:
+  #     db:
+  #       condition: service_healthy
+
+
+volumes:
+  db_data:
+  rabbitmq_data:
+  redis_data:
+
+networks:
+  exchange_network:
+    driver: bridge
+    name: exchange_network

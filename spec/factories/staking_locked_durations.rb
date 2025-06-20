@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :staking_locked_duration do
     
   end

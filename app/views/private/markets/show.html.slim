@@ -7,34 +7,28 @@ html lang="en"
     = stylesheet_link_tag '', media: "all", id: "lightTheme"
     = javascript_include_tag "market"
     = javascript_include_tag "locales/#{I18n.locale}"
-
     = render 'shared/html5'
     = render 'shared/meta'
     = csrf_meta_tags
-
-  body id='#{body_id}' data-lang="#{locale_name}"
-    audio preload='preload' id='success-fx'
+  body id="#{body_id}" data-lang="#{locale_name}"
+    audio#success-fx preload='preload'
       source src="/sounds/success.mp3"
-
-    audio preload='preload' id='warning-fx'
+    audio#warning-fx preload='preload'
       source src="/sounds/warning.mp3"
     div#flash-message
     = render partial: "private/markets/header"
-
     #marekt_trade.trade-grid.trade_mw
-
-
       .cnt-main
         .cnt-nner
           .left-cnt
             .cnt-select
-                h1.cnt_s_h1
-                  =@market.name
-                  span.m_only
-                    i class="fa fa-caret-down"
+              h1.cnt_s_h1
+                = @market.name
+                span.m_only
+                  i.fa.fa-caret-down
             .cnt-sel-to
-                .cst-f.green.red
-                  = Global[@market.id].ticker[:last]
+              .cst-f.green.red
+                = Global[@market.id].ticker[:last]
           .right-cnt
             .tickerlist
               .rc-box
@@ -57,12 +51,11 @@ html lang="en"
                 .rcb-f
                   | 24h Volume(#{@market.base_unit.upcase || "BTC"})
                 .rcb-s
-                  = Rails.cache.read("axios:#{@market.id}_24h_volumes")[:base_volume] || 0
               .rc-box
                 .rcb-f
                   | 24h Volume(#{@market.quote_unit.upcase || "BTC"})
                 .rcb-s
-                  = Rails.cache.read("axios:#{@market.id}_24h_volumes")[:quote_volume] || 0
+                  -# = Rails.cache.read("axios:#{@market.id}_24h_volumes")[:quote_volume] || 0
       .market_main_tab
         .mm_tab
           .mmt_list
@@ -72,46 +65,35 @@ html lang="en"
               | Order Book
             a[href="javascript:void(0)" data-id="market_box"]
               | Trades
-
       #trade_orderbook.tgi.trade-grid-item.order_book_main.order-2.order-lg-1.order-md-1
         = render partial: 'order_book'
       #trade_chart.trade-grid-item.chart_area.order-1.order-lg-2.order-md-2
-          #chart_box.tgi.active
-            <ul class="nav nav-tabs">
-              <li class=""><a class="active" data-toggle="tab" href="#TradeviewChartCustom">Trade View</a></li>
-              <li><a data-toggle="tab" href="#DepthviewChartCustom">Depth View</a></li>
-            </ul>
-            <div class="tab-content">
-              <div id="TradeviewChartCustom" class="tab-pane fade in active show">
-                = render partial: 'tradeview_depths'
-              </div>
-              <div id="DepthviewChartCustom" class="tab-pane fade">
-                = render partial: 'depths'
-              </div>
-            </div>
-          .orderbook_tradehistory
-            .row.m-0
-              .order_book.col-lg-12.col-md-12.col-sm-12
-                = render partial: 'buy_sell'
-
+        #chart_box.tgi.active
+          ul.nav.nav-tabs
+            li
+              a.active data-toggle="tab" href="#TradeviewChartCustom" Trade View
+            li
+              a data-toggle="tab" href="#DepthviewChartCustom" Depth View
+          div.tab-content
+            div#TradeviewChartCustom.tab-pane.fade.in.active.show
+              = render partial: 'tradeview_depths'
+            div#DepthviewChartCustom.tab-pane.fade
+              = render partial: 'depths'
+        .orderbook_tradehistory
+          .row.m-0
+            .order_book.col-lg-12.col-md-12.col-sm-12
+              = render partial: 'buy_sell'
       #trade_list.trade-grid-item.order-3.order-lg-3.order-md-3
         = render partial: 'market_list'
         #market_box.tgi.trade_history
           = render partial: 'market_trades'
-
     .trade_mw_container
       = render partial: 'my_orders'
     .resHeader
-
-      - if ENV['CHAT_FEATURE']
-      /   #chat_tabs_wrapper.float
-      / ul.nav.nav-tabs.tabs-right.sideways
-      /   li: a href='#chat_content' data-toggle='tab' = t('.chat')
-      / .tab-content
-      /  #chat_content.tab-pane
-         = render partial: 'chat'
-         = render partial: 'market_list'
-         = render partial: 'market_trades'
-         = render partial: 'order_book'
-         = render partial: 'depths'
-         = render partial: 'ticker'
+    - if ENV['CHAT_FEATURE']
+      = render partial: 'chat'
+      = render partial: 'market_list'
+      = render partial: 'market_trades'
+      = render partial: 'order_book'
+      = render partial: 'depths'
+      = render partial: 'ticker'
