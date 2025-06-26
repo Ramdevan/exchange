@@ -1,3 +1,9 @@
 //= link_tree ../images
 //= link_directory ../javascripts .js
 //= link_directory ../stylesheets .css
+//= link market.css
+//= link empty.css
+//= link application.css
+//= require bootstrap-wysihtml5
+//= require bootstrap-wysihtml5/b3
+//= require_tree .

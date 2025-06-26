@@ -11,6 +11,8 @@
           <!-- <a href="/"><%= image_tag "favicon.png", :class => "authLogo" %></a> -->
             <!-- <h5 class="authMsg">Please register your details and as soon we are live we will let you know</h5> -->
 
+          <%= favicon_link_tag asset_path('favicon.png') %>
+
           <%= form_for @identity, url: '/auth/identity/callback', method: :post, html: { class: 'form-signin' } do |f| %>
             <span id="reauth-email" class="reauth-email"></span>
             <p class="input_title">E-mail Address</p>

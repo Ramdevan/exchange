@@ -138,12 +138,14 @@ gem 'jbuilder', '~> 2.12.0'
 gem 'bcrypt', '~> 3.1.20'
 gem 'doorkeeper', '~> 5.7.1'  # After Ruby 3.0
 gem 'omniauth', '~> 2.1.2'
-gem 'devise', '~> 4.9.4'  # Replaces omniauth-identity
+gem 'omniauth-identity', '~> 3.0'
+# gem 'devise', '~> 4.9.4'  # Replaces omniauth-identity
 gem 'figaro', '~> 1.2.0'
 gem 'hashie', '~> 5.0.0'
 gem 'aasm', '~> 5.5.0'
 gem 'amqp', '~> 1.8'
 gem 'bunny', '~> 2.22.0'  # Replaces amqp
+gem 'daemons'
 gem 'cancancan', '~> 3.6.1'
 gem 'enumerize', '~> 2.8.1'
 gem 'datagrid', '~> 1.6'
@@ -166,8 +168,10 @@ gem 'sass-rails', '~> 6.0.0'
 gem 'terser', '~> 1.2.3'  # Replaces uglifier
 gem 'jquery-rails', '~> 4.6.0'
 gem 'bootstrap', '~> 5.3.3'
+gem 'bootstrap-wysihtml5-rails'
 gem 'trix-rails', '~> 2.1'  # Replaces bootstrap-wysihtml5-rails
 gem 'font-awesome-sass', '~> 5.6.1'
+gem 'bourbon', '~> 7.0'
 gem 'tailwindcss-rails', '~> 0.5.4'  # Replaces bourbon
 gem 'momentjs-rails', '~> 2.29.4'
 gem 'browser', '~> 5.3'  # After Ruby 3.0

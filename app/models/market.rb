@@ -127,8 +127,16 @@ class Market < ActiveYamlBase
     {name: name, base_unit: base_unit, quote_unit: quote_unit, price_precision: price_precision}
   end
 
+  # def self.default_one
+  #   find_by_id('btcusdt') || first
+  # end
+
+  def self.find_by_id(id)
+    all.find { |market| market.id.to_s == id.to_s }
+  end
+
   def self.default_one
-    find_by_id('btcusdt') || first
+    find_by_id('btcusdt') || all.first
   end
 
   def self.select_options

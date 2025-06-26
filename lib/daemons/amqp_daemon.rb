@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
-module AMQPDaemon
-def self.start
+
 # You might want to change this
 ENV["RAILS_ENV"] ||= "development"
 
@@ -10,15 +9,7 @@ Dir.chdir(root)
 
 require File.join(root, "config", "environment")
 
-# raise "bindings must be provided." if ARGV.size == 0
-if ARGV.empty? || ARGV.first.start_with?('db:', 'rails:', '--')
-  if defined?(Rails::Command)
-    exit(0) # Exit cleanly for Rails commands
-  else
-    puts "No binding provided. Using default: default_queue"
-    ARGV.replace(['default_queue'])
-  end
-end
+raise "bindings must be provided." if ARGV.size == 0
 
 Rails.logger = logger = Logger.new STDOUT
 
@@ -86,7 +77,6 @@ end
     handler = "on_#{signal.downcase}"
     workers.each {|w| w.send handler if w.respond_to?(handler) }
   end
-end
 end
 
 ch.work_pool.join

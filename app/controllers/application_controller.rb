@@ -17,8 +17,17 @@ class ApplicationController < ActionController::Base
     "#{params[:ask]}#{params[:bid]}".to_sym
   end
 
+  # def current_market
+  #   @current_market ||= Market.find_by_id(params[:market]) || Market.find_by_id(cookies[:market_id]) || Market.default_one
+  # end
+
   def current_market
-    @current_market ||= Market.find_by_id(params[:market]) || Market.find_by_id(cookies[:market_id]) || Market.default_one
+    @current_market ||= begin
+      market_id = params[:market] || cookies[:market_id]
+      if market_id
+        Market.all.find { |m| m.id.to_s == market_id.to_s }
+      end || Market.default_one
+    end
   end
 
   def redirect_back_or_settings_page
