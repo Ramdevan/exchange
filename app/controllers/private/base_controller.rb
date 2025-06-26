@@ -1,7 +1,7 @@
 module Private
   class BaseController < ::ApplicationController
     before_action :check_email_nil
-    before_filter :no_cache, :auth_member!
+    before_action :no_cache, :auth_member!
     # before_action :two_factor_required!, if: -> { current_user && current_user.two_factors.activated?  }
 
     private

@@ -1,0 +1,19 @@
+development: &defaults
+  adapter: mysql2
+  encoding: utf8
+  database: exchange_axios_development
+  username: root
+  password: dockerpassw0rd
+  pool: 10
+  host: 0.0.0.0
+  port: 3307
+  #reconnect: true
+
+test:
+  <<: *defaults
+  database: exchange_axios_test
+
+production:
+  <<: *defaults
+  database: exchange_axios_production
+

@@ -1,0 +1,111 @@
+connect:
+  host: localhost
+  port: 5672
+
+exchange:
+  trade:
+    name: axios.trade
+    type: headers
+  notification:
+    name: axios.notification
+    type: direct
+  orderbook:
+    name: axios.orderbook
+    type: fanout
+      
+
+queue:
+  matching:
+    name: axios.matching
+    durable: true
+  slave_book:
+    name: axios.orderbook.slave
+    durable: true
+  new_trade:
+    name: axios.trade.new
+    durable: true
+  order_processor:
+    name: axios.order.processor
+    durable: true
+  market_ticker:
+    name: axios.trade.market_ticker
+  pusher_market:
+    name: axios.pusher.market
+  pusher_member:
+    name: axios.pusher.member
+  withdraw_coin:
+    name: axios.withdraw.coin
+  deposit_coin:
+    name: axios.deposit.coin
+  deposit_coin_address:
+    name: axios.deposit.coin.address
+    durable: true
+  email:
+    name: axios.notification.email
+    durable: true
+  sms:
+    name: axios.notification.sms
+    durable: true
+  liquidity_orders:
+    name: axios.liquidity.orders
+    durable: true
+
+binding:
+  matching:
+    queue: matching
+    clean_start: true
+  slave_book:
+    queue: slave_book
+    exchange: orderbook
+  trade_executor:
+    queue: new_trade
+    manual_ack: true
+  order_processor:
+    queue: order_processor
+    manual_ack: true
+  market_ticker:
+    queue: market_ticker
+    exchange: trade
+  pusher_market:
+    queue: pusher_market
+    exchange: trade
+  pusher_member:
+    queue: pusher_member
+  withdraw_coin:
+    queue: withdraw_coin
+  deposit_coin:
+    queue: deposit_coin
+  deposit_coin_address:
+    queue: deposit_coin_address
+  email_notification:
+    queue: email
+    exchange: notification
+  sms_notification:
+    queue: sms
+    exchange: notification
+  liquidity_orders:
+    queue: liquidity_orders
+  default_queue:
+      queue: default_queue
+      clean_start: false
+      manual_ack: true
+
+  
+channel:
+  trade_executor:
+    prefetch: 5
+  order_processor:
+    prefetch: 5
+  default_queue:
+    prefetch: 1
+    
+
+
+# development:
+#   <<: *defaults
+
+# test:
+#   <<: *defaults
+
+# production:
+#   <<: *defaults

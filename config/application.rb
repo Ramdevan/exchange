@@ -1,6 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 # Pick the frameworks you want:
+require "logger"
 require "active_record/railtie"
 require "action_controller/railtie"
 require "action_mailer/railtie"
@@ -27,7 +28,13 @@ module Exchange
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', 'custom', '*.{yml}')]
     config.i18n.available_locales = ['en']
 
+    config.autoload_paths += %W(#{config.root}/app/workers)    
     config.autoload_paths += %W(#{config.root}/lib #{config.root}/lib/extras)
+
+
+    config.eager_load_paths << Rails.root.join('lib')
+
+    config.autoload_paths += %W(#{config.root}/app/models)
 
     #config.assets.precompile += ['bootstrap-datetimepicker.css']
     config.assets.initialize_on_precompile = true
@@ -48,6 +55,6 @@ module Exchange
     # Observer configuration
     config.active_record.observers = :transfer_observer
 
-    config.active_record.raise_in_transactional_callbacks = true
+    # config.active_record.raise_in_transactional_callbacks = true
   end
 end

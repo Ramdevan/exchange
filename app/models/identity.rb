@@ -1,5 +1,5 @@
-class Identity < OmniAuth::Identity::Models::ActiveRecord
-  auth_key :email
+class Identity < ActiveRecord::Base
+  # auth_key :email
   attr_accessor :old_password, :country, :phone_number, :first_name, :last_name
 
   MAX_LOGIN_ATTEMPTS = 5
@@ -9,6 +9,8 @@ class Identity < OmniAuth::Identity::Models::ActiveRecord
   validates :password_confirmation, presence: true, length: { minimum: 6, maximum: 64 }
   validates_presence_of :first_name, :last_name, :phone_number, if: :member_data_blank?
   validate :valid_phone_number_for_country, if: :member_data_blank?
+
+  has_secure_password
 
   before_validation :sanitize
 

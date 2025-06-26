@@ -3,7 +3,7 @@ FactoryBot.define do
     member
 
     trait :activated do
-      activated true
+      activated {true}
     end
   end
 

@@ -2,7 +2,7 @@ class BaseMailer < ActionMailer::Base
   include AMQPQueue::Mailer
 
   layout 'mailers/application'
-  add_template_helper MailerHelper
+  helper MailerHelper
 
   default from: "Axioex Support <#{ENV['SYSTEM_MAIL_FROM']}>",
           reply_to: ENV['SUPPORT_MAIL']

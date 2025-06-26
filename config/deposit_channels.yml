@@ -1,0 +1,12 @@
+- id: 200
+  key: satoshi
+  currency: btc
+  min_confirm: 1
+  max_confirm: 6
+
+- id: 201
+  key: ethereum
+  currency: eth
+  min_confirm: 1
+  max_confirm: 6
+

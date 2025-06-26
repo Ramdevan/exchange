@@ -11,16 +11,16 @@
 .idea/
 
 # Application Specific Files
-config/database.yml
-config/settings.yml
-config/application.yml
-config/currencies.yml
-config/markets.yml
-eth/filter.service
-eth/service.rb
-config/deposit_channels.yml
-config/withdraw_channels.yml
-config/amqp.yml
+# config/database.yml
+# config/settings.yml
+# config/application.yml
+# config/currencies.yml
+# config/markets.yml
+# eth/filter.service
+# eth/service.rb
+# config/deposit_channels.yml
+# config/withdraw_channels.yml
+# config/amqp.yml
 
 db/schema.rb
 

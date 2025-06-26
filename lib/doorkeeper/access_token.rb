@@ -7,7 +7,8 @@
 
 module Doorkeeper
   class AccessToken
-    paranoid
+    acts_as_paranoid
+
 
     attr_accessor :api_token
 

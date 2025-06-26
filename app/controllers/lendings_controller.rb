@@ -1,5 +1,5 @@
 class LendingsController < ApplicationController
-	before_filter :auth_member!
+	before_action :auth_member!
 	before_action :set_lending, only: %i[flexible_transfer flexible_lending auto_transfer locked_transfer]
 	before_action :set_flexible_subscription, only: %i[fast_redeem standard_redeem]
 

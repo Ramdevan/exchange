@@ -37,11 +37,17 @@ Exchange::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+  config.assets.quiet = true     #new change
+
 
   config.active_record.default_timezone = :local
 
+
   require 'middleware/i18n_js'
   require 'middleware/security'
-  config.middleware.insert_before ActionDispatch::Static, Middleware::I18nJs
-  config.middleware.insert_before Rack::Runtime, Middleware::Security
+  # config.middleware.insert_before ActionDispatch::Static, Middleware::I18nJs
+  # config.middleware.insert_before Rack::Runtime, Middleware::Security
+
+  config.middleware.use Middleware::Security
+  config.middleware.use Middleware::I18nJs
 end

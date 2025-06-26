@@ -1,4 +1,6 @@
 Rails.application.eager_load! if Rails.env.development?
+require 'daemons/amqp_daemon'
+
 
 class ActionDispatch::Routing::Mapper
   def draw(routes_name)
@@ -26,7 +28,7 @@ Exchange::Application.routes.draw do
   post '/webhooks/tmd' => 'webhooks#tmd'
   post '/webhooks/tmc' => 'webhooks#tmc'
 
-  if Rails.env.development?
+  if Rails.env.development? && defined?(MailsViewer)
     mount MailsViewer::Engine => '/mails'
   end
 

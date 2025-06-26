@@ -78,7 +78,7 @@ class BinanceRestClient
         open    = proc { puts 'connected' }
         message = proc { |e|
           data = JSON.parse(e.data)
-          market = @markets[pairs.key(data['s'].upcase)].first
+          market = @markets[pairs.key(data['s'].upcase)]&.first
           # puts data
           update_orderbook(market, data['a'], 'OrderAsk') if data['a'].present?
           update_orderbook(market, data['b'], 'OrderBid') if data['b'].present?

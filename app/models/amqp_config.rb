@@ -1,53 +1,43 @@
 class AMQPConfig
-  class <<self
+  class << self
     def data
-      @data ||= Hashie::Mash.new YAML.load_file(Rails.root.join('config', 'amqp.yml'))
+      @data ||= begin
+        path = Rails.root.join('config', 'amqp.yml')
+        YAML.load(ERB.new(File.read(path)).result)[Rails.env].symbolize_keys
+      end
     end
 
     def connect
-      data[:connect]
-    end
-
-    def binding_exchange_id(id)
-      data[:binding][id][:exchange]
-    end
-
-    def binding_exchange(id)
-      eid = binding_exchange_id(id)
-      eid && exchange(eid)
-    end
-
-    def binding_queue(id)
-      queue data[:binding][id][:queue]
-    end
-
-    def binding_worker(id)
-      ::Worker.const_get(id.to_s.camelize).new
-    end
-
-    def routing_key(id)
-      binding_queue(id).first
-    end
-
-    def topics(id)
-      data[:binding][id][:topics].split(',')
+      data[:connect] || {}
     end
 
     def channel(id)
-      (data[:channel] && data[:channel][id]) || {}
+      data.dig(:channel, id) || {}
     end
 
-    def queue(id)
-      name = data[:queue][id][:name]
-      settings = { durable: data[:queue][id][:durable] }
-      [name, settings]
+    def binding_worker(id)
+      "Worker::#{id.camelize}".constantize.new
+    rescue NameError => e
+      Rails.logger.warn "Worker class not found: #{e.message}, using DefaultQueue"
+      Worker::DefaultQueue.new
     end
 
-    def exchange(id)
-      type = data[:exchange][id][:type]
-      name = data[:exchange][id][:name]
-      [type, name]
+    def binding_queue(id)
+      config = data.dig(:binding, id) || {}
+      queue_name = config[:queue] || id
+      [queue_name, { durable: true }]
     end
 
+    def binding_exchange(id)
+      data.dig(:binding, id, :exchange)
+    end
+
+    def routing_key(id)
+      data.dig(:binding, id, :routing_key) || id
+    end
+
+    def topics(id)
+      data.dig(:binding, id, :topics) || []
+    end
   end
 end

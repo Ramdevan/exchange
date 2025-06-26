@@ -1,8 +1,9 @@
 require_relative 'amqp_mock'
 
 module Benchmark
-  class Execution < Matching
-
+  class Execution
+    include ::Matching
+    
     def initialize(label, num, round, process_num)
       super(label, num, round)
       @process_num = process_num

@@ -1,7 +1,7 @@
 module Private
   class SettingsController < BaseController
 
-    skip_before_action :auth_member!, :two_factor_required!, only: [:fee]
+    skip_before_action :auth_member!, only: [:fee]    # :two_factor_required!,
 
     def index
       unless current_user.activated?

@@ -1,11 +1,11 @@
 FactoryBot.define do
   factory :order_bid do
-    bid :cny
-    ask :btc
-    currency :btccny
-    state :wait
-    source 'Web'
-    ord_type 'limit'
+    bid { :cny }
+    ask {:btc}
+    currency {:btccny}
+    state {:wait}
+    source {'Web'}
+    ord_type {'limit'}
     price { '1'.to_d }
     volume { '1'.to_d }
     origin_volume { volume }
@@ -14,12 +14,12 @@ FactoryBot.define do
   end
 
   factory :order_ask do
-    bid :cny
-    ask :btc
-    currency :btccny
-    state :wait
-    source 'Web'
-    ord_type 'limit'
+    bid {:cny}
+    ask {:btc}
+    currency {:btccny}
+    state {:wait}
+    source {'Web'}
+    ord_type {'limit'}
     price { '1'.to_d }
     volume { '1'.to_d }
     origin_volume { volume }

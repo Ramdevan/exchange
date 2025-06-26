@@ -4,7 +4,8 @@ class FundSource < ActiveRecord::Base
   attr_accessor :name
   attr_accessor :is_default
 
-  paranoid
+  acts_as_paranoid
+
 
   belongs_to :member
 

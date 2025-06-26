@@ -46,7 +46,7 @@ module SimpleForm
         options[:html][:class] ||= 'form-horizontal'
         simple_form_for_without_default_class(record, options, &block)
       end
-      alias_method_chain :simple_form_for, :default_class
+      alias_method :simple_form_for, :DelegateClass
     end
   end
 end

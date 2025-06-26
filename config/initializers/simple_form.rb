@@ -172,6 +172,12 @@ module SimpleForm
       end
     end
 
-    alias_method_chain :lookup_model_names, :custom_scope
+    # alias_method :lookup_model_names, :customize    #old line
+
+    if self.method_defined?(:customize)     #new changes
+      alias_method :custom, :customize
+    end
+
+
   end
 end

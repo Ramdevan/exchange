@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :payment_address do
-    address "MyString"
+    address {"MyString"}
     account { create(:member).get_account(:cny) }
 
     trait :btc_address do

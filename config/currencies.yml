@@ -1,0 +1,31 @@
+- id: 2
+  key: satoshi
+  code: btc
+  display_name: Bitcoin
+  symbol: "฿"
+  coin: true
+  precision: 4
+  quick_withdraw_max: 10
+  rpc: http://USERNAME:PASSWORD@127.0.0.1:18332
+  blockchain: https://blockchain.info/tx/#{txid}
+  address_url: https://blockchain.info/address/#{address}
+  assets:
+    accounts:
+      -
+        address:
+
+- id: 3
+  key: ethereum
+  code: eth
+  display_name: Ethereum
+  symbol: "Ξ"
+  coin: true
+  precision: 4
+  quick_withdraw_max: 10
+  rpc: http://USERNAME:PASSWORD@127.0.0.1:18332
+  blockchain: https://blockchain.info/tx/#{txid}
+  address_url: https://blockchain.info/address/#{address}
+  assets:
+    accounts:
+      -
+        address:
